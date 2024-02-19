@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+
+# FUNCTION DEFINITIONS
+
+# Function to report the violation to the user
+show_error_and_exit() {
+  echo "[Policy] ${1}"
+  exit 1
+}
+
+# Only allow the local branch to be pushed to a remote branch of the same name
+disallow_branch_name_mismatch() {
+  local current_git_branch=`git rev-parse --abbrev-ref HEAD`
+
+  # Bash auto-splits on whitespace, so loop through each command token
+  for token in $push_command; do
+    if [[ $token == $current_git_branch ]]; then
+      # Branch match found, so stop checking
+      return
+    fi
+  done
+
+  show_error_and_exit "Current branch \"${current_git_branch}\" does not match push branch"
+}
+
+disallow_force_push() {
+  # Regular expression to check against each of the push command's tokens
+  local regex_is_force_push_command='^(\-\-force|\-f)$'
+
+  # Bash auto-splits on whitespace, so loop through each command token
+  for token in $push_command; do
+    if [[ $token =~ $regex_is_force_push_command ]]; then
+      show_error_and_exit 'Unverified force pushing of branches is not allowed; use --force-with-lease instead'
+    fi
+  done
+}
+
+
+# EXECUTE HOOK VALIDATION
+push_command=`ps -ocommand= -p $PPID` # "git push" command used to trigger this hook
+disallow_branch_name_mismatch
+disallow_force_push
+
+
+# UNSET ALL NON-LOCAL VARIABLES AND FUNCTIONS
+unset disallow_branch_name_mismatch
+unset disallow_force_push
+unset show_error_and_exit

@@ -1,0 +1,24 @@
+name: Publish Workflow
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: "1.0.28"
+      - uses: mangs/simple-release-notes-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          access: public
+          registry: https://registry.npmjs.org/
+          token: ${{ secrets.NPM_TOKEN }}

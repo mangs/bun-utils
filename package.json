@@ -1,0 +1,59 @@
+{
+  "name": "@mangs/bun-utils",
+  "version": "1.0.0",
+  "author": "Eric L. Goldstein",
+  "description": "Useful utils for your Bun projects",
+  "engines": {
+    "bun": "1.0.28"
+  },
+  "packageManager": "bun@1.0.28",
+  "files": [
+    "./scripts",
+    "./utils"
+  ],
+  "bin": {
+    "check-environment-symlinks": "scripts/bun/checkEnvironmentSymlinks.mts",
+    "check-environment-versions": "scripts/bun/checkEnvironmentVersions.mts",
+    "devserver": "scripts/bun/startDevelopmentServer.mts",
+    "install-git-hooks": "scripts/git/installGitHooks.mts",
+    "remove-git-hooks": "scripts/git/removeGitHooks.mts"
+  },
+  "exports": {
+    "./build": "./utils/buildUtils.mts",
+    "./console": "./utils/consoleUtils.mts",
+    "./filesystem": "./utils/filesystemUtils.mts",
+    "./network": "./utils/networkUtils.mts",
+    "./time": "./utils/timeUtils.mts"
+  },
+  "scripts": {
+    "audit:node-modules": "cd node_modules && du -sh -- * | sort -h",
+    "check:environment": "bun --bun run --silent check:environment:symlinks && bun run --silent check:environment:versions",
+    "check:environment:symlinks": "scripts/bun/checkEnvironmentSymlinks.mts",
+    "check:environment:versions": "scripts/bun/checkEnvironmentVersions.mts",
+    "check:formatting": "prettier --check --no-editorconfig .",
+    "check:linting:eslint": "eslint-config-prettier ./src/index.mts",
+    "check:types": "tsc --noEmit",
+    "delete:build-artifacts": "rm -rf dist",
+    "delete:node-modules": "rm -rf node_modules",
+    "delete:package-lock": "rm -f bun.lockb",
+    "format:code": "prettier --write --no-editorconfig .",
+    "lint:typescript": "echo Linting all TypeScript... && eslint --ext cts,ts,mts --max-warnings 0 .",
+    "list:eslint:disable-directives": "rg '/(/|\\*+)[ \\t]*eslint-disable[^*]*(\\*+/)?'",
+    "list:todo-comments": "rg --only-matching '(TODO|FIXME):[a-zA-Z0-9\\t .,;?]+'",
+    "postinstall": "bun scripts/git/removeGitHooks.mts && bun scripts/git/installGitHooks.mts",
+    "reinstall": "bun run --silent delete:package-lock && bun run --silent delete:node-modules && bun install",
+    "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
+  },
+  "dependencies": {
+    "type-fest": "4.10.2",
+    "yoctocolors": "1.0.0"
+  },
+  "devDependencies": {
+    "@babbel/eslint-config": "1.2.1",
+    "@types/bun": "1.0.6",
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "prettier": "3.2.5",
+    "typescript": "5.3.3"
+  }
+}

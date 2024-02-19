@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "globals": {
+    "Bun": "readonly"
+  },
+  "extends": ["@babbel/eslint-config/typescript", "@babbel/eslint-config/node"],
+  "overrides": [
+    {
+      "files": [
+        "scripts/bun/checkEnvironmentSymlinks.mts",
+        "scripts/bun/checkEnvironmentVersions.mts",
+        "scripts/bun/startDevelopmentServer.mts",
+        "scripts/git/installGitHooks.mts",
+        "scripts/git/removeGitHooks.mts"
+      ],
+      "rules": {
+        "n/shebang": "off"
+      }
+    }
+  ]
+}

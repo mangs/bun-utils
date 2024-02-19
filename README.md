@@ -1,2 +1,3 @@
-# bun-utils
-Useful, reusable utils for your Bun projects
+# NPM Package `@mangs/bun-utils`
+
+Useful utils for your Bun projects
