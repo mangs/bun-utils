@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3
+
+- `getElapsedTimeFormatted()` now uses `ms` units by default
+- Update dependency versions to latest
+
 ## 1.0.2
 
 - Add NPM package version number badge to [`README.md`](./README.md) that links to the [package homepage on npmjs.com](https://www.npmjs.com/package/@mangs/bun-utils)
