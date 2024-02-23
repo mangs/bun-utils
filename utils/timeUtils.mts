@@ -1,12 +1,22 @@
 // Local Variables
 const timeUnits = ['ns', 'μs', 'ms', 's'] as const;
 
+// Local Types
+type TimeUnits = (typeof timeUnits)[number];
+
 // Local Functions
-function getElapsedTimeFormatted(startTime: number, hasUnits = true) {
+function getElapsedTimeFormatted(startTime: number, exactUnits: TimeUnits | '' = 'ms') {
   const endTime = Bun.nanoseconds();
   let elapsedTime = endTime - startTime;
   let timeIndex = 0;
-  if (hasUnits) {
+
+  if (exactUnits) {
+    const exactIndex = timeUnits.indexOf(exactUnits);
+    while (timeIndex < exactIndex) {
+      elapsedTime /= 1_000;
+      timeIndex += 1;
+    }
+  } else {
     while (elapsedTime > 1) {
       if (elapsedTime <= 1_000) {
         break;
@@ -15,13 +25,13 @@ function getElapsedTimeFormatted(startTime: number, hasUnits = true) {
       timeIndex += 1;
     }
   }
-  const digitCount = hasUnits ? 2 : 0;
+
   const elapsedTimeLocalized = elapsedTime.toLocaleString(undefined, {
-    maximumFractionDigits: digitCount,
-    minimumFractionDigits: digitCount,
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
   });
   const units = timeUnits[timeIndex];
-  return `${elapsedTimeLocalized}${hasUnits ? units : ''}`;
+  return `${elapsedTimeLocalized}${units}`;
 }
 
 // Module Exports
