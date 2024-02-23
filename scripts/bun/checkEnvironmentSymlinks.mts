@@ -17,7 +17,7 @@ interface PathError {
 async function main() {
   const startTime = Bun.nanoseconds();
 
-  const filePaths = getFilesRecursive('.');
+  const filePaths = await getFilesRecursive('.');
   const fileStatList = await Promise.all(filePaths.map((path) => lstat(path)));
   const pathPromises: Promise<string>[] = [];
   for (const [index, fileStats] of fileStatList.entries()) {
