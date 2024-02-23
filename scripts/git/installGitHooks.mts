@@ -21,12 +21,12 @@ async function main() {
     return;
   }
 
-  const isDestinationPathAccessible = isDirectoryAccessible(gitHooksDestinationPath);
+  const isDestinationPathAccessible = await isDirectoryAccessible(gitHooksDestinationPath);
   if (!isDestinationPathAccessible) {
     // Skip silently because there is no .git directory, thus likely executing inside node_modules
     return;
   }
-  const isSourcePathAccessible = isDirectoryAccessible(gitHooksSourcePath);
+  const isSourcePathAccessible = await isDirectoryAccessible(gitHooksSourcePath);
   if (!isSourcePathAccessible) {
     const { name: packageName } = await import('../../package.json', { with: { type: 'json' } });
     printError(

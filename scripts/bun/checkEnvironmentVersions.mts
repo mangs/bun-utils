@@ -2,7 +2,7 @@
 
 // External Imports
 import { access, readdir } from 'node:fs/promises';
-import fs, { readFileSync } from 'node:fs';
+import fs from 'node:fs';
 
 // Internal Imports
 import { getPerformanceLabel, printError, printSuccess } from '../../utils/consoleUtils.mts';
@@ -15,7 +15,7 @@ const filePaths = {
   githubWorkflowsDirectory: './.github/workflows/',
   packageJson: './package.json',
 } as const;
-const packageJson = JSON.parse(readFileSync('./package.json', { encoding: 'utf8' })) as PackageJson;
+const packageJson = JSON.parse(await Bun.file('./package.json').text()) as PackageJson;
 
 // Local Types
 interface EnvironmentVersions {

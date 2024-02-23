@@ -1,21 +1,26 @@
 // External Imports
+import { access, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import fs, { accessSync, readdirSync } from 'node:fs';
+import fs from 'node:fs';
 
 // Local Variables
 const fileSizeUnits = ['B', 'KiB', 'MiB', 'GiB'] as const;
 
-// Local Functions
-function getFilesRecursive(targetDirectory: string, ignore = ['node_modules']): string[] {
+async function getFilesRecursive(
+  targetDirectory: string,
+  ignore = ['node_modules'],
+): Promise<string[]> {
   const directoryPathAbsolute = resolve(targetDirectory);
-  const directoryEntries = readdirSync(directoryPathAbsolute, { withFileTypes: true });
-  const recursiveEntries = directoryEntries.map((entry) => {
-    if (ignore.includes(entry.name)) {
-      return '';
-    }
-    const pathAbsolute = resolve(directoryPathAbsolute, entry.name);
-    return entry.isDirectory() ? getFilesRecursive(pathAbsolute) : pathAbsolute;
-  });
+  const directoryEntries = await readdir(directoryPathAbsolute, { withFileTypes: true });
+  const recursiveEntries = await Promise.all(
+    directoryEntries.map((entry) => {
+      if (ignore.includes(entry.name)) {
+        return '';
+      }
+      const pathAbsolute = resolve(directoryPathAbsolute, entry.name);
+      return entry.isDirectory() ? getFilesRecursive(pathAbsolute) : pathAbsolute;
+    }),
+  );
   return recursiveEntries.flat(Number.POSITIVE_INFINITY).filter(Boolean) as string[];
 }
 
@@ -35,10 +40,10 @@ function getHumanReadableFilesize(filesize: number) {
   return `${localizedSize} ${fileSizeUnits[divisionCount]}`;
 }
 
-function isDirectoryAccessible(path: string) {
+async function isDirectoryAccessible(path: string) {
   try {
     // eslint-disable-next-line no-bitwise -- following the documentation for fs constants: https://nodejs.org/docs/latest-v16.x/api/fs.html#fspromisesaccesspath-mode
-    accessSync(path, fs.constants.R_OK | fs.constants.X_OK);
+    await access(path, fs.constants.R_OK | fs.constants.X_OK);
     return true;
   } catch {
     return false;

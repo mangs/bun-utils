@@ -20,7 +20,7 @@ async function main() {
     return;
   }
 
-  const isPathAccessible = isDirectoryAccessible(gitHooksPath);
+  const isPathAccessible = await isDirectoryAccessible(gitHooksPath);
   if (!isPathAccessible) {
     // Skip silently because there is no .git directory, thus likely executing inside node_modules
     return;
