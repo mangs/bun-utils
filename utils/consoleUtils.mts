@@ -6,7 +6,7 @@ import { getElapsedTimeFormatted } from './timeUtils.mts';
 
 // Local Functions
 function getPerformanceLabel(startTime: number) {
-  const formattedTime = getElapsedTimeFormatted(startTime, true);
+  const formattedTime = getElapsedTimeFormatted(startTime);
   return dim(white(`[${formattedTime}]`));
 }
 
