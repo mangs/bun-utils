@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2
+
+- Add NPM package badges to [`README.md`](./README.md) that link to the [package homepage on npmjs.com](https://www.npmjs.com/package/@mangs/bun-utils)
+  - Version number
+  - Bundle size
+- Add homepage and repository metadata to `package.json`
+
 ## 1.0.1
 
 - Fix performance regression in `scripts/bun/checkEnvironmentSymlinks.mts`
