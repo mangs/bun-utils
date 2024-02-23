@@ -1,12 +1,21 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
     "bun": "1.0.29"
   },
   "packageManager": "bun@1.0.29",
+  "homepage": "https://github.com/mangs/bun-utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mangs/bun-utils.git"
+  },
+  "keywords": [
+    "bun",
+    "utils"
+  ],
   "files": [
     "./scripts",
     "./utils"
