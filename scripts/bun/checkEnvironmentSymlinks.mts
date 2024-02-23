@@ -25,6 +25,7 @@ async function main() {
       const path = filePaths[index]!;
       pathPromises.push(
         realpath(path).catch((error: PathError) => {
+          // eslint-disable-next-line @typescript-eslint/no-throw-literal -- simplified logic to extract broken symlink file paths
           throw error.path;
         }),
       );
@@ -34,7 +35,7 @@ async function main() {
   const brokenSymlinkPaths = [];
   for (const result of await Promise.allSettled(pathPromises)) {
     if (result.status === 'rejected') {
-      brokenSymlinkPaths.push(result.reason);
+      brokenSymlinkPaths.push(result.reason as string);
     }
   }
 
