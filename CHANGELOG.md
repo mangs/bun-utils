@@ -1,8 +1,14 @@
 # Changelog
 
+## 1.0.4
+
+- Make ambiguous and hidden characters easier to identify in VSCode by enabling the following settings:
+  - `editor.unicodeHighlight.ambiguousCharacters`
+  - `editor.unicodeHighlight.invisibleCharacters`
+
 ## 1.0.3
 
-- `getElapsedTimeFormatted()` now uses `ms` units by default
+- `getElapsedTimeFormatted()` now uses `ms` units by default to match Bun's output
 - Update dependency versions to latest
 
 ## 1.0.2
