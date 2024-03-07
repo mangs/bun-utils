@@ -14,7 +14,7 @@
         "scripts/git/removeGitHooks.mts"
       ],
       "rules": {
-        "import/no-unresolved": ["error", { "ignore": ["bun"] }],
+        "import/no-unresolved": ["error", { "ignore": ["^bun"] }],
         "n/shebang": "off"
       }
     }
