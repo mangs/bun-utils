@@ -2,6 +2,7 @@
 
 // External Imports
 import { access, readdir } from 'node:fs/promises';
+import { semver } from 'bun';
 import fs from 'node:fs';
 
 // Internal Imports
@@ -62,11 +63,8 @@ function hasMatchingVersions({ actualVersions, expectedVersions }: VersionContai
     switch (key) {
       case 'bun':
         return (
-          Bun.semver.satisfies(
-            actualVersions.bun.engineVersion,
-            expectedVersions.bun.engineVersion,
-          ) &&
-          Bun.semver.satisfies(actualVersions.bun.githubVersion, expectedVersions.bun.githubVersion)
+          semver.satisfies(actualVersions.bun.engineVersion, expectedVersions.bun.engineVersion) &&
+          semver.satisfies(actualVersions.bun.githubVersion, expectedVersions.bun.githubVersion)
         );
 
       default:
@@ -112,7 +110,7 @@ async function getEnvironmentVersions() {
     },
     packageManager: packageManagerVersionExpected,
   });
-  return { actualVersions, expectedVersions } as VersionContainer;
+  return { actualVersions, expectedVersions } satisfies VersionContainer;
 }
 
 async function main() {
