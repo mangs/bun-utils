@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.5
+
+- Minor tweaks to `./scripts/bun/checkEnvironmentVersions.mts`
+- Update development Bun version to `1.0.30`
+- Update dependency versions to latest
+- Prepared `./tsconfig.json` for supporting the Bun-specific features of TypeScript 5.4, specifically a `compilerOptions.module` value of `"Preserve"`
+
 ## 1.0.4
 
 - Make ambiguous and hidden characters easier to identify in VSCode by enabling the following settings:

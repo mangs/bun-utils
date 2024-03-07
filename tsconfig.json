@@ -1,7 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    // ASTRO BASE TSCONFIG
+    // "module": "Preserve",
+
+    // ASTRO BASE TSCONFIG (https://github.com/withastro/astro/blob/main/packages/astro/tsconfigs/base.json)
     // Enable top-level await, and other modern ESM features.
     "target": "ESNext",
     "module": "ESNext",
@@ -27,11 +29,11 @@
     // Allow JavaScript files to be imported
     // "allowJs": true,
 
-    // ASTRO STRICT TSCONFIG
+    // ASTRO STRICT TSCONFIG (https://github.com/withastro/astro/blob/main/packages/astro/tsconfigs/strict.json)
     // Enable strict mode. This enables a few options at a time, see https://www.typescriptlang.org/tsconfig#strict for a list.
     "strict": true,
 
-    // ASTRO STRICTEST TSCONFIG
+    // ASTRO STRICTEST TSCONFIG (https://github.com/withastro/astro/blob/main/packages/astro/tsconfigs/strictest.json)
     // Report errors for fallthrough cases in switch statements
     "noFallthroughCasesInSwitch": true,
     // Force functions designed to override their parent class to be specified as `override`.
