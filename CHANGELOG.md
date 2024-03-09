@@ -1,9 +1,15 @@
 # Changelog
 
+## 1.0.6
+
+- Enable Bun-native module support in TypeScript 5.4+ wherein `import` and `require` can be used simultaneously
+- Use local workspace TypeScript version by default in VS Code
+- Update dependency versions to latest
+
 ## 1.0.5
 
 - Minor tweaks to `./scripts/bun/checkEnvironmentVersions.mts`
-- Update development Bun version to `1.0.30`
+- Bun target version updated to `1.0.30`
 - Update dependency versions to latest
 - Prepared `./tsconfig.json` for supporting the Bun-specific features of TypeScript 5.4, specifically a `compilerOptions.module` value of `"Preserve"`
 

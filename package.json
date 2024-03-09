@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -54,7 +54,7 @@
     "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
   },
   "dependencies": {
-    "type-fest": "4.11.1",
+    "type-fest": "4.12.0",
     "yoctocolors": "2.0.0"
   },
   "devDependencies": {
