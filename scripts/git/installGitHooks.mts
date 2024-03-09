@@ -7,6 +7,9 @@ import { readdir, symlink } from 'node:fs/promises';
 import { isDirectoryAccessible } from '../../utils/filesystemUtils.mts';
 import { printError, printInfo, printSuccess } from '../../utils/consoleUtils.mts';
 
+// Type Imports
+import type { PackageJson } from 'type-fest';
+
 // Local Variables
 const gitHooksDestinationPath = '.git/hooks';
 const gitHooksSourcePath = 'scripts/git/hooks';
@@ -28,7 +31,7 @@ async function main() {
   }
   const isSourcePathAccessible = await isDirectoryAccessible(gitHooksSourcePath);
   if (!isSourcePathAccessible) {
-    const { name: packageName } = await import('../../package.json', { with: { type: 'json' } });
+    const { name: packageName } = (await import('../../package.json')) as unknown as PackageJson;
     printError(
       `ERROR: Git hooks symlink to package ${packageName} missing, so the following path is unreachable: ${gitHooksSourcePath}`,
     );

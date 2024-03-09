@@ -3,5 +3,6 @@
   "editor.unicodeHighlight.invisibleCharacters": true,
   "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.preferTypeOnlyAutoImports": true
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
