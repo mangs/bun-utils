@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.7
+
+- Removed NPM dependency `yoctocolors` by replacing it with `styleText` function from `node:util`
+- Bun target version updated to `1.0.31`
+
 ## 1.0.6
 
 - Enable Bun-native module support in TypeScript 5.4+ wherein `import` and `require` can be used simultaneously

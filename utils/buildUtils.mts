@@ -1,8 +1,9 @@
 // External Imports
 import { relative } from 'node:path';
-import { cyan, dim, yellow } from 'yoctocolors';
+import { stringWidth } from 'bun';
 
 // Internal Imports
+import { cyan, dim, yellow } from './consoleUtils.mts';
 import { getHumanReadableFilesize } from './filesystemUtils.mts';
 
 // Type Imports
@@ -26,8 +27,8 @@ function printBuildMetadata(buildOutput: BuildOutput, buildDirectory: string) {
       const { size } = Bun.file(path);
       buildArtifactMetadata[kind].size += size;
       buildArtifactMetadata[kind].count += 1;
-      if (pathRelative.length > maxFilenameLength) {
-        maxFilenameLength = pathRelative.length;
+      if (stringWidth(pathRelative) > maxFilenameLength) {
+        maxFilenameLength = stringWidth(pathRelative);
       }
       return { kind, pathRelative, size };
     })

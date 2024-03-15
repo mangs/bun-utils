@@ -1,8 +1,9 @@
 // External Imports
-import { dim, green, red, yellow, cyan } from 'yoctocolors';
 import { format } from 'node:util';
+import { stringWidth } from 'bun';
 
 // Internal Imports
+import { cyan, dim, green, red, yellow } from './consoleUtils.mts';
 import { getElapsedTimeFormatted } from './timeUtils.mts';
 
 // Type Imports
@@ -36,7 +37,7 @@ function logServerStartup({ url: { href } }: Server) {
   const formatString = 'Development server listening on %s%s';
   const heading = format(formatString, href, hotCountString);
   const headingColor = format(formatString, href, dim(hotCountString));
-  const separator = dim('='.repeat(heading.length));
+  const separator = dim('='.repeat(stringWidth(heading)));
   console.log(headingColor);
   console.log(separator);
 
