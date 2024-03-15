@@ -3,6 +3,7 @@
 ## 1.0.7
 
 - Removed NPM dependency `yoctocolors` by replacing it with `styleText` function from `node:util`
+- Replaced `.length` string length calculation with `Bun.stringWidth()` where unicode and emoji character usage is possible
 - Bun target version updated to `1.0.31`
 
 ## 1.0.6
