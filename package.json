@@ -4,9 +4,9 @@
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
-    "bun": "1.0.31"
+    "bun": "1.0.32"
   },
-  "packageManager": "bun@1.0.31",
+  "packageManager": "bun@1.0.32",
   "homepage": "https://github.com/mangs/bun-utils#readme",
   "repository": {
     "type": "git",
