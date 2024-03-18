@@ -14,6 +14,6 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run check:environment
       - run: bun --bun run check:formatting
-      - run: bun --bun run check:linting:eslint
+      - run: bun --bun run check:lint-conflicts
       - run: bun --bun run check:types
       - run: bun run lint:typescript

@@ -40,7 +40,7 @@
     "check:environment:symlinks": "scripts/bun/checkEnvironmentSymlinks.mts",
     "check:environment:versions": "scripts/bun/checkEnvironmentVersions.mts",
     "check:formatting": "prettier --check --no-editorconfig .",
-    "check:linting:eslint": "eslint-config-prettier ./src/index.mts",
+    "check:lint-conflicts": "eslint-config-prettier ./src/index.mts",
     "check:types": "tsc --noEmit",
     "delete:build-artifacts": "rm -rf dist",
     "delete:node-modules": "rm -rf node_modules",
