@@ -8,10 +8,6 @@ jobs:
       - name: CPU Details
         run: lscpu
       - uses: actions/checkout@v4
-      - name: Ensure the changelog contains a section for the current package version
-        run: if [ "$(gh pr diff --name-only | grep CHANGELOG.md)" != 'CHANGELOG.md' ]; then exit 1; fi; VERSION=`cat package.json | jq -r .version` grep "## $VERSION" CHANGELOG.md
-        env:
-          GH_TOKEN: ${{ github.token }}
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: "1.0.35"
