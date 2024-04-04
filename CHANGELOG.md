@@ -5,7 +5,7 @@
 - Removed NPM dependency `yoctocolors` by replacing it with `styleText` function from `node:util`
 - Replaced `.length` string length calculation with `Bun.stringWidth()` where unicode and emoji character usage is possible
 - Rename `package.json` script `check:linting:eslint` to `check:lint-conflicts`
-- Bun target version updated to `1.0.35`
+- Bun target version updated to `1.1.1`
 
 ## 1.0.6
 

@@ -1,8 +1,5 @@
 {
   "root": true,
-  "globals": {
-    "Bun": "readonly"
-  },
   "extends": ["@babbel/eslint-config/typescript", "@babbel/eslint-config/node"],
   "overrides": [
     {

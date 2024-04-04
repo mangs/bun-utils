@@ -1,6 +1,6 @@
 // External Imports
 import { format } from 'node:util';
-import { stringWidth } from 'bun';
+import { nanoseconds, serve, stringWidth } from 'bun';
 
 // Internal Imports
 import { cyan, dim, green, red, yellow } from './consoleUtils.mts';
@@ -49,10 +49,10 @@ function startDevelopmentServer<TModule extends Record<string, Function>>(
   entrypointModule: TModule,
   functionName = 'fetch',
 ) {
-  const server = Bun.serve({
+  const server = serve({
     development: true,
     async fetch(request: Request): Promise<Response> {
-      const startTime = Bun.nanoseconds();
+      const startTime = nanoseconds();
       const { pathname, search } = new URL(request.url);
 
       // Log request details without breaking to next line so response metadata can be on same line

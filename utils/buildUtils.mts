@@ -1,6 +1,6 @@
 // External Imports
 import { relative } from 'node:path';
-import { stringWidth } from 'bun';
+import { file, stringWidth } from 'bun';
 
 // Internal Imports
 import { cyan, dim, yellow } from './consoleUtils.mts';
@@ -24,7 +24,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildDirectory: string) {
   const buildArtifactsSorted = buildOutput.outputs
     .map(({ kind, path }) => {
       const pathRelative = relative(buildDirectory, path);
-      const { size } = Bun.file(path);
+      const { size } = file(path);
       buildArtifactMetadata[kind].size += size;
       buildArtifactMetadata[kind].count += 1;
       if (stringWidth(pathRelative) > maxFilenameLength) {
