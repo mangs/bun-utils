@@ -1,9 +1,9 @@
 {
   "root": true,
-  "globals": {
-    "Bun": "readonly"
-  },
   "extends": ["@babbel/eslint-config/typescript", "@babbel/eslint-config/node"],
+  "rules": {
+    "import/no-unresolved": ["error", { "ignore": ["^bun$"] }]
+  },
   "overrides": [
     {
       "files": [
@@ -14,7 +14,6 @@
         "scripts/git/removeGitHooks.mts"
       ],
       "rules": {
-        "import/no-unresolved": ["error", { "ignore": ["^bun"] }],
         "n/shebang": "off"
       }
     }

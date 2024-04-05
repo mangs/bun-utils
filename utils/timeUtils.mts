@@ -1,3 +1,6 @@
+// External Imports
+import { nanoseconds } from 'bun';
+
 // Local Variables
 const timeUnits = ['ns', 'μs', 'ms', 's'] as const;
 
@@ -6,7 +9,7 @@ type TimeUnits = (typeof timeUnits)[number];
 
 // Local Functions
 function getElapsedTimeFormatted(startTime: number, exactUnits: TimeUnits | '' = 'ms') {
-  const endTime = Bun.nanoseconds();
+  const endTime = nanoseconds();
   let elapsedTime = endTime - startTime;
   let timeIndex = 0;
 

@@ -2,7 +2,7 @@
 
 // External Imports
 import { access, readdir } from 'node:fs/promises';
-import { semver } from 'bun';
+import { file, nanoseconds, semver, version as bunVersion } from 'bun';
 import fs from 'node:fs';
 
 // Internal Imports
@@ -16,7 +16,7 @@ const filePaths = {
   githubWorkflowsDirectory: './.github/workflows/',
   packageJson: './package.json',
 } as const;
-const packageJson = JSON.parse(await Bun.file('./package.json').text()) as PackageJson;
+const packageJson = JSON.parse(await file('./package.json').text()) as PackageJson;
 
 // Local Types
 interface EnvironmentVersions {
@@ -79,7 +79,7 @@ async function getGitHubWorkflowBunVersions(workflowsDirectory: string) {
   const workflowFileNames = await readdir(workflowsDirectory);
   await Promise.all(
     workflowFileNames.map((fileName) =>
-      Bun.file(`${workflowsDirectory}/${fileName}`)
+      file(`${workflowsDirectory}/${fileName}`)
         .text()
         .then((workflowContents) => {
           const match = workflowContents.match(bunVersionRegex);
@@ -98,10 +98,10 @@ async function getEnvironmentVersions() {
   const githubBunVersions = await getGitHubWorkflowBunVersions(filePaths.githubWorkflowsDirectory);
   const actualVersions = buildObjectDeepSorted({
     bun: {
-      engineVersion: Bun.version,
+      engineVersion: bunVersion,
       githubVersion: githubBunVersions.join(', '),
     },
-    packageManager: `bun@${Bun.version}`,
+    packageManager: `bun@${bunVersion}`,
   });
   const expectedVersions = buildObjectDeepSorted({
     bun: {
@@ -114,7 +114,7 @@ async function getEnvironmentVersions() {
 }
 
 async function main() {
-  const startTime = Bun.nanoseconds();
+  const startTime = nanoseconds();
 
   // Check that all expected files exist
   const missingPaths = await findMissingPaths();

@@ -10,10 +10,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.0.30"
+          bun-version: "1.1.1"
       - run: bun install --frozen-lockfile
       - run: bun run check:environment
       - run: bun --bun run check:formatting
-      - run: bun --bun run check:linting:eslint
+      - run: bun --bun run check:lint-conflicts
       - run: bun --bun run check:types
       - run: bun run lint:typescript

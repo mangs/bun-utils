@@ -2,6 +2,7 @@
 
 // External Imports
 import { lstat, realpath } from 'node:fs/promises';
+import { nanoseconds } from 'bun';
 import { relative } from 'node:path';
 
 // Internal Imports
@@ -15,7 +16,7 @@ interface PathError {
 
 // Local Functions
 async function main() {
-  const startTime = Bun.nanoseconds();
+  const startTime = nanoseconds();
 
   const filePaths = await getFilesRecursive('.');
   const fileStatList = await Promise.all(filePaths.map((path) => lstat(path)));
