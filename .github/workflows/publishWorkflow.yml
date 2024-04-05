@@ -16,9 +16,10 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: "1.1.1"
-      - uses: mangs/simple-release-notes-action@v2
+      - uses: mangs/simple-release-notes-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          should_auto_update_major_tag: false
       - uses: JS-DevTools/npm-publish@v3
         with:
           access: public
