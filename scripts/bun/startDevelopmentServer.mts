@@ -7,7 +7,18 @@ import { parseArgs } from 'node:util';
 import { printError } from '../../utils/consoleUtils.mts';
 import { startDevelopmentServer } from '../../utils/networkUtils.mts';
 
+// Local Types
+type FunctionSignature = (request: Request) => Response | Promise<Response>;
+
 // Local Functions
+function getOption<T>(parsedValues: Record<keyof T, T[keyof T]>, option: keyof T) {
+  const optionValue = parsedValues[option];
+  if (optionValue) {
+    return optionValue;
+  }
+  throw new ReferenceError(`Required flag "${String(option)}" missing`);
+}
+
 async function main() {
   const parseConfiguration = {
     options: {
@@ -24,20 +35,19 @@ async function main() {
   } as const;
   const { values } = parseArgs(parseConfiguration);
 
-  if (!('module-path' in values) || !values['module-path']) {
-    process.exitCode = 1;
-    printError('Required flag "module-path" missing');
-    return;
-  }
-
-  const modulePath = values['module-path'];
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- no way to predict module contents
-    const module = await import(modulePath);
-    startDevelopmentServer(module, values['function-name']);
-  } catch {
+    const functionName = getOption<typeof values>(values, 'function-name');
+    const modulePath = getOption<typeof values>(values, 'module-path');
+    const module = (await import(modulePath)) as Record<string, FunctionSignature>;
+    const entrypointFunction = module[functionName];
+    startDevelopmentServer(entrypointFunction!);
+  } catch (error) {
+    if (error instanceof ReferenceError) {
+      printError(error.message);
+    } else {
+      throw error;
+    }
     process.exitCode = 1;
-    printError(`Error loading module at path "${modulePath}"`);
   }
 }
 
