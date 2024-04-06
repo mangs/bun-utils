@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Reduce confusion and possibility for errors by removing option overrides from `utils/networkUtils.mts` -> `startDevelopmentServer()`
+
 ## 1.1.1
 
 - Bug fixes for `utils/networkUtils.mts` -> `startDevelopmentServer()`
