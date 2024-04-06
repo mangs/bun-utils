@@ -2,7 +2,7 @@
 
 ## 1.0.8
 
-- Improved linting correctness of `bun` imports by using the `import/core-modules` ESLint rule
+- Improve linting correctness of `bun` imports by using the `import/core-modules` ESLint rule
 
 ## 1.0.7
 
