@@ -55,7 +55,6 @@ function logServerStartup({ url: { href } }: Server) {
 async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
   httpsOptions?: HttpsOptions,
-  optionOverrides?: Serve,
 ) {
   const serverOptions: Serve = {
     development: true,
@@ -99,7 +98,7 @@ async function startDevelopmentServer(
     }
   }
 
-  const server = serve({ ...serverOptions, ...(optionOverrides && { ...optionOverrides }) });
+  const server = serve(serverOptions);
   logServerStartup(server);
 }
 
