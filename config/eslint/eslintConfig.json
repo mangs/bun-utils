@@ -1,8 +1,8 @@
 {
   "root": true,
   "extends": ["@babbel/eslint-config/typescript", "@babbel/eslint-config/node"],
-  "rules": {
-    "import/no-unresolved": ["error", { "ignore": ["^bun$"] }]
+  "settings": {
+    "import/core-modules": ["bun"]
   },
   "overrides": [
     {

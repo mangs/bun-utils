@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.8
+
+- Improved linting correctness of `bun` imports by using the `import/core-modules` ESLint rule
+
 ## 1.0.7
 
 - Removed NPM dependency `yoctocolors` by replacing it with `styleText` function from `node:util`
