@@ -1,9 +1,10 @@
 // External Imports
+import { access, constants } from 'node:fs/promises';
 import { format } from 'node:util';
 import { nanoseconds, serve, stringWidth } from 'bun';
 
 // Internal Imports
-import { cyan, dim, green, red, yellow } from './consoleUtils.mts';
+import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
 import { getElapsedTimeFormatted } from './timeUtils.mts';
 
 // Type Imports
@@ -51,10 +52,10 @@ function logServerStartup({ url: { href } }: Server) {
   globalThis.hotReloadCount += 1;
 }
 
-function startDevelopmentServer(
+async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
   httpsOptions?: HttpsOptions,
-  optionOverrides?: Omit<Serve, 'fetch'>,
+  optionOverrides?: Serve,
 ) {
   const serverOptions: Serve = {
     development: true,
@@ -79,6 +80,14 @@ function startDevelopmentServer(
 
   if (httpsOptions) {
     const { certificate, hostname, privateKey } = httpsOptions;
+
+    try {
+      await Promise.all([access(certificate, constants.R_OK), access(privateKey, constants.R_OK)]);
+    } catch (error) {
+      printError('HTTPS configuration key error: file not found');
+      throw error;
+    }
+
     serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? 443;
     serverOptions.tls = {
       cert: certificate,

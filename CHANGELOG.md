@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1
+
+- Bug fixes for `utils/networkUtils.mts` -> `startDevelopmentServer()`
+  - Show an error if the either the HTTPS `certificate` or `privateKey` fields do not point to a file
+  - Fix `optionOverrides` field not allowing most fields to be used
+
 ## 1.1.0
 
 - Added additional functionality to `utils/networkUtils.mts` -> `startDevelopmentServer()`

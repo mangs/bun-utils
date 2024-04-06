@@ -40,7 +40,7 @@ async function main() {
     const modulePath = getOption<typeof values>(values, 'module-path');
     const module = (await import(modulePath)) as Record<string, FunctionSignature>;
     const entrypointFunction = module[functionName];
-    startDevelopmentServer(entrypointFunction!);
+    await startDevelopmentServer(entrypointFunction!);
   } catch (error) {
     if (error instanceof ReferenceError) {
       printError(error.message);
