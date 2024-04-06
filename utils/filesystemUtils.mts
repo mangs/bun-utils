@@ -24,7 +24,7 @@ async function getFilesRecursive(
   return recursiveEntries.flat(Number.POSITIVE_INFINITY).filter(Boolean) as string[];
 }
 
-function getHumanReadableFilesize(filesize: number) {
+function getHumanReadableFilesize(filesize: number, localeOverride?: string) {
   let divisionCount = 0;
   const divisor = 1_024;
   let humanReadableFilesize = filesize;
@@ -32,7 +32,7 @@ function getHumanReadableFilesize(filesize: number) {
     humanReadableFilesize /= divisor;
     divisionCount += 1;
   }
-  const localizedSize = humanReadableFilesize.toLocaleString(undefined, {
+  const localizedSize = humanReadableFilesize.toLocaleString(localeOverride, {
     maximumFractionDigits: 2,
     minimumFractionDigits: 0,
   });
@@ -42,7 +42,7 @@ function getHumanReadableFilesize(filesize: number) {
 
 async function isDirectoryAccessible(path: string) {
   try {
-    // eslint-disable-next-line no-bitwise -- following the documentation for fs constants: https://nodejs.org/docs/latest-v16.x/api/fs.html#fspromisesaccesspath-mode
+    // eslint-disable-next-line no-bitwise -- following the documentation for fs constants: https://nodejs.org/docs/latest/api/fs.html#fspromisesaccesspath-mode
     await access(path, fs.constants.R_OK | fs.constants.X_OK);
     return true;
   } catch {
