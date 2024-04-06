@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.9
+
+- Update target Bun version to `1.1.2` to inherit Bun's types for `node:util` `styleText()`; the associated `global.d.ts` was removed
+
 ## 1.0.8
 
 - Improve linting correctness of `bun` imports by using the `import/core-modules` ESLint rule
