@@ -7,9 +7,16 @@ import { cyan, dim, green, red, yellow } from './consoleUtils.mts';
 import { getElapsedTimeFormatted } from './timeUtils.mts';
 
 // Type Imports
-import type { Server } from 'bun';
+import type { Serve, Server } from 'bun';
 
 // Local Types
+interface HttpsOptions {
+  certificate: string;
+  hostname?: string;
+  privateKey: string;
+}
+
+// Global Types
 declare global {
   // eslint-disable-next-line vars-on-top, no-var -- this is a requirement for correct variable access
   var hotReloadCount: number;
@@ -44,12 +51,12 @@ function logServerStartup({ url: { href } }: Server) {
   globalThis.hotReloadCount += 1;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types -- generic definition of an ES module
-function startDevelopmentServer<TModule extends Record<string, Function>>(
-  entrypointModule: TModule,
-  functionName = 'fetch',
+function startDevelopmentServer(
+  entrypointFunction: (request: Request) => Response | Promise<Response>,
+  httpsOptions?: HttpsOptions,
+  optionOverrides?: Omit<Serve, 'fetch'>,
 ) {
-  const server = serve({
+  const serverOptions: Serve = {
     development: true,
     async fetch(request: Request): Promise<Response> {
       const startTime = nanoseconds();
@@ -59,7 +66,7 @@ function startDevelopmentServer<TModule extends Record<string, Function>>(
       process.stdout.write(`${dim(`[${request.method}]`)} ${pathname}${search}`);
 
       // Collect response metadata, then log response details
-      const response = (await entrypointModule[functionName]!(request)) as Response;
+      const response = await entrypointFunction(request);
       const elapsedTime = getElapsedTimeFormatted(startTime);
       const color = getColorByStatusCode(response.status);
       console.log(`  ${color(`(${response.status} in ${elapsedTime})`)}`);
@@ -68,8 +75,22 @@ function startDevelopmentServer<TModule extends Record<string, Function>>(
     },
     lowMemoryMode: false,
     port: process.env.DEVELOPMENT_SERVER_PORT ?? 3_000,
-  });
+  };
 
+  if (httpsOptions) {
+    const { certificate, hostname, privateKey } = httpsOptions;
+    serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? 443;
+    serverOptions.tls = {
+      cert: certificate,
+      key: privateKey,
+    };
+    if (hostname) {
+      serverOptions.hostname = hostname;
+      serverOptions.tls.serverName = hostname;
+    }
+  }
+
+  const server = serve({ ...serverOptions, ...(optionOverrides && { ...optionOverrides }) });
   logServerStartup(server);
 }
 

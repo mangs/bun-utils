@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0
+
+- Added additional functionality to `utils/networkUtils.mts` -> `startDevelopmentServer()`
+  - HTTPS serving with optional custom hostname support
+  - Using any option that `Bun.serve()` accepts via an override parameter
+- Changed the function signature of `utils/networkUtils.mts` -> `startDevelopmentServer()` to accept the entrypoint function directly instead of an ES module object and a separate key to reference the entrypoint function
+- Added locale override parameters to functions that could take advantage of them:
+  - `utils/consoleUtils.mts` -> `getPerformanceLabel()`
+  - `utils/filesystemUtils.mts` -> `getHumanReadableFilesize()`
+  - `utils/timeUtils.mts` -> `getElapsedTimeFormatted()`
+
 ## 1.0.9
 
 - Update target Bun version to `1.1.2` to inherit Bun's types for `node:util` `styleText()`; the associated `global.d.ts` was removed

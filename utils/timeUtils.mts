@@ -8,7 +8,11 @@ const timeUnits = ['ns', 'μs', 'ms', 's'] as const;
 type TimeUnits = (typeof timeUnits)[number];
 
 // Local Functions
-function getElapsedTimeFormatted(startTime: number, exactUnits: TimeUnits | '' = 'ms') {
+function getElapsedTimeFormatted(
+  startTime: number,
+  exactUnits: TimeUnits | '' = 'ms', // eslint-disable-line default-param-last -- localeOverride is also optional
+  localeOverride?: string,
+) {
   const endTime = nanoseconds();
   let elapsedTime = endTime - startTime;
   let timeIndex = 0;
@@ -29,7 +33,7 @@ function getElapsedTimeFormatted(startTime: number, exactUnits: TimeUnits | '' =
     }
   }
 
-  const elapsedTimeLocalized = elapsedTime.toLocaleString(undefined, {
+  const elapsedTimeLocalized = elapsedTime.toLocaleString(localeOverride, {
     maximumFractionDigits: 2,
     minimumFractionDigits: 2,
   });
