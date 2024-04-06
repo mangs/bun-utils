@@ -5,7 +5,7 @@ import { styleText } from 'node:util';
 import { getElapsedTimeFormatted } from './timeUtils.mts';
 
 // Local Types
-type GetPerformanceLabelParameters = Parameters<typeof getElapsedTimeFormatted>;
+type GetElapsedTimeFormattedParameters = Parameters<typeof getElapsedTimeFormatted>;
 
 // Local Functions
 function cyan(text: string) {
@@ -33,9 +33,9 @@ function yellow(text: string) {
 }
 
 function getPerformanceLabel(
-  startTime: GetPerformanceLabelParameters[0],
-  exactUnits?: GetPerformanceLabelParameters[1],
-  localeOverride?: GetPerformanceLabelParameters[2],
+  startTime: GetElapsedTimeFormattedParameters[0],
+  exactUnits?: GetElapsedTimeFormattedParameters[1],
+  localeOverride?: GetElapsedTimeFormattedParameters[2],
 ) {
   const formattedTime = getElapsedTimeFormatted(startTime, exactUnits, localeOverride);
   return dim(white(`[${formattedTime}]`));
