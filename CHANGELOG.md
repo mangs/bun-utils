@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0
+
+- Add more HTTPS options
+  - `certificateAuthority` for a custom certificate authority
+  - `diffieHellmanParametersPath` to customize Diffie Hellman parameters
+  - `passphrase` to provide the passphrase used to create a TLS certificate
+- Decouple hostname from HTTPS options
+- Improve error messaging when HTTPS configuration files cannot be loaded
+- Ensure process termination when an HTTPS configuration file cannot be loaded
+- Display server options when `DEBUG` environment variable is set to a truthy value
+
 ## 1.1.3
 
 - Fix HTTPS error `OpenSSL NO_START_LINE` in `utils/networkUtils.mts` -> `startDevelopmentServer()`

@@ -13,7 +13,9 @@ import type { Serve, Server } from 'bun';
 // Local Types
 interface HttpsOptions {
   certificate: string;
-  hostname?: string;
+  certificateAuthority?: string;
+  diffieHellmanParametersPath?: string;
+  passphrase?: string;
   privateKey: string;
 }
 
@@ -54,6 +56,7 @@ function logServerStartup({ url: { href } }: Server) {
 
 async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
+  hostname?: string,
   httpsOptions?: HttpsOptions,
 ) {
   const serverOptions: Serve = {
@@ -77,14 +80,38 @@ async function startDevelopmentServer(
     port: process.env.DEVELOPMENT_SERVER_PORT ?? 3_000,
   };
 
+  if (hostname) {
+    serverOptions.hostname = hostname;
+  }
+
   if (httpsOptions) {
-    const { certificate, hostname, privateKey } = httpsOptions;
+    const {
+      certificate,
+      certificateAuthority,
+      diffieHellmanParametersPath,
+      passphrase,
+      privateKey,
+    } = httpsOptions;
 
     try {
-      await Promise.all([access(certificate, constants.R_OK), access(privateKey, constants.R_OK)]);
+      const filePromises = [
+        access(certificate, constants.R_OK),
+        access(privateKey, constants.R_OK),
+      ];
+      if (certificateAuthority) {
+        filePromises.push(access(certificateAuthority, constants.R_OK));
+      }
+      await Promise.all(filePromises);
     } catch (error) {
-      printError('HTTPS configuration key error: file not found');
-      throw error;
+      const errorPath = (error as NodeJS.ErrnoException).path; // eslint-disable-line no-undef -- TypeScript can find the NodeJS type
+      const targetKey =
+        errorPath === certificate
+          ? 'certificate'
+          : errorPath === certificateAuthority
+            ? 'certificateAuthority'
+            : 'privateKey';
+      printError(`HTTPS configuration key "${targetKey}" file not found: ${errorPath}`);
+      process.exit(1); // eslint-disable-line n/no-process-exit, unicorn/no-process-exit -- intended to be used in CLI scripts
     }
 
     serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? 443;
@@ -93,9 +120,21 @@ async function startDevelopmentServer(
       key: file(privateKey),
     };
     if (hostname) {
-      serverOptions.hostname = hostname;
       serverOptions.tls.serverName = hostname;
     }
+    if (certificateAuthority) {
+      serverOptions.tls.ca = file(certificateAuthority);
+    }
+    if (diffieHellmanParametersPath) {
+      serverOptions.tls.dhParamsFile = diffieHellmanParametersPath;
+    }
+    if (passphrase) {
+      serverOptions.tls.passphrase = passphrase;
+    }
+  }
+
+  if (process.env.DEBUG) {
+    console.info('SERVER OPTIONS', serverOptions);
   }
 
   const server = serve(serverOptions);
