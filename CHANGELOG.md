@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0
+
+- Added JSDoc comments to all files and functions
+  - Verified correctness by enabling `eslint-plugin-jsdoc`
+- Added new util function `utils/filesystemUtils.mts` -> `findMissingPaths()`
+- Renamed function in `utils/filesystemUtils.mts`
+  - `getFilesRecursive()` -> `getPathsRecursive()`
+- Minor refactor of `scripts/bun/checkEnvironmentVersions.mts`
+
 ## 1.2.0
 
 - Add more HTTPS options

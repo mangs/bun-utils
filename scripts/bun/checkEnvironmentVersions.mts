@@ -1,11 +1,15 @@
 #!/usr/bin/env bun
 
+/**
+ * @file Shell script to check that all project environment binary versions match the expected values.
+ */
+
 // External Imports
-import { access, readdir } from 'node:fs/promises';
+import { readdir } from 'node:fs/promises';
 import { file, nanoseconds, semver, version as bunVersion } from 'bun';
-import fs from 'node:fs';
 
 // Internal Imports
+import { findMissingPaths } from '../../utils/filesystemUtils.mts';
 import { getPerformanceLabel, printError, printSuccess } from '../../utils/consoleUtils.mts';
 
 // Type Imports
@@ -28,12 +32,12 @@ interface EnvironmentVersions {
   packageManager: string;
 }
 
-interface VersionContainer {
-  actualVersions: EnvironmentVersions;
-  expectedVersions: EnvironmentVersions;
-}
-
 // Local Functions
+/**
+ * Recursively deep sort the keys of an object.
+ * @param targetValue The value to deep sort.
+ * @returns           The deep-sorted object.
+ */
 function buildObjectDeepSorted<T extends object>(targetValue: T): T {
   const newObject = {} as T;
   for (const key of Object.keys(targetValue).sort((a, b) => a.localeCompare(b, 'en'))) {
@@ -45,34 +49,12 @@ function buildObjectDeepSorted<T extends object>(targetValue: T): T {
   return newObject;
 }
 
-async function findMissingPaths() {
-  const targetFilesPromises = Object.values(filePaths).map((filePath) =>
-    access(filePath, fs.constants.R_OK),
-  );
-  const missingPaths: string[] = [];
-  for (const promiseMetadata of await Promise.allSettled(targetFilesPromises)) {
-    if (promiseMetadata.status === 'rejected') {
-      missingPaths.push((promiseMetadata.reason as Record<string, string>).path!);
-    }
-  }
-  return missingPaths;
-}
-
-function hasMatchingVersions({ actualVersions, expectedVersions }: VersionContainer) {
-  return Object.keys(actualVersions).every((key) => {
-    switch (key) {
-      case 'bun':
-        return (
-          semver.satisfies(actualVersions.bun.engineVersion, expectedVersions.bun.engineVersion) &&
-          semver.satisfies(actualVersions.bun.githubVersion, expectedVersions.bun.githubVersion)
-        );
-
-      default:
-        return actualVersions[key] === expectedVersions[key];
-    }
-  });
-}
-
+/**
+ * Get the list of all Bun binary versions mentioned in GitHub Actions workflow files.
+ * @param workflowsDirectory The directory where GitHub Actions workflow files are stored.
+ * @returns                  An array containing all Bun binary versions mentioned in GitHub Actions
+ *                           workflow files.
+ */
 async function getGitHubWorkflowBunVersions(workflowsDirectory: string) {
   const bunVersionRegex = /\bbun-version:\s*"([^"]+)"/;
   const workflowVersions = new Set();
@@ -91,7 +73,11 @@ async function getGitHubWorkflowBunVersions(workflowsDirectory: string) {
   return [...workflowVersions];
 }
 
-async function getEnvironmentVersions() {
+/**
+ * Build the actual and expected environment version objects.
+ * @returns An object containing the actual and expected environment version objects.
+ */
+async function buildEnvironmentVersionObjects() {
   // Build the output
   const bunVersionExpected = packageJson?.engines?.bun ?? 'ERROR';
   const packageManagerVersionExpected = packageJson?.packageManager ?? 'ERROR';
@@ -102,22 +88,49 @@ async function getEnvironmentVersions() {
       githubVersion: githubBunVersions.join(', '),
     },
     packageManager: `bun@${bunVersion}`,
-  });
+  }) satisfies EnvironmentVersions;
   const expectedVersions = buildObjectDeepSorted({
     bun: {
       engineVersion: bunVersionExpected,
       githubVersion: bunVersionExpected,
     },
     packageManager: packageManagerVersionExpected,
-  });
-  return { actualVersions, expectedVersions } satisfies VersionContainer;
+  }) satisfies EnvironmentVersions;
+  return { actualVersions, expectedVersions };
 }
 
+/**
+ * Determine if the actual and expected binary versions match.
+ * @param actualVersions   Object describing actual binary versions found in the project environment.
+ * @param expectedVersions Object describing expected binary versions found in the project environment.
+ * @returns                Boolean representing whether or not all actual and expected versions match.
+ */
+function hasMatchingVersions(
+  actualVersions: EnvironmentVersions,
+  expectedVersions: EnvironmentVersions,
+) {
+  return Object.keys(actualVersions).every((key) => {
+    switch (key) {
+      case 'bun':
+        return (
+          semver.satisfies(actualVersions.bun.engineVersion, expectedVersions.bun.engineVersion) &&
+          semver.satisfies(actualVersions.bun.githubVersion, expectedVersions.bun.githubVersion)
+        );
+
+      default:
+        return actualVersions[key] === expectedVersions[key];
+    }
+  });
+}
+
+/**
+ * Script entrypoint.
+ */
 async function main() {
   const startTime = nanoseconds();
 
   // Check that all expected files exist
-  const missingPaths = await findMissingPaths();
+  const missingPaths = await findMissingPaths(Object.values(filePaths));
   if (missingPaths.length > 0) {
     process.exitCode = 1;
     printError(`The following paths don't exist:\n\t- ${missingPaths.join('\n\t- ')}`);
@@ -125,13 +138,13 @@ async function main() {
   }
 
   // Check that all expected environment versions match the actual versions
-  const environmentVersions = await getEnvironmentVersions();
-  if (!hasMatchingVersions(environmentVersions)) {
+  const { actualVersions, expectedVersions } = await buildEnvironmentVersionObjects();
+  if (!hasMatchingVersions(actualVersions, expectedVersions)) {
     process.exitCode = 1;
     printError(
       'One or more environment version mismatches occurred:\n' +
-        `ACTUAL:   ${JSON.stringify(environmentVersions.actualVersions, undefined, 2)}\n` +
-        `EXPECTED: ${JSON.stringify(environmentVersions.expectedVersions, undefined, 2)}`,
+        `ACTUAL:   ${JSON.stringify(actualVersions, undefined, 2)}\n` +
+        `EXPECTED: ${JSON.stringify(expectedVersions, undefined, 2)}`,
     );
     return;
   }

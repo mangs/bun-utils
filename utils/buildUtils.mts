@@ -1,3 +1,7 @@
+/**
+ * @file Build- and bundler-related utility functions.
+ */
+
 // External Imports
 import { relative } from 'node:path';
 import { file, stringWidth } from 'bun';
@@ -13,7 +17,12 @@ import type { BuildArtifact, BuildOutput } from 'bun';
 type BuildArtifactMetadata = Record<BuildArtifact['kind'], { count: number; size: number }>;
 
 // Local Functions
-function printBuildMetadata(buildOutput: BuildOutput, buildDirectory: string) {
+/**
+ * Format and print to the command line the provided build metadata.
+ * @param buildOutput          The return value of Bun.build().
+ * @param buildOutputDirectory The output directory when building.
+ */
+function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: string) {
   let maxFilenameLength = 0;
   const buildArtifactMetadata: BuildArtifactMetadata = {
     asset: { count: 0, size: 0 },
@@ -23,7 +32,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildDirectory: string) {
   };
   const buildArtifactsSorted = buildOutput.outputs
     .map(({ kind, path }) => {
-      const pathRelative = relative(buildDirectory, path);
+      const pathRelative = relative(buildOutputDirectory, path);
       const { size } = file(path);
       buildArtifactMetadata[kind].size += size;
       buildArtifactMetadata[kind].count += 1;

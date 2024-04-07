@@ -1,3 +1,7 @@
+/**
+ * @file Network-related utlity functions.
+ */
+
 // External Imports
 import { access, constants } from 'node:fs/promises';
 import { format } from 'node:util';
@@ -26,6 +30,11 @@ declare global {
 }
 
 // Local Functions
+/**
+ * Return a color formatting function based on the provided status code.
+ * @param statusCode An HTTP status code.
+ * @returns          A color formatting function.
+ */
 function getColorByStatusCode(statusCode: number) {
   switch (statusCode - (statusCode % 100)) {
     case 200:
@@ -39,6 +48,12 @@ function getColorByStatusCode(statusCode: number) {
   }
 }
 
+/**
+ * Log the development server's startup sequence to the console.
+ * @param server          The return value of Bun.serve().
+ * @param server.url      The URL API object representing the running server instance.
+ * @param server.url.href The full URL string representing the running server instance.
+ */
 function logServerStartup({ url: { href } }: Server) {
   globalThis.hotReloadCount ??= 0;
   const { hotReloadCount } = globalThis;
@@ -54,6 +69,13 @@ function logServerStartup({ url: { href } }: Server) {
   globalThis.hotReloadCount += 1;
 }
 
+/**
+ * Start a development server using Bun.serve() and the provided entrypoint function. Optionally
+ * specify a hostname and options for enabling HTTPS-based serving.
+ * @param entrypointFunction The function used to start running the server.
+ * @param hostname           An optional hostname upon which to listen.
+ * @param httpsOptions       An optional configuration set to enable HTTPS-based serving.
+ */
 async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
   hostname?: string,

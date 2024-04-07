@@ -1,5 +1,9 @@
 #!/usr/bin/env bun
 
+/**
+ * @file Shell script to remove all installed Git hooks.
+ */
+
 // External Imports
 import { readdir, unlink } from 'node:fs/promises';
 
@@ -11,6 +15,9 @@ import { printInfo, printSuccess } from '../../utils/consoleUtils.mts';
 const gitHooksPath = '.git/hooks';
 
 // Local Functions
+/**
+ * Script entrypoint.
+ */
 async function main() {
   // Do nothing in a continuous integration environment
   if (process.env.CI === 'true') {
