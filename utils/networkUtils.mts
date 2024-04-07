@@ -1,7 +1,7 @@
 // External Imports
 import { access, constants } from 'node:fs/promises';
 import { format } from 'node:util';
-import { nanoseconds, serve, stringWidth } from 'bun';
+import { file, nanoseconds, serve, stringWidth } from 'bun';
 
 // Internal Imports
 import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
@@ -89,8 +89,8 @@ async function startDevelopmentServer(
 
     serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? 443;
     serverOptions.tls = {
-      cert: certificate,
-      key: privateKey,
+      cert: file(certificate),
+      key: file(privateKey),
     };
     if (hostname) {
       serverOptions.hostname = hostname;

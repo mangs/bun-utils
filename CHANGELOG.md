@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3
+
+- Fix HTTPS error `OpenSSL NO_START_LINE` in `utils/networkUtils.mts` -> `startDevelopmentServer()`
+
 ## 1.1.2
 
 - Reduce confusion and possibility for errors by removing option overrides from `utils/networkUtils.mts` -> `startDevelopmentServer()`
