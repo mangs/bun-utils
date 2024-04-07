@@ -1,12 +1,16 @@
 #!/usr/bin/env bun
 
+/**
+ * @file Shell script to check all project environment symlinks to verify they're not broken.
+ */
+
 // External Imports
 import { lstat, realpath } from 'node:fs/promises';
 import { nanoseconds } from 'bun';
 import { relative } from 'node:path';
 
 // Internal Imports
-import { getFilesRecursive } from '../../utils/filesystemUtils.mts';
+import { getPathsRecursive } from '../../utils/filesystemUtils.mts';
 import { getPerformanceLabel, printError, printSuccess } from '../../utils/consoleUtils.mts';
 
 // Local Types
@@ -15,10 +19,13 @@ interface PathError {
 }
 
 // Local Functions
+/**
+ * Script entrypoint.
+ */
 async function main() {
   const startTime = nanoseconds();
 
-  const filePaths = await getFilesRecursive('.');
+  const filePaths = await getPathsRecursive('.');
   const fileStatList = await Promise.all(filePaths.map((path) => lstat(path)));
   const pathPromises: Promise<string>[] = [];
   for (const [index, fileStats] of fileStatList.entries()) {

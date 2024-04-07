@@ -1,3 +1,7 @@
+/**
+ * @file Time-related utility functions.
+ */
+
 // External Imports
 import { nanoseconds } from 'bun';
 
@@ -8,17 +12,26 @@ const timeUnits = ['ns', 'μs', 'ms', 's'] as const;
 type TimeUnits = (typeof timeUnits)[number];
 
 // Local Functions
+/**
+ * Get a formatted string representing the time between the provided start time parameter and the
+ * time the function is called. Optionally the time units and formatting locale can be overridden.
+ * @param startTime      The start time calculated by Bun.nanoseconds().
+ * @param unitsOverride  An optional override of time units to display.
+ * @param localeOverride An optional override of the locale used to format and localize the time
+ *                       value.
+ * @returns              A localized string showing elapsed time with units.
+ */
 function getElapsedTimeFormatted(
   startTime: number,
-  exactUnits: TimeUnits | '' = 'ms', // eslint-disable-line default-param-last -- localeOverride is also optional
+  unitsOverride: TimeUnits | '' = 'ms', // eslint-disable-line default-param-last -- localeOverride is also optional
   localeOverride?: string,
 ) {
   const endTime = nanoseconds();
   let elapsedTime = endTime - startTime;
   let timeIndex = 0;
 
-  if (exactUnits) {
-    const exactIndex = timeUnits.indexOf(exactUnits);
+  if (unitsOverride) {
+    const exactIndex = timeUnits.indexOf(unitsOverride);
     while (timeIndex < exactIndex) {
       elapsedTime /= 1_000;
       timeIndex += 1;

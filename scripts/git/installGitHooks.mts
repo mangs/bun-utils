@@ -1,5 +1,9 @@
 #!/usr/bin/env bun
 
+/**
+ * @file Shell script to install all available Git hooks.
+ */
+
 // External Imports
 import { readdir, symlink } from 'node:fs/promises';
 
@@ -15,6 +19,9 @@ const gitHooksDestinationPath = '.git/hooks';
 const gitHooksSourcePath = 'scripts/git/hooks';
 
 // Local Functions
+/**
+ * Script entrypoint.
+ */
 async function main() {
   // Do nothing in a continuous integration environment
   if (process.env.CI === 'true') {

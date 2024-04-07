@@ -1,8 +1,24 @@
 {
   "root": true,
-  "extends": ["@babbel/eslint-config/typescript", "@babbel/eslint-config/node"],
+  "plugins": ["eslint-plugin-jsdoc"],
+  "extends": [
+    "@babbel/eslint-config/typescript",
+    "@babbel/eslint-config/node",
+    "plugin:jsdoc/recommended-typescript-error"
+  ],
   "settings": {
     "import/core-modules": ["bun"]
+  },
+  "rules": {
+    "jsdoc/check-line-alignment": ["error", "always"],
+    "jsdoc/multiline-blocks": ["error", { "noSingleLineBlocks": true }],
+    "jsdoc/no-bad-blocks": "error",
+    "jsdoc/require-asterisk-prefix": "error",
+    "jsdoc/require-description-complete-sentence": "error",
+    "jsdoc/require-description": "error",
+    "jsdoc/require-file-overview": "error",
+    "jsdoc/require-hyphen-before-param-description": ["error", "never"],
+    "jsdoc/sort-tags": "error"
   },
   "overrides": [
     {
