@@ -2,7 +2,7 @@
 
 Useful utils for your Bun projects
 
-## NPM Package Module Exports
+## Package Exports
 
 The code is organized into logical modules and exported based on category as follows:
 
