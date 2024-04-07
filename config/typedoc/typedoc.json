@@ -1,5 +1,4 @@
 {
-  "hideBreadcrumbs": true,
   "cleanOutputDir": true,
   "commentStyle": "jsdoc",
   "disableSources": true,
@@ -7,6 +6,7 @@
   "enumMembersFormat": "table",
   "expandParameters": true,
   "githubPages": false,
+  "hideBreadcrumbs": true,
   "hidePageHeader": true,
   "indexFormat": "list",
   "out": "../../documentation",
