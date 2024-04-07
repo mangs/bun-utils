@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -36,6 +36,7 @@
   },
   "scripts": {
     "audit:node-modules": "cd node_modules && du -sh -- * | sort -h",
+    "build:documentation": "typedoc --options ./config/typedoc/typedoc.json",
     "check:environment": "bun --bun run --silent check:environment:symlinks && bun run --silent check:environment:versions",
     "check:environment:symlinks": "scripts/bun/checkEnvironmentSymlinks.mts",
     "check:environment:versions": "scripts/bun/checkEnvironmentVersions.mts",
@@ -66,6 +67,8 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-jsdoc": "48.2.3",
     "prettier": "3.2.5",
+    "typedoc": "0.25.12",
+    "typedoc-plugin-markdown": "4.0.0-next.55",
     "typescript": "5.4.4"
   }
 }

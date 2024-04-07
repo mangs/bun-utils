@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1
+
+- Build markdown documentation for all utils using TypeDoc and `typedoc-plugin-markdown`
+  - Stored in the `documentation/` directory
+
 ## 2.0.0
 
 - Added JSDoc comments to all files and functions
