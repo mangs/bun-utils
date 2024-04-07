@@ -89,4 +89,4 @@ async function isDirectoryAccessible(path: string) {
 }
 
 // Module Exports
-export { findMissingPaths, getPathsRecursive, getHumanReadableFilesize, isDirectoryAccessible };
+export { findMissingPaths, getHumanReadableFilesize, getPathsRecursive, isDirectoryAccessible };
