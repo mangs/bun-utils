@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.2
+
+- Update Bun target version from `1.1.2` to `1.1.3`
+- Add `@mangs` as code owner
+- Update pull request template to remove link to `package.json`
+- Update dependency versions to latest
+
 ## 2.0.1
 
 - Build markdown documentation for all utils using TypeDoc and `typedoc-plugin-markdown`
