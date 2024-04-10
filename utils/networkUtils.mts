@@ -87,7 +87,7 @@ function logServerStartup({ url: { href } }: Server) {
  *     diffieHellmanParametersPath?: string;
  *     passphrase?: string;
  *     privateKey: string;
- *   }
+ *   };
  *   port?: number;
  * }
  * ```
