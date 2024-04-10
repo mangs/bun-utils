@@ -4,7 +4,7 @@
 
 ### printBuildMetadata()
 
-> **printBuildMetadata**(`buildOutput`: `BuildOutput`, `buildOutputDirectory`: `string`): `void`
+> **printBuildMetadata**(`buildOutput`, `buildOutputDirectory`): `void`
 
 Format and print to the command line the provided build metadata.
 
@@ -21,4 +21,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/buildUtils.mts#L25)
+[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/44e9c57a5b260e4350f55bdadcc61e3921aa4e12/utils/buildUtils.mts#L25)

@@ -23,6 +23,12 @@ interface HttpsOptions {
   privateKey: string;
 }
 
+interface ServerConfiguration {
+  hostname?: string;
+  httpsOptions?: HttpsOptions;
+  port?: number;
+}
+
 // Global Types
 declare global {
   // eslint-disable-next-line vars-on-top, no-var -- this is a requirement for correct variable access
@@ -71,16 +77,27 @@ function logServerStartup({ url: { href } }: Server) {
 
 /**
  * Start a development server using Bun.serve() and the provided entrypoint function. Optionally
- * specify a hostname and options for enabling HTTPS-based serving.
- * @param entrypointFunction The function used to start running the server.
- * @param hostname           An optional hostname upon which to listen.
- * @param httpsOptions       An optional configuration set to enable HTTPS-based serving.
+ * specify a configuration object to customize functionality as follows:
+ * {
+ *   hostname?: string;
+ *   httpsOptions?: {
+ *     certificate: string;
+ *     certificateAuthority?: string;
+ *     diffieHellmanParametersPath?: string;
+ *     passphrase?: string;
+ *     privateKey: string;
+ *   }
+ *   port?: number;
+ * }
+ * Multiple server instances can be started simultaneously with unique port values.
+ * @param entrypointFunction  The function used to start running the server.
+ * @param serverConfiguration An optional configuration object.
  */
 async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
-  hostname?: string,
-  httpsOptions?: HttpsOptions,
+  serverConfiguration: ServerConfiguration = {},
 ) {
+  const { hostname, httpsOptions, port } = serverConfiguration;
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request): Promise<Response> {
@@ -99,7 +116,7 @@ async function startDevelopmentServer(
       return response;
     },
     lowMemoryMode: false,
-    port: process.env.DEVELOPMENT_SERVER_PORT ?? 3_000,
+    port: process.env.DEVELOPMENT_SERVER_PORT ?? port ?? 3_000,
   };
 
   if (hostname) {
@@ -136,7 +153,7 @@ async function startDevelopmentServer(
       process.exit(1); // eslint-disable-line n/no-process-exit, unicorn/no-process-exit -- intended to be used in CLI scripts
     }
 
-    serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? 443;
+    serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? port ?? 443;
     serverOptions.tls = {
       cert: file(certificate),
       key: file(privateKey),

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.0
+
+- Changed the function signature of `utils/networkUtils.mts` -> `startDevelopmentServer()` to accept a single configuration object instead of multiple configuration parameters
+  - Documentation updated
+- Disabled rule `jsdoc/check-line-alignment`
+- Disabled JSDoc parameter expansion so parameters are more clearly shown; type information now only lives in parameter detail tables
+
 ## 2.0.3
 
 - Enable links to source code in documentation

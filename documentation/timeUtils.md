@@ -4,7 +4,7 @@
 
 ### getElapsedTimeFormatted()
 
-> **getElapsedTimeFormatted**(`startTime`: `number`, `unitsOverride`: `""` \| `"ns"` \| `"μs"` \| `"ms"` \| `"s"`, `localeOverride`?: `string`): `string`
+> **getElapsedTimeFormatted**(`startTime`, `unitsOverride`, `localeOverride`?): `string`
 
 Get a formatted string representing the time between the provided start time parameter and the
 time the function is called. Optionally the time units and formatting locale can be overridden.
@@ -25,4 +25,4 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:24](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/timeUtils.mts#L24)
+[timeUtils.mts:24](https://github.com/mangs/bun-utils/blob/44e9c57a5b260e4350f55bdadcc61e3921aa4e12/utils/timeUtils.mts#L24)
