@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1
+
+- Fix the documentation's configuration object display in `utils/networkUtils.mts` -> `startDevelopmentServer()`
+
 ## 2.1.0
 
 - Changed the function signature of `utils/networkUtils.mts` -> `startDevelopmentServer()` to accept a single configuration object instead of multiple configuration parameters

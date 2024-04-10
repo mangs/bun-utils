@@ -78,6 +78,7 @@ function logServerStartup({ url: { href } }: Server) {
 /**
  * Start a development server using Bun.serve() and the provided entrypoint function. Optionally
  * specify a configuration object to customize functionality as follows:
+ * ```ts
  * {
  *   hostname?: string;
  *   httpsOptions?: {
@@ -89,6 +90,7 @@ function logServerStartup({ url: { href } }: Server) {
  *   }
  *   port?: number;
  * }
+ * ```
  * Multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
  * @param serverConfiguration An optional configuration object.
