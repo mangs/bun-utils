@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.3
+
+- Enable links to source code in documentation
+- Update dependency versions to latest
+
 ## 2.0.2
 
 - Add `@mangs` as code owner

@@ -18,3 +18,7 @@ Format and print to the command line the provided build metadata.
 #### Returns
 
 `void`
+
+#### Source
+
+[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/buildUtils.mts#L25)

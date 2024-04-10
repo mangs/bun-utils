@@ -1,7 +1,7 @@
 {
   "cleanOutputDir": true,
   "commentStyle": "jsdoc",
-  "disableSources": true,
+  "disableSources": false,
   "entryPoints": ["../../utils/**/*.mts"],
   "enumMembersFormat": "table",
   "expandParameters": true,
