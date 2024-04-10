@@ -21,6 +21,10 @@ will be empty.
 
 The list of inaccessible paths, if any.
 
+#### Source
+
+[filesystemUtils.mts:18](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/filesystemUtils.mts#L18)
+
 ***
 
 ### getHumanReadableFilesize()
@@ -41,6 +45,10 @@ Get a human readable filesize given its numeric value and an optional locale.
 `string`
 
 A localized string representing a file size.
+
+#### Source
+
+[filesystemUtils.mts:60](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/filesystemUtils.mts#L60)
 
 ***
 
@@ -64,6 +72,10 @@ values in the included ignore list.
 
 A list of paths.
 
+#### Source
+
+[filesystemUtils.mts:36](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/filesystemUtils.mts#L36)
+
 ***
 
 ### isDirectoryAccessible()
@@ -83,3 +95,7 @@ Determine if the provided path can be successfully accessed.
 `Promise`\<`boolean`\>
 
 Boolean indicating whether or not the path is accessible.
+
+#### Source
+
+[filesystemUtils.mts:81](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/filesystemUtils.mts#L81)

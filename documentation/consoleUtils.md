@@ -20,6 +20,10 @@ Format the text so it appears cyan.
 
 Text formatted so it appears cyan.
 
+#### Source
+
+[consoleUtils.mts:20](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L20)
+
 ***
 
 ### dim()
@@ -39,6 +43,10 @@ Format the text so it appears dim.
 `string`
 
 Text formatted so it appears dim.
+
+#### Source
+
+[consoleUtils.mts:29](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L29)
 
 ***
 
@@ -63,6 +71,10 @@ the function is called. Optionally the time units and formatting locale can be o
 
 A localized text label showing elapsed time with units.
 
+#### Source
+
+[consoleUtils.mts:78](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L78)
+
 ***
 
 ### green()
@@ -83,6 +95,10 @@ Format the text so it appears green.
 
 Text formatted so it appears green.
 
+#### Source
+
+[consoleUtils.mts:38](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L38)
+
 ***
 
 ### printError()
@@ -100,6 +116,10 @@ Print an error message to the console in red.
 #### Returns
 
 `void`
+
+#### Source
+
+[consoleUtils.mts:91](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L91)
 
 ***
 
@@ -119,6 +139,10 @@ Print an informational message to the console in cyan.
 
 `void`
 
+#### Source
+
+[consoleUtils.mts:99](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L99)
+
 ***
 
 ### printSuccess()
@@ -137,6 +161,10 @@ Print a success message to the console in green.
 
 `void`
 
+#### Source
+
+[consoleUtils.mts:107](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L107)
+
 ***
 
 ### printWarning()
@@ -154,6 +182,10 @@ Print a warning message to the console in yellow.
 #### Returns
 
 `void`
+
+#### Source
+
+[consoleUtils.mts:115](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L115)
 
 ***
 
@@ -175,6 +207,10 @@ Format the text so it appears red.
 
 Text formatted so it appears red.
 
+#### Source
+
+[consoleUtils.mts:47](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L47)
+
 ***
 
 ### white()
@@ -195,6 +231,10 @@ Format the text so it appears white.
 
 Text formatted so it appears white.
 
+#### Source
+
+[consoleUtils.mts:56](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L56)
+
 ***
 
 ### yellow()
@@ -214,3 +254,7 @@ Format the text so it appears yellow.
 `string`
 
 Text formatted so it appears yellow.
+
+#### Source
+
+[consoleUtils.mts:65](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/consoleUtils.mts#L65)

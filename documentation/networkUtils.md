@@ -20,3 +20,7 @@ specify a hostname and options for enabling HTTPS-based serving.
 #### Returns
 
 `Promise`\<`void`\>
+
+#### Source
+
+[networkUtils.mts:79](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/networkUtils.mts#L79)
