@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.2
+
+- Fix TypeScript example documentation consistency error in `utils/networkUtils.mts` -> `startDevelopmentServer()`
+
 ## 2.1.1
 
 - Fix the documentation's configuration object display in `utils/networkUtils.mts` -> `startDevelopmentServer()`

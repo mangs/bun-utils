@@ -17,7 +17,7 @@ specify a configuration object to customize functionality as follows:
     diffieHellmanParametersPath?: string;
     passphrase?: string;
     privateKey: string;
-  }
+  };
   port?: number;
 }
 ```
@@ -36,4 +36,4 @@ Multiple server instances can be started simultaneously with unique port values.
 
 #### Source
 
-[networkUtils.mts:98](https://github.com/mangs/bun-utils/blob/7f057e115cc8ad9f42118a3bdc19b9262011087e/utils/networkUtils.mts#L98)
+[networkUtils.mts:98](https://github.com/mangs/bun-utils/blob/d64b55d1623fe5ebcabee2bb28cc421df90c3e6d/utils/networkUtils.mts#L98)
