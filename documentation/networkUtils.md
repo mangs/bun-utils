@@ -4,18 +4,29 @@
 
 ### startDevelopmentServer()
 
-> **startDevelopmentServer**(`entrypointFunction`: (`request`: `Request`) => `Response` \| `Promise`\<`Response`\>, `hostname`?: `string`, `httpsOptions`?: `HttpsOptions`): `Promise`\<`void`\>
+> **startDevelopmentServer**(`entrypointFunction`, `serverConfiguration`): `Promise`\<`void`\>
 
 Start a development server using Bun.serve() and the provided entrypoint function. Optionally
-specify a hostname and options for enabling HTTPS-based serving.
+specify a configuration object to customize functionality as follows:
+\{
+  hostname?: string;
+  httpsOptions?: \{
+    certificate: string;
+    certificateAuthority?: string;
+    diffieHellmanParametersPath?: string;
+    passphrase?: string;
+    privateKey: string;
+  \}
+  port?: number;
+\}
+Multiple server instances can be started simultaneously with unique port values.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `entrypointFunction` | (`request`: `Request`) => `Response` \| `Promise`\<`Response`\> | The function used to start running the server. |
-| `hostname`? | `string` | An optional hostname upon which to listen. |
-| `httpsOptions`? | `HttpsOptions` | An optional configuration set to enable HTTPS-based serving. |
+| `entrypointFunction` | (`request`) => `Response` \| `Promise`\<`Response`\> | The function used to start running the server. |
+| `serverConfiguration` | `ServerConfiguration` | An optional configuration object. |
 
 #### Returns
 
@@ -23,4 +34,4 @@ specify a hostname and options for enabling HTTPS-based serving.
 
 #### Source
 
-[networkUtils.mts:79](https://github.com/mangs/bun-utils/blob/0e63ba4ba81750eee704bec08236136074bb0b97/utils/networkUtils.mts#L79)
+[networkUtils.mts:96](https://github.com/mangs/bun-utils/blob/eaf95930611d600fac9bac2f9ec5571b46193fb2/utils/networkUtils.mts#L96)

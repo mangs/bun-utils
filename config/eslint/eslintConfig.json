@@ -10,7 +10,6 @@
     "import/core-modules": ["bun"]
   },
   "rules": {
-    "jsdoc/check-line-alignment": ["error", "always"],
     "jsdoc/multiline-blocks": ["error", { "noSingleLineBlocks": true }],
     "jsdoc/no-bad-blocks": "error",
     "jsdoc/require-asterisk-prefix": "error",

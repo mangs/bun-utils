@@ -4,7 +4,7 @@
   "disableSources": false,
   "entryPoints": ["../../utils/**/*.mts"],
   "enumMembersFormat": "table",
-  "expandParameters": true,
+  "expandParameters": false,
   "githubPages": false,
   "hideBreadcrumbs": true,
   "hidePageHeader": true,
