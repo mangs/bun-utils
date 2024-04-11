@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1
+
+- Document default values for `port` configuration option in `utils/networkUtils.mts` -> `startDevelopmentServer()`
+
 ## 2.2.0
 
 - Changed configuration options interface in `utils/networkUtils.mts` -> `startDevelopmentServer()`

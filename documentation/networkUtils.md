@@ -18,7 +18,7 @@ server. Optionally specify a configuration object to customize functionality as 
     passphrase?: string;
     privateKeyPath: string | string[];
   };
-  port?: string | number;
+  port?: string | number; // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
 ```
 **NOTE:** multiple server instances can be started simultaneously with unique port values.
 
@@ -35,4 +35,4 @@ server. Optionally specify a configuration object to customize functionality as 
 
 #### Source
 
-[networkUtils.mts:97](https://github.com/mangs/bun-utils/blob/fd62b03a442c85b7a200419249e0b46ebed0e806/utils/networkUtils.mts#L97)
+[networkUtils.mts:97](https://github.com/mangs/bun-utils/blob/17f518865af5fccd197907b90a62cc9ee7778b9c/utils/networkUtils.mts#L97)
