@@ -88,7 +88,7 @@ function logServerStartup({ url: { href } }: Server) {
  *     passphrase?: string;
  *     privateKeyPath: string | string[];
  *   };
- *   port?: string | number; // Defaults to process.env.DEVELOPMENT_SERVER_PORT or 3_000 for HTTP, 443 for HTTPS
+ *   port?: string | number; // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
  * ```
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
