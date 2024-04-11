@@ -80,7 +80,7 @@ function logServerStartup({ url: { href } }: Server) {
  * server. Optionally specify a configuration object to customize functionality as follows:
  * ```ts
  * {
- *   hostname?: string; // Defaulgwts to localhost
+ *   hostname?: string; // Defaults to localhost
  *   httpsOptions?: {
  *     certificatePath: string | string[];
  *     certificateAuthorityPath?: string | string[];
