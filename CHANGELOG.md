@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.3
+
+- Document the use of the `DEBUG` environment variable in `utils/networkUtils.mts` -> `startDevelopmentServer()`
+
 ## 2.2.2
 
 - Add documentation how configuration options map back to those in `Bun.serve()` in `utils/networkUtils.mts` -> `startDevelopmentServer()`
