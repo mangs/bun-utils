@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.0
+
+- Changed configuration options interface in `utils/networkUtils.mts` -> `startDevelopmentServer()`
+  - Renamed options
+    - `certificate` -> `certificatePath`
+    - `certificateAuthority` -> `certificateAuthorityPath`
+    - `privateKey` -> `privateKeyPath`
+  - Added optional ability to pass an array of paths to the above options
+
 ## 2.1.2
 
 - Fix TypeScript example documentation consistency error in `utils/networkUtils.mts` -> `startDevelopmentServer()`

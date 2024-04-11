@@ -6,22 +6,20 @@
 
 > **startDevelopmentServer**(`entrypointFunction`, `serverConfiguration`): `Promise`\<`void`\>
 
-Start a development server using Bun.serve() and the provided entrypoint function. Optionally
-specify a configuration object to customize functionality as follows:
+Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
+server. Optionally specify a configuration object to customize functionality as follows:
 ```ts
 {
-  hostname?: string;
+  hostname?: string; // Defaulgwts to localhost
   httpsOptions?: {
-    certificate: string;
-    certificateAuthority?: string;
+    certificatePath: string | string[];
+    certificateAuthorityPath?: string | string[];
     diffieHellmanParametersPath?: string;
     passphrase?: string;
-    privateKey: string;
+    privateKeyPath: string | string[];
   };
-  port?: number;
-}
 ```
-Multiple server instances can be started simultaneously with unique port values.
+**NOTE:** multiple server instances can be started simultaneously with unique port values.
 
 #### Parameters
 
@@ -36,4 +34,4 @@ Multiple server instances can be started simultaneously with unique port values.
 
 #### Source
 
-[networkUtils.mts:98](https://github.com/mangs/bun-utils/blob/d64b55d1623fe5ebcabee2bb28cc421df90c3e6d/utils/networkUtils.mts#L98)
+[networkUtils.mts:96](https://github.com/mangs/bun-utils/blob/83528b5827d44ec060c437224c6d2c34b0113b13/utils/networkUtils.mts#L96)
