@@ -24,7 +24,6 @@ Optionally specify a configuration object to customize functionality as follows:
   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
 ```
 **NOTE:** multiple server instances can be started simultaneously with unique port values.
-**NOTE 2:** the exact configuration options used to start a server are logged to the console if the DEBUG environment variable is set to a truthy value.
 
 #### Parameters
 
@@ -39,4 +38,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:101](https://github.com/mangs/bun-utils/blob/6bdaa256b68a85bb20e69f8fa75b49976cb088b0/utils/networkUtils.mts#L101)
+[networkUtils.mts:100](https://github.com/mangs/bun-utils/blob/c76895bffa376d0dbc1ce5dbc013122450647e63/utils/networkUtils.mts#L100)

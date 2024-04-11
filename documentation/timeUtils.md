@@ -25,4 +25,4 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:24](https://github.com/mangs/bun-utils/blob/6bdaa256b68a85bb20e69f8fa75b49976cb088b0/utils/timeUtils.mts#L24)
+[timeUtils.mts:24](https://github.com/mangs/bun-utils/blob/c76895bffa376d0dbc1ce5dbc013122450647e63/utils/timeUtils.mts#L24)
