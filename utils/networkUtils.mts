@@ -77,7 +77,10 @@ function logServerStartup({ url: { href } }: Server) {
 
 /**
  * Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
- * server. Optionally specify a configuration object to customize functionality as follows:
+ * server. Logs the exact configuration options used if the `DEBUG` environment variable is set to a
+ * truthy value.
+ *
+ * Optionally specify a configuration object to customize functionality as follows:
  * ```ts
  * {
  *   hostname?: string;                              // Defaults to localhost
@@ -91,6 +94,7 @@ function logServerStartup({ url: { href } }: Server) {
  *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
  * ```
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
+ * **NOTE 2:** the exact configuration options used to start a server are logged to the console if the DEBUG environment variable is set to a truthy value.
  * @param entrypointFunction  The function used to start running the server.
  * @param serverConfiguration An optional configuration object.
  */
