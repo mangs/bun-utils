@@ -10,15 +10,15 @@ Start a development server with the provided entrypoint function; uses `Bun.serv
 server. Optionally specify a configuration object to customize functionality as follows:
 ```ts
 {
-  hostname?: string; // Defaults to localhost
+  hostname?: string;                              // Defaults to localhost
   httpsOptions?: {
-    certificatePath: string | string[];
-    certificateAuthorityPath?: string | string[];
-    diffieHellmanParametersPath?: string;
-    passphrase?: string;
-    privateKeyPath: string | string[];
+    certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
+    certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
+    diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
+    passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
+    privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
   };
-  port?: string | number; // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
+  port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
 ```
 **NOTE:** multiple server instances can be started simultaneously with unique port values.
 
@@ -35,4 +35,4 @@ server. Optionally specify a configuration object to customize functionality as 
 
 #### Source
 
-[networkUtils.mts:97](https://github.com/mangs/bun-utils/blob/17f518865af5fccd197907b90a62cc9ee7778b9c/utils/networkUtils.mts#L97)
+[networkUtils.mts:97](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/networkUtils.mts#L97)

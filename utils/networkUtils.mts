@@ -80,15 +80,15 @@ function logServerStartup({ url: { href } }: Server) {
  * server. Optionally specify a configuration object to customize functionality as follows:
  * ```ts
  * {
- *   hostname?: string; // Defaults to localhost
+ *   hostname?: string;                              // Defaults to localhost
  *   httpsOptions?: {
- *     certificatePath: string | string[];
- *     certificateAuthorityPath?: string | string[];
- *     diffieHellmanParametersPath?: string;
- *     passphrase?: string;
- *     privateKeyPath: string | string[];
+ *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
+ *     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
+ *     diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
+ *     passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
+ *     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
  *   };
- *   port?: string | number; // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
+ *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
  * ```
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
