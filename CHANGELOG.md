@@ -8,6 +8,7 @@
     - `certificateAuthority` -> `certificateAuthorityPath`
     - `privateKey` -> `privateKeyPath`
   - Added optional ability to pass an array of paths to the above options
+  - `port` can be a `string` or a `number`
 
 ## 2.1.2
 
