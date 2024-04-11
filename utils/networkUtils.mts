@@ -16,17 +16,17 @@ import type { Serve, Server } from 'bun';
 
 // Local Types
 interface HttpsOptions {
-  certificate: string;
-  certificateAuthority?: string;
+  certificatePath: string | string[];
+  certificateAuthorityPath?: string | string[];
   diffieHellmanParametersPath?: string;
   passphrase?: string;
-  privateKey: string;
+  privateKeyPath: string | string[];
 }
 
 interface ServerConfiguration {
   hostname?: string;
   httpsOptions?: HttpsOptions;
-  port?: number;
+  port?: string | number;
 }
 
 // Global Types
@@ -76,22 +76,21 @@ function logServerStartup({ url: { href } }: Server) {
 }
 
 /**
- * Start a development server using Bun.serve() and the provided entrypoint function. Optionally
- * specify a configuration object to customize functionality as follows:
+ * Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
+ * server. Optionally specify a configuration object to customize functionality as follows:
  * ```ts
  * {
- *   hostname?: string;
+ *   hostname?: string; // Defaults to localhost
  *   httpsOptions?: {
- *     certificate: string;
- *     certificateAuthority?: string;
+ *     certificatePath: string | string[];
+ *     certificateAuthorityPath?: string | string[];
  *     diffieHellmanParametersPath?: string;
  *     passphrase?: string;
- *     privateKey: string;
+ *     privateKeyPath: string | string[];
  *   };
- *   port?: number;
- * }
+ *   port?: string | number;
  * ```
- * Multiple server instances can be started simultaneously with unique port values.
+ * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
  * @param serverConfiguration An optional configuration object.
  */
@@ -127,44 +126,51 @@ async function startDevelopmentServer(
 
   if (httpsOptions) {
     const {
-      certificate,
-      certificateAuthority,
+      certificatePath,
+      certificateAuthorityPath,
       diffieHellmanParametersPath,
       passphrase,
-      privateKey,
+      privateKeyPath,
     } = httpsOptions;
 
     try {
       const filePromises = [
-        access(certificate, constants.R_OK),
-        access(privateKey, constants.R_OK),
+        ...[certificatePath].flat().map((c) => access(c, constants.R_OK)),
+        ...[privateKeyPath].flat().map((p) => access(p, constants.R_OK)),
+        ...[certificateAuthorityPath]
+          .flat()
+          .map((ca) => ca && access(ca, constants.R_OK))
+          .filter(Boolean),
       ];
-      if (certificateAuthority) {
-        filePromises.push(access(certificateAuthority, constants.R_OK));
-      }
       await Promise.all(filePromises);
     } catch (error) {
       const errorPath = (error as NodeJS.ErrnoException).path; // eslint-disable-line no-undef -- TypeScript can find the NodeJS type
       const targetKey =
-        errorPath === certificate
-          ? 'certificate'
-          : errorPath === certificateAuthority
-            ? 'certificateAuthority'
-            : 'privateKey';
+        errorPath === certificatePath
+          ? 'certificatePath'
+          : errorPath === certificateAuthorityPath
+            ? 'certificateAuthorityPath'
+            : 'privateKeyPath';
       printError(`HTTPS configuration key "${targetKey}" file not found: ${errorPath}`);
       process.exit(1); // eslint-disable-line n/no-process-exit, unicorn/no-process-exit -- intended to be used in CLI scripts
     }
 
     serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? port ?? 443;
     serverOptions.tls = {
-      cert: file(certificate),
-      key: file(privateKey),
+      cert: Array.isArray(certificatePath)
+        ? certificatePath.map((c) => file(c))
+        : file(certificatePath),
+      key: Array.isArray(privateKeyPath)
+        ? privateKeyPath.map((p) => file(p))
+        : file(privateKeyPath),
     };
     if (hostname) {
       serverOptions.tls.serverName = hostname;
     }
-    if (certificateAuthority) {
-      serverOptions.tls.ca = file(certificateAuthority);
+    if (certificateAuthorityPath) {
+      serverOptions.tls.ca = Array.isArray(certificateAuthorityPath)
+        ? certificateAuthorityPath.map((ca) => file(ca))
+        : file(certificateAuthorityPath);
     }
     if (diffieHellmanParametersPath) {
       serverOptions.tls.dhParamsFile = diffieHellmanParametersPath;
