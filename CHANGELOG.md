@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2
+
+- Add documentation how configuration options map back to those in `Bun.serve()` in `utils/networkUtils.mts` -> `startDevelopmentServer()`
+
 ## 2.2.1
 
 - Document default values for `port` configuration option in `utils/networkUtils.mts` -> `startDevelopmentServer()`
