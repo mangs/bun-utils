@@ -88,6 +88,7 @@ function logServerStartup({ url: { href } }: Server) {
  *     passphrase?: string;
  *     privateKeyPath: string | string[];
  *   };
+ *   port?: string | number;
  * ```
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.

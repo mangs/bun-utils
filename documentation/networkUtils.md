@@ -18,6 +18,7 @@ server. Optionally specify a configuration object to customize functionality as 
     passphrase?: string;
     privateKeyPath: string | string[];
   };
+  port?: string | number;
 ```
 **NOTE:** multiple server instances can be started simultaneously with unique port values.
 
@@ -34,4 +35,4 @@ server. Optionally specify a configuration object to customize functionality as 
 
 #### Source
 
-[networkUtils.mts:96](https://github.com/mangs/bun-utils/blob/f0fc6379da509807814e8ac8b785e2f07baf6bf6/utils/networkUtils.mts#L96)
+[networkUtils.mts:97](https://github.com/mangs/bun-utils/blob/fd62b03a442c85b7a200419249e0b46ebed0e806/utils/networkUtils.mts#L97)
