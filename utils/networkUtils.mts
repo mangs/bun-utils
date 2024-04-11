@@ -82,11 +82,11 @@ function logServerStartup({ url: { href } }: Server) {
  * {
  *   hostname?: string;                              // Defaults to localhost
  *   httpsOptions?: {
- *     certificatePath: string | string[];           // Maps to `Bun.serve()`'s tls.cert option
- *     certificateAuthorityPath?: string | string[]; // Maps to `Bun.serve()`'s tls.ca option
- *     diffieHellmanParametersPath?: string;         // Maps to `Bun.serve()`'s tls.dhParamsFile option
- *     passphrase?: string;                          // Maps to `Bun.serve()`'s tls.passphrase option
- *     privateKeyPath: string | string[];            // Maps to `Bun.serve()`'s tls.key option
+ *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
+ *     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
+ *     diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
+ *     passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
+ *     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
  *   };
  *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
  * ```

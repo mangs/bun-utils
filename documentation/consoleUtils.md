@@ -22,7 +22,7 @@ Text formatted so it appears cyan.
 
 #### Source
 
-[consoleUtils.mts:20](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L20)
+[consoleUtils.mts:20](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L20)
 
 ***
 
@@ -46,7 +46,7 @@ Text formatted so it appears dim.
 
 #### Source
 
-[consoleUtils.mts:29](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L29)
+[consoleUtils.mts:29](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L29)
 
 ***
 
@@ -73,7 +73,7 @@ A localized text label showing elapsed time with units.
 
 #### Source
 
-[consoleUtils.mts:78](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L78)
+[consoleUtils.mts:78](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L78)
 
 ***
 
@@ -97,7 +97,7 @@ Text formatted so it appears green.
 
 #### Source
 
-[consoleUtils.mts:38](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L38)
+[consoleUtils.mts:38](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L38)
 
 ***
 
@@ -119,7 +119,7 @@ Print an error message to the console in red.
 
 #### Source
 
-[consoleUtils.mts:91](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L91)
+[consoleUtils.mts:91](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L91)
 
 ***
 
@@ -141,7 +141,7 @@ Print an informational message to the console in cyan.
 
 #### Source
 
-[consoleUtils.mts:99](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L99)
+[consoleUtils.mts:99](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L99)
 
 ***
 
@@ -163,7 +163,7 @@ Print a success message to the console in green.
 
 #### Source
 
-[consoleUtils.mts:107](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L107)
+[consoleUtils.mts:107](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L107)
 
 ***
 
@@ -185,7 +185,7 @@ Print a warning message to the console in yellow.
 
 #### Source
 
-[consoleUtils.mts:115](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L115)
+[consoleUtils.mts:115](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L115)
 
 ***
 
@@ -209,7 +209,7 @@ Text formatted so it appears red.
 
 #### Source
 
-[consoleUtils.mts:47](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L47)
+[consoleUtils.mts:47](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L47)
 
 ***
 
@@ -233,7 +233,7 @@ Text formatted so it appears white.
 
 #### Source
 
-[consoleUtils.mts:56](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L56)
+[consoleUtils.mts:56](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L56)
 
 ***
 
@@ -257,4 +257,4 @@ Text formatted so it appears yellow.
 
 #### Source
 
-[consoleUtils.mts:65](https://github.com/mangs/bun-utils/blob/f4668b5e67076053e5580155caf3b7c5e6397517/utils/consoleUtils.mts#L65)
+[consoleUtils.mts:65](https://github.com/mangs/bun-utils/blob/2806ff839dd7f6d4d485d46bc5e961d6e91f5578/utils/consoleUtils.mts#L65)
