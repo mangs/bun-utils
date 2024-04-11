@@ -10,7 +10,7 @@ Start a development server with the provided entrypoint function; uses `Bun.serv
 server. Optionally specify a configuration object to customize functionality as follows:
 ```ts
 {
-  hostname?: string; // Defaulgwts to localhost
+  hostname?: string; // Defaults to localhost
   httpsOptions?: {
     certificatePath: string | string[];
     certificateAuthorityPath?: string | string[];
@@ -34,4 +34,4 @@ server. Optionally specify a configuration object to customize functionality as 
 
 #### Source
 
-[networkUtils.mts:96](https://github.com/mangs/bun-utils/blob/83528b5827d44ec060c437224c6d2c34b0113b13/utils/networkUtils.mts#L96)
+[networkUtils.mts:96](https://github.com/mangs/bun-utils/blob/f0fc6379da509807814e8ac8b785e2f07baf6bf6/utils/networkUtils.mts#L96)
