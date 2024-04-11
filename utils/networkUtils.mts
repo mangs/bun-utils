@@ -77,8 +77,8 @@ function logServerStartup({ url: { href } }: Server) {
 
 /**
  * Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
- * server. Logs the exact configuration options used if the `DEBUG` environment variable is set to a
- * truthy value.
+ * server. The exact configuration options used are logged to the console if the `DEBUG` environment
+ * variable is set to a truthy value.
  *
  * Optionally specify a configuration object to customize functionality as follows:
  * ```ts

@@ -7,8 +7,8 @@
 > **startDevelopmentServer**(`entrypointFunction`, `serverConfiguration`): `Promise`\<`void`\>
 
 Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
-server. Logs the exact configuration options used if the `DEBUG` environment variable is set to a
-truthy value.
+server. The exact configuration options used are logged to the console if the `DEBUG` environment
+variable is set to a truthy value.
 
 Optionally specify a configuration object to customize functionality as follows:
 ```ts
@@ -39,4 +39,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:101](https://github.com/mangs/bun-utils/blob/5cb1bc6eaf11780f173df889cf572f5b41cfb10e/utils/networkUtils.mts#L101)
+[networkUtils.mts:101](https://github.com/mangs/bun-utils/blob/6bdaa256b68a85bb20e69f8fa75b49976cb088b0/utils/networkUtils.mts#L101)
