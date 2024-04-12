@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.4
+
+- Refactor `utils/networkUtils.mts` -> `startDevelopmentServer()` to check file paths with `Bun.file().exists()` instead of `access` from `node:fs/promises`
+
 ## 2.2.3
 
 - Document the use of the `DEBUG` environment variable in `utils/networkUtils.mts` -> `startDevelopmentServer()`

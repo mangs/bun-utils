@@ -3,7 +3,6 @@
  */
 
 // External Imports
-import { access, constants } from 'node:fs/promises';
 import { format } from 'node:util';
 import { file, nanoseconds, serve, stringWidth } from 'bun';
 
@@ -136,26 +135,27 @@ async function startDevelopmentServer(
       privateKeyPath,
     } = httpsOptions;
 
-    try {
-      const filePromises = [
-        ...[certificatePath].flat().map((c) => access(c, constants.R_OK)),
-        ...[privateKeyPath].flat().map((p) => access(p, constants.R_OK)),
-        ...[certificateAuthorityPath]
-          .flat()
-          .map((ca) => ca && access(ca, constants.R_OK))
-          .filter(Boolean),
-      ];
-      await Promise.all(filePromises);
-    } catch (error) {
-      const errorPath = (error as NodeJS.ErrnoException).path; // eslint-disable-line no-undef -- TypeScript can find the NodeJS type
-      const targetKey =
-        errorPath === certificatePath
-          ? 'certificatePath'
-          : errorPath === certificateAuthorityPath
-            ? 'certificateAuthorityPath'
-            : 'privateKeyPath';
-      printError(`HTTPS configuration key "${targetKey}" file not found: ${errorPath}`);
-      process.exit(1); // eslint-disable-line n/no-process-exit, unicorn/no-process-exit -- intended to be used in CLI scripts
+    const certificate = [certificatePath].flat().map((c) => file(c));
+    const privateKey = [privateKeyPath].flat().map((p) => file(p));
+    const certificateAuthority = [certificateAuthorityPath]
+      .flat()
+      .map((ca) => (ca ? file(ca) : undefined))
+      .filter(Boolean);
+    for (const field of [certificate, privateKey, certificateAuthority]) {
+      for (const bunFile of field) {
+        // eslint-disable-next-line no-await-in-loop -- no way to hoist into Promise.all() without losing reference to file path
+        const doesFileExist = await bunFile?.exists();
+        if (!doesFileExist && bunFile?.name) {
+          const filePath = bunFile.name;
+          const targetKey = [certificatePath].flat().includes(filePath)
+            ? 'certificatePath'
+            : [privateKeyPath].flat().includes(filePath)
+              ? 'privateKeyPath'
+              : 'certificateAuthorityPath';
+          printError(`HTTPS configuration key "${targetKey}" file not found: ${filePath}`);
+          process.exit(1); // eslint-disable-line n/no-process-exit, unicorn/no-process-exit -- intended to be used in CLI scripts
+        }
+      }
     }
 
     serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? port ?? 443;
