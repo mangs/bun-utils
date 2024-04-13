@@ -29,6 +29,8 @@ const httpRequestMethods = [
 /**
  * Simple router that handles both eager- and lazy-loaded route handlers to keep your bundle sizes
  * small.
+ *
+ * For path matches, `*` matches any character except `/` whereas `**` matches all characters.
  * @example
  * ```ts
  * const router = new Router();
