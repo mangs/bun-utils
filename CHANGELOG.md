@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.2
+
+- Fix lazy loading route handlers to actually load lazily instead of eagerly (in `utils/routerUtils.mts`)
+
 ## 2.6.1
 
 - Make `Router` instance `routes` array private (in `utils/routerUtils.mts`)
