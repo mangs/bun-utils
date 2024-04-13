@@ -38,4 +38,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:99](https://github.com/mangs/bun-utils/blob/1f31ff245dd2bdf9b5773cff91e986bb603056c3/utils/networkUtils.mts#L99)
+[networkUtils.mts:99](https://github.com/mangs/bun-utils/blob/947771ff78b07d311b57ef8beae76c3370e1b5f8/utils/networkUtils.mts#L99)
