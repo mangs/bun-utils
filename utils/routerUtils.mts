@@ -49,7 +49,7 @@ class Router {
    * Constructor that creates an empty array for route definitions.
    */
   constructor() {
-    this.routes = [];
+    this.#routes = [];
 
     // return new Proxy(this, {
     //   get(target, property) {
@@ -66,7 +66,7 @@ class Router {
     // });
   }
 
-  routes: Routes;
+  #routes: Routes;
 
   /**
    * Handles the incoming request after all route definitions have been made.
@@ -77,7 +77,7 @@ class Router {
     const { method } = request;
     const { pathname: requestPath } = new URL(request.url);
 
-    for (const [routeMethod, [routePath, routeHandler]] of this.routes) {
+    for (const [routeMethod, [routePath, routeHandler]] of this.#routes) {
       if (routeMethod !== 'ALL' && method !== routeMethod) {
         continue; // eslint-disable-line no-continue -- ignore HTTP methods that don't match the request
       }
@@ -117,7 +117,7 @@ class Router {
     if (!httpRequestMethods.includes(method)) {
       throw new TypeError(`"${method}" is not a valid HTTP method`);
     }
-    this.routes.push([method, [path, routeHandler]]);
+    this.#routes.push([method, [path, routeHandler]]);
     return this;
   }
 
