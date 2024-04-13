@@ -12,4 +12,5 @@ The code is organized into logical modules and exported based on category as fol
 | `@mangs/bun-utils/console`    | [Link](documentation/consoleUtils.md)    | Console-related utility functions            |
 | `@mangs/bun-utils/filesystem` | [Link](documentation/filesystemUtils.md) | Filesystem-related utility functions         |
 | `@mangs/bun-utils/network`    | [Link](documentation/networkUtils.md)    | Network-related utlity functions             |
+| `@mangs/bun-utils/router`     | [Link](documentation/routerUtils.md)     | Router-related utlity functions              |
 | `@mangs/bun-utils/time`       | [Link](documentation/timeUtils.md)       | Time-related utility functions               |

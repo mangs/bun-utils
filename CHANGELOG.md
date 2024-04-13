@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.5.0
+
+- Added lots more features to the `Router` class
+  - Added glob-like route matching with `*` and `**`
+  - Added ability to match any route method with `.all()` convenience method
+  - Added more convenience methods. The full list now includes most HTTP methods (see the documentation for more details):
+    - `delete`
+    - `get`
+    - `head`
+    - `options`
+    - `patch`
+    - `post`
+    - `put`
+  - Created new utils file `utils/routerUtils.mts` for router utils
+    - Create a new package export `/router` pointing to it
+    - Moved `Router` class from `utils/networkUtils.mts` to here
+  - Added JSDoc documentation to the `Router` class in `utils/routerUtils.mts`
+
 ## 2.4.1
 
 - Fix bug in the `Router` class in `utils/networkUtils.mts` so calling a lazy-loaded route handler function works correctly
