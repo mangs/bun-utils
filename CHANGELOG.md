@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0
+
+- Add a `Router` class to `utils/networkUtils.mts`
+
 ## 2.2.4
 
 - Refactor `utils/networkUtils.mts` -> `startDevelopmentServer()` to check file paths with `Bun.file().exists()` instead of `access` from `node:fs/promises`
