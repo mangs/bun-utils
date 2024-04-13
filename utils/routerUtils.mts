@@ -39,9 +39,10 @@ const httpRequestMethods = [
  * ```ts
  * const router = new Router();
  * router
- *   .get('/*', { pageRoute: import('./routes/pageRoute.mts') })
- *   .post('/submit', { submitRoute: import('./routes/submitRoute.mts') })
- *   .all('**', () => new Response('404 page', { status: 404 }));
+ *   .get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
+ *   .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') })
+ *   .get('/**', () => new Response('404 page', { status: 404 }))
+ *   .all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 }));
  * ```
  */
 class Router {
