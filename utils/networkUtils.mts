@@ -233,11 +233,11 @@ class Router {
 
   init(request: Request) {
     const { method } = request;
-    const { pathname } = new URL(request.url);
+    const { pathname: requestPath } = new URL(request.url);
     const targetRoutes = this.routes[method];
     if (targetRoutes) {
-      for (const [path, routeHandler] of targetRoutes) {
-        if (path === pathname) {
+      for (const [routePath, routeHandler] of targetRoutes) {
+        if (routePath === requestPath) {
           return routeHandler(request);
         }
       }
