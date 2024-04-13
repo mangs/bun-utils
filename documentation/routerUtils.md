@@ -7,8 +7,8 @@
 Simple router that handles both eager- and lazy-loaded route handlers to keep your bundle sizes
 small.
 
-For path matches, `*` matches any character except `/` whereas `**` matches all characters.
-Otherwise characters are treated as written (no escaping).
+Path matches follow glob rules by using `Bun.Glob`. See the
+[documentation for `Bun.Glob`](https://bun.sh/docs/api/glob) for details.
 
 #### Example
 
@@ -34,7 +34,7 @@ Constructor that creates an empty array for route definitions.
 
 ###### Source
 
-[routerUtils.mts:48](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L48)
+[routerUtils.mts:51](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L51)
 
 #### Properties
 
@@ -66,7 +66,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:113](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L113)
+[routerUtils.mts:116](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L116)
 
 ##### all()
 
@@ -89,7 +89,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:127](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L127)
+[routerUtils.mts:130](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L130)
 
 ##### delete()
 
@@ -112,7 +112,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:137](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L137)
+[routerUtils.mts:140](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L140)
 
 ##### get()
 
@@ -135,7 +135,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:147](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L147)
+[routerUtils.mts:150](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L150)
 
 ##### handleRequest()
 
@@ -157,7 +157,7 @@ A `Response` object to build the response sent to the requester.
 
 ###### Source
 
-[routerUtils.mts:73](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L73)
+[routerUtils.mts:76](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L76)
 
 ##### head()
 
@@ -180,7 +180,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:157](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L157)
+[routerUtils.mts:160](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L160)
 
 ##### options()
 
@@ -203,7 +203,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:167](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L167)
+[routerUtils.mts:170](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L170)
 
 ##### patch()
 
@@ -226,7 +226,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:177](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L177)
+[routerUtils.mts:180](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L180)
 
 ##### post()
 
@@ -249,7 +249,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:187](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L187)
+[routerUtils.mts:190](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L190)
 
 ##### put()
 
@@ -272,4 +272,4 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:197](https://github.com/mangs/bun-utils/blob/5ba2eb2143b9ed83aac67dae01c71de9481a202b/utils/routerUtils.mts#L197)
+[routerUtils.mts:200](https://github.com/mangs/bun-utils/blob/a89aa8adb58f9005bde9f2a2957ba1a1415b5d0b/utils/routerUtils.mts#L200)
