@@ -29,7 +29,8 @@ const httpRequestMethods = [
 /**
  * Simple router that handles both eager- and lazy-loaded route handlers to keep your bundle sizes
  * small.
- * @example ```ts
+ * @example
+ * ```ts
  * const router = new Router();
  * router
  *   .get('/*', { pageRoute: import('./routes/pageRoute.mts') })
