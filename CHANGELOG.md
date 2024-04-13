@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0
+
+- Add lazy-loaded route handler support to the `Router` class in `utils/networkUtils.mts`
+
 ## 2.3.0
 
 - Add a `Router` class to `utils/networkUtils.mts`
