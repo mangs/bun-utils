@@ -28,34 +28,11 @@ interface ServerConfiguration {
   port?: string | number;
 }
 
-type HttpRequestMethod = (typeof httpRequestMethods)[number]; // eslint-disable-line no-use-before-define -- defined nearby
-type RouteHandlerFunction = (request: Request) => Response | Promise<Response>;
-interface RouteHandlerLazyLoaded {
-  moduleKey: string;
-  modulePromise: Promise<Record<string, RouteHandlerFunction>>;
-}
-type RouteHandler = RouteHandlerFunction | RouteHandlerLazyLoaded;
-type RouteEntry = Parameters<InstanceType<typeof Router>['get']>; // eslint-disable-line no-use-before-define -- only used for types
-type Routes = Record<string, Set<RouteEntry>>;
-
 // Global Types
 declare global {
   // eslint-disable-next-line vars-on-top, no-var -- this is a requirement for correct variable access
   var hotReloadCount: number;
 }
-
-// Local Variables
-const httpRequestMethods = [
-  'CONNECT',
-  'DELETE',
-  'GET',
-  'HEAD',
-  'OPTIONS',
-  'PATCH',
-  'POST',
-  'PUT',
-  'TRACE',
-] as const;
 
 // Local Functions
 /**
@@ -214,79 +191,5 @@ async function startDevelopmentServer(
   logServerStartup(server);
 }
 
-// Local Classes
-class Router {
-  constructor() {
-    this.routes = {};
-
-    // return new Proxy(this, {
-    //   get(target, property) {
-    //     if (typeof property === 'string') {
-    //       if (['all', 'init'].includes(property)) {
-    //         return target[property];
-    //       }
-    //       const propertyUppercase = property.toUpperCase() as HttpRequestMethod;
-    //       if (httpRequestMethods.includes(propertyUppercase)) {
-    //         return (...parameters: RouteEntry) => target.all(...parameters, propertyUppercase);
-    //       }
-    //     }
-    //   },
-    // });
-  }
-
-  routes: Routes;
-
-  async init(request: Request) {
-    const { method } = request;
-    const { pathname: requestPath } = new URL(request.url);
-    const targetRoutes = this.routes[method];
-    if (targetRoutes) {
-      for (const [routePath, routeHandler] of targetRoutes) {
-        if (routePath === requestPath) {
-          if (typeof routeHandler === 'function') {
-            return routeHandler(request);
-          }
-          const { moduleKey, modulePromise } = routeHandler;
-          const routeModule = await modulePromise; // eslint-disable-line no-await-in-loop -- this will only ever await once
-          const targetFunction = routeModule[moduleKey];
-          if (typeof targetFunction === 'function') {
-            return targetFunction(request);
-          }
-          throw new TypeError(`Lazy-loaded route handler target "${moduleKey}" was not a function`);
-        }
-      }
-    }
-    throw new Error('No routes matched!');
-  }
-
-  all(path: string, routeHandler: RouteHandler, method: HttpRequestMethod) {
-    if (!this.routes[method]) {
-      this.routes[method] = new Set();
-    }
-    this.routes[method]?.add([path, routeHandler]);
-    return this;
-  }
-
-  delete(path: string, routeHandler: RouteHandler) {
-    return this.all(path, routeHandler, 'DELETE');
-  }
-
-  get(path: string, routeHandler: RouteHandler) {
-    return this.all(path, routeHandler, 'GET');
-  }
-
-  patch(path: string, routeHandler: RouteHandler) {
-    return this.all(path, routeHandler, 'PATCH');
-  }
-
-  post(path: string, routeHandler: RouteHandler) {
-    return this.all(path, routeHandler, 'POST');
-  }
-
-  put(path: string, routeHandler: RouteHandler) {
-    return this.all(path, routeHandler, 'PUT');
-  }
-}
-
 // Module Exports
-export { Router, startDevelopmentServer };
+export { startDevelopmentServer };
