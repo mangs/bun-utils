@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.1
+
+- Make `Router` instance `routes` array private (in `utils/routerUtils.mts`)
+
 ## 2.6.0
 
 - In the `Router` class in `utils/routerUtils.mts`, path matching is now performed by `Bun.Glob`
