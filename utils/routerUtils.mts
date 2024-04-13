@@ -31,7 +31,7 @@ const httpRequestMethods = [
 // Local Classes
 /**
  * Simple router that handles both eager- and lazy-loaded route handlers to keep your bundle sizes
- * small.
+ * small. Both default and named module exports are supported with a concise syntax.
  *
  * Path matches follow glob rules by using `Bun.Glob`. See the
  * [documentation for `Bun.Glob`](https://bun.sh/docs/api/glob) for details.
