@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.0
+
+- In the `Router` class in `utils/routerUtils.mts`, path matching is now performed by `Bun.Glob`
+
 ## 2.5.1
 
 - In the `Router` class in `utils/routerUtils.mts`, rename `handleMethod` to `#handleMethod` to make it a private instance method

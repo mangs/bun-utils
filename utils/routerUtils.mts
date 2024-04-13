@@ -2,6 +2,9 @@
  * @file Router-related utlity functions.
  */
 
+// External Imports
+import { Glob } from 'bun';
+
 // Local Types
 type HttpRequestMethod = (typeof httpRequestMethods)[number]; // eslint-disable-line no-use-before-define -- defined nearby
 type RouteHandlerFunction = (request: Request) => Response | Promise<Response>;
@@ -30,8 +33,8 @@ const httpRequestMethods = [
  * Simple router that handles both eager- and lazy-loaded route handlers to keep your bundle sizes
  * small.
  *
- * For path matches, `*` matches any character except `/` whereas `**` matches all characters.
- * Otherwise characters are treated as written (no escaping).
+ * Path matches follow glob rules by using `Bun.Glob`. See the
+ * [documentation for `Bun.Glob`](https://bun.sh/docs/api/glob) for details.
  * @example
  * ```ts
  * const router = new Router();
@@ -79,8 +82,8 @@ class Router {
         continue; // eslint-disable-line no-continue -- ignore HTTP methods that don't match the request
       }
 
-      const matchRegex = new RegExp(`^${routePath.replace('**', '.+').replace('*', '[^\\/]+')}$`);
-      if (matchRegex.test(requestPath)) {
+      // eslint-disable-next-line unicorn/prefer-regexp-test -- false positive: this is a glob.match() not string.match()
+      if (new Glob(routePath).match(requestPath)) {
         if (typeof routeHandler === 'function') {
           return routeHandler(request);
         }
