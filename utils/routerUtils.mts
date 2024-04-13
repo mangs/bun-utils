@@ -8,7 +8,7 @@ import { Glob } from 'bun';
 // Local Types
 type HttpRequestMethod = (typeof httpRequestMethods)[number]; // eslint-disable-line no-use-before-define -- defined nearby
 type RouteHandlerFunction = (request: Request) => Response | Promise<Response>;
-type RouteHandlerLazyLoaded = Record<string, Promise<Record<string, RouteHandlerFunction>>>;
+type RouteHandlerLazyLoaded = Record<string, () => Promise<Record<string, RouteHandlerFunction>>>;
 type RouteHandler = RouteHandlerFunction | RouteHandlerLazyLoaded;
 type RouteEntry = Parameters<InstanceType<typeof Router>['get']>; // eslint-disable-line no-use-before-define -- only used for types
 type Routes = [HttpRequestMethod, RouteEntry][];
@@ -93,8 +93,8 @@ class Router {
           throw new TypeError('No lazy-loaded configuration option provided');
         }
 
-        const [moduleKey, modulePromise] = entry;
-        const routeModule = await modulePromise; // eslint-disable-line no-await-in-loop -- this will only ever await once
+        const [moduleKey, modulePromiseFunction] = entry;
+        const routeModule = await modulePromiseFunction(); // eslint-disable-line no-await-in-loop -- this will only ever await once
         const targetFunction = routeModule[moduleKey];
         if (typeof targetFunction === 'function') {
           return targetFunction(request);
