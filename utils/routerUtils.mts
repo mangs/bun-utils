@@ -31,6 +31,7 @@ const httpRequestMethods = [
  * small.
  *
  * For path matches, `*` matches any character except `/` whereas `**` matches all characters.
+ * Otherwise characters are treated as written (no escaping).
  * @example
  * ```ts
  * const router = new Router();
