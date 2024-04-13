@@ -16,7 +16,7 @@
 
 ###### Source
 
-[networkUtils.mts:219](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L219)
+[networkUtils.mts:219](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L219)
 
 #### Properties
 
@@ -44,7 +44,7 @@
 
 ###### Source
 
-[networkUtils.mts:258](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L258)
+[networkUtils.mts:262](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L262)
 
 ##### delete()
 
@@ -63,7 +63,7 @@
 
 ###### Source
 
-[networkUtils.mts:266](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L266)
+[networkUtils.mts:270](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L270)
 
 ##### get()
 
@@ -82,11 +82,11 @@
 
 ###### Source
 
-[networkUtils.mts:270](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L270)
+[networkUtils.mts:274](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L274)
 
 ##### init()
 
-> **init**(`request`): `Promise`\<`undefined` \| `Response` \| `RouteHandlerFunction`\>
+> **init**(`request`): `Promise`\<`Response`\>
 
 ###### Parameters
 
@@ -96,11 +96,11 @@
 
 ###### Returns
 
-`Promise`\<`undefined` \| `Response` \| `RouteHandlerFunction`\>
+`Promise`\<`Response`\>
 
 ###### Source
 
-[networkUtils.mts:239](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L239)
+[networkUtils.mts:239](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L239)
 
 ##### patch()
 
@@ -119,7 +119,7 @@
 
 ###### Source
 
-[networkUtils.mts:274](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L274)
+[networkUtils.mts:278](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L278)
 
 ##### post()
 
@@ -138,7 +138,7 @@
 
 ###### Source
 
-[networkUtils.mts:278](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L278)
+[networkUtils.mts:282](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L282)
 
 ##### put()
 
@@ -157,7 +157,7 @@
 
 ###### Source
 
-[networkUtils.mts:282](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L282)
+[networkUtils.mts:286](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L286)
 
 ## Functions
 
@@ -197,4 +197,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:122](https://github.com/mangs/bun-utils/blob/1d0f7999385f4bb5b1f6352bb1eed49a200a26b1/utils/networkUtils.mts#L122)
+[networkUtils.mts:122](https://github.com/mangs/bun-utils/blob/ada05ebfefea10276299cbf8800d1892b132b005/utils/networkUtils.mts#L122)
