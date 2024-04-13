@@ -37,6 +37,8 @@ const httpRequestMethods = [
  * [documentation for `Bun.Glob`](https://bun.sh/docs/api/glob) for details.
  * @example
  * ```ts
+ * import { Router } from '@mangs/bun-utils/router';
+ *
  * const router = new Router();
  * router
  *   .get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
