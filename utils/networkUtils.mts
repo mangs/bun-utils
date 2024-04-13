@@ -29,7 +29,12 @@ interface ServerConfiguration {
 }
 
 type HttpRequestMethod = (typeof httpRequestMethods)[number]; // eslint-disable-line no-use-before-define -- defined nearby
-type RouteHandler = (request: Request) => Response | Promise<Response>;
+type RouteHandlerFunction = (request: Request) => Response | Promise<Response>;
+interface RouteHandlerLazyLoaded {
+  moduleKey: string;
+  modulePromise: Promise<Record<string, RouteHandlerFunction>>;
+}
+type RouteHandler = RouteHandlerFunction | RouteHandlerLazyLoaded;
 type RouteEntry = Parameters<InstanceType<typeof Router>['get']>; // eslint-disable-line no-use-before-define -- only used for types
 type Routes = Record<string, Set<RouteEntry>>;
 
@@ -231,14 +236,19 @@ class Router {
 
   routes: Routes;
 
-  init(request: Request) {
+  async init(request: Request) {
     const { method } = request;
     const { pathname: requestPath } = new URL(request.url);
     const targetRoutes = this.routes[method];
     if (targetRoutes) {
       for (const [routePath, routeHandler] of targetRoutes) {
         if (routePath === requestPath) {
-          return routeHandler(request);
+          if (typeof routeHandler === 'function') {
+            return routeHandler(request);
+          }
+          // eslint-disable-next-line no-await-in-loop -- this will only ever await once
+          const routeModule = await routeHandler.modulePromise;
+          return routeModule[routeHandler.moduleKey];
         }
       }
     }
