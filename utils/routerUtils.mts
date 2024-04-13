@@ -31,7 +31,7 @@ const httpRequestMethods = [
 // Local Classes
 /**
  * Simple router that handles both eager- and lazy-loaded route handlers to keep your bundle sizes
- * small.
+ * small. Both default and named module exports are supported with a concise syntax.
  *
  * Path matches follow glob rules by using `Bun.Glob`. See the
  * [documentation for `Bun.Glob`](https://bun.sh/docs/api/glob) for details.
@@ -39,9 +39,10 @@ const httpRequestMethods = [
  * ```ts
  * const router = new Router();
  * router
- *   .get('/*', { pageRoute: import('./routes/pageRoute.mts') })
- *   .post('/submit', { submitRoute: import('./routes/submitRoute.mts') })
- *   .all('**', () => new Response('404 page', { status: 404 }));
+ *   .get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
+ *   .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') })
+ *   .get('/**', () => new Response('404 page', { status: 404 }))
+ *   .all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 }));
  * ```
  */
 class Router {
