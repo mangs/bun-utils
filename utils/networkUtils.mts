@@ -246,9 +246,13 @@ class Router {
           if (typeof routeHandler === 'function') {
             return routeHandler(request);
           }
-          // eslint-disable-next-line no-await-in-loop -- this will only ever await once
-          const routeModule = await routeHandler.modulePromise;
-          return routeModule[routeHandler.moduleKey];
+          const { moduleKey, modulePromise } = routeHandler;
+          const routeModule = await modulePromise; // eslint-disable-line no-await-in-loop -- this will only ever await once
+          const targetFunction = routeModule[moduleKey];
+          if (typeof targetFunction === 'function') {
+            return targetFunction(request);
+          }
+          throw new TypeError(`Lazy-loaded route handler target "${moduleKey}" was not a function`);
         }
       }
     }

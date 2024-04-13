@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.1
+
+- Fix bug in the `Router` class in `utils/networkUtils.mts` so calling a lazy-loaded route handler function works correctly
+
 ## 2.4.0
 
 - Add lazy-loaded route handler support to the `Router` class in `utils/networkUtils.mts`
