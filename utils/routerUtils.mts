@@ -110,7 +110,7 @@ class Router {
    * @param method A valid HTTP method.
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
-  handleMethod(path: string, routeHandler: RouteHandler, method: HttpRequestMethod) {
+  #handleMethod(path: string, routeHandler: RouteHandler, method: HttpRequestMethod) {
     if (!httpRequestMethods.includes(method)) {
       throw new TypeError(`"${method}" is not a valid HTTP method`);
     }
@@ -125,7 +125,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   all(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'ALL');
+    return this.#handleMethod(path, routeHandler, 'ALL');
   }
 
   /**
@@ -135,7 +135,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   delete(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'DELETE');
+    return this.#handleMethod(path, routeHandler, 'DELETE');
   }
 
   /**
@@ -145,7 +145,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   get(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'GET');
+    return this.#handleMethod(path, routeHandler, 'GET');
   }
 
   /**
@@ -155,7 +155,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   head(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'HEAD');
+    return this.#handleMethod(path, routeHandler, 'HEAD');
   }
 
   /**
@@ -165,7 +165,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   options(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'OPTIONS');
+    return this.#handleMethod(path, routeHandler, 'OPTIONS');
   }
 
   /**
@@ -175,7 +175,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   patch(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'PATCH');
+    return this.#handleMethod(path, routeHandler, 'PATCH');
   }
 
   /**
@@ -185,7 +185,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   post(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'POST');
+    return this.#handleMethod(path, routeHandler, 'POST');
   }
 
   /**
@@ -195,7 +195,7 @@ class Router {
    * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
   put(path: string, routeHandler: RouteHandler) {
-    return this.handleMethod(path, routeHandler, 'PUT');
+    return this.#handleMethod(path, routeHandler, 'PUT');
   }
 }
 

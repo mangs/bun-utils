@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.1
+
+- In the `Router` class in `utils/routerUtils.mts`, rename `handleMethod` to `#handleMethod` to make it a private instance method
+
 ## 2.5.0
 
 - Added lots more features to the `Router` class
