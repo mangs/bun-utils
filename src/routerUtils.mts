@@ -55,8 +55,10 @@ const httpRequestMethods = [
 class Router {
   /**
    * Constructor that creates an empty array for route definitions.
-   * @param startTime        The start time of loading a route; used to compute `Server-Timing` duration.
-   * @param usesServerTiming Boolean indicating if `Server-Timing` headers are sent or not.
+   * @param startTime        The start time of loading a route; used to compute `Server-Timing`
+   *                         duration.
+   * @param usesServerTiming Boolean indicating if `Server-Timing` headers are appended to the
+   *                         request object or not.
    */
   constructor(startTime?: number, usesServerTiming = true) {
     this.#routes = [];
@@ -130,10 +132,12 @@ class Router {
 
   /**
    * Register a route handler for the specified HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @param method A valid HTTP method.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @param method       A valid HTTP method.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   #handleMethod(path: string, routeHandler: RouteHandler, method: HttpRequestMethod) {
     if (!httpRequestMethods.includes(method)) {
@@ -145,9 +149,11 @@ class Router {
 
   /**
    * Register a route handler that matches all HTTP request methods.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   all(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'ALL');
@@ -155,9 +161,11 @@ class Router {
 
   /**
    * Register a route handler that matches the `DELETE` HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   delete(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'DELETE');
@@ -165,9 +173,11 @@ class Router {
 
   /**
    * Register a route handler that matches the `GET` HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   get(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'GET');
@@ -175,9 +185,11 @@ class Router {
 
   /**
    * Register a route handler that matches the `HEAD` HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   head(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'HEAD');
@@ -185,9 +197,11 @@ class Router {
 
   /**
    * Register a route handler that matches the `OPTIONS` HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   options(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'OPTIONS');
@@ -195,9 +209,11 @@ class Router {
 
   /**
    * Register a route handler that matches the `PATCH` HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   patch(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'PATCH');
@@ -205,9 +221,11 @@ class Router {
 
   /**
    * Register a route handler that matches the `POST` HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   post(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'POST');
@@ -215,9 +233,11 @@ class Router {
 
   /**
    * Register a route handler that matches the `PUT` HTTP request method.
-   * @param path A path-like string that will be used to match against the incoming request's path.
+   * @param path         A path-like string that will be used to match against the incoming
+   *                     request's path.
    * @param routeHandler The function that will execute if this route handler is matched.
-   * @returns A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @returns            A reference to the instantiated instance (`this`) so route handler
+   *                     definitions can be chained.
    */
   put(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'PUT');

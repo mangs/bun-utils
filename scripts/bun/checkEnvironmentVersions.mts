@@ -5,12 +5,12 @@
  */
 
 // External Imports
-import { readdir } from 'node:fs/promises';
 import { file, nanoseconds, semver, version as bunVersion } from 'bun';
+import { readdir } from 'node:fs/promises';
 
 // Internal Imports
-import { findMissingPaths } from '../../utils/filesystemUtils.mts';
-import { getPerformanceLabel, printError, printSuccess } from '../../utils/consoleUtils.mts';
+import { findMissingPaths } from '../../src/filesystemUtils.mts';
+import { getPerformanceLabel, printError, printSuccess } from '../../src/consoleUtils.mts';
 
 // Type Imports
 import type { PackageJson } from 'type-fest';

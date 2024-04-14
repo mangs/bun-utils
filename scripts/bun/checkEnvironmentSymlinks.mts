@@ -10,8 +10,8 @@ import { nanoseconds } from 'bun';
 import { relative } from 'node:path';
 
 // Internal Imports
-import { getPathsRecursive } from '../../utils/filesystemUtils.mts';
-import { getPerformanceLabel, printError, printSuccess } from '../../utils/consoleUtils.mts';
+import { getPathsRecursive } from '../../src/filesystemUtils.mts';
+import { getPerformanceLabel, printError, printSuccess } from '../../src/consoleUtils.mts';
 
 // Local Types
 interface PathError {

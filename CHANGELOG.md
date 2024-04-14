@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.8.0
+
+- Moved all utility function source files from `utils/` to `src/`
+- Added recommended VSCode extensions related to this project
+
 ## 2.7.0
 
 - The `Router` now appends `Server-Timing` values for route loading duration to the request object's headers

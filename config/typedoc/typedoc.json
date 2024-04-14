@@ -2,7 +2,7 @@
   "cleanOutputDir": true,
   "commentStyle": "jsdoc",
   "disableSources": false,
-  "entryPoints": ["../../utils/**/*.mts"],
+  "entryPoints": ["../../src/**/*.mts"],
   "enumMembersFormat": "table",
   "expandParameters": false,
   "githubPages": false,

@@ -37,8 +37,8 @@ Constructor that creates an empty array for route definitions.
 
 | Parameter | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `startTime`? | `number` | `undefined` | The start time of loading a route; used to compute `Server-Timing` duration. |
-| `usesServerTiming`? | `boolean` | `true` | Boolean indicating if `Server-Timing` headers are sent or not. |
+| `startTime`? | `number` | `undefined` | The start time of loading a route; used to compute `Server-Timing`<br />                        duration. |
+| `usesServerTiming`? | `boolean` | `true` | Boolean indicating if `Server-Timing` headers are appended to the<br />                        request object or not. |
 
 ###### Returns
 
@@ -46,7 +46,7 @@ Constructor that creates an empty array for route definitions.
 
 ###### Source
 
-[routerUtils.mts:61](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L61)
+[routerUtils.mts:63](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L63)
 
 #### Properties
 
@@ -68,7 +68,7 @@ Register a route handler for the specified HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 | `method` | `"ALL"` \| `"DELETE"` \| `"GET"` \| `"HEAD"` \| `"OPTIONS"` \| `"PATCH"` \| `"POST"` \| `"PUT"` | A valid HTTP method. |
 
@@ -76,11 +76,12 @@ Register a route handler for the specified HTTP request method.
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:138](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L138)
+[routerUtils.mts:142](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L142)
 
 ##### all()
 
@@ -92,18 +93,19 @@ Register a route handler that matches all HTTP request methods.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:152](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L152)
+[routerUtils.mts:158](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L158)
 
 ##### delete()
 
@@ -115,18 +117,19 @@ Register a route handler that matches the `DELETE` HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:162](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L162)
+[routerUtils.mts:170](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L170)
 
 ##### get()
 
@@ -138,18 +141,19 @@ Register a route handler that matches the `GET` HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:172](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L172)
+[routerUtils.mts:182](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L182)
 
 ##### handleRequest()
 
@@ -171,7 +175,7 @@ A `Response` object to build the response sent to the requester.
 
 ###### Source
 
-[routerUtils.mts:92](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L92)
+[routerUtils.mts:94](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L94)
 
 ##### head()
 
@@ -183,18 +187,19 @@ Register a route handler that matches the `HEAD` HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:182](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L182)
+[routerUtils.mts:194](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L194)
 
 ##### options()
 
@@ -206,18 +211,19 @@ Register a route handler that matches the `OPTIONS` HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:192](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L192)
+[routerUtils.mts:206](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L206)
 
 ##### patch()
 
@@ -229,18 +235,19 @@ Register a route handler that matches the `PATCH` HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:202](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L202)
+[routerUtils.mts:218](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L218)
 
 ##### post()
 
@@ -252,18 +259,19 @@ Register a route handler that matches the `POST` HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:212](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L212)
+[routerUtils.mts:230](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L230)
 
 ##### put()
 
@@ -275,15 +283,16 @@ Register a route handler that matches the `PUT` HTTP request method.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
+| `path` | `string` | A path-like string that will be used to match against the incoming<br />                    request's path. |
 | `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
 
 ###### Returns
 
 [`Router`](routerUtils.md#router)
 
-A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+A reference to the instantiated instance (`this`) so route handler
+                    definitions can be chained.
 
 ###### Source
 
-[routerUtils.mts:222](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/routerUtils.mts#L222)
+[routerUtils.mts:242](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L242)

@@ -9,8 +9,8 @@
 import { parseArgs } from 'node:util';
 
 // Internal Imports
-import { printError } from '../../utils/consoleUtils.mts';
-import { startDevelopmentServer } from '../../utils/networkUtils.mts';
+import { printError } from '../../src/consoleUtils.mts';
+import { startDevelopmentServer } from '../../src/networkUtils.mts';
 
 // Local Types
 type FunctionSignature = (request: Request) => Response | Promise<Response>;
