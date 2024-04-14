@@ -13,7 +13,7 @@ Build a `Server-Timing` header to measure a performance metric using the provide
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `name` | `string` | The name of the performance metric. |
-| `startTime`? | `number` | The recorded start time used to compute the metric duration; computed by<br />                   subtracting the time at which this function is called by the start time.<br />                   [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute). |
+| `startTime`? | `number` | The recorded start time used to compute the metric duration; computed by subtracting the time at which this function is called by the start time. [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute). |
 | `description`? | `string` | A description of the metric. |
 
 #### Returns
@@ -32,7 +32,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:30](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/timeUtils.mts#L30)
+[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/d5515c2f2eb7cd49243e2e1cb13029ed0e47f1f9/src/timeUtils.mts#L28)
 
 ***
 
@@ -49,7 +49,7 @@ time the function is called. Optionally the time units and formatting locale can
 | :------ | :------ | :------ | :------ |
 | `startTime` | `number` | `undefined` | The start time calculated by Bun.nanoseconds(). |
 | `unitsOverride` | `""` \| `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | `'ms'` | An optional override of time units to display. |
-| `localeOverride`? | `string` | `undefined` | An optional override of the locale used to format and localize the time<br />                      value. |
+| `localeOverride`? | `string` | `undefined` | An optional override of the locale used to format and localize the time value. |
 
 #### Returns
 
@@ -59,4 +59,4 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:45](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/timeUtils.mts#L45)
+[timeUtils.mts:42](https://github.com/mangs/bun-utils/blob/d5515c2f2eb7cd49243e2e1cb13029ed0e47f1f9/src/timeUtils.mts#L42)
