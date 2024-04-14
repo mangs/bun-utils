@@ -73,5 +73,33 @@ function getElapsedTimeFormatted(
   return `${elapsedTimeLocalized}${units}`;
 }
 
+/**
+ * Measure the execution time of the passed-in function, then append to the request object a
+ * `Server-Timing` header containing the specified metric name, the measured duration, and
+ * optionally the metric description.
+ * @param metricName        Name of the `Server-Timing` metric being measured.
+ * @param request           `Request` object to which the `Server-Timing` header will be appended.
+ * @param runner            Function whose execution duration will be measured.
+ * @param metricDescription Optional description of the `Server-Timing` metric being measured.
+ * @returns                 The return value of the passed-in function.
+ * @example
+ * ```ts
+ * const cmsContent = await measureServerTiming('cmsLoad', request, () =>
+ *   getCmsContent('article1'),
+ * );
+ * ```
+ */
+async function measureServerTiming<T>(
+  metricName: string,
+  request: Request,
+  runner: () => T | Promise<T>,
+  metricDescription?: string,
+) {
+  const startTime = performance.now();
+  const value = await runner();
+  request.headers.append(...buildServerTimingHeader(metricName, startTime, metricDescription));
+  return value;
+}
+
 // Module Exports
-export { buildServerTimingHeader, getElapsedTimeFormatted };
+export { buildServerTimingHeader, getElapsedTimeFormatted, measureServerTiming };

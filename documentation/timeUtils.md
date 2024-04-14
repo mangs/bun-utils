@@ -32,7 +32,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/timeUtils.mts#L28)
+[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/2ddfdd2e481fcdd04683321781eccd6382c98cdc/src/timeUtils.mts#L28)
 
 ***
 
@@ -59,4 +59,47 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:42](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/timeUtils.mts#L42)
+[timeUtils.mts:43](https://github.com/mangs/bun-utils/blob/2ddfdd2e481fcdd04683321781eccd6382c98cdc/src/timeUtils.mts#L43)
+
+***
+
+### measureServerTiming()
+
+> **measureServerTiming**\<`T`\>(`metricName`, `request`, `runner`, `metricDescription`?): `Promise`\<`T`\>
+
+Measure the execution time of the passed-in function, then append to the request object a
+`Server-Timing` header containing the specified metric name, the measured duration, and
+optionally the metric description.
+
+#### Type parameters
+
+| Type parameter |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `metricName` | `string` | Name of the `Server-Timing` metric being measured. |
+| `request` | `Request` | `Request` object to which the `Server-Timing` header will be appended. |
+| `runner` | () => `T` \| `Promise`\<`T`\> | Function whose execution duration will be measured. |
+| `metricDescription`? | `string` | Optional description of the `Server-Timing` metric being measured. |
+
+#### Returns
+
+`Promise`\<`T`\>
+
+The return value of the passed-in function.
+
+#### Example
+
+```ts
+const cmsContent = await measureServerTiming('cmsLoad', request, () =>
+  getCmsContent('article1'),
+);
+```
+
+#### Source
+
+[timeUtils.mts:92](https://github.com/mangs/bun-utils/blob/2ddfdd2e481fcdd04683321781eccd6382c98cdc/src/timeUtils.mts#L92)
