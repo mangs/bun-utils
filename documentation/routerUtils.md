@@ -46,7 +46,7 @@ Constructor that creates an empty array for route definitions.
 
 ###### Source
 
-[routerUtils.mts:63](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L63)
+[routerUtils.mts:63](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L63)
 
 #### Properties
 
@@ -81,7 +81,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:142](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L142)
+[routerUtils.mts:142](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L142)
 
 ##### all()
 
@@ -105,7 +105,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:158](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L158)
+[routerUtils.mts:158](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L158)
 
 ##### delete()
 
@@ -129,7 +129,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:170](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L170)
+[routerUtils.mts:170](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L170)
 
 ##### get()
 
@@ -153,7 +153,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:182](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L182)
+[routerUtils.mts:182](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L182)
 
 ##### handleRequest()
 
@@ -175,7 +175,7 @@ A `Response` object to build the response sent to the requester.
 
 ###### Source
 
-[routerUtils.mts:94](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L94)
+[routerUtils.mts:94](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L94)
 
 ##### head()
 
@@ -199,7 +199,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:194](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L194)
+[routerUtils.mts:194](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L194)
 
 ##### options()
 
@@ -223,7 +223,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:206](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L206)
+[routerUtils.mts:206](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L206)
 
 ##### patch()
 
@@ -247,7 +247,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:218](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L218)
+[routerUtils.mts:218](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L218)
 
 ##### post()
 
@@ -271,7 +271,7 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:230](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L230)
+[routerUtils.mts:230](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L230)
 
 ##### put()
 
@@ -295,4 +295,4 @@ A reference to the instantiated instance (`this`) so route handler
 
 ###### Source
 
-[routerUtils.mts:242](https://github.com/mangs/bun-utils/blob/619736f3d563aa910cec31297113a6bb0bd7df5c/src/routerUtils.mts#L242)
+[routerUtils.mts:242](https://github.com/mangs/bun-utils/blob/3f074a78745637385db66b4999f09366a440d0cb/src/routerUtils.mts#L242)
