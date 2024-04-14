@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -18,7 +18,7 @@
   ],
   "files": [
     "./scripts",
-    "./utils"
+    "./src"
   ],
   "bin": {
     "check-environment-symlinks": "scripts/bun/checkEnvironmentSymlinks.mts",

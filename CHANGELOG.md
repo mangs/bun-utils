@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.1
+
+- Fix NPM package error that didn't include the new `src/` directory
+
 ## 2.8.0
 
 - Moved all utility function source files from `utils/` to `src/`
