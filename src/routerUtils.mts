@@ -46,8 +46,8 @@ const httpRequestMethods = [
  *
  * const router = new Router();
  * router
- *   .get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
- *   .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') })
+ *   .get('/*', { default: () => import('./routes/pageRoute.mts') }) // Default module exports
+ *   .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') }) // Named module exports
  *   .get('/**', () => new Response('404 page', { status: 404 }))
  *   .all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 }));
  * ```
@@ -131,7 +131,7 @@ class Router {
   /**
    * Register a route handler for the specified HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @param method       A valid HTTP method.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
    */
@@ -146,8 +146,12 @@ class Router {
   /**
    * Register a route handler that matches all HTTP request methods.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 }));
+   * ```
    */
   all(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'ALL');
@@ -156,8 +160,12 @@ class Router {
   /**
    * Register a route handler that matches the `DELETE` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.delete('/item', { deleteItemRoute: () => import('./routes/deleteItemRoute.mts') })
+   * ```
    */
   delete(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'DELETE');
@@ -166,8 +174,12 @@ class Router {
   /**
    * Register a route handler that matches the `GET` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
+   * ```
    */
   get(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'GET');
@@ -176,8 +188,12 @@ class Router {
   /**
    * Register a route handler that matches the `HEAD` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.head('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
+   * ```
    */
   head(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'HEAD');
@@ -186,8 +202,12 @@ class Router {
   /**
    * Register a route handler that matches the `OPTIONS` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.options('/item', { deleteItemRoute: () => import('./routes/deleteItemRoute.mts') })
+   * ```
    */
   options(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'OPTIONS');
@@ -196,8 +216,12 @@ class Router {
   /**
    * Register a route handler that matches the `PATCH` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.patch('/item', { patchItemRoute: () => import('./routes/patchItemRoute.mts') })
+   * ```
    */
   patch(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'PATCH');
@@ -206,8 +230,12 @@ class Router {
   /**
    * Register a route handler that matches the `POST` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.post('/item', { postItemRoute: () => import('./routes/postItemRoute.mts') })
+   * ```
    */
   post(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'POST');
@@ -216,8 +244,12 @@ class Router {
   /**
    * Register a route handler that matches the `PUT` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
    * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
+   * ```
    */
   put(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'PUT');
