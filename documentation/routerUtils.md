@@ -19,10 +19,10 @@ import { Router } from '@mangs/bun-utils/router';
 
 const router = new Router();
 router
-  .get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
-  .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') })
-  .get('/**', () => new Response('404 page', { status: 404 }))
-  .all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 }));
+  .get('/*', { default: () => import('./routes/pageRoute.mts') })                  // Lazy-loaded, default module export route handler
+  .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') })      // Lazy-loaded, named module export route handler
+  .get('/**', () => new Response('404 page', { status: 404 }))                     // Eagerly-loaded route handler
+  .all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 })); // Eagerly-loaded route handler
 ```
 
 #### Constructors
@@ -46,7 +46,7 @@ Constructor that creates an empty array for route definitions.
 
 ###### Source
 
-[routerUtils.mts:61](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L61)
+[routerUtils.mts:61](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L61)
 
 #### Properties
 
@@ -69,7 +69,7 @@ Register a route handler for the specified HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 | `method` | `"ALL"` \| `"DELETE"` \| `"GET"` \| `"HEAD"` \| `"OPTIONS"` \| `"PATCH"` \| `"POST"` \| `"PUT"` | A valid HTTP method. |
 
 ###### Returns
@@ -80,7 +80,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:138](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L138)
+[routerUtils.mts:138](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L138)
 
 ##### all()
 
@@ -93,7 +93,7 @@ Register a route handler that matches all HTTP request methods.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -101,9 +101,15 @@ Register a route handler that matches all HTTP request methods.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 }));
+```
+
 ###### Source
 
-[routerUtils.mts:152](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L152)
+[routerUtils.mts:156](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L156)
 
 ##### delete()
 
@@ -116,7 +122,7 @@ Register a route handler that matches the `DELETE` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -124,9 +130,15 @@ Register a route handler that matches the `DELETE` HTTP request method.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.delete('/item', { deleteItemRoute: () => import('./routes/deleteItemRoute.mts') })
+```
+
 ###### Source
 
-[routerUtils.mts:162](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L162)
+[routerUtils.mts:170](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L170)
 
 ##### get()
 
@@ -139,7 +151,7 @@ Register a route handler that matches the `GET` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -147,9 +159,15 @@ Register a route handler that matches the `GET` HTTP request method.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
+```
+
 ###### Source
 
-[routerUtils.mts:172](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L172)
+[routerUtils.mts:184](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L184)
 
 ##### handleRequest()
 
@@ -171,7 +189,7 @@ A `Response` object to build the response sent to the requester.
 
 ###### Source
 
-[routerUtils.mts:92](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L92)
+[routerUtils.mts:92](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L92)
 
 ##### head()
 
@@ -184,7 +202,7 @@ Register a route handler that matches the `HEAD` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -192,9 +210,15 @@ Register a route handler that matches the `HEAD` HTTP request method.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.head('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
+```
+
 ###### Source
 
-[routerUtils.mts:182](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L182)
+[routerUtils.mts:198](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L198)
 
 ##### options()
 
@@ -207,7 +231,7 @@ Register a route handler that matches the `OPTIONS` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -215,9 +239,15 @@ Register a route handler that matches the `OPTIONS` HTTP request method.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.options('/item', { deleteItemRoute: () => import('./routes/deleteItemRoute.mts') })
+```
+
 ###### Source
 
-[routerUtils.mts:192](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L192)
+[routerUtils.mts:212](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L212)
 
 ##### patch()
 
@@ -230,7 +260,7 @@ Register a route handler that matches the `PATCH` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -238,9 +268,15 @@ Register a route handler that matches the `PATCH` HTTP request method.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.patch('/item', { patchItemRoute: () => import('./routes/patchItemRoute.mts') })
+```
+
 ###### Source
 
-[routerUtils.mts:202](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L202)
+[routerUtils.mts:226](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L226)
 
 ##### post()
 
@@ -253,7 +289,7 @@ Register a route handler that matches the `POST` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -261,9 +297,15 @@ Register a route handler that matches the `POST` HTTP request method.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.post('/item', { postItemRoute: () => import('./routes/postItemRoute.mts') })
+```
+
 ###### Source
 
-[routerUtils.mts:212](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L212)
+[routerUtils.mts:240](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L240)
 
 ##### put()
 
@@ -276,7 +318,7 @@ Register a route handler that matches the `PUT` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. |
+| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -284,6 +326,12 @@ Register a route handler that matches the `PUT` HTTP request method.
 
 A reference to the instantiated instance (`this`) so route handler definitions can be chained.
 
+###### Example
+
+```ts
+router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
+```
+
 ###### Source
 
-[routerUtils.mts:222](https://github.com/mangs/bun-utils/blob/d5a97baa78d4da2e3d79aa7fc5a4fb1c591e11b2/src/routerUtils.mts#L222)
+[routerUtils.mts:254](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/routerUtils.mts#L254)

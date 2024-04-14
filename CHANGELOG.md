@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.8.2
+
+- Add more detailed documentation to the `Router` class in `src/routerUtils.mts`
+  - Add explanation about how to use eager vs. lazy-loaded and named vs. default module exports for route handlers
+  - Add example usage for each route instance HTTP method function type
+
 ## 2.8.1
 
 - Fix NPM package error that didn't include the new `src/` directory
