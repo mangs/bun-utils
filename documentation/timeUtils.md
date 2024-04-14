@@ -32,7 +32,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/91b8de2849e8d4830aea44997402da0b436f5fc7/src/timeUtils.mts#L28)
+[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/timeUtils.mts#L28)
 
 ***
 
@@ -59,4 +59,4 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:42](https://github.com/mangs/bun-utils/blob/91b8de2849e8d4830aea44997402da0b436f5fc7/src/timeUtils.mts#L42)
+[timeUtils.mts:42](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/timeUtils.mts#L42)

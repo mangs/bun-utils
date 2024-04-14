@@ -46,10 +46,10 @@ const httpRequestMethods = [
  *
  * const router = new Router();
  * router
- *   .get('/*', { default: () => import('./routes/pageRoute.mts') }) // Default module exports
- *   .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') }) // Named module exports
- *   .get('/**', () => new Response('404 page', { status: 404 }))
- *   .all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 }));
+ *   .get('/*', { default: () => import('./routes/pageRoute.mts') })                  // Lazy-loaded, default module export route handler
+ *   .post('/submit', { submitRoute: () => import('./routes/submitRoute.mts') })      // Lazy-loaded, named module export route handler
+ *   .get('/**', () => new Response('404 page', { status: 404 }))                     // Eagerly-loaded route handler
+ *   .all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 405 })); // Eagerly-loaded route handler
  * ```
  */
 class Router {

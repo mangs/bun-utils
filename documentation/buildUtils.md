@@ -21,4 +21,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/91b8de2849e8d4830aea44997402da0b436f5fc7/src/buildUtils.mts#L25)
+[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/346bcd11e27f5359bb6ecad243f3213753f58752/src/buildUtils.mts#L25)
