@@ -5,6 +5,9 @@
 // External Imports
 import { Glob } from 'bun';
 
+// Internal Imports
+import { buildServerTimingHeader } from './timeUtils.mts';
+
 // Local Types
 type HttpRequestMethod = (typeof httpRequestMethods)[number]; // eslint-disable-line no-use-before-define -- defined nearby
 type RouteHandlerFunction = (request: Request) => Response | Promise<Response>;
@@ -31,7 +34,9 @@ const httpRequestMethods = [
 // Local Classes
 /**
  * Simple router that handles both eager- and lazy-loaded route handlers to keep your bundle sizes
- * small. Both default and named module exports are supported with a concise syntax.
+ * small. Both default and named module exports are supported with a concise syntax. Appends
+ * `Server-Timing` values for route loading duration to the request headers; can be disabled via the
+ * constructor.
  *
  * Path matches follow glob rules by using `Bun.Glob`. See the
  * [documentation for `Bun.Glob`](https://bun.sh/docs/api/glob) for details.
@@ -50,9 +55,13 @@ const httpRequestMethods = [
 class Router {
   /**
    * Constructor that creates an empty array for route definitions.
+   * @param startTime        The start time of loading a route; used to compute `Server-Timing` duration.
+   * @param usesServerTiming Boolean indicating if `Server-Timing` headers are sent or not.
    */
-  constructor() {
+  constructor(startTime?: number, usesServerTiming = true) {
     this.#routes = [];
+    this.#startTime = startTime ?? performance.now();
+    this.#usesServerTiming = usesServerTiming;
 
     // return new Proxy(this, {
     //   get(target, property) {
@@ -71,6 +80,10 @@ class Router {
 
   #routes: Routes;
 
+  #startTime: number;
+
+  #usesServerTiming: boolean;
+
   /**
    * Handles the incoming request after all route definitions have been made.
    * @param request The `Request` object for the incoming request.
@@ -88,6 +101,9 @@ class Router {
       // eslint-disable-next-line unicorn/prefer-regexp-test -- false positive: this is a glob.match() not string.match()
       if (new Glob(routePath).match(requestPath)) {
         if (typeof routeHandler === 'function') {
+          if (this.#usesServerTiming) {
+            request.headers.append(...buildServerTimingHeader('routeSync', this.#startTime));
+          }
           return routeHandler(request);
         }
 
@@ -100,6 +116,9 @@ class Router {
         const routeModule = await modulePromiseFunction(); // eslint-disable-line no-await-in-loop -- this will only ever await once
         const targetFunction = routeModule[moduleKey];
         if (typeof targetFunction === 'function') {
+          if (this.#usesServerTiming) {
+            request.headers.append(...buildServerTimingHeader('routeAsync', this.#startTime));
+          }
           return targetFunction(request);
         }
         throw new TypeError(`Lazy-loaded route handler target "${moduleKey}" was not a function`);

@@ -2,6 +2,40 @@
 
 ## Functions
 
+### buildServerTimingHeader()
+
+> **buildServerTimingHeader**(`name`, `startTime`?, `description`?): readonly [`"Server-Timing"`, `string`]
+
+Build a `Server-Timing` header to measure a performance metric using the provided values.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the performance metric. |
+| `startTime`? | `number` | The recorded start time used to compute the metric duration; computed by<br />                   subtracting the time at which this function is called by the start time.<br />                   [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute). |
+| `description`? | `string` | A description of the metric. |
+
+#### Returns
+
+readonly [`"Server-Timing"`, `string`]
+
+A `Server-Timing` header tuple: [`'Server-Timing'`, `string`].
+
+#### Example
+
+```ts
+const startTime = performance.now();
+// ...sometime later...
+request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything'));
+```
+
+#### Source
+
+[timeUtils.mts:30](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/timeUtils.mts#L30)
+
+***
+
 ### getElapsedTimeFormatted()
 
 > **getElapsedTimeFormatted**(`startTime`, `unitsOverride`, `localeOverride`?): `string`
@@ -25,4 +59,4 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:24](https://github.com/mangs/bun-utils/blob/b4fd429dde11e41571a12d8fccdcd88d164fe6a4/utils/timeUtils.mts#L24)
+[timeUtils.mts:45](https://github.com/mangs/bun-utils/blob/57b1af54a5b815284a5bd6160168c26a84bfd183/utils/timeUtils.mts#L45)
