@@ -13,6 +13,27 @@ type TimeUnits = (typeof timeUnits)[number];
 
 // Local Functions
 /**
+ * Build a `Server-Timing` header to measure a performance metric using the provided values.
+ * @param name        The name of the performance metric.
+ * @param startTime   The recorded start time used to compute the metric duration; computed by
+ *                    subtracting the time at which this function is called by the start time.
+ *                    [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute).
+ * @param description A description of the metric.
+ * @returns           A `Server-Timing` header tuple: [`'Server-Timing'`, `string`].
+ * @example
+ * ```ts
+ * const startTime = performance.now();
+ * // ...sometime later...
+ * request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything'));
+ * ```
+ */
+function buildServerTimingHeader(name: string, startTime?: number, description?: string) {
+  const durationFormatted = startTime ? `;dur=${(performance.now() - startTime).toFixed(2)}` : '';
+  const descriptionFormatted = description ? `;desc="${description}"` : '';
+  return [`Server-Timing`, `${name}${durationFormatted}${descriptionFormatted}`] as const;
+}
+
+/**
  * Get a formatted string representing the time between the provided start time parameter and the
  * time the function is called. Optionally the time units and formatting locale can be overridden.
  * @param startTime      The start time calculated by Bun.nanoseconds().
@@ -55,4 +76,4 @@ function getElapsedTimeFormatted(
 }
 
 // Module Exports
-export { getElapsedTimeFormatted };
+export { buildServerTimingHeader, getElapsedTimeFormatted };

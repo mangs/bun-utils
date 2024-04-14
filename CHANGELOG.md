@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.0
+
+- The `Router` now appends `Server-Timing` values for route loading duration to the request object's headers
+- Added new function `buildServerTimingHeader()` to create `Server-Timing` header values
+- Added new parameters to the `Router` constructor (in `utils/routerUtils.mts`)
+  - `startTime` is the start time of loading a route; used to compute `Server-Timing` duration.
+  - `usesServerTiming` is a boolean indicating if `Server-Timing` headers are sent or not
+
 ## 2.6.3
 
 - Update example usage for `Router` in the documentation (in `utils/routerUtils.mts`)
