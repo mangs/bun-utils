@@ -32,7 +32,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/4243dd074cf4278d658d9ffd45bbf94f06dd19ee/src/timeUtils.mts#L28)
+[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/b441ed2f707c3a7f9461dbdd23a11ece8cad5047/src/timeUtils.mts#L28)
 
 ***
 
@@ -47,7 +47,7 @@ time the function is called. Optionally the time units and formatting locale can
 
 | Parameter | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `startTime` | `number` | `undefined` | The start time calculated by Bun.nanoseconds(). |
+| `startTime` | `number` | `undefined` | The start time calculated by `Bun.nanoseconds()`. |
 | `unitsOverride` | `""` \| `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | `'ms'` | An optional override of time units to display. |
 | `localeOverride`? | `string` | `undefined` | An optional override of the locale used to format and localize the time value. |
 
@@ -59,4 +59,4 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:42](https://github.com/mangs/bun-utils/blob/4243dd074cf4278d658d9ffd45bbf94f06dd19ee/src/timeUtils.mts#L42)
+[timeUtils.mts:42](https://github.com/mangs/bun-utils/blob/b441ed2f707c3a7f9461dbdd23a11ece8cad5047/src/timeUtils.mts#L42)

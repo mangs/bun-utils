@@ -19,7 +19,7 @@ type BuildArtifactMetadata = Record<BuildArtifact['kind'], { count: number; size
 // Local Functions
 /**
  * Format and print to the command line the provided build metadata.
- * @param buildOutput          The return value of Bun.build().
+ * @param buildOutput          The return value of `Bun.build()`.
  * @param buildOutputDirectory The output directory when building.
  */
 function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: string) {

@@ -34,7 +34,7 @@ function buildServerTimingHeader(name: string, startTime?: number, description?:
 /**
  * Get a formatted string representing the time between the provided start time parameter and the
  * time the function is called. Optionally the time units and formatting locale can be overridden.
- * @param startTime      The start time calculated by Bun.nanoseconds().
+ * @param startTime      The start time calculated by `Bun.nanoseconds()`.
  * @param unitsOverride  An optional override of time units to display.
  * @param localeOverride An optional override of the locale used to format and localize the time value.
  * @returns              A localized string showing elapsed time with units.

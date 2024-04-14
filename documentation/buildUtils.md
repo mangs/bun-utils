@@ -12,7 +12,7 @@ Format and print to the command line the provided build metadata.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `buildOutput` | `BuildOutput` | The return value of Bun.build(). |
+| `buildOutput` | `BuildOutput` | The return value of `Bun.build()`. |
 | `buildOutputDirectory` | `string` | The output directory when building. |
 
 #### Returns
@@ -21,4 +21,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/4243dd074cf4278d658d9ffd45bbf94f06dd19ee/src/buildUtils.mts#L25)
+[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/b441ed2f707c3a7f9461dbdd23a11ece8cad5047/src/buildUtils.mts#L25)
