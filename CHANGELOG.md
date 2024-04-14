@@ -4,6 +4,7 @@
 
 - Moved all utility function source files from `utils/` to `src/`
 - Added recommended VSCode extensions related to this project
+- Cleaned up documentation in `src/routerUtils.mts`
 
 ## 2.7.0
 
