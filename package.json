@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -28,12 +28,12 @@
     "remove-git-hooks": "scripts/git/removeGitHooks.mts"
   },
   "exports": {
-    "./build": "./utils/buildUtils.mts",
-    "./console": "./utils/consoleUtils.mts",
-    "./filesystem": "./utils/filesystemUtils.mts",
-    "./network": "./utils/networkUtils.mts",
-    "./router": "./utils/routerUtils.mts",
-    "./time": "./utils/timeUtils.mts"
+    "./build": "./src/buildUtils.mts",
+    "./console": "./src/consoleUtils.mts",
+    "./filesystem": "./src/filesystemUtils.mts",
+    "./network": "./src/networkUtils.mts",
+    "./router": "./src/routerUtils.mts",
+    "./time": "./src/timeUtils.mts"
   },
   "scripts": {
     "audit:node-modules": "cd node_modules && du -sh -- * | sort -h",

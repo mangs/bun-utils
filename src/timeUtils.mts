@@ -15,9 +15,7 @@ type TimeUnits = (typeof timeUnits)[number];
 /**
  * Build a `Server-Timing` header to measure a performance metric using the provided values.
  * @param name        The name of the performance metric.
- * @param startTime   The recorded start time used to compute the metric duration; computed by
- *                    subtracting the time at which this function is called by the start time.
- *                    [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute).
+ * @param startTime   The recorded start time used to compute the metric duration; computed by subtracting the time at which this function is called by the start time. [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute).
  * @param description A description of the metric.
  * @returns           A `Server-Timing` header tuple: [`'Server-Timing'`, `string`].
  * @example
@@ -38,8 +36,7 @@ function buildServerTimingHeader(name: string, startTime?: number, description?:
  * time the function is called. Optionally the time units and formatting locale can be overridden.
  * @param startTime      The start time calculated by Bun.nanoseconds().
  * @param unitsOverride  An optional override of time units to display.
- * @param localeOverride An optional override of the locale used to format and localize the time
- *                       value.
+ * @param localeOverride An optional override of the locale used to format and localize the time value.
  * @returns              A localized string showing elapsed time with units.
  */
 function getElapsedTimeFormatted(

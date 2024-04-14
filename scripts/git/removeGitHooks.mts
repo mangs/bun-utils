@@ -8,8 +8,8 @@
 import { readdir, unlink } from 'node:fs/promises';
 
 // Internal Imports
-import { isDirectoryAccessible } from '../../utils/filesystemUtils.mts';
-import { printInfo, printSuccess } from '../../utils/consoleUtils.mts';
+import { isDirectoryAccessible } from '../../src/filesystemUtils.mts';
+import { printInfo, printSuccess } from '../../src/consoleUtils.mts';
 
 // Local Variables
 const gitHooksPath = '.git/hooks';

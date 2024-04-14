@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "github.vscode-github-actions",
+    "oven.bun-vscode",
+    "tamasfe.even-better-toml"
+  ]
+}

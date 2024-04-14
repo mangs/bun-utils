@@ -8,8 +8,8 @@
 import { readdir, symlink } from 'node:fs/promises';
 
 // Internal Imports
-import { isDirectoryAccessible } from '../../utils/filesystemUtils.mts';
-import { printError, printInfo, printSuccess } from '../../utils/consoleUtils.mts';
+import { isDirectoryAccessible } from '../../src/filesystemUtils.mts';
+import { printError, printInfo, printSuccess } from '../../src/consoleUtils.mts';
 
 // Type Imports
 import type { PackageJson } from 'type-fest';
