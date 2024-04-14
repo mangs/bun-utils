@@ -38,7 +38,7 @@ const httpRequestMethods = [
  * `Server-Timing` values for route loading duration to the request headers; can be disabled via the
  * constructor.
  *
- * Path matches follow glob rules by using `Bun.Glob`. See the
+ * Path matches follow glob rules by using `Bun.Glob`; see the
  * [documentation for `Bun.Glob`](https://bun.sh/docs/api/glob) for details.
  * @example
  * ```ts
