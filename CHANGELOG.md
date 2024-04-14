@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.3
+
+- Allow `0` to be passed in as `startTime` in `buildServerTimingHeader()` (in `src/timeUtils.mts`)
+
 ## 2.8.2
 
 - Add more detailed documentation to the `Router` class in `src/routerUtils.mts`

@@ -26,7 +26,8 @@ type TimeUnits = (typeof timeUnits)[number];
  * ```
  */
 function buildServerTimingHeader(name: string, startTime?: number, description?: string) {
-  const durationFormatted = startTime ? `;dur=${(performance.now() - startTime).toFixed(2)}` : '';
+  const durationFormatted =
+    typeof startTime === 'number' ? `;dur=${(performance.now() - startTime).toFixed(2)}` : '';
   const descriptionFormatted = description ? `;desc="${description}"` : '';
   return [`Server-Timing`, `${name}${durationFormatted}${descriptionFormatted}`] as const;
 }
