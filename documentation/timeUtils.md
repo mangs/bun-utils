@@ -32,7 +32,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/2ddfdd2e481fcdd04683321781eccd6382c98cdc/src/timeUtils.mts#L28)
+[timeUtils.mts:28](https://github.com/mangs/bun-utils/blob/878ce978f00d4f68c3a33bd325c2bb17c62e691d/src/timeUtils.mts#L28)
 
 ***
 
@@ -59,7 +59,7 @@ A localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:43](https://github.com/mangs/bun-utils/blob/2ddfdd2e481fcdd04683321781eccd6382c98cdc/src/timeUtils.mts#L43)
+[timeUtils.mts:43](https://github.com/mangs/bun-utils/blob/878ce978f00d4f68c3a33bd325c2bb17c62e691d/src/timeUtils.mts#L43)
 
 ***
 
@@ -102,4 +102,4 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[timeUtils.mts:92](https://github.com/mangs/bun-utils/blob/2ddfdd2e481fcdd04683321781eccd6382c98cdc/src/timeUtils.mts#L92)
+[timeUtils.mts:92](https://github.com/mangs/bun-utils/blob/878ce978f00d4f68c3a33bd325c2bb17c62e691d/src/timeUtils.mts#L92)
