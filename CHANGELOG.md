@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.1
+
+- Replace all mention of "utility functions" with "utilities"
+
 ## 2.9.0
 
 - Add function `measureServerTiming()` to easily measure and report execution time of blocks of code using the `Server-Timing` header (in `src/timeUtils.mts`)

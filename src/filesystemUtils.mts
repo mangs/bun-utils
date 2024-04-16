@@ -1,5 +1,5 @@
 /**
- * @file Filesystem-related utility functions.
+ * @file Filesystem-related utilities.
  */
 
 // External Imports
