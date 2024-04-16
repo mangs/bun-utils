@@ -1,5 +1,5 @@
 /**
- * @file Time-related utility functions.
+ * @file Time-related utilities.
  */
 
 // External Imports

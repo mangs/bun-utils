@@ -1,5 +1,5 @@
 /**
- * @file Build- and bundler-related utility functions.
+ * @file Build- and bundler-related utilities.
  */
 
 // External Imports

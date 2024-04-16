@@ -1,5 +1,5 @@
 /**
- * @file Console-related utility functions.
+ * @file Console-related utilities.
  */
 
 // External Imports
