@@ -101,5 +101,16 @@ async function measureServerTiming<T>(
   return value;
 }
 
+/**
+ * Asynchronous sleep function using promises.
+ * @param duration Length of time to sleep.
+ * @returns `Promise` that resolves when the specified duration expires.
+ */
+function sleep(duration: number) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve, duration);
+  });
+}
+
 // Module Exports
-export { buildServerTimingHeader, getElapsedTimeFormatted, measureServerTiming };
+export { buildServerTimingHeader, getElapsedTimeFormatted, measureServerTiming, sleep };
