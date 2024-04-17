@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {

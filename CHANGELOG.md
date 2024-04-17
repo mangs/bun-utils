@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.10.1
+
+- Fix bugs in new functions
+  - `fetchWithRetry`: allow 2nd parameter and all 3 custom options to be optional parameters
+  - `sleep`: correctly call `resolve()`
+
 ## 2.10.0
 
 - Add new functions

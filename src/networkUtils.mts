@@ -16,9 +16,9 @@ import type { Serve, Server } from 'bun';
 // Local Types
 // eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
 type FetchRetryOptions = FetchRequestInit & {
-  changeRetryDelay: (delay: number) => number;
-  retryDelay: number;
-  retryMax: number;
+  changeRetryDelay?: (delay: number) => number;
+  retryDelay?: number;
+  retryMax?: number;
 };
 
 interface HttpsOptions {
@@ -49,13 +49,14 @@ declare global {
  * @param options Options object that combines `fetch`'s default 2nd parameter with 3 new values: `retryMax` for maximum number of retries before an error is thrown, `retryDelay` for the delay when retrying the first time, and `changeRetryDelay` which is a function that describes how `retryDelay` changes with each retry iteration.
  * @returns       Data returned by `fetch`.
  */
-async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions) {
+async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions = {}) {
   const {
     changeRetryDelay = (delay) => delay * 2,
     retryDelay = 1_000,
     retryMax = 3,
     ...fetchOptions
   } = options;
+
   try {
     return await fetch(url instanceof Request ? url.clone() : url, fetchOptions);
   } catch (error) {
