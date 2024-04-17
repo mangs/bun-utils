@@ -8,12 +8,19 @@ import { file, nanoseconds, serve, stringWidth } from 'bun';
 
 // Internal Imports
 import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
-import { getElapsedTimeFormatted } from './timeUtils.mts';
+import { getElapsedTimeFormatted, sleep } from './timeUtils.mts';
 
 // Type Imports
 import type { Serve, Server } from 'bun';
 
 // Local Types
+// eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
+type FetchRetryOptions = FetchRequestInit & {
+  changeRetryDelay: (delay: number) => number;
+  retryDelay: number;
+  retryMax: number;
+};
+
 interface HttpsOptions {
   certificatePath: string | string[];
   certificateAuthorityPath?: string | string[];
@@ -35,6 +42,36 @@ declare global {
 }
 
 // Local Functions
+/**
+ * `fetch` with auto-retry support. Follows an exponential backoff strategy by default starting with
+ * a delay of 1 second.
+ * @param url     URL from which to fetch data.
+ * @param options Options object that combines `fetch`'s default 2nd parameter with 3 new values: `retryMax` for maximum number of retries before an error is thrown, `retryDelay` for the delay when retrying the first time, and `changeRetryDelay` which is a function that describes how `retryDelay` changes with each retry iteration.
+ * @returns       Data returned by `fetch`.
+ */
+async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions) {
+  const {
+    changeRetryDelay = (delay) => delay * 2,
+    retryDelay = 1_000,
+    retryMax = 3,
+    ...fetchOptions
+  } = options;
+  try {
+    return await fetch(url instanceof Request ? url.clone() : url, fetchOptions);
+  } catch (error) {
+    if (retryMax >= 1) {
+      await sleep(retryDelay);
+      return fetchWithRetry(url, {
+        ...fetchOptions,
+        changeRetryDelay,
+        retryDelay: changeRetryDelay(retryDelay),
+        retryMax: retryMax - 1,
+      });
+    }
+    throw error;
+  }
+}
+
 /**
  * Return a color formatting function based on the provided status code.
  * @param statusCode An HTTP status code.
@@ -192,4 +229,4 @@ async function startDevelopmentServer(
 }
 
 // Module Exports
-export { startDevelopmentServer };
+export { fetchWithRetry, startDevelopmentServer };

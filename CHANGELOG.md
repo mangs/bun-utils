@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.10.0
+
+- Add new functions
+  - `fetchWithRetry` for auto-retrying failed `fetch` requests (in `src/networkUtils.mts`)
+  - `sleep` for a Promise-based ability to pause execution to be used with `await` (in `src/timeUtils.mts`)
+- Update target Bun version from `1.1.3` to `1.1.4`
+
 ## 2.9.1
 
 - Replace all mention of "utility functions" with "utilities"

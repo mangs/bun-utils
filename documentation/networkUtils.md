@@ -2,6 +2,32 @@
 
 ## Functions
 
+### fetchWithRetry()
+
+> **fetchWithRetry**(`url`, `options`): `Promise`\<`Response`\>
+
+`fetch` with auto-retry support. Follows an exponential backoff strategy by default starting with
+a delay of 1 second.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `url` | `string` \| `Request` \| `URL` | URL from which to fetch data. |
+| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s default 2nd parameter with 3 new values: `retryMax` for maximum number of retries before an error is thrown, `retryDelay` for the delay when retrying the first time, and `changeRetryDelay` which is a function that describes how `retryDelay` changes with each retry iteration. |
+
+#### Returns
+
+`Promise`\<`Response`\>
+
+Data returned by `fetch`.
+
+#### Source
+
+[networkUtils.mts:52](https://github.com/mangs/bun-utils/blob/67acd646b8a81c029b8c1aaa54d4481ab7d3f47e/src/networkUtils.mts#L52)
+
+***
+
 ### startDevelopmentServer()
 
 > **startDevelopmentServer**(`entrypointFunction`, `serverConfiguration`): `Promise`\<`void`\>
@@ -38,4 +64,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:99](https://github.com/mangs/bun-utils/blob/34237c3f4601d8c5ec88fc5b6998c46aec7d3b0e/src/networkUtils.mts#L99)
+[networkUtils.mts:136](https://github.com/mangs/bun-utils/blob/67acd646b8a81c029b8c1aaa54d4481ab7d3f47e/src/networkUtils.mts#L136)
