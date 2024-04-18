@@ -78,7 +78,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
       // eslint-disable-next-line no-continue -- skip printing build artifact totals equaling zero
       continue;
     }
-    const labelTitleCase = label.charAt(0).toUpperCase() + label.slice(1);
+    const labelTitleCase = label.charAt(0).toUpperCase() + label.slice(1).replace('-', ' ');
     const pluralSuffix = count === 1 ? '' : 's';
     const countLabel = count.toString().padEnd(countPadWidth, ' ');
     const labelColumn = `${gutter}${countLabel} ${labelTitleCase}${pluralSuffix}`.padEnd(

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.10.2
+
+- Rename build output label from `Entry-point` to `Entry point` (in `src/buildUtils.mts`)
+
 ## 2.10.1
 
 - Fix bugs in new functions
