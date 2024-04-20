@@ -7,14 +7,14 @@
 > **fetchWithRetry**(`url`, `options`): `Promise`\<`Response`\>
 
 `fetch` with auto-retry support. Follows an exponential backoff strategy by default starting with
-a delay of 1 second.
+a delay of 1 second. Times out by default after 10 seconds.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `url` | `string` \| `Request` \| `URL` | URL from which to fetch data. |
-| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s default 2nd parameter with 3 new values: `retryMax` for maximum number of retries before an error is thrown, `retryDelay` for the delay when retrying the first time, and `changeRetryDelay` which is a function that describes how `retryDelay` changes with each retry iteration. |
+| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               - `changeRetryDelay`: function that describes how `retryDelay` changes with each retry iteration.<br />               - `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               - `retryMax`: maximum number of retries before an error is thrown.<br />               - `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
 
 #### Returns
 
@@ -24,7 +24,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:52](https://github.com/mangs/bun-utils/blob/cc27859a6f116ad65fd001a6f8058b158d65f775/src/networkUtils.mts#L52)
+[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/8b4787d4d70f3243c560dc854a245433a47bf122/src/networkUtils.mts#L57)
 
 ***
 
@@ -64,4 +64,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:137](https://github.com/mangs/bun-utils/blob/cc27859a6f116ad65fd001a6f8058b158d65f775/src/networkUtils.mts#L137)
+[networkUtils.mts:147](https://github.com/mangs/bun-utils/blob/8b4787d4d70f3243c560dc854a245433a47bf122/src/networkUtils.mts#L147)
