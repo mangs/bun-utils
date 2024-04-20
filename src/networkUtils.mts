@@ -48,7 +48,7 @@ declare global {
  * default starting with a delay of 1 second. Times out by default after 10 seconds.
  * @param url     URL from which to fetch data.
  * @param options Options object that combines `fetch`'s 2nd parameter with 4 new values:
- *                • `changeRetryDelay`: function that describes how `retryDelay` changes with each retry iteration.
+ *                • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.
  *                • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.
  *                • `retryMax`: maximum number of retries before an error is thrown.
  *                • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member.

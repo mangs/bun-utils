@@ -14,7 +14,7 @@ default starting with a delay of 1 second. Times out by default after 10 seconds
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `url` | `string` \| `Request` \| `URL` | URL from which to fetch data. |
-| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               • `changeRetryDelay`: function that describes how `retryDelay` changes with each retry iteration.<br />               • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               • `retryMax`: maximum number of retries before an error is thrown.<br />               • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
+| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.<br />               • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               • `retryMax`: maximum number of retries before an error is thrown.<br />               • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
 
 #### Returns
 
@@ -24,7 +24,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/db0828aee7a126ead2fc6f341f70830e829b214d/src/networkUtils.mts#L57)
+[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/191b28d444f099e74d36134f30a2a00851955e34/src/networkUtils.mts#L57)
 
 ***
 
@@ -64,4 +64,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:147](https://github.com/mangs/bun-utils/blob/db0828aee7a126ead2fc6f341f70830e829b214d/src/networkUtils.mts#L147)
+[networkUtils.mts:147](https://github.com/mangs/bun-utils/blob/191b28d444f099e74d36134f30a2a00851955e34/src/networkUtils.mts#L147)
