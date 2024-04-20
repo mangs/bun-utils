@@ -19,6 +19,7 @@ type FetchRetryOptions = FetchRequestInit & {
   changeRetryDelay?: (delay: number) => number;
   retryDelay?: number;
   retryMax?: number;
+  timeout?: number;
 };
 
 interface HttpsOptions {
@@ -43,10 +44,14 @@ declare global {
 
 // Local Functions
 /**
- * `fetch` with auto-retry support. Follows an exponential backoff strategy by default starting with
- * a delay of 1 second.
+ * `fetch` with auto-retry and auto-timeout support. Follows an exponential backoff strategy by
+ * default starting with a delay of 1 second. Times out by default after 10 seconds.
  * @param url     URL from which to fetch data.
- * @param options Options object that combines `fetch`'s default 2nd parameter with 3 new values: `retryMax` for maximum number of retries before an error is thrown, `retryDelay` for the delay when retrying the first time, and `changeRetryDelay` which is a function that describes how `retryDelay` changes with each retry iteration.
+ * @param options Options object that combines `fetch`'s 2nd parameter with 4 new values:
+ *                • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.
+ *                • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.
+ *                • `retryMax`: maximum number of retries before an error is thrown.
+ *                • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member.
  * @returns       Data returned by `fetch`.
  */
 async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions = {}) {
@@ -54,11 +59,15 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
     changeRetryDelay = (delay) => delay * 2,
     retryDelay = 1_000,
     retryMax = 3,
+    timeout = 10_000,
     ...fetchOptions
   } = options;
 
   try {
-    return await fetch(url instanceof Request ? url.clone() : url, fetchOptions);
+    return await fetch(url instanceof Request ? url.clone() : url, {
+      signal: AbortSignal.timeout(timeout),
+      ...fetchOptions,
+    });
   } catch (error) {
     if (retryMax >= 1) {
       await sleep(retryDelay);
@@ -67,6 +76,7 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
         changeRetryDelay,
         retryDelay: changeRetryDelay(retryDelay),
         retryMax: retryMax - 1,
+        timeout,
       });
     }
     throw error;

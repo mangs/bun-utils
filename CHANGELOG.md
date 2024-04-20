@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.11.0
+
+- Add a 10 second default timeout to `fetchWithRetry`; can be overridden with a new `timeout` parameter (in `src/networkUtils.mts`)
+- Update dependency versions to latest
+
 ## 2.10.2
 
 - Rename build output label from `Entry-point` to `Entry point` (in `src/buildUtils.mts`)
