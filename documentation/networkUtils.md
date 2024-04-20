@@ -6,15 +6,15 @@
 
 > **fetchWithRetry**(`url`, `options`): `Promise`\<`Response`\>
 
-`fetch` with auto-retry support. Follows an exponential backoff strategy by default starting with
-a delay of 1 second. Times out by default after 10 seconds.
+`fetch` with auto-retry and auto-timeout support. Follows an exponential backoff strategy by
+default starting with a delay of 1 second. Times out by default after 10 seconds.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `url` | `string` \| `Request` \| `URL` | URL from which to fetch data. |
-| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               - `changeRetryDelay`: function that describes how `retryDelay` changes with each retry iteration.<br />               - `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               - `retryMax`: maximum number of retries before an error is thrown.<br />               - `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
+| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               ∙ `changeRetryDelay`: function that describes how `retryDelay` changes with each retry iteration.<br />               ∙ `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               ∙ `retryMax`: maximum number of retries before an error is thrown.<br />               ∙ `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
 
 #### Returns
 
@@ -24,7 +24,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/8b4787d4d70f3243c560dc854a245433a47bf122/src/networkUtils.mts#L57)
+[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/54ee39c424deaed97a9e9b2098271edad4fc2176/src/networkUtils.mts#L57)
 
 ***
 
@@ -64,4 +64,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:147](https://github.com/mangs/bun-utils/blob/8b4787d4d70f3243c560dc854a245433a47bf122/src/networkUtils.mts#L147)
+[networkUtils.mts:147](https://github.com/mangs/bun-utils/blob/54ee39c424deaed97a9e9b2098271edad4fc2176/src/networkUtils.mts#L147)
