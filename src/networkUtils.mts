@@ -131,14 +131,14 @@ function logServerStartup({ url: { href } }: Server) {
  * ```ts
  * {
  *   error?: (this: Server, request: ErrorLike) => Response | Promise<Response> | Promise<undefined> | undefined // Maps to Bun.serve()'s error option
- *   hostname?: string;                              // Defaults to localhost; maps to Bun.serve()'s hostname option
+ *   hostname?: string;                              // Defaults to 0.0.0.0; maps to Bun.serve()'s hostname option
  *   httpsOptions?: {
- *     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
- *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
+ *     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option but only the path
+ *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option but only the path
  *     diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
  *     lowMemoryMode?: boolean;                      // Maps to Bun.serve()'s tls.lowMemoryMode option
  *     passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
- *     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
+ *     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option but only the path
  *     serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
  *   };
  *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS; maps to Bun.serve()'s port option

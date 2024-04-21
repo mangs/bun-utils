@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.12.1
+
+- Correct documentation for the development server
+
 ## 2.12.0
 
 - Make development server more configurable
