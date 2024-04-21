@@ -24,13 +24,13 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/23aee903d45bd6f541bfea972d24976ca2ee34b5/src/networkUtils.mts#L57)
+[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/b31e2c8c4b1eb2b26a35305daa1af761c0178228/src/networkUtils.mts#L57)
 
 ***
 
 ### startDevelopmentServer()
 
-> **startDevelopmentServer**(`entrypointFunction`, `serverConfiguration`): `Promise`\<`void`\>
+> **startDevelopmentServer**(`entrypointFunction`, `serverConfiguration`): `Promise`\<`Server`\>
 
 Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
 server. The exact configuration options used are logged to the console if the `DEBUG` environment
@@ -64,8 +64,10 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`Server`\>
+
+`Promise` resolving to the return value of `Bun.serve()`.
 
 #### Source
 
-[networkUtils.mts:151](https://github.com/mangs/bun-utils/blob/23aee903d45bd6f541bfea972d24976ca2ee34b5/src/networkUtils.mts#L151)
+[networkUtils.mts:152](https://github.com/mangs/bun-utils/blob/b31e2c8c4b1eb2b26a35305daa1af761c0178228/src/networkUtils.mts#L152)
