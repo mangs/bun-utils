@@ -142,6 +142,7 @@ function logServerStartup({ url: { href } }: Server) {
  *     serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
  *   };
  *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS, maps to Bun.serve()'s port option
+ * }
  * ```
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
