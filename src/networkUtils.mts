@@ -147,6 +147,7 @@ function logServerStartup({ url: { href } }: Server) {
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
  * @param serverConfiguration An optional configuration object.
+ * @returns `Promise` resolving to the return value of `Bun.serve()`.
  */
 async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
@@ -240,6 +241,7 @@ async function startDevelopmentServer(
 
   const server = serve(serverOptions);
   logServerStartup(server);
+  return server;
 }
 
 // Module Exports

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.12.2
+
+- Change the return value of the development server to be a `Promise` resolving to the return value of `Bun.serve()`
+
 ## 2.12.1
 
 - Correct documentation for the development server
