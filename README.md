@@ -4,7 +4,7 @@ Useful utilities for your Bun projects
 
 ## Package Exports
 
-The code is organized into logical modules and exported based on category as follows:
+The code is organized into logical modules and exported accordingly as follows:
 
 | Export Name                   | Documentation                            | Description                          |
 | ----------------------------- | ---------------------------------------- | ------------------------------------ |

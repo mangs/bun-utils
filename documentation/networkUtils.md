@@ -24,7 +24,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/191b28d444f099e74d36134f30a2a00851955e34/src/networkUtils.mts#L57)
+[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/8e450b47b02ac5c6fcbcaf9f456a6580de8f7eb8/src/networkUtils.mts#L57)
 
 ***
 
@@ -39,15 +39,18 @@ variable is set to a truthy value.
 Optionally specify a configuration object to customize functionality as follows:
 ```ts
 {
-  hostname?: string;                              // Defaults to localhost
+  error?: (this: Server, request: ErrorLike) => Response | Promise<Response> | Promise<undefined> | undefined // Maps to Bun.serve()'s error option
+  hostname?: string;                              // Defaults to localhost, maps to Bun.serve()'s hostname option
   httpsOptions?: {
-    certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
+    certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
     diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
+    lowMemoryMode?: boolean;                      // Maps to Bun.serve()'s tls.lowMemoryMode option
     passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
+    serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
   };
-  port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
+  port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS, maps to Bun.serve()'s port option
 ```
 **NOTE:** multiple server instances can be started simultaneously with unique port values.
 
@@ -64,4 +67,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:147](https://github.com/mangs/bun-utils/blob/191b28d444f099e74d36134f30a2a00851955e34/src/networkUtils.mts#L147)
+[networkUtils.mts:150](https://github.com/mangs/bun-utils/blob/8e450b47b02ac5c6fcbcaf9f456a6580de8f7eb8/src/networkUtils.mts#L150)
