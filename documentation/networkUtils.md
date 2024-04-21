@@ -24,7 +24,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/a54beb177e2db8942507306f1eb05e29bd0b8171/src/networkUtils.mts#L57)
+[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/2500dcec2d9866a2ad8127b4d7f1d83116c856ec/src/networkUtils.mts#L57)
 
 ***
 
@@ -40,7 +40,7 @@ Optionally specify a configuration object to customize functionality as follows:
 ```ts
 {
   error?: (this: Server, request: ErrorLike) => Response | Promise<Response> | Promise<undefined> | undefined // Maps to Bun.serve()'s error option
-  hostname?: string;                              // Defaults to localhost, maps to Bun.serve()'s hostname option
+  hostname?: string;                              // Defaults to localhost; maps to Bun.serve()'s hostname option
   httpsOptions?: {
     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
@@ -50,7 +50,7 @@ Optionally specify a configuration object to customize functionality as follows:
     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
     serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
   };
-  port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS, maps to Bun.serve()'s port option
+  port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS; maps to Bun.serve()'s port option
 }
 ```
 **NOTE:** multiple server instances can be started simultaneously with unique port values.
@@ -68,4 +68,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:151](https://github.com/mangs/bun-utils/blob/a54beb177e2db8942507306f1eb05e29bd0b8171/src/networkUtils.mts#L151)
+[networkUtils.mts:151](https://github.com/mangs/bun-utils/blob/2500dcec2d9866a2ad8127b4d7f1d83116c856ec/src/networkUtils.mts#L151)

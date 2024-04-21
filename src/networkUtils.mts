@@ -131,7 +131,7 @@ function logServerStartup({ url: { href } }: Server) {
  * ```ts
  * {
  *   error?: (this: Server, request: ErrorLike) => Response | Promise<Response> | Promise<undefined> | undefined // Maps to Bun.serve()'s error option
- *   hostname?: string;                              // Defaults to localhost, maps to Bun.serve()'s hostname option
+ *   hostname?: string;                              // Defaults to localhost; maps to Bun.serve()'s hostname option
  *   httpsOptions?: {
  *     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
  *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
@@ -141,7 +141,7 @@ function logServerStartup({ url: { href } }: Server) {
  *     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
  *     serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
  *   };
- *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS, maps to Bun.serve()'s port option
+ *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS; maps to Bun.serve()'s port option
  * }
  * ```
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
