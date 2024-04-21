@@ -11,7 +11,7 @@ import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
 import { getElapsedTimeFormatted, sleep } from './timeUtils.mts';
 
 // Type Imports
-import type { Serve, Server } from 'bun';
+import type { Serve, ServeOptions, Server } from 'bun';
 
 // Local Types
 // eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
@@ -23,17 +23,17 @@ type FetchRetryOptions = FetchRequestInit & {
 };
 
 interface HttpsOptions {
-  certificatePath: string | string[];
   certificateAuthorityPath?: string | string[];
+  certificatePath: string | string[];
   diffieHellmanParametersPath?: string;
+  lowMemoryMode?: boolean;
   passphrase?: string;
   privateKeyPath: string | string[];
+  serverName?: string;
 }
 
-interface ServerConfiguration {
-  hostname?: string;
+interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 'port'> {
   httpsOptions?: HttpsOptions;
-  port?: string | number;
 }
 
 // Global Types
@@ -130,15 +130,19 @@ function logServerStartup({ url: { href } }: Server) {
  * Optionally specify a configuration object to customize functionality as follows:
  * ```ts
  * {
- *   hostname?: string;                              // Defaults to localhost
+ *   error?: (this: Server, request: ErrorLike) => Response | Promise<Response> | Promise<undefined> | undefined // Maps to Bun.serve()'s error option
+ *   hostname?: string;                              // Defaults to localhost; maps to Bun.serve()'s hostname option
  *   httpsOptions?: {
- *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
  *     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option
+ *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option
  *     diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
+ *     lowMemoryMode?: boolean;                      // Maps to Bun.serve()'s tls.lowMemoryMode option
  *     passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
  *     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option
+ *     serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
  *   };
- *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 3_000 for HTTP, 443 for HTTPS
+ *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS; maps to Bun.serve()'s port option
+ * }
  * ```
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
@@ -148,7 +152,7 @@ async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
   serverConfiguration: ServerConfiguration = {},
 ) {
-  const { hostname, httpsOptions, port } = serverConfiguration;
+  const { error, hostname, httpsOptions, port } = serverConfiguration;
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request): Promise<Response> {
@@ -166,21 +170,20 @@ async function startDevelopmentServer(
 
       return response;
     },
-    lowMemoryMode: false,
-    port: process.env.DEVELOPMENT_SERVER_PORT ?? port ?? 3_000,
+    lowMemoryMode: httpsOptions?.lowMemoryMode ?? false,
+    port: port ?? process.env.DEVELOPMENT_SERVER_PORT ?? 80,
+    ...(error && { error }),
+    ...(hostname && { hostname }),
   };
-
-  if (hostname) {
-    serverOptions.hostname = hostname;
-  }
 
   if (httpsOptions) {
     const {
-      certificatePath,
       certificateAuthorityPath,
+      certificatePath,
       diffieHellmanParametersPath,
       passphrase,
       privateKeyPath,
+      serverName,
     } = httpsOptions;
 
     const certificate = [certificatePath].flat().map((c) => file(c));
@@ -206,7 +209,7 @@ async function startDevelopmentServer(
       }
     }
 
-    serverOptions.port = process.env.DEVELOPMENT_SERVER_PORT ?? port ?? 443;
+    serverOptions.port = port ?? process.env.DEVELOPMENT_SERVER_PORT ?? 443;
     serverOptions.tls = {
       cert: Array.isArray(certificatePath)
         ? certificatePath.map((c) => file(c))
@@ -215,9 +218,6 @@ async function startDevelopmentServer(
         ? privateKeyPath.map((p) => file(p))
         : file(privateKeyPath),
     };
-    if (hostname) {
-      serverOptions.tls.serverName = hostname;
-    }
     if (certificateAuthorityPath) {
       serverOptions.tls.ca = Array.isArray(certificateAuthorityPath)
         ? certificateAuthorityPath.map((ca) => file(ca))
@@ -228,6 +228,9 @@ async function startDevelopmentServer(
     }
     if (passphrase) {
       serverOptions.tls.passphrase = passphrase;
+    }
+    if (serverName) {
+      serverOptions.tls.serverName = serverName;
     }
   }
 

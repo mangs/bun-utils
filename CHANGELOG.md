@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.12.0
+
+- Make development server more configurable
+  - Add ability to set `error` error handler to override's `Bun.serve()`'s default error page
+  - Add ability to set `serverName` and `lowMemoryMode` HTTPS options
+  - `port` option now takes precedence over existing `DEVELOPMENT_SERVER_PORT` environment variable value
+
 ## 2.11.0
 
 - Add a 10 second default timeout to `fetchWithRetry`; can be overridden with a new `timeout` parameter (in `src/networkUtils.mts`)
