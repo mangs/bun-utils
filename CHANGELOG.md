@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.13.0
+
+- Change the function signature of `getPerformanceLabel` and `getElapsedTimeFormatted` to accept an options object including a new `unitsMinimum` parameter
+- Update dependency versions to latest
+
 ## 2.12.2
 
 - Change the return value of the development server to be a `Promise` resolving to the return value of `Bun.serve()`

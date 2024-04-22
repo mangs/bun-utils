@@ -8,9 +8,6 @@ import { styleText } from 'node:util';
 // Internal Imports
 import { getElapsedTimeFormatted } from './timeUtils.mts';
 
-// Local Types
-type GetElapsedTimeFormattedParameters = Parameters<typeof getElapsedTimeFormatted>;
-
 // Local Functions
 /**
  * Format the text so it appears cyan.
@@ -68,18 +65,13 @@ function yellow(text: string) {
 
 /**
  * Get a text label showing the elapsed time between the provided start time parameter and the time
- * the function is called. Optionally the time units and formatting locale can be overridden.
- * @param startTime      The start time calculated by `Bun.nanoseconds()`.
- * @param unitsOverride  An optional override of time units to display.
- * @param localeOverride An optional override of the locale used to format and localize the time value.
- * @returns              A localized text label showing elapsed time with units.
+ * the function is called. Optionally a minimum time unit can be chosen (set to `ms` by default) or
+ * a specific time unit can be enforced. Also, formatting locale can be overridden.
+ * @param parameters The same parameters as {@link getElapsedTimeFormatted}.
+ * @returns          Localized text label showing elapsed time with units.
  */
-function getPerformanceLabel(
-  startTime: GetElapsedTimeFormattedParameters[0],
-  unitsOverride?: GetElapsedTimeFormattedParameters[1],
-  localeOverride?: GetElapsedTimeFormattedParameters[2],
-) {
-  const formattedTime = getElapsedTimeFormatted(startTime, unitsOverride, localeOverride);
+function getPerformanceLabel(...parameters: Parameters<typeof getElapsedTimeFormatted>) {
+  const formattedTime = getElapsedTimeFormatted(...parameters);
   return dim(white(`[${formattedTime}]`));
 }
 
