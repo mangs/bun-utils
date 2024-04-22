@@ -45,7 +45,7 @@ declare global {
 // Local Functions
 /**
  * `fetch` with auto-retry and auto-timeout support. Follows an exponential backoff strategy by
- * default starting with a delay of 1 second. Times out by default after 10 seconds. Setting
+ * default starting with a delay of 1 second. Times out after 10 seconds by default. Setting
  * environment variable `DEBUG` to a truthy value logs caught and ignored retry errors.
  * @param url     URL from which to fetch data.
  * @param options Options object that combines `fetch`'s 2nd parameter with 4 new values:
