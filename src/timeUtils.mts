@@ -39,19 +39,18 @@ function buildServerTimingHeader(name: string, startTime?: number, description?:
 
 /**
  * Get a formatted string representing the time between the provided start time parameter and the
- * time the function is called. Optionally a minimum time unit can be chosen (set to `ms` by
- * default) or a specific time unit can be enforced. Also, formatting locale can be overridden.
- * @param startTime     The start time calculated by `Bun.nanoseconds()`.
- * @param formatOptions Options object for formatting customization. Contains the following:
- *
+ * time the function is called. An optional options object can be provided as follows:
  * ```ts
  * {
  *   localeOverride?: string;   Override of the locale used to format and localize the time value.
  *   unitsMinimum?: TimeUnits;  Smallest unit size that can be displayed.
- *   unitsOverride?: TimeUnits; Override of time units to display.
+ *   unitsOverride?: TimeUnits; Override of time units to display; supersedes `unitsMinimum`.
  * }
  * ```
- * @returns             A localized string showing elapsed time with units.
+ * .
+ * @param startTime     Start time calculated by `Bun.nanoseconds()`.
+ * @param formatOptions Options object for formatting customization.
+ * @returns             Localized string showing elapsed time with units.
  */
 function getElapsedTimeFormatted(startTime: number, formatOptions?: FormatOptions) {
   const { localeOverride, unitsMinimum = 'ms', unitsOverride } = formatOptions ?? {};

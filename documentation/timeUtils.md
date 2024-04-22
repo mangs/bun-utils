@@ -32,7 +32,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:33](https://github.com/mangs/bun-utils/blob/b51e8671a1703735384ecc544d4f5b5f14a01d83/src/timeUtils.mts#L33)
+[timeUtils.mts:33](https://github.com/mangs/bun-utils/blob/edc9cc06dede96e9bd226a980982f9839a722e4b/src/timeUtils.mts#L33)
 
 ***
 
@@ -41,25 +41,32 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 > **getElapsedTimeFormatted**(`startTime`, `formatOptions`?): `string`
 
 Get a formatted string representing the time between the provided start time parameter and the
-time the function is called. Optionally a minimum time unit can be chosen (set to `ms` by
-default) or a specific time unit can be enforced. Also, formatting locale can be overridden.
+time the function is called. An optional options object can be provided as follows:
+```ts
+{
+  localeOverride?: string;   Override of the locale used to format and localize the time value.
+  unitsMinimum?: TimeUnits;  Smallest unit size that can be displayed.
+  unitsOverride?: TimeUnits; Override of time units to display; supersedes `unitsMinimum`.
+}
+```
+.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `startTime` | `number` | The start time calculated by `Bun.nanoseconds()`. |
-| `formatOptions`? | `FormatOptions` | Options object for formatting customization. Contains the following:<br /><br />`{  localeOverride?: string;   Override of the locale used to format and localize the time value.  unitsMinimum?: TimeUnits;  Smallest unit size that can be displayed.  unitsOverride?: TimeUnits; Override of time units to display.}` |
+| `startTime` | `number` | Start time calculated by `Bun.nanoseconds()`. |
+| `formatOptions`? | `FormatOptions` | Options object for formatting customization. |
 
 #### Returns
 
 `string`
 
-A localized string showing elapsed time with units.
+Localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:56](https://github.com/mangs/bun-utils/blob/b51e8671a1703735384ecc544d4f5b5f14a01d83/src/timeUtils.mts#L56)
+[timeUtils.mts:55](https://github.com/mangs/bun-utils/blob/edc9cc06dede96e9bd226a980982f9839a722e4b/src/timeUtils.mts#L55)
 
 ***
 
@@ -102,7 +109,7 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[timeUtils.mts:107](https://github.com/mangs/bun-utils/blob/b51e8671a1703735384ecc544d4f5b5f14a01d83/src/timeUtils.mts#L107)
+[timeUtils.mts:106](https://github.com/mangs/bun-utils/blob/edc9cc06dede96e9bd226a980982f9839a722e4b/src/timeUtils.mts#L106)
 
 ***
 
@@ -126,4 +133,4 @@ Asynchronous sleep function using promises.
 
 #### Source
 
-[timeUtils.mts:124](https://github.com/mangs/bun-utils/blob/b51e8671a1703735384ecc544d4f5b5f14a01d83/src/timeUtils.mts#L124)
+[timeUtils.mts:123](https://github.com/mangs/bun-utils/blob/edc9cc06dede96e9bd226a980982f9839a722e4b/src/timeUtils.mts#L123)
