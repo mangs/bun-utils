@@ -7,7 +7,8 @@
 > **fetchWithRetry**(`url`, `options`): `Promise`\<`Response`\>
 
 `fetch` with auto-retry and auto-timeout support. Follows an exponential backoff strategy by
-default starting with a delay of 1 second. Times out by default after 10 seconds.
+default starting with a delay of 1 second. Times out by default after 10 seconds. Setting
+environment variable `DEBUG` to a truthy value logs caught and ignored retry errors.
 
 #### Parameters
 
@@ -24,7 +25,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/16e14263ffabade6f02a02eec30f555955f6d011/src/networkUtils.mts#L57)
+[networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/a40d0b1b864298667e4d0b876dbfff1357e6cf76/src/networkUtils.mts#L58)
 
 ***
 
@@ -70,4 +71,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:152](https://github.com/mangs/bun-utils/blob/16e14263ffabade6f02a02eec30f555955f6d011/src/networkUtils.mts#L152)
+[networkUtils.mts:161](https://github.com/mangs/bun-utils/blob/a40d0b1b864298667e4d0b876dbfff1357e6cf76/src/networkUtils.mts#L161)

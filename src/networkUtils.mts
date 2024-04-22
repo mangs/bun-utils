@@ -45,7 +45,8 @@ declare global {
 // Local Functions
 /**
  * `fetch` with auto-retry and auto-timeout support. Follows an exponential backoff strategy by
- * default starting with a delay of 1 second. Times out by default after 10 seconds.
+ * default starting with a delay of 1 second. Times out by default after 10 seconds. Setting
+ * environment variable `DEBUG` to a truthy value logs caught and ignored retry errors.
  * @param url     URL from which to fetch data.
  * @param options Options object that combines `fetch`'s 2nd parameter with 4 new values:
  *                • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.
@@ -63,13 +64,21 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
     ...fetchOptions
   } = options;
 
+  const hasRetriesRemaining = retryMax > 0;
   try {
-    return await fetch(url instanceof Request ? url.clone() : url, {
+    const response = await fetch(url instanceof Request ? url.clone() : url, {
       signal: AbortSignal.timeout(timeout),
       ...fetchOptions,
     });
+    if (!response.ok && hasRetriesRemaining) {
+      throw new Error(`Error status code ${response.status} received`);
+    }
+    return response;
   } catch (error) {
-    if (retryMax >= 1) {
+    if (hasRetriesRemaining) {
+      if (process.env.DEBUG) {
+        console.error(error);
+      }
       await sleep(retryDelay);
       return fetchWithRetry(url, {
         ...fetchOptions,

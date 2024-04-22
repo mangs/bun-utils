@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.13.1
+
+- Improved `fetchWithRetry`
+  - Error response codes cause an error to be thrown if retries remain so the request is retried
+  - Setting environment variable `DEBUG` to a truthy value logs caught and ignored retry errors
+
 ## 2.13.0
 
 - Change the function signature of `getPerformanceLabel` and `getElapsedTimeFormatted` to accept an options object including a new `unitsMinimum` parameter
