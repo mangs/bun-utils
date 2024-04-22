@@ -42,9 +42,9 @@ function buildServerTimingHeader(name: string, startTime?: number, description?:
  * time the function is called. An optional options object can be provided as follows:
  * ```ts
  * {
- *   localeOverride?: string;   Override of the locale used to format and localize the time value.
- *   unitsMinimum?: TimeUnits;  Smallest unit size that can be displayed.
- *   unitsOverride?: TimeUnits; Override of time units to display; supersedes `unitsMinimum`.
+ *   localeOverride?: string;   // Override of the locale used to format and localize the time value.
+ *   unitsMinimum?: TimeUnits;  // Smallest unit size that can be displayed.
+ *   unitsOverride?: TimeUnits; // Override of time units to display; supersedes `unitsMinimum`.
  * }
  * ```
  * .
