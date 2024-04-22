@@ -71,7 +71,7 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
       ...fetchOptions,
     });
     if (!response.ok && hasRetriesRemaining) {
-      throw new Error(`Error status code ${response.status} received`);
+      throw new Error(`Error status code ${response.status} received. Retrying...`);
     }
     return response;
   } catch (error) {
