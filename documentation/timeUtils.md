@@ -32,7 +32,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:33](https://github.com/mangs/bun-utils/blob/58c828596ecbafdd31c13e18cf04a8ab47f5b9d5/src/timeUtils.mts#L33)
+[timeUtils.mts:33](https://github.com/mangs/bun-utils/blob/16e14263ffabade6f02a02eec30f555955f6d011/src/timeUtils.mts#L33)
 
 ***
 
@@ -45,7 +45,7 @@ time the function is called. An optional options object can be provided as follo
 ```ts
 {
   localeOverride?: string;   // Override of the locale used to format and localize the time value.
-  unitsMinimum?: TimeUnits;  // Smallest unit size that can be displayed.
+  unitsMinimum?: TimeUnits;  // Smallest time unit that can be displayed.
   unitsOverride?: TimeUnits; // Override of time units to display; supersedes `unitsMinimum`.
 }
 ```
@@ -66,7 +66,7 @@ Localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:55](https://github.com/mangs/bun-utils/blob/58c828596ecbafdd31c13e18cf04a8ab47f5b9d5/src/timeUtils.mts#L55)
+[timeUtils.mts:55](https://github.com/mangs/bun-utils/blob/16e14263ffabade6f02a02eec30f555955f6d011/src/timeUtils.mts#L55)
 
 ***
 
@@ -109,7 +109,7 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[timeUtils.mts:106](https://github.com/mangs/bun-utils/blob/58c828596ecbafdd31c13e18cf04a8ab47f5b9d5/src/timeUtils.mts#L106)
+[timeUtils.mts:106](https://github.com/mangs/bun-utils/blob/16e14263ffabade6f02a02eec30f555955f6d011/src/timeUtils.mts#L106)
 
 ***
 
@@ -133,4 +133,4 @@ Asynchronous sleep function using promises.
 
 #### Source
 
-[timeUtils.mts:123](https://github.com/mangs/bun-utils/blob/58c828596ecbafdd31c13e18cf04a8ab47f5b9d5/src/timeUtils.mts#L123)
+[timeUtils.mts:123](https://github.com/mangs/bun-utils/blob/16e14263ffabade6f02a02eec30f555955f6d011/src/timeUtils.mts#L123)

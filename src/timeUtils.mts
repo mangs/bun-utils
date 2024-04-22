@@ -43,7 +43,7 @@ function buildServerTimingHeader(name: string, startTime?: number, description?:
  * ```ts
  * {
  *   localeOverride?: string;   // Override of the locale used to format and localize the time value.
- *   unitsMinimum?: TimeUnits;  // Smallest unit size that can be displayed.
+ *   unitsMinimum?: TimeUnits;  // Smallest time unit that can be displayed.
  *   unitsOverride?: TimeUnits; // Override of time units to display; supersedes `unitsMinimum`.
  * }
  * ```
