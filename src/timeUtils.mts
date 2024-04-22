@@ -43,6 +43,7 @@ function buildServerTimingHeader(name: string, startTime?: number, description?:
  * default) or a specific time unit can be enforced. Also, formatting locale can be overridden.
  * @param startTime     The start time calculated by `Bun.nanoseconds()`.
  * @param formatOptions Options object for formatting customization. Contains the following:
+ *
  * ```ts
  * {
  *   localeOverride?: string;   Override of the locale used to format and localize the time value.
