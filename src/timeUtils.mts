@@ -10,6 +10,11 @@ const timeUnits = ['ns', 'μs', 'ms', 's'] as const;
 
 // Local Types
 type TimeUnits = (typeof timeUnits)[number];
+interface FormatOptions {
+  localeOverride?: string;
+  unitsMinimum?: TimeUnits;
+  unitsOverride?: TimeUnits;
+}
 
 // Local Functions
 /**
@@ -34,17 +39,22 @@ function buildServerTimingHeader(name: string, startTime?: number, description?:
 
 /**
  * Get a formatted string representing the time between the provided start time parameter and the
- * time the function is called. Optionally the time units and formatting locale can be overridden.
- * @param startTime      The start time calculated by `Bun.nanoseconds()`.
- * @param unitsOverride  An optional override of time units to display.
- * @param localeOverride An optional override of the locale used to format and localize the time value.
- * @returns              A localized string showing elapsed time with units.
+ * time the function is called. An optional options object can be provided as follows:
+ * ```ts
+ * {
+ *   localeOverride?: string;   // Override of the locale used to format and localize the time value.
+ *   unitsMinimum?: TimeUnits;  // Smallest time unit that can be displayed.
+ *   unitsOverride?: TimeUnits; // Override of time units to display; supersedes `unitsMinimum`.
+ * }
+ * ```
+ * .
+ * @param startTime     Start time calculated by `Bun.nanoseconds()`.
+ * @param formatOptions Options object for formatting customization.
+ * @returns             Localized string showing elapsed time with units.
  */
-function getElapsedTimeFormatted(
-  startTime: number,
-  unitsOverride: TimeUnits | '' = 'ms', // eslint-disable-line default-param-last -- localeOverride is also optional
-  localeOverride?: string,
-) {
+function getElapsedTimeFormatted(startTime: number, formatOptions?: FormatOptions) {
+  const { localeOverride, unitsMinimum = 'ms', unitsOverride } = formatOptions ?? {};
+
   const endTime = nanoseconds();
   let elapsedTime = endTime - startTime;
   let timeIndex = 0;
@@ -56,8 +66,12 @@ function getElapsedTimeFormatted(
       timeIndex += 1;
     }
   } else {
+    let isMinimumUnit = false;
     while (elapsedTime > 1) {
-      if (elapsedTime <= 1_000) {
+      if (timeUnits[timeIndex] === unitsMinimum) {
+        isMinimumUnit = true;
+      }
+      if (isMinimumUnit && elapsedTime <= 1_000) {
         break;
       }
       elapsedTime /= 1_000;
