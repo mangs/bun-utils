@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.13.2
+
+- Add `fetchWithRetry` debugging insight by showing all retry settings attributable to each logged error
+
 ## 2.13.1
 
 - Improved `fetchWithRetry`

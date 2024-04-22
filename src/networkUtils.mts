@@ -78,6 +78,7 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
     if (hasRetriesRemaining) {
       if (process.env.DEBUG) {
         console.error(error);
+        console.info('ERROR RETRY SETTINGS', { retryDelay, retryMax });
       }
       await sleep(retryDelay);
       return fetchWithRetry(url, {
