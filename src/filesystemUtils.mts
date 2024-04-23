@@ -96,7 +96,7 @@ async function isDirectoryAccessible(path: string) {
  * @returns    Object with an `append` and async `Symbol.asyncDispose` method.
  * @example
  * ```ts
- * await using file = usingTemporaryFile();
+ * await using file = usingNewTemporaryFile();
  * await file.append('test data 42\n');
  * // sometime later...
  * await file.append('holy data, batman\n');
@@ -120,6 +120,9 @@ function usingNewTemporaryFile(path = `/tmp/tempFile${Date.now()}`) {
       }
     },
 
+    /**
+     * Asynchronous automatic disposal function.
+     */
     async [Symbol.asyncDispose]() {
       await writer.end();
       await unlink(path);

@@ -23,7 +23,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[filesystemUtils.mts:19](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L19)
+[filesystemUtils.mts:19](https://github.com/mangs/bun-utils/blob/3d9678eb5d12a861940786e566ddf15fc2abbc12/src/filesystemUtils.mts#L19)
 
 ***
 
@@ -48,7 +48,7 @@ A localized string representing a file size.
 
 #### Source
 
-[filesystemUtils.mts:61](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L61)
+[filesystemUtils.mts:61](https://github.com/mangs/bun-utils/blob/3d9678eb5d12a861940786e566ddf15fc2abbc12/src/filesystemUtils.mts#L61)
 
 ***
 
@@ -74,7 +74,7 @@ A list of paths.
 
 #### Source
 
-[filesystemUtils.mts:37](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L37)
+[filesystemUtils.mts:37](https://github.com/mangs/bun-utils/blob/3d9678eb5d12a861940786e566ddf15fc2abbc12/src/filesystemUtils.mts#L37)
 
 ***
 
@@ -98,7 +98,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[filesystemUtils.mts:82](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L82)
+[filesystemUtils.mts:82](https://github.com/mangs/bun-utils/blob/3d9678eb5d12a861940786e566ddf15fc2abbc12/src/filesystemUtils.mts#L82)
 
 ***
 
@@ -123,13 +123,13 @@ Object with an `append` and async `Symbol.asyncDispose` method.
 
 | Member | Type | Description |
 | :------ | :------ | :------ |
-| `[asyncDispose]` | `Promise`\<`void`\> | - |
+| `[asyncDispose]` | `Promise`\<`void`\> | Asynchronous automatic disposal function. |
 | `append` | `Promise`\<`void`\> | Append string contents to the target temporary file. |
 
 #### Example
 
 ```ts
-await using file = usingTemporaryFile();
+await using file = usingNewTemporaryFile();
 await file.append('test data 42\n');
 // sometime later...
 await file.append('holy data, batman\n');
@@ -139,4 +139,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[filesystemUtils.mts:107](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L107)
+[filesystemUtils.mts:107](https://github.com/mangs/bun-utils/blob/3d9678eb5d12a861940786e566ddf15fc2abbc12/src/filesystemUtils.mts#L107)
