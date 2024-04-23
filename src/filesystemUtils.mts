@@ -3,7 +3,8 @@
  */
 
 // External Imports
-import { access, constants, readdir } from 'node:fs/promises';
+import { access, constants, readdir, unlink } from 'node:fs/promises';
+import { file } from 'bun';
 import { resolve } from 'node:path';
 
 // Local Variables
@@ -88,5 +89,49 @@ async function isDirectoryAccessible(path: string) {
   }
 }
 
+/**
+ * Create and append to a new temporary file that is automatically deleted when its `using` variable
+ * falls out of scope. Customize its target path with the optional `path` parameter.
+ * @param path Target path to use for temporary file creation.
+ * @returns    Object with an `append` and async `Symbol.asyncDispose` method.
+ * @example
+ * ```ts
+ * await using file = usingTemporaryFile();
+ * await file.append('test data 42\n');
+ * // sometime later...
+ * await file.append('holy data, batman\n');
+ *
+ * // file auto-deletes at the end of its execution scope
+ * ```
+ */
+function usingNewTemporaryFile(path = `/tmp/tempFile${Date.now()}`) {
+  const writer = file(path).writer();
+
+  return {
+    /**
+     * Append string contents to the target temporary file.
+     * @param appendContents Contents to append to the file.
+     * @param shouldFlush    Whether or not to flush to disk every time this append operation occurs.
+     */
+    async append(appendContents: string, shouldFlush = true) {
+      writer.write(appendContents);
+      if (shouldFlush) {
+        await writer.flush();
+      }
+    },
+
+    async [Symbol.asyncDispose]() {
+      await writer.end();
+      await unlink(path);
+    },
+  };
+}
+
 // Module Exports
-export { findMissingPaths, getHumanReadableFilesize, getPathsRecursive, isDirectoryAccessible };
+export {
+  findMissingPaths,
+  getHumanReadableFilesize,
+  getPathsRecursive,
+  isDirectoryAccessible,
+  usingNewTemporaryFile,
+};

@@ -23,7 +23,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[filesystemUtils.mts:18](https://github.com/mangs/bun-utils/blob/dc4b4b7331f52f6304d063e133812dd53bc84fc9/src/filesystemUtils.mts#L18)
+[filesystemUtils.mts:19](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L19)
 
 ***
 
@@ -48,7 +48,7 @@ A localized string representing a file size.
 
 #### Source
 
-[filesystemUtils.mts:60](https://github.com/mangs/bun-utils/blob/dc4b4b7331f52f6304d063e133812dd53bc84fc9/src/filesystemUtils.mts#L60)
+[filesystemUtils.mts:61](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L61)
 
 ***
 
@@ -74,7 +74,7 @@ A list of paths.
 
 #### Source
 
-[filesystemUtils.mts:36](https://github.com/mangs/bun-utils/blob/dc4b4b7331f52f6304d063e133812dd53bc84fc9/src/filesystemUtils.mts#L36)
+[filesystemUtils.mts:37](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L37)
 
 ***
 
@@ -98,4 +98,45 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[filesystemUtils.mts:81](https://github.com/mangs/bun-utils/blob/dc4b4b7331f52f6304d063e133812dd53bc84fc9/src/filesystemUtils.mts#L81)
+[filesystemUtils.mts:82](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L82)
+
+***
+
+### usingNewTemporaryFile()
+
+> **usingNewTemporaryFile**(`path`): `object`
+
+Create and append to a new temporary file that is automatically deleted when its `using` variable
+falls out of scope. Customize its target path with the optional `path` parameter.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `path` | `string` | Target path to use for temporary file creation. |
+
+#### Returns
+
+`object`
+
+Object with an `append` and async `Symbol.asyncDispose` method.
+
+| Member | Type | Description |
+| :------ | :------ | :------ |
+| `[asyncDispose]` | `Promise`\<`void`\> | - |
+| `append` | `Promise`\<`void`\> | Append string contents to the target temporary file. |
+
+#### Example
+
+```ts
+await using file = usingTemporaryFile();
+await file.append('test data 42\n');
+// sometime later...
+await file.append('holy data, batman\n');
+
+// file auto-deletes at the end of its execution scope
+```
+
+#### Source
+
+[filesystemUtils.mts:107](https://github.com/mangs/bun-utils/blob/4d04f739c9c3f20632cfe2b0cf0955f1c8984c67/src/filesystemUtils.mts#L107)
