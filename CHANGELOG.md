@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.14.0
+
+- Add function `usingNewTemporaryFile` to allow seamless creation, appending, and auto-deletion of temporary files via the `using` declaration (in `src/filesystemUtils.mts`)
+
 ## 2.13.2
 
 - Add `fetchWithRetry` debugging insight by showing all retry settings attributable to each logged error

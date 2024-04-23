@@ -14,7 +14,7 @@ environment variable `DEBUG` to a truthy value logs caught and ignored retry err
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `url` | `string` \| `Request` \| `URL` | URL from which to fetch data. |
+| `url` | `string` \| `URL` \| `Request` | URL from which to fetch data. |
 | `options` | `FetchRetryOptions` | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.<br />               • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               • `retryMax`: maximum number of retries before an error is thrown.<br />               • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
 
 #### Returns
@@ -25,7 +25,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/dc4b4b7331f52f6304d063e133812dd53bc84fc9/src/networkUtils.mts#L58)
+[networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/2b0098ec8504a4bc811f8c593fde79835da84bc1/src/networkUtils.mts#L58)
 
 ***
 
@@ -71,4 +71,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:161](https://github.com/mangs/bun-utils/blob/dc4b4b7331f52f6304d063e133812dd53bc84fc9/src/networkUtils.mts#L161)
+[networkUtils.mts:162](https://github.com/mangs/bun-utils/blob/2b0098ec8504a4bc811f8c593fde79835da84bc1/src/networkUtils.mts#L162)
