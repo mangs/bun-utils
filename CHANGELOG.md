@@ -2,7 +2,7 @@
 
 ## 2.14.0
 
-- Add function `usingNewTemporaryFile` to allow seamless creation, appending, and auto-deletion of temporary files using the `using` declaration (in `src/filesystemUtils.mts`)
+- Add function `usingNewTemporaryFile` to allow seamless creation, appending, and auto-deletion of temporary files via the `using` declaration (in `src/filesystemUtils.mts`)
 
 ## 2.13.2
 
