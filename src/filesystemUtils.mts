@@ -99,8 +99,12 @@ async function isDirectoryAccessible(path: string) {
 }
 
 /**
- * Create and append to a new temporary file that is automatically deleted when its `using` variable
- * falls out of scope. Customize its behavior with an optional options object as follows:
+ * Create a new temporary file with an
+ * [`await using` variable declaration](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html#using-declarations-and-explicit-resource-management)
+ * then append to it with a
+ * [`FileSink`](https://bun.sh/docs/api/file-io#incremental-writing-with-filesink) instance.
+ * Automatically delete the file when its variable falls out of scope. Customize file behavior with
+ * an optional options object as follows:
  * ```ts
  * {
  *   path?: string;                                    // Target path to use for temporary file creation.
@@ -108,7 +112,7 @@ async function isDirectoryAccessible(path: string) {
  * }
  * ```
  * .
- * @param options Options object allowing customization of temporary file behavior.
+ * @param options Options object to customize temporary file behavior.
  * @returns       Temporary file instance object.
  * @example
  * ```ts
