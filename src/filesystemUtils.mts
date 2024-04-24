@@ -112,6 +112,8 @@ async function isDirectoryAccessible(path: string) {
  * @returns       Temporary file instance object.
  * @example
  * ```ts
+ * import { usingNewTemporaryFile } from '@mangs/bun-utils/filesystem';
+ *
  * await using file = usingNewTemporaryFile();
  * await file.append('test data 42\n');
  * // sometime later...
