@@ -25,8 +25,10 @@ interface FormatOptions {
  * @returns           A `Server-Timing` header tuple: [`'Server-Timing'`, `string`].
  * @example
  * ```ts
+ * import { buildServerTimingHeader } from '@mangs/bun-utils/time';
+ *
  * const startTime = performance.now();
- * // ...sometime later...
+ * // sometime later...
  * request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything'));
  * ```
  */
@@ -98,6 +100,8 @@ function getElapsedTimeFormatted(startTime: number, formatOptions?: FormatOption
  * @returns                 The return value of the passed-in function.
  * @example
  * ```ts
+ * import { measureServerTiming } from '@mangs/bun-utils/time';
+ *
  * const cmsContent = await measureServerTiming('cmsLoad', request, () =>
  *   getCmsContent('article1'),
  * );
