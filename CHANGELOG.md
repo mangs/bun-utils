@@ -2,7 +2,7 @@
 
 ## 2.14.1
 
-- Add `import`s to examples in the documentation
+- Add `import`s to examples in the documentation without them
 
 ## 2.14.0
 
