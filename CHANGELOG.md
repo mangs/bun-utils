@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.14.1
+
+- Add `import`s to examples in the documentation
+
 ## 2.14.0
 
 - Add function `usingNewTemporaryFile` to allow seamless creation, appending, and auto-deletion of temporary files via the `using` declaration (in `src/filesystemUtils.mts`)

@@ -25,14 +25,16 @@ A `Server-Timing` header tuple: [`'Server-Timing'`, `string`].
 #### Example
 
 ```ts
+import { buildServerTimingHeader } from '@mangs/bun-utils/time';
+
 const startTime = performance.now();
-// ...sometime later...
+// sometime later...
 request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything'));
 ```
 
 #### Source
 
-[timeUtils.mts:33](https://github.com/mangs/bun-utils/blob/2b0098ec8504a4bc811f8c593fde79835da84bc1/src/timeUtils.mts#L33)
+[timeUtils.mts:35](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L35)
 
 ***
 
@@ -66,7 +68,7 @@ Localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:55](https://github.com/mangs/bun-utils/blob/2b0098ec8504a4bc811f8c593fde79835da84bc1/src/timeUtils.mts#L55)
+[timeUtils.mts:57](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L57)
 
 ***
 
@@ -102,6 +104,8 @@ The return value of the passed-in function.
 #### Example
 
 ```ts
+import { measureServerTiming } from '@mangs/bun-utils/time';
+
 const cmsContent = await measureServerTiming('cmsLoad', request, () =>
   getCmsContent('article1'),
 );
@@ -109,7 +113,7 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[timeUtils.mts:106](https://github.com/mangs/bun-utils/blob/2b0098ec8504a4bc811f8c593fde79835da84bc1/src/timeUtils.mts#L106)
+[timeUtils.mts:110](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L110)
 
 ***
 
@@ -133,4 +137,4 @@ Asynchronous sleep function using promises.
 
 #### Source
 
-[timeUtils.mts:123](https://github.com/mangs/bun-utils/blob/2b0098ec8504a4bc811f8c593fde79835da84bc1/src/timeUtils.mts#L123)
+[timeUtils.mts:127](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L127)
