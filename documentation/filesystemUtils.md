@@ -23,7 +23,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L28)
+[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/a71cc006366cb06c78d99fe429d29a73b06ed2e1/src/filesystemUtils.mts#L28)
 
 ***
 
@@ -48,7 +48,7 @@ A localized string representing a file size.
 
 #### Source
 
-[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L70)
+[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/a71cc006366cb06c78d99fe429d29a73b06ed2e1/src/filesystemUtils.mts#L70)
 
 ***
 
@@ -74,7 +74,7 @@ A list of paths.
 
 #### Source
 
-[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L46)
+[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/a71cc006366cb06c78d99fe429d29a73b06ed2e1/src/filesystemUtils.mts#L46)
 
 ***
 
@@ -98,7 +98,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L91)
+[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/a71cc006366cb06c78d99fe429d29a73b06ed2e1/src/filesystemUtils.mts#L91)
 
 ***
 
@@ -106,8 +106,12 @@ Boolean indicating whether or not the path is accessible.
 
 > **usingNewTemporaryFile**(`options`?): `object`
 
-Create and append to a new temporary file that is automatically deleted when its `using` variable
-falls out of scope. Customize its behavior with an optional options object as follows:
+Create a new temporary file with an
+[`await using` variable declaration](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html#using-declarations-and-explicit-resource-management)
+then append to it with a
+[`FileSink`](https://bun.sh/docs/api/file-io#incremental-writing-with-filesink) instance.
+Automatically delete the file when its variable falls out of scope. Customize file behavior with
+an optional options object as follows:
 ```ts
 {
   path?: string;                                    // Target path to use for temporary file creation.
@@ -120,7 +124,7 @@ falls out of scope. Customize its behavior with an optional options object as fo
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `options`? | `TemporaryFileOptions` | Options object allowing customization of temporary file behavior. |
+| `options`? | `TemporaryFileOptions` | Options object to customize temporary file behavior. |
 
 #### Returns
 
@@ -148,4 +152,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[filesystemUtils.mts:125](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L125)
+[filesystemUtils.mts:129](https://github.com/mangs/bun-utils/blob/a71cc006366cb06c78d99fe429d29a73b06ed2e1/src/filesystemUtils.mts#L129)

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.14.3
+
+- Improve clarity of documentation for function `usingNewTemporaryFile`
+
 ## 2.14.2
 
 - Change the function interface for `usingNewTemporaryFile` to use an options object, disable disk flush by default, and allow writer customization
