@@ -34,7 +34,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[timeUtils.mts:35](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L35)
+[timeUtils.mts:35](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/timeUtils.mts#L35)
 
 ***
 
@@ -68,7 +68,7 @@ Localized string showing elapsed time with units.
 
 #### Source
 
-[timeUtils.mts:57](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L57)
+[timeUtils.mts:57](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/timeUtils.mts#L57)
 
 ***
 
@@ -113,7 +113,7 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[timeUtils.mts:110](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L110)
+[timeUtils.mts:110](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/timeUtils.mts#L110)
 
 ***
 
@@ -137,4 +137,4 @@ Asynchronous sleep function using promises.
 
 #### Source
 
-[timeUtils.mts:127](https://github.com/mangs/bun-utils/blob/09c0c3837ba09e9d5fe9d57ecc3b151161382f4e/src/timeUtils.mts#L127)
+[timeUtils.mts:127](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/timeUtils.mts#L127)
