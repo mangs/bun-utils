@@ -23,7 +23,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/94d0b4a8bc782e4d18e05b34301d2a45645fa843/src/filesystemUtils.mts#L28)
+[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L28)
 
 ***
 
@@ -48,7 +48,7 @@ A localized string representing a file size.
 
 #### Source
 
-[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/94d0b4a8bc782e4d18e05b34301d2a45645fa843/src/filesystemUtils.mts#L70)
+[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L70)
 
 ***
 
@@ -74,7 +74,7 @@ A list of paths.
 
 #### Source
 
-[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/94d0b4a8bc782e4d18e05b34301d2a45645fa843/src/filesystemUtils.mts#L46)
+[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L46)
 
 ***
 
@@ -98,7 +98,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/94d0b4a8bc782e4d18e05b34301d2a45645fa843/src/filesystemUtils.mts#L91)
+[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L91)
 
 ***
 
@@ -136,6 +136,8 @@ Temporary file instance object.
 #### Example
 
 ```ts
+import { usingNewTemporaryFile } from '@mangs/bun-utils/filesystem';
+
 await using file = usingNewTemporaryFile();
 await file.append('test data 42\n');
 // sometime later...
@@ -146,4 +148,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[filesystemUtils.mts:123](https://github.com/mangs/bun-utils/blob/94d0b4a8bc782e4d18e05b34301d2a45645fa843/src/filesystemUtils.mts#L123)
+[filesystemUtils.mts:125](https://github.com/mangs/bun-utils/blob/d95962d9c1ab09c62340323e524582df965ce537/src/filesystemUtils.mts#L125)
