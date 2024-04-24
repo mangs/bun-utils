@@ -23,7 +23,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[filesystemUtils.mts:19](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/filesystemUtils.mts#L19)
+[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/6dcdc918de1301d65aad09613f03f886b2c0fe16/src/filesystemUtils.mts#L28)
 
 ***
 
@@ -48,7 +48,7 @@ A localized string representing a file size.
 
 #### Source
 
-[filesystemUtils.mts:61](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/filesystemUtils.mts#L61)
+[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/6dcdc918de1301d65aad09613f03f886b2c0fe16/src/filesystemUtils.mts#L70)
 
 ***
 
@@ -74,7 +74,7 @@ A list of paths.
 
 #### Source
 
-[filesystemUtils.mts:37](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/filesystemUtils.mts#L37)
+[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/6dcdc918de1301d65aad09613f03f886b2c0fe16/src/filesystemUtils.mts#L46)
 
 ***
 
@@ -98,28 +98,35 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[filesystemUtils.mts:82](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/filesystemUtils.mts#L82)
+[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/6dcdc918de1301d65aad09613f03f886b2c0fe16/src/filesystemUtils.mts#L91)
 
 ***
 
 ### usingNewTemporaryFile()
 
-> **usingNewTemporaryFile**(`path`): `object`
+> **usingNewTemporaryFile**(`options`?): `object`
 
 Create and append to a new temporary file that is automatically deleted when its `using` variable
-falls out of scope. Customize its target path with the optional `path` parameter.
+falls out of scope. Customize its behavior with an optional options object as follows:
+```ts
+{
+  path?: string;                                    // Target path to use for temporary file creation.
+  writerOptions?: Parameters<BunFile['writer']>[0]; // Options object to customize `Bun.file().writer()` behavior
+}
+```
+.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `path` | `string` | Target path to use for temporary file creation. |
+| `options`? | `TemporaryFileOptions` | Options object allowing customization of temporary file behavior. |
 
 #### Returns
 
 `object`
 
-Object with an `append` and async `Symbol.asyncDispose` method.
+Temporary file instance object.
 
 | Member | Type | Description |
 | :------ | :------ | :------ |
@@ -139,4 +146,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[filesystemUtils.mts:107](https://github.com/mangs/bun-utils/blob/ca24bfb4ac5c0a44749d04f7b4c9850a7ca6da77/src/filesystemUtils.mts#L107)
+[filesystemUtils.mts:123](https://github.com/mangs/bun-utils/blob/6dcdc918de1301d65aad09613f03f886b2c0fe16/src/filesystemUtils.mts#L123)
