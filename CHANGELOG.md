@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.14.2
+
+- Change the function interface for `usingNewTemporaryFile` to use an options object, disable disk flush by default, and allow writer customization
+
 ## 2.14.1
 
 - Add `import`s to examples in the documentation without them

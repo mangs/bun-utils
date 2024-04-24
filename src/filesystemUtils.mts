@@ -7,6 +7,15 @@ import { access, constants, readdir, unlink } from 'node:fs/promises';
 import { file } from 'bun';
 import { resolve } from 'node:path';
 
+// Type Imports
+import type { BunFile } from 'bun';
+
+// Local Types
+interface TemporaryFileOptions {
+  path?: string;
+  writerOptions?: Parameters<BunFile['writer']>[0];
+}
+
 // Local Variables
 const fileSizeUnits = ['B', 'KiB', 'MiB', 'GiB'] as const;
 
@@ -91,11 +100,20 @@ async function isDirectoryAccessible(path: string) {
 
 /**
  * Create and append to a new temporary file that is automatically deleted when its `using` variable
- * falls out of scope. Customize its target path with the optional `path` parameter.
- * @param path Target path to use for temporary file creation.
- * @returns    Object with an `append` and async `Symbol.asyncDispose` method.
+ * falls out of scope. Customize its behavior with an optional options object as follows:
+ * ```ts
+ * {
+ *   path?: string;                                    // Target path to use for temporary file creation.
+ *   writerOptions?: Parameters<BunFile['writer']>[0]; // Options object to customize `Bun.file().writer()` behavior
+ * }
+ * ```
+ * .
+ * @param options Options object allowing customization of temporary file behavior.
+ * @returns       Temporary file instance object.
  * @example
  * ```ts
+ * import { usingNewTemporaryFile } from '@mangs/bun-utils/filesystem';
+ *
  * await using file = usingNewTemporaryFile();
  * await file.append('test data 42\n');
  * // sometime later...
@@ -104,18 +122,19 @@ async function isDirectoryAccessible(path: string) {
  * // file auto-deletes at the end of its execution scope
  * ```
  */
-function usingNewTemporaryFile(path = `/tmp/tempFile${Date.now()}`) {
-  const writer = file(path).writer();
+function usingNewTemporaryFile(options?: TemporaryFileOptions) {
+  const { path = `/tmp/tempFile${Date.now()}`, writerOptions } = options ?? {};
+  const writer = file(path).writer(writerOptions);
 
   return {
     /**
      * Append string contents to the target temporary file.
-     * @param appendContents Contents to append to the file.
-     * @param shouldFlush    Whether or not to flush to disk every time this append operation occurs.
+     * @param appendContents   Contents to append to the file.
+     * @param shouldForceFlush Whether or not to force a flush to disk when appending.
      */
-    async append(appendContents: string, shouldFlush = true) {
+    async append(appendContents: string, shouldForceFlush = false) {
       writer.write(appendContents);
-      if (shouldFlush) {
+      if (shouldForceFlush) {
         await writer.flush();
       }
     },
