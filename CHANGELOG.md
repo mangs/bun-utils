@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.14.4
+
+- Update target Bun version from `1.1.4` to `1.1.5`
+- Update dependency versions to latest
+
 ## 2.14.3
 
 - Improve clarity of documentation for function `usingNewTemporaryFile`
