@@ -1,5 +1,57 @@
 # networkUtils
 
+## Interfaces
+
+### HttpsOptions
+
+#### Properties
+
+| Property | Type |
+| :------ | :------ |
+| `certificateAuthorityPath?` | `string` \| `string`[] |
+| `certificatePath` | `string` \| `string`[] |
+| `diffieHellmanParametersPath?` | `string` |
+| `lowMemoryMode?` | `boolean` |
+| `passphrase?` | `string` |
+| `privateKeyPath` | `string` \| `string`[] |
+| `serverName?` | `string` |
+
+***
+
+### ServerConfiguration
+
+#### Extends
+
+- `Pick`\<`ServeOptions`, `"error"` \| `"hostname"` \| `"port"`\>
+
+#### Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `error?` | (`this`: `Server`, `request`: `ErrorLike`) => `undefined` \| `Response` \| `Promise`\<`Response`\> \| `Promise`\<`undefined`\> | - | `Pick.error` |
+| `hostname?` | `string` | What hostname should the server listen on?**Default**`js<br />"0.0.0.0" // listen on all interfaces<br />`**Example**`js<br />"127.0.0.1" // Only listen locally<br />`**Example**`js<br />"remix.run" // Only listen on remix.run<br />``<br /><br />note: hostname should not include a {@link port} | `Pick.hostname` |
+| `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | - | - |
+| `port?` | `string` \| `number` | What port should the server listen on?<br /><br />**Default**<br />`process.env.PORT \|\| "3000"` | `Pick.port` |
+
+## Type Aliases
+
+### FetchRetryOptions
+
+> **FetchRetryOptions**: `FetchRequestInit` & `object`
+
+#### Type declaration
+
+| Member | Type |
+| :------ | :------ |
+| `changeRetryDelay` | (`delay`) => `number` |
+| `retryDelay` | `number` |
+| `retryMax` | `number` |
+| `timeout` | `number` |
+
+#### Source
+
+[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/networkUtils.mts#L18)
+
 ## Functions
 
 ### fetchWithRetry()
@@ -15,7 +67,7 @@ environment variable `DEBUG` to a truthy value logs caught and ignored retry err
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `url` | `string` \| `URL` \| `Request` | URL from which to fetch data. |
-| `options` | `FetchRetryOptions` | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.<br />               • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               • `retryMax`: maximum number of retries before an error is thrown.<br />               • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
+| `options` | [`FetchRetryOptions`](networkUtils.md#fetchretryoptions) | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.<br />               • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               • `retryMax`: maximum number of retries before an error is thrown.<br />               • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
 
 #### Returns
 
@@ -25,7 +77,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/networkUtils.mts#L58)
+[src/networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/networkUtils.mts#L58)
 
 ***
 
@@ -61,7 +113,7 @@ Optionally specify a configuration object to customize functionality as follows:
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `entrypointFunction` | (`request`) => `Response` \| `Promise`\<`Response`\> | The function used to start running the server. |
-| `serverConfiguration` | `ServerConfiguration` | An optional configuration object. |
+| `serverConfiguration` | [`ServerConfiguration`](networkUtils.md#serverconfiguration) | An optional configuration object. |
 
 #### Returns
 
@@ -71,4 +123,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:162](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/networkUtils.mts#L162)
+[src/networkUtils.mts:162](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/networkUtils.mts#L162)

@@ -1,5 +1,17 @@
 # filesystemUtils
 
+## Interfaces
+
+### TemporaryFileOptions
+
+#### Properties
+
+| Property | Type |
+| :------ | :------ |
+| `path?` | `string` |
+| `writerOptions?` | `object` |
+| `writerOptions.highWaterMark?` | `number` |
+
 ## Functions
 
 ### findMissingPaths()
@@ -23,7 +35,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L28)
+[src/filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/filesystemUtils.mts#L28)
 
 ***
 
@@ -48,7 +60,7 @@ A localized string representing a file size.
 
 #### Source
 
-[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L70)
+[src/filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/filesystemUtils.mts#L70)
 
 ***
 
@@ -74,7 +86,7 @@ A list of paths.
 
 #### Source
 
-[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L46)
+[src/filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/filesystemUtils.mts#L46)
 
 ***
 
@@ -98,7 +110,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L91)
+[src/filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/filesystemUtils.mts#L91)
 
 ***
 
@@ -124,7 +136,7 @@ an optional options object as follows:
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `options`? | `TemporaryFileOptions` | Options object to customize temporary file behavior. |
+| `options`? | [`TemporaryFileOptions`](filesystemUtils.md#temporaryfileoptions) | Options object to customize temporary file behavior. |
 
 #### Returns
 
@@ -156,4 +168,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[filesystemUtils.mts:130](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L130)
+[src/filesystemUtils.mts:130](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/filesystemUtils.mts#L130)

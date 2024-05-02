@@ -23,6 +23,9 @@ import type { BuildArtifact, BuildConfig, BuildOutput } from 'bun';
 
 // Local Types
 type BuildArtifactMetadata = Record<BuildArtifact['kind'], { count: number; size: number }>;
+interface BuildConfiguration extends BuildConfig {
+  outdir: string;
+}
 
 // Local Functions
 /**
@@ -32,21 +35,17 @@ type BuildArtifactMetadata = Record<BuildArtifact['kind'], { count: number; size
  * @example
  * ```ts
  * import { buildAndShowMetadata } from '@mangs/bun-utils/build';
- * import type { BuildConfig } from 'bun';
+ * import type { BuildConfiguration } from '@mangs/bun-utils/build';
  *
  * const buildConfiguration = {
  *   entrypoints: ['./src/index.mts'],
  *   minify: true,
  *   outdir: './dist',
- * } satisfies BuildConfig;
+ * } satisfies BuildConfiguration;
  * process.exitCode = await buildAndShowMetadata(buildConfiguration);
  * ```
  */
-async function buildAndShowMetadata(buildConfiguration: BuildConfig) {
-  if (!buildConfiguration.outdir) {
-    throw new TypeError('Missing build configuration option "outdir"');
-  }
-
+async function buildAndShowMetadata(buildConfiguration: BuildConfiguration) {
   const startTime = nanoseconds();
   printInfo('Building application artifacts...\n');
   const buildOutput = await build(buildConfiguration);
@@ -150,3 +149,5 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
 
 // Module Exports
 export { buildAndShowMetadata, printBuildMetadata };
+export type { BuildConfiguration };
+export type { BuildOutput } from 'bun';

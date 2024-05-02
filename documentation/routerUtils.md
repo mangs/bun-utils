@@ -46,13 +46,13 @@ Constructor that creates an empty array for route definitions.
 
 ###### Source
 
-[routerUtils.mts:61](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L61)
+[src/routerUtils.mts:61](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L61)
 
 #### Properties
 
 | Property | Modifier | Type |
 | :------ | :------ | :------ |
-| `#routes` | `private` | `Routes` |
+| `#routes` | `private` | [`Routes`](routerUtils.md#routes) |
 | `#startTime` | `private` | `number` |
 | `#usesServerTiming` | `private` | `boolean` |
 
@@ -69,7 +69,7 @@ Register a route handler for the specified HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 | `method` | `"ALL"` \| `"DELETE"` \| `"GET"` \| `"HEAD"` \| `"OPTIONS"` \| `"PATCH"` \| `"POST"` \| `"PUT"` | A valid HTTP method. |
 
 ###### Returns
@@ -80,7 +80,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[routerUtils.mts:138](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L138)
+[src/routerUtils.mts:138](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L138)
 
 ##### all()
 
@@ -93,7 +93,7 @@ Register a route handler that matches all HTTP request methods.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -109,7 +109,7 @@ router.all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 40
 
 ###### Source
 
-[routerUtils.mts:156](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L156)
+[src/routerUtils.mts:156](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L156)
 
 ##### delete()
 
@@ -122,7 +122,7 @@ Register a route handler that matches the `DELETE` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -138,7 +138,7 @@ router.delete('/item', { deleteItemRoute: () => import('./routes/deleteItemRoute
 
 ###### Source
 
-[routerUtils.mts:170](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L170)
+[src/routerUtils.mts:170](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L170)
 
 ##### get()
 
@@ -151,7 +151,7 @@ Register a route handler that matches the `GET` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -167,7 +167,7 @@ router.get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
 
 ###### Source
 
-[routerUtils.mts:184](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L184)
+[src/routerUtils.mts:184](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L184)
 
 ##### handleRequest()
 
@@ -189,7 +189,7 @@ A `Response` object to build the response sent to the requester.
 
 ###### Source
 
-[routerUtils.mts:92](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L92)
+[src/routerUtils.mts:92](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L92)
 
 ##### head()
 
@@ -202,7 +202,7 @@ Register a route handler that matches the `HEAD` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -218,7 +218,7 @@ router.head('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
 
 ###### Source
 
-[routerUtils.mts:198](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L198)
+[src/routerUtils.mts:198](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L198)
 
 ##### options()
 
@@ -231,7 +231,7 @@ Register a route handler that matches the `OPTIONS` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -247,7 +247,7 @@ router.options('/item', { deleteItemRoute: () => import('./routes/deleteItemRout
 
 ###### Source
 
-[routerUtils.mts:212](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L212)
+[src/routerUtils.mts:212](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L212)
 
 ##### patch()
 
@@ -260,7 +260,7 @@ Register a route handler that matches the `PATCH` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -276,7 +276,7 @@ router.patch('/item', { patchItemRoute: () => import('./routes/patchItemRoute.mt
 
 ###### Source
 
-[routerUtils.mts:226](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L226)
+[src/routerUtils.mts:226](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L226)
 
 ##### post()
 
@@ -289,7 +289,7 @@ Register a route handler that matches the `POST` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -305,7 +305,7 @@ router.post('/item', { postItemRoute: () => import('./routes/postItemRoute.mts')
 
 ###### Source
 
-[routerUtils.mts:240](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L240)
+[src/routerUtils.mts:240](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L240)
 
 ##### put()
 
@@ -318,7 +318,7 @@ Register a route handler that matches the `PUT` HTTP request method.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `path` | `string` | A path-like string that will be used to match against the incoming request's path. |
-| `routeHandler` | `RouteHandler` | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
+| `routeHandler` | [`RouteHandler`](routerUtils.md#routehandler) | The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export. |
 
 ###### Returns
 
@@ -334,4 +334,84 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 ###### Source
 
-[routerUtils.mts:254](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/routerUtils.mts#L254)
+[src/routerUtils.mts:254](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L254)
+
+## Type Aliases
+
+### HttpRequestMethod
+
+> **HttpRequestMethod**: *typeof* [`httpRequestMethods`](routerUtils.md#httprequestmethods)\[`number`\]
+
+#### Source
+
+[src/routerUtils.mts:12](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L12)
+
+***
+
+### RouteEntry
+
+> **RouteEntry**: `Parameters`\<`InstanceType`\<*typeof* [`Router`](routerUtils.md#router)\>\[`"get"`\]\>
+
+#### Source
+
+[src/routerUtils.mts:16](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L16)
+
+***
+
+### RouteHandler
+
+> **RouteHandler**: [`RouteHandlerFunction`](routerUtils.md#routehandlerfunction) \| [`RouteHandlerLazyLoaded`](routerUtils.md#routehandlerlazyloaded)
+
+#### Source
+
+[src/routerUtils.mts:15](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L15)
+
+***
+
+### RouteHandlerFunction()
+
+> **RouteHandlerFunction**: (`request`) => `Response` \| `Promise`\<`Response`\>
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `request` | `Request` |
+
+#### Returns
+
+`Response` \| `Promise`\<`Response`\>
+
+#### Source
+
+[src/routerUtils.mts:13](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L13)
+
+***
+
+### RouteHandlerLazyLoaded
+
+> **RouteHandlerLazyLoaded**: `Record`\<`string`, () => `Promise`\<`Record`\<`string`, [`RouteHandlerFunction`](routerUtils.md#routehandlerfunction)\>\>\>
+
+#### Source
+
+[src/routerUtils.mts:14](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L14)
+
+***
+
+### Routes
+
+> **Routes**: [[`HttpRequestMethod`](routerUtils.md#httprequestmethod), [`RouteEntry`](routerUtils.md#routeentry)][]
+
+#### Source
+
+[src/routerUtils.mts:17](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L17)
+
+## Variables
+
+### httpRequestMethods
+
+> `const` **httpRequestMethods**: readonly [`"ALL"`, `"DELETE"`, `"GET"`, `"HEAD"`, `"OPTIONS"`, `"PATCH"`, `"POST"`, `"PUT"`]
+
+#### Source
+
+[src/routerUtils.mts:20](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/routerUtils.mts#L20)

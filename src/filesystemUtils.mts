@@ -162,3 +162,4 @@ export {
   isDirectoryAccessible,
   usingNewTemporaryFile,
 };
+export type { TemporaryFileOptions };

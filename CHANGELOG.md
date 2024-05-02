@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.15.1
+
+- Enforce `outdir` with types instead of throwing an exception in `buildAndShowMetadata()`
+- Add type exports to all modules wherein type use during documentation build is flagged as a warning
+
 ## 2.15.0
 
 - Add function `buildAndShowMetadata()` for a simple, straightforward UX for code building (in `src/buildUtils.mts`)

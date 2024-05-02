@@ -1,5 +1,45 @@
 # buildUtils
 
+## Interfaces
+
+### BuildConfiguration
+
+#### Extends
+
+- `BuildConfig`
+
+#### Properties
+
+| Property | Type | Description | Overrides | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `conditions?` | `string` \| `string`[] | package.json `exports` conditions used when resolving imports<br /><br />Equivalent to `--conditions` in `bun build` or `bun run`.<br /><br />https://nodejs.org/api/packages.html#exports | `BuildConfig.conditions` | `BuildConfig.conditions` |
+| `define?` | `Record`\<`string`, `string`\> | - | `BuildConfig.define` | `BuildConfig.define` |
+| `entrypoints` | `string`[] | - | `BuildConfig.entrypoints` | `BuildConfig.entrypoints` |
+| `external?` | `string`[] | - | `BuildConfig.external` | `BuildConfig.external` |
+| `format?` | `"esm"` | - | `BuildConfig.format` | `BuildConfig.format` |
+| `loader?` | `object` | - | `BuildConfig.loader` | `BuildConfig.loader` |
+| `minify?` | `boolean` \| `object` | - | `BuildConfig.minify` | `BuildConfig.minify` |
+| `naming?` | `string` \| `object` | - | `BuildConfig.naming` | `BuildConfig.naming` |
+| `outdir` | `string` | - | `BuildConfig.outdir` | `BuildConfig.outdir` |
+| `plugins?` | `BunPlugin`[] | - | `BuildConfig.plugins` | `BuildConfig.plugins` |
+| `publicPath?` | `string` | - | `BuildConfig.publicPath` | `BuildConfig.publicPath` |
+| `root?` | `string` | - | `BuildConfig.root` | `BuildConfig.root` |
+| `sourcemap?` | `"none"` \| `"inline"` \| `"external"` | - | `BuildConfig.sourcemap` | `BuildConfig.sourcemap` |
+| `splitting?` | `boolean` | - | `BuildConfig.splitting` | `BuildConfig.splitting` |
+| `target?` | `Target` | - | `BuildConfig.target` | `BuildConfig.target` |
+
+***
+
+### BuildOutput
+
+#### Properties
+
+| Property | Type |
+| :------ | :------ |
+| `logs` | (`BuildMessage` \| `ResolveMessage`)[] |
+| `outputs` | `BuildArtifact`[] |
+| `success` | `boolean` |
+
 ## Functions
 
 ### buildAndShowMetadata()
@@ -12,7 +52,7 @@ Build code using `Bun.build` and a provided build configuration object.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `buildConfiguration` | `BuildConfig` | Configuration object used to build the code. |
+| `buildConfiguration` | [`BuildConfiguration`](buildUtils.md#buildconfiguration) | Configuration object used to build the code. |
 
 #### Returns
 
@@ -24,19 +64,19 @@ Number corresponding to the desired process exit code.
 
 ```ts
 import { buildAndShowMetadata } from '@mangs/bun-utils/build';
-import type { BuildConfig } from 'bun';
+import type { BuildConfiguration } from '@mangs/bun-utils/build';
 
 const buildConfiguration = {
   entrypoints: ['./src/index.mts'],
   minify: true,
   outdir: './dist',
-} satisfies BuildConfig;
+} satisfies BuildConfiguration;
 process.exitCode = await buildAndShowMetadata(buildConfiguration);
 ```
 
 #### Source
 
-[buildUtils.mts:45](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/buildUtils.mts#L45)
+[src/buildUtils.mts:48](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/buildUtils.mts#L48)
 
 ***
 
@@ -50,7 +90,7 @@ Format and print to the command line the provided build metadata.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `buildOutput` | `BuildOutput` | The return value of `Bun.build()`. |
+| `buildOutput` | [`BuildOutput`](buildUtils.md#buildoutput) | The return value of `Bun.build()`. |
 | `buildOutputDirectory` | `string` | The output directory when building. |
 
 #### Returns
@@ -59,4 +99,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[buildUtils.mts:74](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/buildUtils.mts#L74)
+[src/buildUtils.mts:73](https://github.com/mangs/bun-utils/blob/75e9bb0d1c65e7510973f56430ede73fb1d84255/src/buildUtils.mts#L73)
