@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.15.0
+
+- Add function `buildAndShowMetadata()` for a simple, straightforward UX for code building (in `src/buildUtils.mts`)
+- Update dependency versions to latest
+
 ## 2.14.4
 
 - Update target Bun version from `1.1.4` to `1.1.5`

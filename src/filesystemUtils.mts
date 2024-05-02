@@ -114,6 +114,7 @@ async function isDirectoryAccessible(path: string) {
  * .
  * @param options Options object to customize temporary file behavior.
  * @returns       Temporary file instance object.
+ * @see           https://github.com/tc39/proposal-explicit-resource-management
  * @example
  * ```ts
  * import { usingNewTemporaryFile } from '@mangs/bun-utils/filesystem';
