@@ -11,9 +11,10 @@ import { resolve } from 'node:path';
 import type { BunFile } from 'bun';
 
 // Local Types
+type WriterOptions = Parameters<BunFile['writer']>[0];
 interface TemporaryFileOptions {
   path?: string;
-  writerOptions?: Parameters<BunFile['writer']>[0];
+  writerOptions?: WriterOptions;
 }
 
 // Local Variables
