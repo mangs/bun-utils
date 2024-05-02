@@ -257,4 +257,12 @@ class Router {
 }
 
 // Module Exports
-export { Router };
+export { httpRequestMethods, Router };
+export type {
+  HttpRequestMethod,
+  RouteEntry,
+  RouteHandler,
+  RouteHandlerFunction,
+  RouteHandlerLazyLoaded,
+  Routes,
+};

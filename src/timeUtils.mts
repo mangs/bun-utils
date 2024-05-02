@@ -132,3 +132,4 @@ function sleep(duration: number) {
 
 // Module Exports
 export { buildServerTimingHeader, getElapsedTimeFormatted, measureServerTiming, sleep };
+export type { FormatOptions };
