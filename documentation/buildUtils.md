@@ -12,7 +12,7 @@ Build code using `Bun.build` and a provided build configuration object.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `buildConfiguration` | `BuildConfig` | Configuration object used to build the code. |
+| `buildConfiguration` | `BuildConfiguration` | Configuration object used to build the code. |
 
 #### Returns
 
@@ -36,7 +36,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Source
 
-[buildUtils.mts:45](https://github.com/mangs/bun-utils/blob/52990b884543c59389dfe31a2d841a6020dacbfe/src/buildUtils.mts#L45)
+[buildUtils.mts:48](https://github.com/mangs/bun-utils/blob/c8a91098ee2ea0950299a6900712473dd396801a/src/buildUtils.mts#L48)
 
 ***
 
@@ -59,4 +59,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[buildUtils.mts:74](https://github.com/mangs/bun-utils/blob/52990b884543c59389dfe31a2d841a6020dacbfe/src/buildUtils.mts#L74)
+[buildUtils.mts:73](https://github.com/mangs/bun-utils/blob/c8a91098ee2ea0950299a6900712473dd396801a/src/buildUtils.mts#L73)
