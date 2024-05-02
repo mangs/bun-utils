@@ -3,6 +3,7 @@
 ## 2.15.1
 
 - Enforce `outdir` with types instead of throwing an exception in `buildAndShowMetadata()`
+- Add `BuildConfiguration` as a type export (in `src/buildUtils.mts`)
 
 ## 2.15.0
 

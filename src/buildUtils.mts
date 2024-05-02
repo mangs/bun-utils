@@ -36,13 +36,13 @@ interface BuildConfiguration extends BuildConfig {
  * @example
  * ```ts
  * import { buildAndShowMetadata } from '@mangs/bun-utils/build';
- * import type { BuildConfig } from 'bun';
+ * import type { BuildConfiguration } from '@mangs/bun-utils/build';
  *
  * const buildConfiguration = {
  *   entrypoints: ['./src/index.mts'],
  *   minify: true,
  *   outdir: './dist',
- * } satisfies BuildConfig;
+ * } satisfies BuildConfiguration;
  * process.exitCode = await buildAndShowMetadata(buildConfiguration);
  * ```
  */
@@ -150,3 +150,4 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
 
 // Module Exports
 export { buildAndShowMetadata, printBuildMetadata };
+export type { BuildConfiguration };
