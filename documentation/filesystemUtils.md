@@ -23,7 +23,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/9a551ad776518476c6a0b18db4cf50739c2407c5/src/filesystemUtils.mts#L28)
+[filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L28)
 
 ***
 
@@ -48,7 +48,7 @@ A localized string representing a file size.
 
 #### Source
 
-[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/9a551ad776518476c6a0b18db4cf50739c2407c5/src/filesystemUtils.mts#L70)
+[filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L70)
 
 ***
 
@@ -74,7 +74,7 @@ A list of paths.
 
 #### Source
 
-[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/9a551ad776518476c6a0b18db4cf50739c2407c5/src/filesystemUtils.mts#L46)
+[filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L46)
 
 ***
 
@@ -98,7 +98,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/9a551ad776518476c6a0b18db4cf50739c2407c5/src/filesystemUtils.mts#L91)
+[filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L91)
 
 ***
 
@@ -137,6 +137,10 @@ Temporary file instance object.
 | `[asyncDispose]` | `Promise`\<`void`\> | Asynchronous automatic disposal function. |
 | `append` | `Promise`\<`void`\> | Append string contents to the target temporary file. |
 
+#### See
+
+https://github.com/tc39/proposal-explicit-resource-management
+
 #### Example
 
 ```ts
@@ -152,4 +156,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[filesystemUtils.mts:129](https://github.com/mangs/bun-utils/blob/9a551ad776518476c6a0b18db4cf50739c2407c5/src/filesystemUtils.mts#L129)
+[filesystemUtils.mts:130](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/filesystemUtils.mts#L130)

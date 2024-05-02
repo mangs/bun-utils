@@ -4,19 +4,68 @@
 
 // External Imports
 import { relative } from 'node:path';
-import { file, stringWidth } from 'bun';
+import { build, file, nanoseconds, stringWidth } from 'bun';
 
 // Internal Imports
-import { cyan, dim, yellow } from './consoleUtils.mts';
+import {
+  cyan,
+  dim,
+  getPerformanceLabel,
+  printError,
+  printInfo,
+  printSuccess,
+  yellow,
+} from './consoleUtils.mts';
 import { getHumanReadableFilesize } from './filesystemUtils.mts';
 
 // Type Imports
-import type { BuildArtifact, BuildOutput } from 'bun';
+import type { BuildArtifact, BuildConfig, BuildOutput } from 'bun';
 
 // Local Types
 type BuildArtifactMetadata = Record<BuildArtifact['kind'], { count: number; size: number }>;
 
 // Local Functions
+/**
+ * Build code using `Bun.build` and a provided build configuration object.
+ * @param buildConfiguration Configuration object used to build the code.
+ * @returns                  Number corresponding to the desired process exit code.
+ * @example
+ * ```ts
+ * import { buildAndShowMetadata } from '@mangs/bun-utils/build';
+ * import type { BuildConfig } from 'bun';
+ *
+ * const buildConfiguration = {
+ *   entrypoints: ['./src/index.mts'],
+ *   minify: true,
+ *   outdir: './dist',
+ * } satisfies BuildConfig;
+ * process.exitCode = await buildAndShowMetadata(buildConfiguration);
+ * ```
+ */
+async function buildAndShowMetadata(buildConfiguration: BuildConfig) {
+  if (!buildConfiguration.outdir) {
+    throw new TypeError('Missing build configuration option "outdir"');
+  }
+
+  const startTime = nanoseconds();
+  printInfo('Building application artifacts...\n');
+  const buildOutput = await build(buildConfiguration);
+  const performanceLabel = getPerformanceLabel(startTime);
+
+  if (!buildOutput.success) {
+    printError(`Build error occurred ${performanceLabel}`);
+    for (const error of buildOutput.logs) {
+      console.error(error);
+    }
+    return 1;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define -- functions get hoisted
+  printBuildMetadata(buildOutput, buildConfiguration.outdir);
+  printSuccess(`Build success ${performanceLabel}`);
+  return 0;
+}
+
 /**
  * Format and print to the command line the provided build metadata.
  * @param buildOutput          The return value of `Bun.build()`.
@@ -100,4 +149,4 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
 }
 
 // Module Exports
-export { printBuildMetadata };
+export { buildAndShowMetadata, printBuildMetadata };

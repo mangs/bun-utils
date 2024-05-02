@@ -2,6 +2,44 @@
 
 ## Functions
 
+### buildAndShowMetadata()
+
+> **buildAndShowMetadata**(`buildConfiguration`): `Promise`\<`0` \| `1`\>
+
+Build code using `Bun.build` and a provided build configuration object.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `buildConfiguration` | `BuildConfig` | Configuration object used to build the code. |
+
+#### Returns
+
+`Promise`\<`0` \| `1`\>
+
+Number corresponding to the desired process exit code.
+
+#### Example
+
+```ts
+import { buildAndShowMetadata } from '@mangs/bun-utils/build';
+import type { BuildConfig } from 'bun';
+
+const buildConfiguration = {
+  entrypoints: ['./src/index.mts'],
+  minify: true,
+  outdir: './dist',
+} satisfies BuildConfig;
+process.exitCode = await buildAndShowMetadata(buildConfiguration);
+```
+
+#### Source
+
+[buildUtils.mts:45](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/buildUtils.mts#L45)
+
+***
+
 ### printBuildMetadata()
 
 > **printBuildMetadata**(`buildOutput`, `buildOutputDirectory`): `void`
@@ -21,4 +59,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[buildUtils.mts:25](https://github.com/mangs/bun-utils/blob/9a551ad776518476c6a0b18db4cf50739c2407c5/src/buildUtils.mts#L25)
+[buildUtils.mts:74](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/buildUtils.mts#L74)
