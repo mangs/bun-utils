@@ -25,7 +25,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/networkUtils.mts#L58)
+[networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/52990b884543c59389dfe31a2d841a6020dacbfe/src/networkUtils.mts#L58)
 
 ***
 
@@ -71,4 +71,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[networkUtils.mts:162](https://github.com/mangs/bun-utils/blob/de0334f54f332fb4ac35c97b761b2d876b5dffdc/src/networkUtils.mts#L162)
+[networkUtils.mts:162](https://github.com/mangs/bun-utils/blob/52990b884543c59389dfe31a2d841a6020dacbfe/src/networkUtils.mts#L162)
