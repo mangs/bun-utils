@@ -150,3 +150,4 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
 // Module Exports
 export { buildAndShowMetadata, printBuildMetadata };
 export type { BuildConfiguration };
+export type { BuildOutput } from 'bun';

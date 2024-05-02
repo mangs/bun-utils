@@ -28,6 +28,18 @@
 | `splitting?` | `boolean` | - | `BuildConfig.splitting` | `BuildConfig.splitting` |
 | `target?` | `Target` | - | `BuildConfig.target` | `BuildConfig.target` |
 
+***
+
+### BuildOutput
+
+#### Properties
+
+| Property | Type |
+| :------ | :------ |
+| `logs` | (`BuildMessage` \| `ResolveMessage`)[] |
+| `outputs` | `BuildArtifact`[] |
+| `success` | `boolean` |
+
 ## Functions
 
 ### buildAndShowMetadata()
@@ -64,7 +76,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Source
 
-[src/buildUtils.mts:48](https://github.com/mangs/bun-utils/blob/84418f46f2507c875ae99915b07e5869523169c2/src/buildUtils.mts#L48)
+[src/buildUtils.mts:48](https://github.com/mangs/bun-utils/blob/880c924cfdc6b9c730956f5696d98ccf7ed96c37/src/buildUtils.mts#L48)
 
 ***
 
@@ -78,7 +90,7 @@ Format and print to the command line the provided build metadata.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `buildOutput` | `BuildOutput` | The return value of `Bun.build()`. |
+| `buildOutput` | [`BuildOutput`](buildUtils.md#buildoutput) | The return value of `Bun.build()`. |
 | `buildOutputDirectory` | `string` | The output directory when building. |
 
 #### Returns
@@ -87,4 +99,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[src/buildUtils.mts:73](https://github.com/mangs/bun-utils/blob/84418f46f2507c875ae99915b07e5869523169c2/src/buildUtils.mts#L73)
+[src/buildUtils.mts:73](https://github.com/mangs/bun-utils/blob/880c924cfdc6b9c730956f5696d98ccf7ed96c37/src/buildUtils.mts#L73)
