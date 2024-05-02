@@ -34,8 +34,7 @@
 
 > **buildAndShowMetadata**(`buildConfiguration`): `Promise`\<`0` \| `1`\>
 
-Build code using `Bun.build` and a provided build configuration object using Bun's `BuildConfig`
-types except the `outdir` field is required.
+Build code using `Bun.build` and a provided build configuration object.
 
 #### Parameters
 
@@ -65,7 +64,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Source
 
-[src/buildUtils.mts:49](https://github.com/mangs/bun-utils/blob/0fa09cb257888ac38ec30165d0515bdb686e31e9/src/buildUtils.mts#L49)
+[src/buildUtils.mts:48](https://github.com/mangs/bun-utils/blob/78d0edde74d65ad31b3a8a440e4c442612a91b90/src/buildUtils.mts#L48)
 
 ***
 
@@ -88,4 +87,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[src/buildUtils.mts:74](https://github.com/mangs/bun-utils/blob/0fa09cb257888ac38ec30165d0515bdb686e31e9/src/buildUtils.mts#L74)
+[src/buildUtils.mts:73](https://github.com/mangs/bun-utils/blob/78d0edde74d65ad31b3a8a440e4c442612a91b90/src/buildUtils.mts#L73)

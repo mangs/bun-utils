@@ -29,8 +29,7 @@ interface BuildConfiguration extends BuildConfig {
 
 // Local Functions
 /**
- * Build code using `Bun.build` and a provided build configuration object using Bun's `BuildConfig`
- * types except the `outdir` field is required.
+ * Build code using `Bun.build` and a provided build configuration object.
  * @param buildConfiguration Configuration object used to build the code.
  * @returns                  Number corresponding to the desired process exit code.
  * @example
