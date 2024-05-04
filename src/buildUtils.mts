@@ -47,7 +47,8 @@ interface BuildConfiguration extends BuildConfig {
  */
 async function buildAndShowMetadata(buildConfiguration: BuildConfiguration) {
   const startTime = nanoseconds();
-  printInfo('Building application artifacts...\n');
+  const buildEnvironment = process.env.NODE_ENV ?? 'development';
+  printInfo(`Building application artifacts for ${buildEnvironment}...\n`);
   const buildOutput = await build(buildConfiguration);
   const performanceLabel = getPerformanceLabel(startTime);
 
