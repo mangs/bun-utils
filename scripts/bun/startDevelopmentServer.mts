@@ -66,6 +66,7 @@ async function main() {
       privateKeyPath,
       ...(values['server-name'] && { serverName: values['server-name'] }),
     };
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- doesn't make sense in this situation
   } else if ((certificatePath && !privateKeyPath) || (!certificatePath && privateKeyPath)) {
     throw new TypeError('--certificate-path and --private-key-path must be set simultaneously');
   }
