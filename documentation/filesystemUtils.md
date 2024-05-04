@@ -35,7 +35,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[src/filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/filesystemUtils.mts#L28)
+[src/filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/filesystemUtils.mts#L28)
 
 ***
 
@@ -60,7 +60,7 @@ A localized string representing a file size.
 
 #### Source
 
-[src/filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/filesystemUtils.mts#L70)
+[src/filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/filesystemUtils.mts#L70)
 
 ***
 
@@ -86,7 +86,7 @@ A list of paths.
 
 #### Source
 
-[src/filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/filesystemUtils.mts#L46)
+[src/filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/filesystemUtils.mts#L46)
 
 ***
 
@@ -110,7 +110,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[src/filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/filesystemUtils.mts#L91)
+[src/filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/filesystemUtils.mts#L91)
 
 ***
 
@@ -168,4 +168,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[src/filesystemUtils.mts:130](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/filesystemUtils.mts#L130)
+[src/filesystemUtils.mts:130](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/filesystemUtils.mts#L130)
