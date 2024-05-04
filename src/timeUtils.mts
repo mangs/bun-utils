@@ -11,8 +11,17 @@ const timeUnits = ['ns', 'μs', 'ms', 's'] as const;
 // Local Types
 type TimeUnits = (typeof timeUnits)[number];
 interface FormatOptions {
+  /**
+   * Override of the locale used to format and localize the time value.
+   */
   localeOverride?: string;
+  /**
+   * Smallest time unit that can be displayed.
+   */
   unitsMinimum?: TimeUnits;
+  /**
+   * Override of time units to display; supersedes `unitsMinimum`.
+   */
   unitsOverride?: TimeUnits;
 }
 
