@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.15.3
+
+- Widen the count column so there are 2 space characters minimum between its visible characters and the filename column for `printBuildMetadata()`
+  - Improves visibility for outputs where dimmed text isn't possible such as GitHub Actions
+
 ## 2.15.2
 
 - Change alignment of category column from using raw tab characters to computing proper max column width
