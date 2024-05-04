@@ -15,7 +15,7 @@ import type { Serve, ServeOptions, Server } from 'bun';
 
 // Local Types
 // eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
-type FetchRetryOptions = FetchRequestInit & {
+interface FetchRetryOptions extends FetchRequestInit {
   /**
    * Function describing how `retryDelay` changes with each retry iteration.
    * @param delay Existing delay value.
@@ -34,7 +34,7 @@ type FetchRetryOptions = FetchRequestInit & {
    * Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member.
    */
   timeout?: number;
-};
+}
 
 interface HttpsOptions {
   /**

@@ -2,6 +2,42 @@
 
 ## Interfaces
 
+### FetchRetryOptions
+
+#### Extends
+
+- `FetchRequestInit`
+
+#### Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `body?` | `null` \| `BodyInit` | A BodyInit object or null to set request's body. | `FetchRequestInit.body` |
+| `cache?` | `RequestCache` | A string indicating how the request will interact with the browser's cache to set request's cache. | `FetchRequestInit.cache` |
+| `credentials?` | `RequestCredentials` | A string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL. Sets request's credentials. | `FetchRequestInit.credentials` |
+| `headers?` | `HeadersInit` | A Headers object, an object literal, or an array of two-item arrays to set request's headers. | `FetchRequestInit.headers` |
+| `integrity?` | `string` | A cryptographic hash of the resource to be fetched by request. Sets request's integrity. | `FetchRequestInit.integrity` |
+| `keepalive?` | `boolean` | A boolean to set request's keepalive. | `FetchRequestInit.keepalive` |
+| `method?` | `string` | A string to set request's method. | `FetchRequestInit.method` |
+| `mode?` | `RequestMode` | A string to indicate whether the request will use CORS, or will be restricted to same-origin URLs. Sets request's mode. | `FetchRequestInit.mode` |
+| `onChangeRetryDelay?` | (`delay`: `number`) => `number` | Function describing how `retryDelay` changes with each retry iteration.<br /><br /> | - |
+| `priority?` | `RequestPriority` | - | `FetchRequestInit.priority` |
+| `proxy?` | `string` | Override http_proxy or HTTPS_PROXY<br />This is a custom property that is not part of the Fetch API specification. | `FetchRequestInit.proxy` |
+| `redirect?` | `RequestRedirect` | A string indicating whether request follows redirects, results in an error upon encountering a redirect, or returns the redirect (in an opaque fashion). Sets request's redirect. | `FetchRequestInit.redirect` |
+| `referrer?` | `string` | A string whose value is a same-origin URL, "about:client", or the empty string, to set request's referrer. | `FetchRequestInit.referrer` |
+| `referrerPolicy?` | `ReferrerPolicy` | A referrer policy to set request's referrerPolicy. | `FetchRequestInit.referrerPolicy` |
+| `retryDelay?` | `number` | Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations. | - |
+| `retryMax?` | `number` | Maximum number of retries before an error is thrown. | - |
+| `signal?` | `null` \| `AbortSignal` | An AbortSignal to set request's signal. | `FetchRequestInit.signal` |
+| `timeout?` | `number` | Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. | - |
+| `tls?` | `object` | Override the default TLS options | `FetchRequestInit.tls` |
+| `tls.checkServerIdentity?` | `any` | - | - |
+| `tls.rejectUnauthorized?` | `boolean` | - | - |
+| `verbose?` | `boolean` | Log the raw HTTP request & response to stdout. This API may be<br />removed in a future version of Bun without notice.<br />This is a custom property that is not part of the Fetch API specification.<br />It exists mostly as a debugging tool | `FetchRequestInit.verbose` |
+| `window?` | `null` | Can only be null. Used to disassociate request from any Window. | `FetchRequestInit.window` |
+
+***
+
 ### HttpsOptions
 
 #### Properties
@@ -33,25 +69,6 @@
 | `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | Options for customizing HTTPS functionality. | - |
 | `port?` | `string` \| `number` | What port should the server listen on?<br /><br />**Default**<br />`process.env.PORT \|\| "3000"` | `Pick.port` |
 
-## Type Aliases
-
-### FetchRetryOptions
-
-> **FetchRetryOptions**: `FetchRequestInit` & `object`
-
-#### Type declaration
-
-| Member | Type | Description |
-| :------ | :------ | :------ |
-| `onChangeRetryDelay` | (`delay`) => `number` | Function describing how `retryDelay` changes with each retry iteration.<br /><br /> |
-| `retryDelay` | `number` | Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations. |
-| `retryMax` | `number` | Maximum number of retries before an error is thrown. |
-| `timeout` | `number` | Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
-
-#### Source
-
-[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/networkUtils.mts#L18)
-
 ## Functions
 
 ### fetchWithRetry()
@@ -77,7 +94,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/networkUtils.mts#L92)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/8ab5575739fb6c2cf90f32b94496950103773510/src/networkUtils.mts#L92)
 
 ***
 
@@ -106,4 +123,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/networkUtils.mts#L179)
+[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/8ab5575739fb6c2cf90f32b94496950103773510/src/networkUtils.mts#L179)
