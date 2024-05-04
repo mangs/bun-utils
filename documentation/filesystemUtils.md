@@ -6,11 +6,11 @@
 
 #### Properties
 
-| Property | Type |
-| :------ | :------ |
-| `path?` | `string` |
-| `writerOptions?` | `object` |
-| `writerOptions.highWaterMark?` | `number` |
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `path?` | `string` | Path where the temporary file should be created. |
+| `writerOptions?` | `object` | Options object defined by the first parameter accepted by `BunFile.writer()`. |
+| `writerOptions.highWaterMark?` | `number` | - |
 
 ## Functions
 
@@ -35,7 +35,7 @@ The list of inaccessible paths, if any.
 
 #### Source
 
-[src/filesystemUtils.mts:28](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/filesystemUtils.mts#L28)
+[src/filesystemUtils.mts:34](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/filesystemUtils.mts#L34)
 
 ***
 
@@ -60,7 +60,7 @@ A localized string representing a file size.
 
 #### Source
 
-[src/filesystemUtils.mts:70](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/filesystemUtils.mts#L70)
+[src/filesystemUtils.mts:76](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/filesystemUtils.mts#L76)
 
 ***
 
@@ -86,7 +86,7 @@ A list of paths.
 
 #### Source
 
-[src/filesystemUtils.mts:46](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/filesystemUtils.mts#L46)
+[src/filesystemUtils.mts:52](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/filesystemUtils.mts#L52)
 
 ***
 
@@ -110,7 +110,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Source
 
-[src/filesystemUtils.mts:91](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/filesystemUtils.mts#L91)
+[src/filesystemUtils.mts:97](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/filesystemUtils.mts#L97)
 
 ***
 
@@ -168,4 +168,4 @@ await file.append('holy data, batman\n');
 
 #### Source
 
-[src/filesystemUtils.mts:130](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/filesystemUtils.mts#L130)
+[src/filesystemUtils.mts:136](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/filesystemUtils.mts#L136)

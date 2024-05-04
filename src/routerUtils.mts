@@ -78,10 +78,19 @@ class Router {
     // });
   }
 
+  /**
+   * Array of route tuples.
+   */
   #routes: Routes;
 
+  /**
+   * Start time for computing `Server-Timing` values.
+   */
   #startTime: number;
 
+  /**
+   * Whether or not `Server-Timing` headers are appended to the `Request` object.
+   */
   #usesServerTiming: boolean;
 
   /**

@@ -20,7 +20,7 @@
 | `loader?` | `object` | - | `BuildConfig.loader` | `BuildConfig.loader` |
 | `minify?` | `boolean` \| `object` | - | `BuildConfig.minify` | `BuildConfig.minify` |
 | `naming?` | `string` \| `object` | - | `BuildConfig.naming` | `BuildConfig.naming` |
-| `outdir` | `string` | - | `BuildConfig.outdir` | `BuildConfig.outdir` |
+| `outdir` | `string` | Output directory. | `BuildConfig.outdir` | `BuildConfig.outdir` |
 | `plugins?` | `BunPlugin`[] | - | `BuildConfig.plugins` | `BuildConfig.plugins` |
 | `publicPath?` | `string` | - | `BuildConfig.publicPath` | `BuildConfig.publicPath` |
 | `root?` | `string` | - | `BuildConfig.root` | `BuildConfig.root` |
@@ -77,7 +77,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Source
 
-[src/buildUtils.mts:49](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/buildUtils.mts#L49)
+[src/buildUtils.mts:52](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/buildUtils.mts#L52)
 
 ***
 
@@ -100,4 +100,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[src/buildUtils.mts:77](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/buildUtils.mts#L77)
+[src/buildUtils.mts:80](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/buildUtils.mts#L80)

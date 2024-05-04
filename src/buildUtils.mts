@@ -24,6 +24,9 @@ import type { BuildArtifact, BuildConfig, BuildOutput } from 'bun';
 // Local Types
 type BuildArtifactMetadata = Record<BuildArtifact['kind'], { count: number; size: number }>;
 interface BuildConfiguration extends BuildConfig {
+  /**
+   * Output directory.
+   */
   outdir: string;
 }
 
