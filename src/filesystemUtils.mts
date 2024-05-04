@@ -12,7 +12,13 @@ import type { BunFile } from 'bun';
 
 // Local Types
 interface TemporaryFileOptions {
+  /**
+   * Path where the temporary file should be created.
+   */
   path?: string;
+  /**
+   * Options object defined by the first parameter accepted by `BunFile.writer()`.
+   */
   writerOptions?: Parameters<BunFile['writer']>[0];
 }
 

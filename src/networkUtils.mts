@@ -13,6 +13,12 @@ import { getElapsedTimeFormatted, sleep } from './timeUtils.mts';
 // Type Imports
 import type { Serve, ServeOptions, Server } from 'bun';
 
+// Global Types
+declare global {
+  // eslint-disable-next-line vars-on-top, no-var -- this is a requirement for correct variable access
+  var hotReloadCount: number;
+}
+
 // Local Types
 // eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
 interface FetchRetryOptions extends FetchRequestInit {
@@ -72,12 +78,6 @@ interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 
    * Options for customizing HTTPS functionality.
    */
   httpsOptions?: HttpsOptions;
-}
-
-// Global Types
-declare global {
-  // eslint-disable-next-line vars-on-top, no-var -- this is a requirement for correct variable access
-  var hotReloadCount: number;
 }
 
 // Local Functions

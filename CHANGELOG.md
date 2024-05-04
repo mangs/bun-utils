@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.16.1
+
+- Add missing type documentation
+
 ## 2.16.0
 
 - Add `muteMetadata` parameter to `buildAndShowMetadata()` to optionally prevent printing build metadata to the console
