@@ -6,15 +6,15 @@
 
 #### Properties
 
-| Property | Type |
-| :------ | :------ |
-| `certificateAuthorityPath?` | `string` \| `string`[] |
-| `certificatePath` | `string` \| `string`[] |
-| `diffieHellmanParametersPath?` | `string` |
-| `lowMemoryMode?` | `boolean` |
-| `passphrase?` | `string` |
-| `privateKeyPath` | `string` \| `string`[] |
-| `serverName?` | `string` |
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `certificateAuthorityPath?` | `string` \| `string`[] | Maps to `Bun.serve()`'s `tls.ca` option but only the path. |
+| `certificatePath` | `string` \| `string`[] | Maps to `Bun.serve()`'s `tls.cert` option but only the path. |
+| `diffieHellmanParametersPath?` | `string` | Maps to `Bun.serve()`'s `tls.dhParamsFile` option. |
+| `lowMemoryMode?` | `boolean` | Maps to `Bun.serve()`'s `tls.lowMemoryMode` option. |
+| `passphrase?` | `string` | Maps to `Bun.serve()`'s `tls.passphrase` option. |
+| `privateKeyPath` | `string` \| `string`[] | Maps to `Bun.serve()`'s `tls.key` option but only the path. |
+| `serverName?` | `string` | Maps to `Bun.serve()`'s `tls.serverName` option. |
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Source
 
-[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/a06a7d84530c4bdd56ac024b1dbf13015586c556/src/networkUtils.mts#L18)
+[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/networkUtils.mts#L18)
 
 ## Functions
 
@@ -77,7 +77,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:68](https://github.com/mangs/bun-utils/blob/a06a7d84530c4bdd56ac024b1dbf13015586c556/src/networkUtils.mts#L68)
+[src/networkUtils.mts:89](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/networkUtils.mts#L89)
 
 ***
 
@@ -106,4 +106,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:155](https://github.com/mangs/bun-utils/blob/a06a7d84530c4bdd56ac024b1dbf13015586c556/src/networkUtils.mts#L155)
+[src/networkUtils.mts:176](https://github.com/mangs/bun-utils/blob/5b4e3b17a9426120bf6a592afdde1017c640fa88/src/networkUtils.mts#L176)

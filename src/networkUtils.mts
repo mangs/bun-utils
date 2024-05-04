@@ -37,12 +37,33 @@ type FetchRetryOptions = FetchRequestInit & {
 };
 
 interface HttpsOptions {
+  /**
+   * Maps to `Bun.serve()`'s `tls.ca` option but only the path.
+   */
   certificateAuthorityPath?: string | string[];
+  /**
+   * Maps to `Bun.serve()`'s `tls.cert` option but only the path.
+   */
   certificatePath: string | string[];
+  /**
+   * Maps to `Bun.serve()`'s `tls.dhParamsFile` option.
+   */
   diffieHellmanParametersPath?: string;
+  /**
+   * Maps to `Bun.serve()`'s `tls.lowMemoryMode` option.
+   */
   lowMemoryMode?: boolean;
+  /**
+   * Maps to `Bun.serve()`'s `tls.passphrase` option.
+   */
   passphrase?: string;
+  /**
+   * Maps to `Bun.serve()`'s `tls.key` option but only the path.
+   */
   privateKeyPath: string | string[];
+  /**
+   * Maps to `Bun.serve()`'s `tls.serverName` option.
+   */
   serverName?: string;
 }
 
