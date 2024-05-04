@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.15.4
+
+- Add message to build output specifying which environment is being targetted according to environment variable `NODE_ENV`; defaults to `"development"`
+
 ## 2.15.3
 
 - Widen the count column so there are 2 space characters minimum between its visible characters and the filename column for `printBuildMetadata()`
