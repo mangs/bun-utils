@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.15.2
+
+- Change alignment of category column from using raw tab characters to computing proper max column width
+- Update target Bun version from `1.1.5` to `1.1.7`
+- Update dependency versions to latest
+
 ## 2.15.1
 
 - Enforce `outdir` with types instead of throwing an exception in `buildAndShowMetadata()`

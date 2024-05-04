@@ -72,6 +72,7 @@ async function buildAndShowMetadata(buildConfiguration: BuildConfiguration) {
  */
 function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: string) {
   let maxFilenameLength = 0;
+  let maxFileSizeLength = 0;
   const buildArtifactMetadata: BuildArtifactMetadata = {
     asset: { count: 0, size: 0 },
     chunk: { count: 0, size: 0 },
@@ -84,8 +85,13 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
       const { size } = file(path);
       buildArtifactMetadata[kind].size += size;
       buildArtifactMetadata[kind].count += 1;
-      if (stringWidth(pathRelative) > maxFilenameLength) {
-        maxFilenameLength = stringWidth(pathRelative);
+      const currentFilenameLength = stringWidth(pathRelative);
+      if (currentFilenameLength > maxFilenameLength) {
+        maxFilenameLength = currentFilenameLength;
+      }
+      const currentFileSizeLength = stringWidth(getHumanReadableFilesize(size));
+      if (currentFileSizeLength > maxFileSizeLength) {
+        maxFileSizeLength = currentFileSizeLength;
       }
       return { kind, pathRelative, size };
     })
@@ -108,9 +114,9 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
     fileCount += 1;
     const countColumn = dim(`${fileCount.toString().padStart(labelLength, ' ')})`);
     const filenameColumn = pathRelative.padEnd(maxFilenameLength, ' ');
-    const sizeColumn = yellow(getHumanReadableFilesize(size));
+    const sizeColumn = yellow(getHumanReadableFilesize(size).padEnd(maxFileSizeLength, ' '));
     const categoryColumn = dim(`[${kind.slice(0, 1).toUpperCase()}]`);
-    console.log(`${countColumn} ${filenameColumn}  ${sizeColumn}\t${categoryColumn}`);
+    console.log(`${countColumn} ${filenameColumn}  ${sizeColumn}  ${categoryColumn}`);
   }
   console.log(); // Add spacing between file metadata and size total rows
 
