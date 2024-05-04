@@ -16,9 +16,23 @@ import type { Serve, ServeOptions, Server } from 'bun';
 // Local Types
 // eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
 type FetchRetryOptions = FetchRequestInit & {
-  changeRetryDelay?: (delay: number) => number;
+  /**
+   * Function describing how `retryDelay` changes with each retry iteration.
+   * @param delay Existing delay value.
+   * @returns     New delay value.
+   */
+  onChangeRetryDelay?: (delay: number) => number;
+  /**
+   * Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations.
+   */
   retryDelay?: number;
+  /**
+   * Maximum number of retries before an error is thrown.
+   */
   retryMax?: number;
+  /**
+   * Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member.
+   */
   timeout?: number;
 };
 
@@ -48,16 +62,12 @@ declare global {
  * default starting with a delay of 1 second. Times out after 10 seconds by default. Setting
  * environment variable `DEBUG` to a truthy value logs caught and ignored retry errors.
  * @param url     URL from which to fetch data.
- * @param options Options object that combines `fetch`'s 2nd parameter with 4 new values:
- *                • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.
- *                • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.
- *                • `retryMax`: maximum number of retries before an error is thrown.
- *                • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member.
+ * @param options Options object that combines `fetch`'s 2nd parameter with custom options.
  * @returns       Data returned by `fetch`.
  */
 async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions = {}) {
   const {
-    changeRetryDelay = (delay) => delay * 2,
+    onChangeRetryDelay = (delay) => delay * 2,
     retryDelay = 1_000,
     retryMax = 3,
     timeout = 10_000,
@@ -83,8 +93,8 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
       await sleep(retryDelay);
       return fetchWithRetry(url, {
         ...fetchOptions,
-        changeRetryDelay,
-        retryDelay: changeRetryDelay(retryDelay),
+        onChangeRetryDelay,
+        retryDelay: onChangeRetryDelay(retryDelay),
         retryMax: retryMax - 1,
         timeout,
       });
@@ -113,7 +123,7 @@ function getColorByStatusCode(statusCode: number) {
 
 /**
  * Log the development server's startup sequence to the console.
- * @param server          The return value of Bun.serve().
+ * @param server          The return value of `Bun.serve()`.
  * @param server.url      The URL API object representing the running server instance.
  * @param server.url.href The full URL string representing the running server instance.
  */
@@ -135,29 +145,12 @@ function logServerStartup({ url: { href } }: Server) {
 /**
  * Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
  * server. The exact configuration options used are logged to the console if the `DEBUG` environment
- * variable is set to a truthy value.
- *
- * Optionally specify a configuration object to customize functionality as follows:
- * ```ts
- * {
- *   error?: (this: Server, request: ErrorLike) => Response | Promise<Response> | Promise<undefined> | undefined // Maps to Bun.serve()'s error option
- *   hostname?: string;                              // Defaults to 0.0.0.0; maps to Bun.serve()'s hostname option
- *   httpsOptions?: {
- *     certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option but only the path
- *     certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option but only the path
- *     diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
- *     lowMemoryMode?: boolean;                      // Maps to Bun.serve()'s tls.lowMemoryMode option
- *     passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
- *     privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option but only the path
- *     serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
- *   };
- *   port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS; maps to Bun.serve()'s port option
- * }
- * ```
+ * variable is set to a truthy value. Optionally specify a configuration object to customize
+ * functionality.
  * **NOTE:** multiple server instances can be started simultaneously with unique port values.
  * @param entrypointFunction  The function used to start running the server.
  * @param serverConfiguration An optional configuration object.
- * @returns `Promise` resolving to the return value of `Bun.serve()`.
+ * @returns                   `Promise` resolving to the return value of `Bun.serve()`.
  */
 async function startDevelopmentServer(
   entrypointFunction: (request: Request) => Response | Promise<Response>,
