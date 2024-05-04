@@ -1,19 +1,23 @@
 #!/usr/bin/env bun
 
 /**
- * @file Shell script that reads command line arguments then starts a HTTP(S) development server
- *       accordingly.
+ * @file Shell script that reads command line arguments then starts a HTTP(S) development server accordingly.
  */
 
 // External Imports
+import { argv } from 'bun';
 import { parseArgs } from 'node:util';
+import { resolve } from 'node:path';
 
 // Internal Imports
-import { printError } from '../../src/consoleUtils.mts';
 import { startDevelopmentServer } from '../../src/networkUtils.mts';
 
+// Type Imports
+import type { ServerConfiguration } from '../../src/networkUtils.mts';
+
 // Local Types
-type FunctionSignature = (request: Request) => Response | Promise<Response>;
+type FetchFunction = (request: Request) => Response | Promise<Response>;
+type CodeModule = Record<string, { fetch: FetchFunction }>;
 
 // Local Functions
 /**
@@ -34,36 +38,40 @@ function getOption<T>(parsedValues: Record<keyof T, T[keyof T]>, option: keyof T
  * Script entrypoint.
  */
 async function main() {
-  const parseConfiguration = {
+  const { values } = parseArgs({
+    allowPositionals: true,
+    args: argv,
     options: {
-      'function-name': {
-        multiple: false,
-        type: 'string',
-      },
-      'module-path': {
-        multiple: false,
-        type: 'string',
-      },
+      'certificate-path': { type: 'string' },
+      'entrypoint-path': { type: 'string' },
+      'named-export': { type: 'string' },
+      'private-key-path': { type: 'string' },
+      'server-name': { type: 'string' },
     },
-    strict: true,
-  } as const;
-  const { values } = parseArgs(parseConfiguration);
+  });
 
-  try {
-    const functionName = getOption<typeof values>(values, 'function-name');
-    const modulePath = getOption<typeof values>(values, 'module-path');
-    const module = (await import(modulePath)) as Record<string, FunctionSignature>;
-    const entrypointFunction = module[functionName];
-    await startDevelopmentServer(entrypointFunction!);
-  } catch (error) {
-    if (error instanceof ReferenceError) {
-      printError(error.message);
-    } else {
-      throw error;
-    }
-    process.exitCode = 1;
+  const entrypointPath = getOption<typeof values>(values, 'entrypoint-path');
+  const namedExport = values['named-export'] ?? 'default';
+  const entrypoint = ((await import(resolve(entrypointPath))) as CodeModule)[namedExport];
+  if (!entrypoint) {
+    throw new TypeError('Entrypoint module could not be found');
   }
+
+  const serverConfiguration: ServerConfiguration = {};
+  const certificatePath = values['certificate-path'];
+  const privateKeyPath = values['private-key-path'];
+  if (certificatePath && privateKeyPath) {
+    serverConfiguration.httpsOptions = {
+      certificatePath,
+      privateKeyPath,
+      ...(values['server-name'] && { serverName: values['server-name'] }),
+    };
+  } else if ((certificatePath && !privateKeyPath) || (!certificatePath && privateKeyPath)) {
+    throw new TypeError('--certificate-path and --private-key-path must be set simultaneously');
+  }
+
+  await startDevelopmentServer(entrypoint.fetch, serverConfiguration);
 }
 
-// BEGIN EXECUTION
+// Begin Execution
 await main();

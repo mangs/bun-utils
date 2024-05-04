@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.16.3
+
+- Iterate on `scripts/bun/startDevelopmentServer.mts` script
+
 ## 2.16.2
 
 - Adjust newline output when `muteMetadata` is passed to `buildAndShowMetadata()`
