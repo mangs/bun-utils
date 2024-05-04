@@ -44,15 +44,16 @@
 
 ### buildAndShowMetadata()
 
-> **buildAndShowMetadata**(`buildConfiguration`): `Promise`\<`0` \| `1`\>
+> **buildAndShowMetadata**(`buildConfiguration`, `muteMetadata`): `Promise`\<`0` \| `1`\>
 
-Build code using `Bun.build` and a provided build configuration object.
+Build code using `Bun.build()` and a provided build configuration object.
 
 #### Parameters
 
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `buildConfiguration` | [`BuildConfiguration`](buildUtils.md#buildconfiguration) | Configuration object used to build the code. |
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `buildConfiguration` | [`BuildConfiguration`](buildUtils.md#buildconfiguration) | `undefined` | Configuration object used to build the code. |
+| `muteMetadata` | `boolean` | `false` | Boolean determining whether or not to print build metadata to the console. |
 
 #### Returns
 
@@ -76,7 +77,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Source
 
-[src/buildUtils.mts:48](https://github.com/mangs/bun-utils/blob/a932d84f306ef88855ac253a0dcf0fc53b87425a/src/buildUtils.mts#L48)
+[src/buildUtils.mts:49](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/buildUtils.mts#L49)
 
 ***
 
@@ -90,7 +91,7 @@ Format and print to the command line the provided build metadata.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `buildOutput` | [`BuildOutput`](buildUtils.md#buildoutput) | The return value of `Bun.build()`. |
+| `buildOutput` | [`BuildOutput`](buildUtils.md#buildoutput) | The return value of [`Bun.build()`](https://bun.sh/docs/bundler). |
 | `buildOutputDirectory` | `string` | The output directory when building. |
 
 #### Returns
@@ -99,4 +100,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[src/buildUtils.mts:73](https://github.com/mangs/bun-utils/blob/a932d84f306ef88855ac253a0dcf0fc53b87425a/src/buildUtils.mts#L73)
+[src/buildUtils.mts:77](https://github.com/mangs/bun-utils/blob/dceacb326e197270cbcb35b6094ebb0e59724f89/src/buildUtils.mts#L77)

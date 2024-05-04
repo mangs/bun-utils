@@ -29,8 +29,9 @@ interface BuildConfiguration extends BuildConfig {
 
 // Local Functions
 /**
- * Build code using `Bun.build` and a provided build configuration object.
+ * Build code using `Bun.build()` and a provided build configuration object.
  * @param buildConfiguration Configuration object used to build the code.
+ * @param muteMetadata       Boolean determining whether or not to print build metadata to the console.
  * @returns                  Number corresponding to the desired process exit code.
  * @example
  * ```ts
@@ -45,7 +46,7 @@ interface BuildConfiguration extends BuildConfig {
  * process.exitCode = await buildAndShowMetadata(buildConfiguration);
  * ```
  */
-async function buildAndShowMetadata(buildConfiguration: BuildConfiguration) {
+async function buildAndShowMetadata(buildConfiguration: BuildConfiguration, muteMetadata = false) {
   const startTime = nanoseconds();
   const buildEnvironment = process.env.NODE_ENV ?? 'development';
   printInfo(`Building application artifacts for ${buildEnvironment}...\n`);
@@ -60,15 +61,17 @@ async function buildAndShowMetadata(buildConfiguration: BuildConfiguration) {
     return 1;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define -- functions get hoisted
-  printBuildMetadata(buildOutput, buildConfiguration.outdir);
+  if (!muteMetadata) {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define -- functions get hoisted
+    printBuildMetadata(buildOutput, buildConfiguration.outdir);
+  }
   printSuccess(`Build success ${performanceLabel}`);
   return 0;
 }
 
 /**
  * Format and print to the command line the provided build metadata.
- * @param buildOutput          The return value of `Bun.build()`.
+ * @param buildOutput          The return value of [`Bun.build()`](https://bun.sh/docs/bundler).
  * @param buildOutputDirectory The output directory when building.
  */
 function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: string) {

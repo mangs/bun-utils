@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.16.0
+
+- Add `muteMetadata` parameter to `buildAndShowMetadata()` to optionally prevent printing build metadata to the console
+- Renamed retry option `changeRetryDelay` to `onChangeRetryDelay` to better reflect its meaning
+- Documentation cleanup: removed manual options object descriptions from description sections in favor of documenting types directly
+
 ## 2.15.4
 
 - Add message to build output specifying which environment is being targetted according to environment variable `NODE_ENV`; defaults to `"development"`
