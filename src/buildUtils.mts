@@ -52,7 +52,7 @@ interface BuildConfiguration extends BuildConfig {
 async function buildAndShowMetadata(buildConfiguration: BuildConfiguration, muteMetadata = false) {
   const startTime = nanoseconds();
   const buildEnvironment = process.env.NODE_ENV ?? 'development';
-  printInfo(`Building application artifacts for ${buildEnvironment}...\n`);
+  printInfo(`Building application artifacts for ${buildEnvironment}...`);
   const buildOutput = await build(buildConfiguration);
   const performanceLabel = getPerformanceLabel(startTime);
 
@@ -65,6 +65,7 @@ async function buildAndShowMetadata(buildConfiguration: BuildConfiguration, mute
   }
 
   if (!muteMetadata) {
+    console.log();
     // eslint-disable-next-line @typescript-eslint/no-use-before-define -- functions get hoisted
     printBuildMetadata(buildOutput, buildConfiguration.outdir);
   }
