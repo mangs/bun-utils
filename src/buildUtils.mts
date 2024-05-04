@@ -109,14 +109,14 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
 
   let fileCount = 0;
   const labelLength = buildArtifactsSorted.length.toString().length;
-  const gutterWidth = labelLength + 2;
+  const gutterWidth = labelLength + 3;
   for (const { kind, pathRelative, size } of buildArtifactsSorted) {
     fileCount += 1;
     const countColumn = dim(`${fileCount.toString().padStart(labelLength, ' ')})`);
     const filenameColumn = pathRelative.padEnd(maxFilenameLength, ' ');
     const sizeColumn = yellow(getHumanReadableFilesize(size).padEnd(maxFileSizeLength, ' '));
     const categoryColumn = dim(`[${kind.slice(0, 1).toUpperCase()}]`);
-    console.log(`${countColumn} ${filenameColumn}  ${sizeColumn}  ${categoryColumn}`);
+    console.log(`${countColumn}  ${filenameColumn}  ${sizeColumn}  ${categoryColumn}`);
   }
   console.log(); // Add spacing between file metadata and size total rows
 
