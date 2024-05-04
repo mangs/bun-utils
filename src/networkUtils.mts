@@ -68,6 +68,9 @@ interface HttpsOptions {
 }
 
 interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 'port'> {
+  /**
+   * Options for customizing HTTPS functionality.
+   */
   httpsOptions?: HttpsOptions;
 }
 

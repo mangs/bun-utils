@@ -77,7 +77,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Source
 
-[src/buildUtils.mts:49](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/buildUtils.mts#L49)
+[src/buildUtils.mts:49](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/buildUtils.mts#L49)
 
 ***
 
@@ -100,4 +100,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[src/buildUtils.mts:77](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/buildUtils.mts#L77)
+[src/buildUtils.mts:77](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/buildUtils.mts#L77)

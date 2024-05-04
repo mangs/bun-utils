@@ -30,7 +30,7 @@
 | :------ | :------ | :------ | :------ |
 | `error?` | (`this`: `Server`, `request`: `ErrorLike`) => `undefined` \| `Response` \| `Promise`\<`Response`\> \| `Promise`\<`undefined`\> | - | `Pick.error` |
 | `hostname?` | `string` | What hostname should the server listen on?**Default**`js<br />"0.0.0.0" // listen on all interfaces<br />`**Example**`js<br />"127.0.0.1" // Only listen locally<br />`**Example**`js<br />"remix.run" // Only listen on remix.run<br />``<br /><br />note: hostname should not include a {@link port} | `Pick.hostname` |
-| `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | - | - |
+| `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | Options for customizing HTTPS functionality. | - |
 | `port?` | `string` \| `number` | What port should the server listen on?<br /><br />**Default**<br />`process.env.PORT \|\| "3000"` | `Pick.port` |
 
 ## Type Aliases
@@ -50,7 +50,7 @@
 
 #### Source
 
-[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/networkUtils.mts#L18)
+[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/networkUtils.mts#L18)
 
 ## Functions
 
@@ -77,7 +77,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:89](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/networkUtils.mts#L89)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/networkUtils.mts#L92)
 
 ***
 
@@ -106,4 +106,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:176](https://github.com/mangs/bun-utils/blob/a482a2b0dfa0788ec97d1083804c51429ea0a4a3/src/networkUtils.mts#L176)
+[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/3a4cedc1cd242723f771330d70afea04f57de467/src/networkUtils.mts#L179)
