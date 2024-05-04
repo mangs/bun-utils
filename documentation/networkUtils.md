@@ -41,16 +41,16 @@
 
 #### Type declaration
 
-| Member | Type |
-| :------ | :------ |
-| `changeRetryDelay` | (`delay`) => `number` |
-| `retryDelay` | `number` |
-| `retryMax` | `number` |
-| `timeout` | `number` |
+| Member | Type | Description |
+| :------ | :------ | :------ |
+| `onChangeRetryDelay` | (`delay`) => `number` | Function describing how `retryDelay` changes with each retry iteration.<br /><br /> |
+| `retryDelay` | `number` | Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations. |
+| `retryMax` | `number` | Maximum number of retries before an error is thrown. |
+| `timeout` | `number` | Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
 
 #### Source
 
-[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/a932d84f306ef88855ac253a0dcf0fc53b87425a/src/networkUtils.mts#L18)
+[src/networkUtils.mts:18](https://github.com/mangs/bun-utils/blob/a06a7d84530c4bdd56ac024b1dbf13015586c556/src/networkUtils.mts#L18)
 
 ## Functions
 
@@ -67,7 +67,7 @@ environment variable `DEBUG` to a truthy value logs caught and ignored retry err
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `url` | `string` \| `URL` \| `Request` | URL from which to fetch data. |
-| `options` | [`FetchRetryOptions`](networkUtils.md#fetchretryoptions) | Options object that combines `fetch`'s 2nd parameter with 4 new values:<br />               • `changeRetryDelay`: function describing how `retryDelay` changes with each retry iteration.<br />               • `retryDelay`: delay between retries; `changeRetryDelay` affects how it changes between retry iterations.<br />               • `retryMax`: maximum number of retries before an error is thrown.<br />               • `timeout`: time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. |
+| `options` | [`FetchRetryOptions`](networkUtils.md#fetchretryoptions) | Options object that combines `fetch`'s 2nd parameter with custom options. |
 
 #### Returns
 
@@ -77,7 +77,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:58](https://github.com/mangs/bun-utils/blob/a932d84f306ef88855ac253a0dcf0fc53b87425a/src/networkUtils.mts#L58)
+[src/networkUtils.mts:68](https://github.com/mangs/bun-utils/blob/a06a7d84530c4bdd56ac024b1dbf13015586c556/src/networkUtils.mts#L68)
 
 ***
 
@@ -87,25 +87,8 @@ Data returned by `fetch`.
 
 Start a development server with the provided entrypoint function; uses `Bun.serve()` as a web
 server. The exact configuration options used are logged to the console if the `DEBUG` environment
-variable is set to a truthy value.
-
-Optionally specify a configuration object to customize functionality as follows:
-```ts
-{
-  error?: (this: Server, request: ErrorLike) => Response | Promise<Response> | Promise<undefined> | undefined // Maps to Bun.serve()'s error option
-  hostname?: string;                              // Defaults to 0.0.0.0; maps to Bun.serve()'s hostname option
-  httpsOptions?: {
-    certificateAuthorityPath?: string | string[]; // Maps to Bun.serve()'s tls.ca option but only the path
-    certificatePath: string | string[];           // Maps to Bun.serve()'s tls.cert option but only the path
-    diffieHellmanParametersPath?: string;         // Maps to Bun.serve()'s tls.dhParamsFile option
-    lowMemoryMode?: boolean;                      // Maps to Bun.serve()'s tls.lowMemoryMode option
-    passphrase?: string;                          // Maps to Bun.serve()'s tls.passphrase option
-    privateKeyPath: string | string[];            // Maps to Bun.serve()'s tls.key option but only the path
-    serverName?: string;                          // Maps to Bun.serve()'s tls.serverName option
-  };
-  port?: string | number;                         // Defaults to process.env.DEVELOPMENT_SERVER_PORT else 80 for HTTP, 443 for HTTPS; maps to Bun.serve()'s port option
-}
-```
+variable is set to a truthy value. Optionally specify a configuration object to customize
+functionality.
 **NOTE:** multiple server instances can be started simultaneously with unique port values.
 
 #### Parameters
@@ -123,4 +106,4 @@ Optionally specify a configuration object to customize functionality as follows:
 
 #### Source
 
-[src/networkUtils.mts:162](https://github.com/mangs/bun-utils/blob/a932d84f306ef88855ac253a0dcf0fc53b87425a/src/networkUtils.mts#L162)
+[src/networkUtils.mts:155](https://github.com/mangs/bun-utils/blob/a06a7d84530c4bdd56ac024b1dbf13015586c556/src/networkUtils.mts#L155)
