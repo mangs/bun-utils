@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.16.2
+
+- Adjust newline output when `muteMetadata` is passed to `buildAndShowMetadata()`
+
 ## 2.16.1
 
 - Add missing type documentation
