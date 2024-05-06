@@ -94,7 +94,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/networkUtils.mts#L92)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/8b99fbc163f3e4fc430c69c41ce12d139045ffe9/src/networkUtils.mts#L92)
 
 ***
 
@@ -112,7 +112,7 @@ functionality.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `entrypointFunction` | (`request`) => `Response` \| `Promise`\<`Response`\> | The function used to start running the server. |
+| `entrypointFunction` | (`request`, `server`?) => `Response` \| `Promise`\<`Response`\> | The function used to start running the server. |
 | `serverConfiguration` | [`ServerConfiguration`](networkUtils.md#serverconfiguration) | An optional configuration object. |
 
 #### Returns
@@ -123,4 +123,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/607055f63c6ab3d883e6d8e912a14f242be924b7/src/networkUtils.mts#L179)
+[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/8b99fbc163f3e4fc430c69c41ce12d139045ffe9/src/networkUtils.mts#L179)
