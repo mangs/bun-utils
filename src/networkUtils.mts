@@ -177,13 +177,13 @@ function logServerStartup({ url: { href } }: Server) {
  * @returns                   `Promise` resolving to the return value of `Bun.serve()`.
  */
 async function startDevelopmentServer(
-  entrypointFunction: (request: Request) => Response | Promise<Response>,
+  entrypointFunction: (request: Request, server?: Server) => Response | Promise<Response>,
   serverConfiguration: ServerConfiguration = {},
 ) {
   const { error, hostname, httpsOptions, port } = serverConfiguration;
   const serverOptions: Serve = {
     development: true,
-    async fetch(request: Request): Promise<Response> {
+    async fetch(request: Request, server: Server): Promise<Response> {
       const startTime = nanoseconds();
       const { pathname, search } = new URL(request.url);
 
@@ -191,7 +191,7 @@ async function startDevelopmentServer(
       process.stdout.write(`${dim(`[${request.method}]`)} ${pathname}${search}`);
 
       // Collect response metadata, then log response details
-      const response = await entrypointFunction(request);
+      const response = await entrypointFunction(request, server);
       const elapsedTime = getElapsedTimeFormatted(startTime);
       const color = getColorByStatusCode(response.status);
       console.log(`  ${color(`(${response.status} in ${elapsedTime})`)}`);
@@ -266,9 +266,9 @@ async function startDevelopmentServer(
     console.info('SERVER OPTIONS', serverOptions);
   }
 
-  const server = serve(serverOptions);
-  logServerStartup(server);
-  return server;
+  const developmentServer = serve(serverOptions);
+  logServerStartup(developmentServer);
+  return developmentServer;
 }
 
 // Module Exports

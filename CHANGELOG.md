@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.16.4
+
+- Add missing `server` 2nd parameter to `startDevelopmentServer()`'s `entrypointFunction` parameter
+- Update dependency versions to latest
+
 ## 2.16.3
 
 - Iterate on `scripts/bun/startDevelopmentServer.mts` script
