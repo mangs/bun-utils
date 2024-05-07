@@ -177,7 +177,7 @@ function logServerStartup({ url: { href } }: Server) {
  * @returns                   `Promise` resolving to the return value of `Bun.serve()`.
  */
 async function startDevelopmentServer(
-  entrypointFunction: (request: Request, server?: Server) => Response | Promise<Response>,
+  entrypointFunction: Serve['fetch'],
   serverConfiguration: ServerConfiguration = {},
 ) {
   const { error, hostname, httpsOptions, port } = serverConfiguration;
@@ -191,7 +191,10 @@ async function startDevelopmentServer(
       process.stdout.write(`${dim(`[${request.method}]`)} ${pathname}${search}`);
 
       // Collect response metadata, then log response details
-      const response = await entrypointFunction(request, server);
+      const response = await entrypointFunction.bind(server)(request, server);
+      if (!response) {
+        throw new TypeError('Undefined development server response received');
+      }
       const elapsedTime = getElapsedTimeFormatted(startTime);
       const color = getColorByStatusCode(response.status);
       console.log(`  ${color(`(${response.status} in ${elapsedTime})`)}`);

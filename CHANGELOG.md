@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.16.5
+
+- Change 2nd parameter of `startDevelopmentServer()` to use Bun's `Server['fetch']` type
+- Update dependency versions to latest
+
 ## 2.16.4
 
 - Add missing `server` 2nd parameter to `startDevelopmentServer()`'s `entrypointFunction` parameter
