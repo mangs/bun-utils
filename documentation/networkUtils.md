@@ -20,7 +20,7 @@
 | `keepalive?` | `boolean` | A boolean to set request's keepalive. | `FetchRequestInit.keepalive` |
 | `method?` | `string` | A string to set request's method. | `FetchRequestInit.method` |
 | `mode?` | `RequestMode` | A string to indicate whether the request will use CORS, or will be restricted to same-origin URLs. Sets request's mode. | `FetchRequestInit.mode` |
-| `onChangeRetryDelay?` | (`delay`: `number`) => `number` | Function describing how `retryDelay` changes with each retry iteration.<br /><br /> | - |
+| `onChangeRetryDelay?` | (`delay`: `number`) => `number` | Function describing how `retryDelay` changes with each retry iteration. | - |
 | `priority?` | `RequestPriority` | - | `FetchRequestInit.priority` |
 | `proxy?` | `string` | Override http_proxy or HTTPS_PROXY<br />This is a custom property that is not part of the Fetch API specification. | `FetchRequestInit.proxy` |
 | `redirect?` | `RequestRedirect` | A string indicating whether request follows redirects, results in an error upon encountering a redirect, or returns the redirect (in an opaque fashion). Sets request's redirect. | `FetchRequestInit.redirect` |
@@ -65,7 +65,7 @@
 | Property | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ |
 | `error?` | (`this`: `Server`, `request`: `ErrorLike`) => `undefined` \| `Response` \| `Promise`\<`Response`\> \| `Promise`\<`undefined`\> | - | `Pick.error` |
-| `hostname?` | `string` | What hostname should the server listen on?**Default**`js<br />"0.0.0.0" // listen on all interfaces<br />`**Example**`js<br />"127.0.0.1" // Only listen locally<br />`**Example**`js<br />"remix.run" // Only listen on remix.run<br />``<br /><br />note: hostname should not include a {@link port} | `Pick.hostname` |
+| `hostname?` | `string` | What hostname should the server listen on?**Default**`js<br />"0.0.0.0" // listen on all interfaces<br />`**Examples**`js<br />"127.0.0.1" // Only listen locally<br />``js<br />"remix.run" // Only listen on remix.run<br />``<br /><br />note: hostname should not include a {@link port} | `Pick.hostname` |
 | `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | Options for customizing HTTPS functionality. | - |
 | `port?` | `string` \| `number` | What port should the server listen on?<br /><br />**Default**<br />`process.env.PORT \|\| "3000"` | `Pick.port` |
 
@@ -94,7 +94,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/8b99fbc163f3e4fc430c69c41ce12d139045ffe9/src/networkUtils.mts#L92)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/efa8ed44197d45a1cbc61ac3658f91efd2b3b03b/src/networkUtils.mts#L92)
 
 ***
 
@@ -112,7 +112,7 @@ functionality.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `entrypointFunction` | (`request`, `server`?) => `Response` \| `Promise`\<`Response`\> | The function used to start running the server. |
+| `entrypointFunction` | (`this`, `request`, `server`) => `Response` \| `Promise`\<`Response`\> \| (`this`, `request`, `server`) => `Response` \| `Promise`\<`Response`\> \| (`this`, `request`, `server`) => `undefined` \| `void` \| `Response` \| `Promise`\<`undefined` \| `void` \| `Response`\> \| (`this`, `request`, `server`) => `undefined` \| `Response` \| `Promise`\<`undefined` \| `Response`\> | The function used to start running the server. |
 | `serverConfiguration` | [`ServerConfiguration`](networkUtils.md#serverconfiguration) | An optional configuration object. |
 
 #### Returns
@@ -123,4 +123,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/8b99fbc163f3e4fc430c69c41ce12d139045ffe9/src/networkUtils.mts#L179)
+[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/efa8ed44197d45a1cbc61ac3658f91efd2b3b03b/src/networkUtils.mts#L179)
