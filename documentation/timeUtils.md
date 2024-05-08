@@ -46,7 +46,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Source
 
-[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/efa8ed44197d45a1cbc61ac3658f91efd2b3b03b/src/timeUtils.mts#L44)
+[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/timeUtils.mts#L44)
 
 ***
 
@@ -72,7 +72,42 @@ Localized string showing elapsed time with units.
 
 #### Source
 
-[src/timeUtils.mts:58](https://github.com/mangs/bun-utils/blob/efa8ed44197d45a1cbc61ac3658f91efd2b3b03b/src/timeUtils.mts#L58)
+[src/timeUtils.mts:58](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/timeUtils.mts#L58)
+
+***
+
+### measureElapsedTime()
+
+> **measureElapsedTime**\<`T`\>(`runner`): `Promise`\<`object`\>
+
+Measure the execution time of the passed-in function.
+
+#### Type parameters
+
+| Type parameter |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `runner` | () => `T` \| `Promise`\<`T`\> | Function whose execution duration will be measured. |
+
+#### Returns
+
+`Promise`\<`object`\>
+
+Object containing the elapsed time and the return value of the passed-in function.
+
+| Member | Type |
+| :------ | :------ |
+| `elapsedTime` | `string` |
+| `returnValue` | `Awaited`\<`T`\> |
+
+#### Source
+
+[src/timeUtils.mts:98](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/timeUtils.mts#L98)
 
 ***
 
@@ -117,7 +152,7 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[src/timeUtils.mts:111](https://github.com/mangs/bun-utils/blob/efa8ed44197d45a1cbc61ac3658f91efd2b3b03b/src/timeUtils.mts#L111)
+[src/timeUtils.mts:123](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/timeUtils.mts#L123)
 
 ***
 
@@ -141,4 +176,4 @@ Asynchronous sleep function using promises.
 
 #### Source
 
-[src/timeUtils.mts:128](https://github.com/mangs/bun-utils/blob/efa8ed44197d45a1cbc61ac3658f91efd2b3b03b/src/timeUtils.mts#L128)
+[src/timeUtils.mts:140](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/timeUtils.mts#L140)

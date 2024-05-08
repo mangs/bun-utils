@@ -4,11 +4,11 @@
 
 // External Imports
 import { format } from 'node:util';
-import { file, nanoseconds, serve, stringWidth } from 'bun';
+import { file, serve, stringWidth } from 'bun';
 
 // Internal Imports
 import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
-import { getElapsedTimeFormatted, sleep } from './timeUtils.mts';
+import { measureElapsedTime, sleep } from './timeUtils.mts';
 
 // Type Imports
 import type { Serve, ServeOptions, Server } from 'bun';
@@ -184,20 +184,22 @@ async function startDevelopmentServer(
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request, server: Server): Promise<Response> {
-      const startTime = nanoseconds();
-      const { pathname, search } = new URL(request.url);
+      const { elapsedTime, returnValue: response } = await measureElapsedTime(async () => {
+        const { pathname, search } = new URL(request.url);
 
-      // Log request details without breaking to next line so response metadata can be on same line
-      process.stdout.write(`${dim(`[${request.method}]`)} ${pathname}${search}`);
+        // Log request details without breaking to next line so response metadata can be on same line
+        process.stdout.write(`${dim(`[${request.method}]`)} ${pathname}${search}`);
 
-      // Collect response metadata, then log response details
-      const response = await entrypointFunction.bind(server)(request, server);
-      if (!response) {
-        throw new TypeError('Undefined development server response received');
-      }
-      const elapsedTime = getElapsedTimeFormatted(startTime);
+        // Collect response metadata, then log response details
+        const entrypointResponse = await entrypointFunction.bind(server)(request, server);
+        if (!entrypointResponse) {
+          throw new TypeError('Undefined development server response received');
+        }
+        return entrypointResponse;
+      });
+
       const color = getColorByStatusCode(response.status);
-      console.log(`  ${color(`(${response.status} in ${elapsedTime})`)}`);
+      process.stdout.write(`  ${color(`(${response.status} in ${elapsedTime})`)}\n`);
 
       return response;
     },
