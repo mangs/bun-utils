@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.17.0
+
+- Add function `measureElapsedTime()` to `src/timeUtils.mts`
+
 ## 2.16.5
 
 - Change 2nd parameter of `startDevelopmentServer()` to use Bun's `Server['fetch']` type

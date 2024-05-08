@@ -91,6 +91,18 @@ function getElapsedTimeFormatted(startTime: number, formatOptions?: FormatOption
 }
 
 /**
+ * Measure the execution time of the passed-in function.
+ * @param runner Function whose execution duration will be measured.
+ * @returns      Object containing the elapsed time and the return value of the passed-in function.
+ */
+async function measureElapsedTime<T>(runner: () => T | Promise<T>) {
+  const startTime = nanoseconds();
+  const returnValue = await runner();
+  const elapsedTime = getElapsedTimeFormatted(startTime);
+  return { elapsedTime, returnValue };
+}
+
+/**
  * Measure the execution time of the passed-in function, then append to the request object a
  * `Server-Timing` header containing the specified metric name, the measured duration, and
  * optionally the metric description.
@@ -132,5 +144,11 @@ function sleep(duration: number) {
 }
 
 // Module Exports
-export { buildServerTimingHeader, getElapsedTimeFormatted, measureServerTiming, sleep };
+export {
+  buildServerTimingHeader,
+  getElapsedTimeFormatted,
+  measureElapsedTime,
+  measureServerTiming,
+  sleep,
+};
 export type { FormatOptions };
