@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.17.1
+
+- Handle unexpected and error responses more correctly in `startDevelopmentServer()` by always showing a `500` response and timing in the response row
+- Update target Bun version from `1.1.7` to `1.1.8`
+
 ## 2.17.0
 
 - Add function `measureElapsedTime()` to `src/timeUtils.mts`
