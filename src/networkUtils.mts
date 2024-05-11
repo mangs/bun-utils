@@ -184,22 +184,36 @@ async function startDevelopmentServer(
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request, server: Server): Promise<Response> {
-      const { elapsedTime, returnValue: response } = await measureElapsedTime(async () => {
+      const {
+        elapsedTime,
+        returnValue: [response, responseError],
+      } = await measureElapsedTime(async () => {
         const { pathname, search } = new URL(request.url);
 
         // Log request details without breaking to next line so response metadata can be on same line
         process.stdout.write(`${dim(`[${request.method}]`)} ${pathname}${search}`);
 
         // Collect response metadata, then log response details
-        const entrypointResponse = await entrypointFunction.bind(server)(request, server);
-        if (!entrypointResponse) {
-          throw new TypeError('Undefined development server response received');
+        let entrypointError: Error | undefined;
+        let entrypointResponse: Response;
+        try {
+          entrypointResponse =
+            (await entrypointFunction.bind(server)(request, server)) ??
+            new Response('Undefined development server response received', { status: 500 });
+        } catch (error_) {
+          if (error_ instanceof Error) {
+            entrypointError = error_;
+          }
+          entrypointResponse = new Response(undefined, { status: 500 });
         }
-        return entrypointResponse;
+        return [entrypointResponse, entrypointError];
       });
 
       const color = getColorByStatusCode(response.status);
       process.stdout.write(`  ${color(`(${response.status} in ${elapsedTime})`)}\n`);
+      if (responseError) {
+        throw responseError;
+      }
 
       return response;
     },
@@ -237,6 +251,8 @@ async function startDevelopmentServer(
               ? 'privateKeyPath'
               : 'certificateAuthorityPath';
           printError(`HTTPS configuration key "${targetKey}" file not found: ${filePath}`);
+
+          // Force an exit to make it obvious there's a problem (Bun.serve doesn't exit by default for thrown errors)
           process.exit(1); // eslint-disable-line n/no-process-exit, unicorn/no-process-exit -- intended to be used in CLI scripts
         }
       }
