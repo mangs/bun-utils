@@ -46,7 +46,7 @@ Constructor that creates an empty array for route definitions.
 
 ###### Source
 
-[src/routerUtils.mts:61](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L61)
+[src/routerUtils.mts:61](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L61)
 
 #### Properties
 
@@ -80,7 +80,7 @@ A reference to the instantiated instance (`this`) so route handler definitions c
 
 ###### Source
 
-[src/routerUtils.mts:147](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L147)
+[src/routerUtils.mts:147](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L147)
 
 ##### all()
 
@@ -109,7 +109,7 @@ router.all('/**', () => new Response('', { headers: { allow: 'GET' }, status: 40
 
 ###### Source
 
-[src/routerUtils.mts:165](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L165)
+[src/routerUtils.mts:165](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L165)
 
 ##### delete()
 
@@ -138,7 +138,7 @@ router.delete('/item', { deleteItemRoute: () => import('./routes/deleteItemRoute
 
 ###### Source
 
-[src/routerUtils.mts:179](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L179)
+[src/routerUtils.mts:179](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L179)
 
 ##### get()
 
@@ -167,7 +167,7 @@ router.get('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
 
 ###### Source
 
-[src/routerUtils.mts:193](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L193)
+[src/routerUtils.mts:193](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L193)
 
 ##### handleRequest()
 
@@ -189,7 +189,7 @@ A `Response` object to build the response sent to the requester.
 
 ###### Source
 
-[src/routerUtils.mts:101](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L101)
+[src/routerUtils.mts:101](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L101)
 
 ##### head()
 
@@ -218,7 +218,7 @@ router.head('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
 
 ###### Source
 
-[src/routerUtils.mts:207](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L207)
+[src/routerUtils.mts:207](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L207)
 
 ##### options()
 
@@ -247,7 +247,7 @@ router.options('/item', { deleteItemRoute: () => import('./routes/deleteItemRout
 
 ###### Source
 
-[src/routerUtils.mts:221](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L221)
+[src/routerUtils.mts:221](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L221)
 
 ##### patch()
 
@@ -276,7 +276,7 @@ router.patch('/item', { patchItemRoute: () => import('./routes/patchItemRoute.mt
 
 ###### Source
 
-[src/routerUtils.mts:235](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L235)
+[src/routerUtils.mts:235](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L235)
 
 ##### post()
 
@@ -305,7 +305,7 @@ router.post('/item', { postItemRoute: () => import('./routes/postItemRoute.mts')
 
 ###### Source
 
-[src/routerUtils.mts:249](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L249)
+[src/routerUtils.mts:249](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L249)
 
 ##### put()
 
@@ -334,7 +334,7 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 ###### Source
 
-[src/routerUtils.mts:263](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L263)
+[src/routerUtils.mts:263](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L263)
 
 ## Type Aliases
 
@@ -344,7 +344,7 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 #### Source
 
-[src/routerUtils.mts:12](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L12)
+[src/routerUtils.mts:12](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L12)
 
 ***
 
@@ -354,7 +354,7 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 #### Source
 
-[src/routerUtils.mts:16](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L16)
+[src/routerUtils.mts:16](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L16)
 
 ***
 
@@ -364,7 +364,7 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 #### Source
 
-[src/routerUtils.mts:15](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L15)
+[src/routerUtils.mts:15](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L15)
 
 ***
 
@@ -384,7 +384,7 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 #### Source
 
-[src/routerUtils.mts:13](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L13)
+[src/routerUtils.mts:13](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L13)
 
 ***
 
@@ -394,7 +394,7 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 #### Source
 
-[src/routerUtils.mts:14](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L14)
+[src/routerUtils.mts:14](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L14)
 
 ***
 
@@ -404,7 +404,7 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 #### Source
 
-[src/routerUtils.mts:17](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L17)
+[src/routerUtils.mts:17](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L17)
 
 ## Variables
 
@@ -414,4 +414,4 @@ router.put('/item', { putItemRoute: () => import('./routes/putItemRoute.mts') })
 
 #### Source
 
-[src/routerUtils.mts:20](https://github.com/mangs/bun-utils/blob/4eae35e876bf2292d51b495a8e0306ced20a795b/src/routerUtils.mts#L20)
+[src/routerUtils.mts:20](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/routerUtils.mts#L20)
