@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.17.2
+
+- Fix measured `Server-Timing` durations which were incorrectly using constructor execution as start time instead of `Router.prototype.handleRequest()`
+- Update dependency versions to latest
+
 ## 2.17.1
 
 - Handle unexpected and error responses more correctly in `startDevelopmentServer()` by always showing a `500` response and timing in the response row

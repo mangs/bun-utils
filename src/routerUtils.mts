@@ -55,12 +55,10 @@ const httpRequestMethods = [
 class Router {
   /**
    * Constructor that creates an empty array for route definitions.
-   * @param startTime        The start time of loading a route; used to compute `Server-Timing` duration.
-   * @param usesServerTiming Boolean indicating if `Server-Timing` headers are appended to the request object or not.
+   * @param usesServerTiming Boolean indicating if `Server-Timing` headers are appended to the request object.
    */
-  constructor(startTime?: number, usesServerTiming = true) {
+  constructor(usesServerTiming = true) {
     this.#routes = [];
-    this.#startTime = startTime ?? performance.now();
     this.#usesServerTiming = usesServerTiming;
 
     // return new Proxy(this, {
@@ -84,11 +82,6 @@ class Router {
   #routes: Routes;
 
   /**
-   * Start time for computing `Server-Timing` values.
-   */
-  #startTime: number;
-
-  /**
    * Whether or not `Server-Timing` headers are appended to the `Request` object.
    */
   #usesServerTiming: boolean;
@@ -99,6 +92,7 @@ class Router {
    * @returns       A `Response` object to build the response sent to the requester.
    */
   async handleRequest(request: Request) {
+    const startTime = performance.now();
     const { method } = request;
     const { pathname: requestPath } = new URL(request.url);
 
@@ -111,7 +105,7 @@ class Router {
       if (new Glob(routePath).match(requestPath)) {
         if (typeof routeHandler === 'function') {
           if (this.#usesServerTiming) {
-            request.headers.append(...buildServerTimingHeader('routeSync', this.#startTime));
+            request.headers.append(...buildServerTimingHeader('routeSync', startTime));
           }
           return routeHandler(request);
         }
@@ -126,7 +120,7 @@ class Router {
         const targetFunction = routeModule[moduleKey];
         if (typeof targetFunction === 'function') {
           if (this.#usesServerTiming) {
-            request.headers.append(...buildServerTimingHeader('routeAsync', this.#startTime));
+            request.headers.append(...buildServerTimingHeader('routeAsync', startTime));
           }
           return targetFunction(request);
         }

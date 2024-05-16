@@ -20,9 +20,9 @@
 | `keepalive?` | `boolean` | A boolean to set request's keepalive. | `FetchRequestInit.keepalive` |
 | `method?` | `string` | A string to set request's method. | `FetchRequestInit.method` |
 | `mode?` | `RequestMode` | A string to indicate whether the request will use CORS, or will be restricted to same-origin URLs. Sets request's mode. | `FetchRequestInit.mode` |
-| `onChangeRetryDelay?` | (`delay`: `number`) => `number` | Function describing how `retryDelay` changes with each retry iteration. | - |
+| `onChangeRetryDelay?` | (`delay`: `number`) => `number` | <p>Function describing how `retryDelay` changes with each retry iteration.</p> | - |
 | `priority?` | `RequestPriority` | - | `FetchRequestInit.priority` |
-| `proxy?` | `string` | Override http_proxy or HTTPS_PROXY<br />This is a custom property that is not part of the Fetch API specification. | `FetchRequestInit.proxy` |
+| `proxy?` | `string` | Override http_proxy or HTTPS_PROXY This is a custom property that is not part of the Fetch API specification. | `FetchRequestInit.proxy` |
 | `redirect?` | `RequestRedirect` | A string indicating whether request follows redirects, results in an error upon encountering a redirect, or returns the redirect (in an opaque fashion). Sets request's redirect. | `FetchRequestInit.redirect` |
 | `referrer?` | `string` | A string whose value is a same-origin URL, "about:client", or the empty string, to set request's referrer. | `FetchRequestInit.referrer` |
 | `referrerPolicy?` | `ReferrerPolicy` | A referrer policy to set request's referrerPolicy. | `FetchRequestInit.referrerPolicy` |
@@ -33,7 +33,7 @@
 | `tls?` | `object` | Override the default TLS options | `FetchRequestInit.tls` |
 | `tls.checkServerIdentity?` | `any` | - | - |
 | `tls.rejectUnauthorized?` | `boolean` | - | - |
-| `verbose?` | `boolean` | Log the raw HTTP request & response to stdout. This API may be<br />removed in a future version of Bun without notice.<br />This is a custom property that is not part of the Fetch API specification.<br />It exists mostly as a debugging tool | `FetchRequestInit.verbose` |
+| `verbose?` | `boolean` | Log the raw HTTP request & response to stdout. This API may be removed in a future version of Bun without notice. This is a custom property that is not part of the Fetch API specification. It exists mostly as a debugging tool | `FetchRequestInit.verbose` |
 | `window?` | `null` | Can only be null. Used to disassociate request from any Window. | `FetchRequestInit.window` |
 
 ***
@@ -65,9 +65,9 @@
 | Property | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ |
 | `error?` | (`this`: `Server`, `request`: `ErrorLike`) => `undefined` \| `Response` \| `Promise`\<`Response`\> \| `Promise`\<`undefined`\> | - | `Pick.error` |
-| `hostname?` | `string` | What hostname should the server listen on?**Default**`js<br />"0.0.0.0" // listen on all interfaces<br />`**Examples**`js<br />"127.0.0.1" // Only listen locally<br />``js<br />"remix.run" // Only listen on remix.run<br />``<br /><br />note: hostname should not include a {@link port} | `Pick.hostname` |
+| `hostname?` | `string` | <p>What hostname should the server listen on?</p><p>**Default**</p><code>"0.0.0.0" // listen on all interfaces</code><p>**Examples**</p><code>"127.0.0.1" // Only listen locally</code><p>___CODEBLOCKPLACEHOLDER___ `</p><p>note: hostname should not include a {@link port}</p> | `Pick.hostname` |
 | `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | Options for customizing HTTPS functionality. | - |
-| `port?` | `string` \| `number` | What port should the server listen on?<br /><br />**Default**<br />`process.env.PORT \|\| "3000"` | `Pick.port` |
+| `port?` | `string` \| `number` | <p>What port should the server listen on?</p><p>**Default**</p><code>process.env.PORT \|\| "3000"</code> | `Pick.port` |
 
 ## Functions
 
@@ -94,7 +94,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/networkUtils.mts#L92)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/a54971c77d1e3c1bdddf7d527d375d3939a4e728/src/networkUtils.mts#L92)
 
 ***
 
@@ -123,4 +123,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/networkUtils.mts#L179)
+[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/a54971c77d1e3c1bdddf7d527d375d3939a4e728/src/networkUtils.mts#L179)

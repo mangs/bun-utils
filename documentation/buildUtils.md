@@ -12,7 +12,7 @@
 
 | Property | Type | Description | Overrides | Inherited from |
 | :------ | :------ | :------ | :------ | :------ |
-| `conditions?` | `string` \| `string`[] | package.json `exports` conditions used when resolving imports<br /><br />Equivalent to `--conditions` in `bun build` or `bun run`.<br /><br />https://nodejs.org/api/packages.html#exports | `BuildConfig.conditions` | `BuildConfig.conditions` |
+| `conditions?` | `string` \| `string`[] | <p>package.json `exports` conditions used when resolving imports</p><p>Equivalent to `--conditions` in `bun build` or `bun run`.</p><p>https://nodejs.org/api/packages.html#exports</p> | `BuildConfig.conditions` | `BuildConfig.conditions` |
 | `define?` | `Record`\<`string`, `string`\> | - | `BuildConfig.define` | `BuildConfig.define` |
 | `entrypoints` | `string`[] | - | `BuildConfig.entrypoints` | `BuildConfig.entrypoints` |
 | `external?` | `string`[] | - | `BuildConfig.external` | `BuildConfig.external` |
@@ -77,7 +77,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Source
 
-[src/buildUtils.mts:52](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/buildUtils.mts#L52)
+[src/buildUtils.mts:52](https://github.com/mangs/bun-utils/blob/a54971c77d1e3c1bdddf7d527d375d3939a4e728/src/buildUtils.mts#L52)
 
 ***
 
@@ -100,4 +100,4 @@ Format and print to the command line the provided build metadata.
 
 #### Source
 
-[src/buildUtils.mts:81](https://github.com/mangs/bun-utils/blob/56bb24880d7ceed5ca3ce0850a4930167c7a0b76/src/buildUtils.mts#L81)
+[src/buildUtils.mts:81](https://github.com/mangs/bun-utils/blob/a54971c77d1e3c1bdddf7d527d375d3939a4e728/src/buildUtils.mts#L81)
