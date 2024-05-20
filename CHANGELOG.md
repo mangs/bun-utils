@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.18.0
+
+- Add `/config` directory to NPM package contents
+
 ## 2.17.2
 
 - Fix measured `Server-Timing` durations which were incorrectly using constructor execution as start time instead of `Router.prototype.handleRequest()`
