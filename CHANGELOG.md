@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.18.1
+
+- Refactor `fetchWithRetry()` to use fewer lines of code
+- Update dependency versions to latest
+
 ## 2.18.0
 
 - Add `/config` directory to NPM package contents
