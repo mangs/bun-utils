@@ -116,11 +116,9 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
       }
       await sleep(retryDelay);
       return fetchWithRetry(url, {
-        ...fetchOptions,
-        onChangeRetryDelay,
+        ...options,
         retryDelay: onChangeRetryDelay(retryDelay),
         retryMax: retryMax - 1,
-        timeout,
       });
     }
     throw error;
