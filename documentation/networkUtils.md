@@ -26,8 +26,8 @@
 | `redirect?` | `RequestRedirect` | A string indicating whether request follows redirects, results in an error upon encountering a redirect, or returns the redirect (in an opaque fashion). Sets request's redirect. | `FetchRequestInit.redirect` |
 | `referrer?` | `string` | A string whose value is a same-origin URL, "about:client", or the empty string, to set request's referrer. | `FetchRequestInit.referrer` |
 | `referrerPolicy?` | `ReferrerPolicy` | A referrer policy to set request's referrerPolicy. | `FetchRequestInit.referrerPolicy` |
+| `retries?` | `number` | Maximum number of retries before an error is thrown. | - |
 | `retryDelay?` | `number` | Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations. | - |
-| `retryMax?` | `number` | Maximum number of retries before an error is thrown. | - |
 | `signal?` | `null` \| `AbortSignal` | An AbortSignal to set request's signal. | `FetchRequestInit.signal` |
 | `timeout?` | `number` | Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. | - |
 | `tls?` | `object` | Override the default TLS options | `FetchRequestInit.tls` |
@@ -94,7 +94,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/22a64e27a688f73c1130d0aad8e8bc8d062f5699/src/networkUtils.mts#L92)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/04c4338b71ceaef98b206440d00c64e2b904fd2d/src/networkUtils.mts#L92)
 
 ***
 
@@ -123,4 +123,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:177](https://github.com/mangs/bun-utils/blob/22a64e27a688f73c1130d0aad8e8bc8d062f5699/src/networkUtils.mts#L177)
+[src/networkUtils.mts:177](https://github.com/mangs/bun-utils/blob/04c4338b71ceaef98b206440d00c64e2b904fd2d/src/networkUtils.mts#L177)

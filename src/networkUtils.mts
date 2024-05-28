@@ -35,7 +35,7 @@ interface FetchRetryOptions extends FetchRequestInit {
   /**
    * Maximum number of retries before an error is thrown.
    */
-  retryMax?: number;
+  retries?: number;
   /**
    * Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member.
    */
@@ -92,13 +92,13 @@ interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 
 async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions = {}) {
   const {
     onChangeRetryDelay = (delay) => delay * 2,
+    retries = 3,
     retryDelay = 1_000,
-    retryMax = 3,
     timeout = 10_000,
     ...fetchOptions
   } = options;
 
-  const hasRetriesRemaining = retryMax > 0;
+  const hasRetriesRemaining = retries > 0;
   try {
     const response = await fetch(url instanceof Request ? url.clone() : url, {
       signal: AbortSignal.timeout(timeout),
@@ -112,13 +112,13 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
     if (hasRetriesRemaining) {
       if (process.env.DEBUG) {
         console.error(error);
-        console.info('ERROR RETRY SETTINGS', { retryDelay, retryMax });
+        console.info('ERROR RETRY SETTINGS', { retries, retryDelay });
       }
       await sleep(retryDelay);
       return fetchWithRetry(url, {
         ...options,
+        retries: retries - 1,
         retryDelay: onChangeRetryDelay(retryDelay),
-        retryMax: retryMax - 1,
       });
     }
     throw error;

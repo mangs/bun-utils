@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.18.2
+
+- Rename `fetchWithRetry()` configuration option `retryMax` to `retries`
+
 ## 2.18.1
 
 - Refactor `fetchWithRetry()` to use fewer lines of code
