@@ -94,7 +94,7 @@ Data returned by `fetch`.
 
 #### Source
 
-[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/a54971c77d1e3c1bdddf7d527d375d3939a4e728/src/networkUtils.mts#L92)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/dff582c34172a7082136d2de8a821843d34de213/src/networkUtils.mts#L92)
 
 ***
 
@@ -123,4 +123,4 @@ functionality.
 
 #### Source
 
-[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/a54971c77d1e3c1bdddf7d527d375d3939a4e728/src/networkUtils.mts#L179)
+[src/networkUtils.mts:179](https://github.com/mangs/bun-utils/blob/dff582c34172a7082136d2de8a821843d34de213/src/networkUtils.mts#L179)
