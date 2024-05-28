@@ -3,6 +3,7 @@
 ## 2.18.1
 
 - Refactor `fetchWithRetry()` to use fewer lines of code
+- Update target Bun version from `1.1.8` to `1.1.10`
 - Update dependency versions to latest
 
 ## 2.18.0
