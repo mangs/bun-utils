@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.18.3
+
+- Limit error catching and suppression to `TimeoutError`s in `fetchWithRetry()`; all other error types thrown
+- Update dependency versions to latest
+
 ## 2.18.2
 
 - Rename `fetchWithRetry()` configuration option `retryMax` to `retries`

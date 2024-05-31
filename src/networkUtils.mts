@@ -109,7 +109,7 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
     }
     return response;
   } catch (error) {
-    if (hasRetriesRemaining) {
+    if (error instanceof Error && error.name === 'TimeoutError' && hasRetriesRemaining) {
       if (process.env.DEBUG) {
         console.error(error);
         console.info('ERROR RETRY SETTINGS', { retries, retryDelay });
