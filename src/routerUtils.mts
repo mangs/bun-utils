@@ -105,7 +105,7 @@ class Router {
       if (new Glob(routePath).match(requestPath)) {
         if (typeof routeHandler === 'function') {
           if (this.#usesServerTiming) {
-            request.headers.append(...buildServerTimingHeader('routeSync', startTime));
+            request.headers.append(...buildServerTimingHeader('routeSync', startTime).header);
           }
           return routeHandler(request);
         }
@@ -120,7 +120,7 @@ class Router {
         const targetFunction = routeModule[moduleKey];
         if (typeof targetFunction === 'function') {
           if (this.#usesServerTiming) {
-            request.headers.append(...buildServerTimingHeader('routeAsync', startTime));
+            request.headers.append(...buildServerTimingHeader('routeAsync', startTime).header);
           }
           return targetFunction(request);
         }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.19.0
+
+- Change `buildServerTimingHeader()` to return an object containing the numeric duration, formatted duration string, and an array representing the header value
+- Change `measureServerTiming()` to return an object containing the numeric duration, formatted duration string, and the return value of the passed-in function
+- Update target Bun version from `1.1.10` to `1.1.13`
+- Update dependency versions to latest
+
 ## 2.18.3
 
 - Limit error catching and suppression to `TimeoutError`s in `fetchWithRetry()`; all other error types thrown
