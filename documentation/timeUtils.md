@@ -16,7 +16,7 @@
 
 ### buildServerTimingHeader()
 
-> **buildServerTimingHeader**(`name`, `startTime`?, `description`?): readonly [`"Server-Timing"`, `string`]
+> **buildServerTimingHeader**(`name`, `startTime`?, `description`?): `object`
 
 Build a `Server-Timing` header to measure a performance metric using the provided values.
 
@@ -30,9 +30,15 @@ Build a `Server-Timing` header to measure a performance metric using the provide
 
 #### Returns
 
-readonly [`"Server-Timing"`, `string`]
+`object`
 
-A `Server-Timing` header tuple: [`'Server-Timing'`, `string`].
+An object containing numeric duration, formatted duration string, and an array representing the header value.
+
+| Member | Type | Value |
+| :------ | :------ | :------ |
+| `duration` | `number` | - |
+| `durationFormatted` | `string` | - |
+| `header` | readonly [`"Server-Timing"`, `string`] | ... |
 
 #### Example
 
@@ -41,12 +47,12 @@ import { buildServerTimingHeader } from '@mangs/bun-utils/time';
 
 const startTime = performance.now();
 // sometime later...
-request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything'));
+request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything').header);
 ```
 
 #### Source
 
-[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/04c4338b71ceaef98b206440d00c64e2b904fd2d/src/timeUtils.mts#L44)
+[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L44)
 
 ***
 
@@ -72,7 +78,7 @@ Localized string showing elapsed time with units.
 
 #### Source
 
-[src/timeUtils.mts:58](https://github.com/mangs/bun-utils/blob/04c4338b71ceaef98b206440d00c64e2b904fd2d/src/timeUtils.mts#L58)
+[src/timeUtils.mts:63](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L63)
 
 ***
 
@@ -107,13 +113,13 @@ Object containing the elapsed time and the return value of the passed-in functio
 
 #### Source
 
-[src/timeUtils.mts:98](https://github.com/mangs/bun-utils/blob/04c4338b71ceaef98b206440d00c64e2b904fd2d/src/timeUtils.mts#L98)
+[src/timeUtils.mts:103](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L103)
 
 ***
 
 ### measureServerTiming()
 
-> **measureServerTiming**\<`T`\>(`metricName`, `request`, `runner`, `metricDescription`?): `Promise`\<`T`\>
+> **measureServerTiming**\<`T`\>(`metricName`, `request`, `runner`, `metricDescription`?): `Promise`\<`object`\>
 
 Measure the execution time of the passed-in function, then append to the request object a
 `Server-Timing` header containing the specified metric name, the measured duration, and
@@ -136,9 +142,15 @@ optionally the metric description.
 
 #### Returns
 
-`Promise`\<`T`\>
+`Promise`\<`object`\>
 
-The return value of the passed-in function.
+An object containing the numeric duration, formatted duration string, and return value of the passed-in function.
+
+| Member | Type |
+| :------ | :------ |
+| `duration` | `number` |
+| `durationFormatted` | `string` |
+| `returnValue` | `Awaited`\<`T`\> |
 
 #### Example
 
@@ -152,7 +164,7 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[src/timeUtils.mts:123](https://github.com/mangs/bun-utils/blob/04c4338b71ceaef98b206440d00c64e2b904fd2d/src/timeUtils.mts#L123)
+[src/timeUtils.mts:128](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L128)
 
 ***
 
@@ -176,4 +188,4 @@ Asynchronous sleep function using promises.
 
 #### Source
 
-[src/timeUtils.mts:140](https://github.com/mangs/bun-utils/blob/04c4338b71ceaef98b206440d00c64e2b904fd2d/src/timeUtils.mts#L140)
+[src/timeUtils.mts:148](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L148)
