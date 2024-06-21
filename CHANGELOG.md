@@ -2,8 +2,9 @@
 
 ## 2.19.0
 
-- Change `buildServerTimingHeader()` to return an object containing the numeric duration, formatted duration string, and an array representing the header value
-- Change `measureServerTiming()` to return an object containing the numeric duration, formatted duration string, and the return value of the passed-in function
+- Change `buildServerTimingHeader()` to return a tuple containing a tuple representing the header value and the duration.
+- Change `measureServerTiming()` to return a tuple containing the return value of the passed-in function and the duration.
+- Change `measureElapsedTime()` to return a tuple containing the return value of the passed-in function and the elapsed execution time.
 - Update target Bun version from `1.1.10` to `1.1.13`
 - Update dependency versions to latest
 

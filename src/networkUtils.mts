@@ -182,10 +182,7 @@ async function startDevelopmentServer(
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request, server: Server): Promise<Response> {
-      const {
-        elapsedTime,
-        returnValue: [response, responseError],
-      } = await measureElapsedTime(async () => {
+      const [[response, responseError], elapsedTime] = await measureElapsedTime(async () => {
         const { pathname, search } = new URL(request.url);
 
         // Log request details without breaking to next line so response metadata can be on same line

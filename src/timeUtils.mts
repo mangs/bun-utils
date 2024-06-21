@@ -31,26 +31,22 @@ interface FormatOptions {
  * @param name        The name of the performance metric.
  * @param startTime   The recorded start time used to compute the metric duration; computed by subtracting the time at which this function is called by the start time. [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute).
  * @param description A description of the metric.
- * @returns           An object containing numeric duration, formatted duration string, and an array representing the header value.
+ * @returns           A tuple containing a tuple representing the header value and the duration.
  * @example
  * ```ts
  * import { buildServerTimingHeader } from '@mangs/bun-utils/time';
  *
  * const startTime = performance.now();
  * // sometime later...
- * request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything').header);
+ * request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything')[0]);
  * ```
  */
 function buildServerTimingHeader(name: string, startTime?: number, description?: string) {
   const duration = typeof startTime === 'number' ? performance.now() - startTime : -1;
-  const durationFormatted = duration.toFixed(2);
-  const durationMetric = duration === -1 ? '' : `;dur=${durationFormatted}`;
+  const durationMetric = duration === -1 ? '' : `;dur=${duration.toFixed(2)}`;
   const descriptionMetric = description ? `;desc="${description}"` : '';
-  return {
-    duration,
-    durationFormatted,
-    header: [`Server-Timing`, `${name}${durationMetric}${descriptionMetric}`] as const,
-  };
+  const header = [`Server-Timing`, `${name}${durationMetric}${descriptionMetric}`] as const;
+  return [header, duration] as const;
 }
 
 /**
@@ -98,13 +94,13 @@ function getElapsedTimeFormatted(startTime: number, formatOptions?: FormatOption
 /**
  * Measure the execution time of the passed-in function.
  * @param runner Function whose execution duration will be measured.
- * @returns      Object containing the elapsed time and the return value of the passed-in function.
+ * @returns      A tuple containing the return value of the passed-in function and the elapsed execution time.
  */
 async function measureElapsedTime<T>(runner: () => T | Promise<T>) {
   const startTime = nanoseconds();
-  const returnValue = await runner();
+  const runnerReturnValue = await runner();
   const elapsedTime = getElapsedTimeFormatted(startTime);
-  return { elapsedTime, returnValue };
+  return [runnerReturnValue, elapsedTime] as const;
 }
 
 /**
@@ -115,7 +111,7 @@ async function measureElapsedTime<T>(runner: () => T | Promise<T>) {
  * @param request           `Request` object to which the `Server-Timing` header will be appended.
  * @param runner            Function whose execution duration will be measured.
  * @param metricDescription Optional description of the `Server-Timing` metric being measured.
- * @returns                 An object containing the numeric duration, formatted duration string, and return value of the passed-in function.
+ * @returns                 A tuple containing the return value of the passed-in function and the duration.
  * @example
  * ```ts
  * import { measureServerTiming } from '@mangs/bun-utils/time';
@@ -132,12 +128,10 @@ async function measureServerTiming<T>(
   metricDescription?: string,
 ) {
   const startTime = performance.now();
-  const returnValue = await runner();
-  const { header, ...rest } = buildServerTimingHeader(metricName, startTime, metricDescription);
-  request.headers.append(
-    ...buildServerTimingHeader(metricName, startTime, metricDescription).header,
-  );
-  return { returnValue, ...rest };
+  const runnerReturnValue = await runner();
+  const [header, duration] = buildServerTimingHeader(metricName, startTime, metricDescription);
+  request.headers.append(...header);
+  return [runnerReturnValue, duration] as const;
 }
 
 /**

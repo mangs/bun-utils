@@ -16,7 +16,7 @@
 
 ### buildServerTimingHeader()
 
-> **buildServerTimingHeader**(`name`, `startTime`?, `description`?): `object`
+> **buildServerTimingHeader**(`name`, `startTime`?, `description`?): readonly [readonly [`"Server-Timing"`, `string`], `number`]
 
 Build a `Server-Timing` header to measure a performance metric using the provided values.
 
@@ -30,15 +30,9 @@ Build a `Server-Timing` header to measure a performance metric using the provide
 
 #### Returns
 
-`object`
+readonly [readonly [`"Server-Timing"`, `string`], `number`]
 
-An object containing numeric duration, formatted duration string, and an array representing the header value.
-
-| Member | Type | Value |
-| :------ | :------ | :------ |
-| `duration` | `number` | - |
-| `durationFormatted` | `string` | - |
-| `header` | readonly [`"Server-Timing"`, `string`] | ... |
+A tuple containing a tuple representing the header value and the duration.
 
 #### Example
 
@@ -47,12 +41,12 @@ import { buildServerTimingHeader } from '@mangs/bun-utils/time';
 
 const startTime = performance.now();
 // sometime later...
-request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything').header);
+request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything')[0]);
 ```
 
 #### Source
 
-[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L44)
+[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L44)
 
 ***
 
@@ -78,13 +72,13 @@ Localized string showing elapsed time with units.
 
 #### Source
 
-[src/timeUtils.mts:63](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L63)
+[src/timeUtils.mts:59](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L59)
 
 ***
 
 ### measureElapsedTime()
 
-> **measureElapsedTime**\<`T`\>(`runner`): `Promise`\<`object`\>
+> **measureElapsedTime**\<`T`\>(`runner`): `Promise`\<readonly [`Awaited`\<`T`\>, `string`]\>
 
 Measure the execution time of the passed-in function.
 
@@ -102,24 +96,19 @@ Measure the execution time of the passed-in function.
 
 #### Returns
 
-`Promise`\<`object`\>
+`Promise`\<readonly [`Awaited`\<`T`\>, `string`]\>
 
-Object containing the elapsed time and the return value of the passed-in function.
-
-| Member | Type |
-| :------ | :------ |
-| `elapsedTime` | `string` |
-| `returnValue` | `Awaited`\<`T`\> |
+A tuple containing the return value of the passed-in function and the elapsed execution time.
 
 #### Source
 
-[src/timeUtils.mts:103](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L103)
+[src/timeUtils.mts:99](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L99)
 
 ***
 
 ### measureServerTiming()
 
-> **measureServerTiming**\<`T`\>(`metricName`, `request`, `runner`, `metricDescription`?): `Promise`\<`object`\>
+> **measureServerTiming**\<`T`\>(`metricName`, `request`, `runner`, `metricDescription`?): `Promise`\<readonly [`Awaited`\<`T`\>, `number`]\>
 
 Measure the execution time of the passed-in function, then append to the request object a
 `Server-Timing` header containing the specified metric name, the measured duration, and
@@ -142,15 +131,9 @@ optionally the metric description.
 
 #### Returns
 
-`Promise`\<`object`\>
+`Promise`\<readonly [`Awaited`\<`T`\>, `number`]\>
 
-An object containing the numeric duration, formatted duration string, and return value of the passed-in function.
-
-| Member | Type |
-| :------ | :------ |
-| `duration` | `number` |
-| `durationFormatted` | `string` |
-| `returnValue` | `Awaited`\<`T`\> |
+A tuple containing the return value of the passed-in function and the duration.
 
 #### Example
 
@@ -164,7 +147,7 @@ const cmsContent = await measureServerTiming('cmsLoad', request, () =>
 
 #### Source
 
-[src/timeUtils.mts:128](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L128)
+[src/timeUtils.mts:124](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L124)
 
 ***
 
@@ -188,4 +171,4 @@ Asynchronous sleep function using promises.
 
 #### Source
 
-[src/timeUtils.mts:148](https://github.com/mangs/bun-utils/blob/a80c8c202ec3a2a46e0747dc2074f7db265a3321/src/timeUtils.mts#L148)
+[src/timeUtils.mts:142](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L142)
