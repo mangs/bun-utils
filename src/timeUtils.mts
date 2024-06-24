@@ -116,7 +116,7 @@ async function measureElapsedTime<T>(runner: () => T | Promise<T>) {
  * ```ts
  * import { measureServerTiming } from '@mangs/bun-utils/time';
  *
- * const cmsContent = await measureServerTiming('cmsLoad', request, () =>
+ * const [cmsContent, loadDuration] = await measureServerTiming('cmsLoad', request, () =>
  *   getCmsContent('article1'),
  * );
  * ```
