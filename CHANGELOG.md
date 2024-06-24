@@ -3,6 +3,7 @@
 ## 2.19.1
 
 - Update example code for `measureServerTiming()` to match changes made in version `2.19.0`
+- Update target Bun version from `1.1.13` to `1.1.16`
 - Update dependency versions to latest
 
 ## 2.19.0
