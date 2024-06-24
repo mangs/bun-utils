@@ -11,7 +11,7 @@ Format the text so it appears cyan.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `text` | `string` | The text to format. |
 
 #### Returns
@@ -20,9 +20,9 @@ Format the text so it appears cyan.
 
 Text formatted so it appears cyan.
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:17](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L17)
+[src/consoleUtils.mts:17](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L17)
 
 ***
 
@@ -35,7 +35,7 @@ Format the text so it appears dim.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `text` | `string` | The text to format. |
 
 #### Returns
@@ -44,9 +44,9 @@ Format the text so it appears dim.
 
 Text formatted so it appears dim.
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:26](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L26)
+[src/consoleUtils.mts:26](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L26)
 
 ***
 
@@ -61,7 +61,7 @@ a specific time unit can be enforced. Also, formatting locale can be overridden.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | ...`parameters` | [`number`, [`FormatOptions`](timeUtils.md#formatoptions)] | The same parameters as [getElapsedTimeFormatted](timeUtils.md#getelapsedtimeformatted). |
 
 #### Returns
@@ -70,9 +70,9 @@ a specific time unit can be enforced. Also, formatting locale can be overridden.
 
 Localized text label showing elapsed time with units.
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:73](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L73)
+[src/consoleUtils.mts:73](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L73)
 
 ***
 
@@ -85,7 +85,7 @@ Format the text so it appears green.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `text` | `string` | The text to format. |
 
 #### Returns
@@ -94,9 +94,9 @@ Format the text so it appears green.
 
 Text formatted so it appears green.
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:35](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L35)
+[src/consoleUtils.mts:35](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L35)
 
 ***
 
@@ -109,16 +109,16 @@ Print an error message to the console in red.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `message` | `string` | A message to print to the console. |
 
 #### Returns
 
 `void`
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:82](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L82)
+[src/consoleUtils.mts:82](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L82)
 
 ***
 
@@ -131,16 +131,16 @@ Print an informational message to the console in cyan.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `message` | `string` | A message to print to the console. |
 
 #### Returns
 
 `void`
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:90](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L90)
+[src/consoleUtils.mts:90](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L90)
 
 ***
 
@@ -153,16 +153,16 @@ Print a success message to the console in green.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `message` | `string` | A message to print to the console. |
 
 #### Returns
 
 `void`
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:98](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L98)
+[src/consoleUtils.mts:98](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L98)
 
 ***
 
@@ -175,16 +175,16 @@ Print a warning message to the console in yellow.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `message` | `string` | A message to print to the console. |
 
 #### Returns
 
 `void`
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:106](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L106)
+[src/consoleUtils.mts:106](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L106)
 
 ***
 
@@ -197,7 +197,7 @@ Format the text so it appears red.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `text` | `string` | The text to format. |
 
 #### Returns
@@ -206,9 +206,9 @@ Format the text so it appears red.
 
 Text formatted so it appears red.
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:44](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L44)
+[src/consoleUtils.mts:44](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L44)
 
 ***
 
@@ -221,7 +221,7 @@ Format the text so it appears white.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `text` | `string` | The text to format. |
 
 #### Returns
@@ -230,9 +230,9 @@ Format the text so it appears white.
 
 Text formatted so it appears white.
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:53](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L53)
+[src/consoleUtils.mts:53](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L53)
 
 ***
 
@@ -245,7 +245,7 @@ Format the text so it appears yellow.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `text` | `string` | The text to format. |
 
 #### Returns
@@ -254,6 +254,6 @@ Format the text so it appears yellow.
 
 Text formatted so it appears yellow.
 
-#### Source
+#### Defined in
 
-[src/consoleUtils.mts:62](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/consoleUtils.mts#L62)
+[src/consoleUtils.mts:62](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/consoleUtils.mts#L62)

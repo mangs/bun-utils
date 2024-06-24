@@ -6,11 +6,11 @@
 
 #### Properties
 
-| Property | Type | Description |
-| :------ | :------ | :------ |
-| `path?` | `string` | Path where the temporary file should be created. |
-| `writerOptions?` | `object` | Options object defined by the first parameter accepted by `BunFile.writer()`. |
-| `writerOptions.highWaterMark?` | `number` | - |
+| Property | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ |
+| `path?` | `string` | Path where the temporary file should be created. | [src/filesystemUtils.mts:18](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L18) |
+| `writerOptions?` | `object` | Options object defined by the first parameter accepted by `BunFile.writer()`. | [src/filesystemUtils.mts:22](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L22) |
+| `writerOptions.highWaterMark?` | `number` | - | node\_modules/bun-types/bun.d.ts:1200 |
 
 ## Functions
 
@@ -24,7 +24,7 @@ will be empty.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `paths` | `string`[] | List of file and/or directory paths. |
 
 #### Returns
@@ -33,9 +33,9 @@ will be empty.
 
 The list of inaccessible paths, if any.
 
-#### Source
+#### Defined in
 
-[src/filesystemUtils.mts:34](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/filesystemUtils.mts#L34)
+[src/filesystemUtils.mts:34](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L34)
 
 ***
 
@@ -48,7 +48,7 @@ Get a human readable filesize given its numeric value and an optional locale.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `filesize` | `number` | A file's size represented as a number. |
 | `localeOverride`? | `string` | An optional locale value to override the default set by the operating system. |
 
@@ -58,9 +58,9 @@ Get a human readable filesize given its numeric value and an optional locale.
 
 A localized string representing a file size.
 
-#### Source
+#### Defined in
 
-[src/filesystemUtils.mts:76](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/filesystemUtils.mts#L76)
+[src/filesystemUtils.mts:76](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L76)
 
 ***
 
@@ -74,7 +74,7 @@ values in the included ignore list.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `rootDirectory` | `string` | The root directory of the search. |
 | `ignore` | `string`[] | The list of path segment names to match and ignore. |
 
@@ -84,9 +84,9 @@ values in the included ignore list.
 
 A list of paths.
 
-#### Source
+#### Defined in
 
-[src/filesystemUtils.mts:52](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/filesystemUtils.mts#L52)
+[src/filesystemUtils.mts:52](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L52)
 
 ***
 
@@ -99,7 +99,7 @@ Determine if the provided path can be successfully accessed.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `path` | `string` | Path whose permissions to check. |
 
 #### Returns
@@ -108,9 +108,9 @@ Determine if the provided path can be successfully accessed.
 
 Boolean indicating whether or not the path is accessible.
 
-#### Source
+#### Defined in
 
-[src/filesystemUtils.mts:97](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/filesystemUtils.mts#L97)
+[src/filesystemUtils.mts:97](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L97)
 
 ***
 
@@ -135,7 +135,7 @@ an optional options object as follows:
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `options`? | [`TemporaryFileOptions`](filesystemUtils.md#temporaryfileoptions) | Options object to customize temporary file behavior. |
 
 #### Returns
@@ -144,10 +144,10 @@ an optional options object as follows:
 
 Temporary file instance object.
 
-| Member | Type | Description |
-| :------ | :------ | :------ |
-| `[asyncDispose]` | `Promise`\<`void`\> | Asynchronous automatic disposal function. |
-| `append` | `Promise`\<`void`\> | Append string contents to the target temporary file. |
+| Name | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ |
+| `[asyncDispose]` | `Promise`\<`void`\> | Asynchronous automatic disposal function. | [src/filesystemUtils.mts:156](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L156) |
+| `append` | `Promise`\<`void`\> | Append string contents to the target temporary file. | [src/filesystemUtils.mts:146](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L146) |
 
 #### See
 
@@ -166,6 +166,6 @@ await file.append('holy data, batman\n');
 // file auto-deletes at the end of its execution scope
 ```
 
-#### Source
+#### Defined in
 
-[src/filesystemUtils.mts:136](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/filesystemUtils.mts#L136)
+[src/filesystemUtils.mts:136](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/filesystemUtils.mts#L136)

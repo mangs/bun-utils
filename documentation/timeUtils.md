@@ -6,11 +6,11 @@
 
 #### Properties
 
-| Property | Type | Description |
-| :------ | :------ | :------ |
-| `localeOverride?` | `string` | Override of the locale used to format and localize the time value. |
-| `unitsMinimum?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Smallest time unit that can be displayed. |
-| `unitsOverride?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Override of time units to display; supersedes `unitsMinimum`. |
+| Property | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ |
+| `localeOverride?` | `string` | Override of the locale used to format and localize the time value. | [src/timeUtils.mts:17](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L17) |
+| `unitsMinimum?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Smallest time unit that can be displayed. | [src/timeUtils.mts:21](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L21) |
+| `unitsOverride?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Override of time units to display; supersedes `unitsMinimum`. | [src/timeUtils.mts:25](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L25) |
 
 ## Functions
 
@@ -23,7 +23,7 @@ Build a `Server-Timing` header to measure a performance metric using the provide
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `name` | `string` | The name of the performance metric. |
 | `startTime`? | `number` | The recorded start time used to compute the metric duration; computed by subtracting the time at which this function is called by the start time. [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute). |
 | `description`? | `string` | A description of the metric. |
@@ -44,9 +44,9 @@ const startTime = performance.now();
 request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measures everything')[0]);
 ```
 
-#### Source
+#### Defined in
 
-[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L44)
+[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L44)
 
 ***
 
@@ -60,7 +60,7 @@ time the function is called. An optional options object can be provided to custo
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `startTime` | `number` | Start time calculated by `Bun.nanoseconds()`. |
 | `formatOptions`? | [`FormatOptions`](timeUtils.md#formatoptions) | Options object for formatting customization. |
 
@@ -70,9 +70,9 @@ time the function is called. An optional options object can be provided to custo
 
 Localized string showing elapsed time with units.
 
-#### Source
+#### Defined in
 
-[src/timeUtils.mts:59](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L59)
+[src/timeUtils.mts:59](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L59)
 
 ***
 
@@ -82,16 +82,16 @@ Localized string showing elapsed time with units.
 
 Measure the execution time of the passed-in function.
 
-#### Type parameters
+#### Type Parameters
 
-| Type parameter |
-| :------ |
+| Type Parameter |
+| ------ |
 | `T` |
 
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `runner` | () => `T` \| `Promise`\<`T`\> | Function whose execution duration will be measured. |
 
 #### Returns
@@ -100,9 +100,9 @@ Measure the execution time of the passed-in function.
 
 A tuple containing the return value of the passed-in function and the elapsed execution time.
 
-#### Source
+#### Defined in
 
-[src/timeUtils.mts:99](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L99)
+[src/timeUtils.mts:99](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L99)
 
 ***
 
@@ -114,16 +114,16 @@ Measure the execution time of the passed-in function, then append to the request
 `Server-Timing` header containing the specified metric name, the measured duration, and
 optionally the metric description.
 
-#### Type parameters
+#### Type Parameters
 
-| Type parameter |
-| :------ |
+| Type Parameter |
+| ------ |
 | `T` |
 
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `metricName` | `string` | Name of the `Server-Timing` metric being measured. |
 | `request` | `Request` | `Request` object to which the `Server-Timing` header will be appended. |
 | `runner` | () => `T` \| `Promise`\<`T`\> | Function whose execution duration will be measured. |
@@ -140,14 +140,14 @@ A tuple containing the return value of the passed-in function and the duration.
 ```ts
 import { measureServerTiming } from '@mangs/bun-utils/time';
 
-const cmsContent = await measureServerTiming('cmsLoad', request, () =>
+const [cmsContent, cmsLoadDuration] = await measureServerTiming('cmsLoad', request, () =>
   getCmsContent('article1'),
 );
 ```
 
-#### Source
+#### Defined in
 
-[src/timeUtils.mts:124](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L124)
+[src/timeUtils.mts:124](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L124)
 
 ***
 
@@ -160,7 +160,7 @@ Asynchronous sleep function using promises.
 #### Parameters
 
 | Parameter | Type | Description |
-| :------ | :------ | :------ |
+| ------ | ------ | ------ |
 | `duration` | `number` | Length of time to sleep. |
 
 #### Returns
@@ -169,6 +169,6 @@ Asynchronous sleep function using promises.
 
 `Promise` that resolves when the specified duration expires.
 
-#### Source
+#### Defined in
 
-[src/timeUtils.mts:142](https://github.com/mangs/bun-utils/blob/fe5efcb3458ffefa917651f8894ee4bb5fbc53d4/src/timeUtils.mts#L142)
+[src/timeUtils.mts:142](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/timeUtils.mts#L142)
