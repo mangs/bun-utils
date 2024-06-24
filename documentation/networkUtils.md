@@ -20,16 +20,16 @@
 | `keepalive?` | `boolean` | A boolean to set request's keepalive. | `FetchRequestInit.keepalive` | node\_modules/typescript/lib/lib.dom.d.ts:1703 |
 | `method?` | `string` | A string to set request's method. | `FetchRequestInit.method` | node\_modules/typescript/lib/lib.dom.d.ts:1705 |
 | `mode?` | `RequestMode` | A string to indicate whether the request will use CORS, or will be restricted to same-origin URLs. Sets request's mode. | `FetchRequestInit.mode` | node\_modules/typescript/lib/lib.dom.d.ts:1707 |
-| `onChangeRetryDelay?` | (`delay`: `number`) => `number` | Function describing how `retryDelay` changes with each retry iteration. | - | [src/networkUtils.mts:30](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L30) |
+| `onChangeRetryDelay?` | (`delay`: `number`) => `number` | Function describing how `retryDelay` changes with each retry iteration. | - | [src/networkUtils.mts:30](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L30) |
 | `priority?` | `RequestPriority` | - | `FetchRequestInit.priority` | node\_modules/typescript/lib/lib.dom.d.ts:1708 |
 | `proxy?` | `string` | Override http_proxy or HTTPS_PROXY This is a custom property that is not part of the Fetch API specification. | `FetchRequestInit.proxy` | node\_modules/bun-types/globals.d.ts:894 |
 | `redirect?` | `RequestRedirect` | A string indicating whether request follows redirects, results in an error upon encountering a redirect, or returns the redirect (in an opaque fashion). Sets request's redirect. | `FetchRequestInit.redirect` | node\_modules/typescript/lib/lib.dom.d.ts:1710 |
 | `referrer?` | `string` | A string whose value is a same-origin URL, "about:client", or the empty string, to set request's referrer. | `FetchRequestInit.referrer` | node\_modules/typescript/lib/lib.dom.d.ts:1712 |
 | `referrerPolicy?` | `ReferrerPolicy` | A referrer policy to set request's referrerPolicy. | `FetchRequestInit.referrerPolicy` | node\_modules/typescript/lib/lib.dom.d.ts:1714 |
-| `retries?` | `number` | Maximum number of retries before an error is thrown. | - | [src/networkUtils.mts:38](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L38) |
-| `retryDelay?` | `number` | Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations. | - | [src/networkUtils.mts:34](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L34) |
+| `retries?` | `number` | Maximum number of retries before an error is thrown. | - | [src/networkUtils.mts:38](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L38) |
+| `retryDelay?` | `number` | Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations. | - | [src/networkUtils.mts:34](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L34) |
 | `signal?` | `null` \| `AbortSignal` | An AbortSignal to set request's signal. | `FetchRequestInit.signal` | node\_modules/typescript/lib/lib.dom.d.ts:1716 |
-| `timeout?` | `number` | Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. | - | [src/networkUtils.mts:42](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L42) |
+| `timeout?` | `number` | Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member. | - | [src/networkUtils.mts:42](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L42) |
 | `tls?` | `object` | Override the default TLS options | `FetchRequestInit.tls` | node\_modules/bun-types/globals.d.ts:899 |
 | `tls.checkServerIdentity?` | `any` | - | - | node\_modules/bun-types/globals.d.ts:901 |
 | `tls.rejectUnauthorized?` | `boolean` | - | - | node\_modules/bun-types/globals.d.ts:900 |
@@ -44,13 +44,13 @@
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| `certificateAuthorityPath?` | `string` \| `string`[] | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.ca` option but only the path. | [src/networkUtils.mts:49](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L49) |
-| `certificatePath` | `string` \| `string`[] | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.cert` option but only the path. | [src/networkUtils.mts:53](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L53) |
-| `diffieHellmanParametersPath?` | `string` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.dhParamsFile` option. | [src/networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L57) |
-| `lowMemoryMode?` | `boolean` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.lowMemoryMode` option. | [src/networkUtils.mts:61](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L61) |
-| `passphrase?` | `string` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.passphrase` option. | [src/networkUtils.mts:65](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L65) |
-| `privateKeyPath` | `string` \| `string`[] | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.key` option but only the path. | [src/networkUtils.mts:69](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L69) |
-| `serverName?` | `string` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.serverName` option. | [src/networkUtils.mts:73](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L73) |
+| `certificateAuthorityPath?` | `string` \| `string`[] | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.ca` option but only the path. | [src/networkUtils.mts:49](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L49) |
+| `certificatePath` | `string` \| `string`[] | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.cert` option but only the path. | [src/networkUtils.mts:53](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L53) |
+| `diffieHellmanParametersPath?` | `string` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.dhParamsFile` option. | [src/networkUtils.mts:57](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L57) |
+| `lowMemoryMode?` | `boolean` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.lowMemoryMode` option. | [src/networkUtils.mts:61](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L61) |
+| `passphrase?` | `string` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.passphrase` option. | [src/networkUtils.mts:65](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L65) |
+| `privateKeyPath` | `string` \| `string`[] | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.key` option but only the path. | [src/networkUtils.mts:69](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L69) |
+| `serverName?` | `string` | Maps to [`Bun.serve()`](https://bun.sh/docs/api/http#tls)'s `tls.serverName` option. | [src/networkUtils.mts:73](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L73) |
 
 ***
 
@@ -66,7 +66,7 @@
 | ------ | ------ | ------ | ------ | ------ |
 | `error?` | (`this`: `Server`, `request`: `ErrorLike`) => `undefined` \| `Response` \| `Promise`\<`Response`\> \| `Promise`\<`undefined`\> | - | `Pick.error` | node\_modules/bun-types/bun.d.ts:2357 |
 | `hostname?` | `string` | What hostname should the server listen on? **Default** `"0.0.0.0" // listen on all interfaces` **Examples** `"127.0.0.1" // Only listen locally` `"remix.run" // Only listen on remix.run`` note: hostname should not include a {@link port} | `Pick.hostname` | node\_modules/bun-types/bun.d.ts:2412 |
-| `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | Options for customizing HTTPS functionality. | - | [src/networkUtils.mts:80](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L80) |
+| `httpsOptions?` | [`HttpsOptions`](networkUtils.md#httpsoptions) | Options for customizing HTTPS functionality. | - | [src/networkUtils.mts:80](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L80) |
 | `port?` | `string` \| `number` | What port should the server listen on? **Default** `process.env.PORT || "3000"` | `Pick.port` | node\_modules/bun-types/bun.d.ts:2383 |
 
 ## Functions
@@ -94,7 +94,7 @@ Data returned by `fetch`.
 
 #### Defined in
 
-[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L92)
+[src/networkUtils.mts:92](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L92)
 
 ***
 
@@ -123,4 +123,4 @@ functionality.
 
 #### Defined in
 
-[src/networkUtils.mts:177](https://github.com/mangs/bun-utils/blob/faccc2db3a4a524015a8450b07cb9a1da09a7d11/src/networkUtils.mts#L177)
+[src/networkUtils.mts:177](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/networkUtils.mts#L177)
