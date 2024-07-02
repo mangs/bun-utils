@@ -23,6 +23,16 @@ declare global {
 // eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
 interface FetchRetryOptions extends FetchRequestInit {
   /**
+   * Function allowing arbitrary status codes to bypass the retry process.
+   * @param statusCode Response status code.
+   * @returns          Boolean deciding if the status code is allowed.
+   * @example
+   * ```ts
+   * fetchWithRetry(url, { onBypassRetry: (statusCode) => statusCode === 404 });
+   * ```
+   */
+  onBypassRetry?: (statusCode: number) => boolean;
+  /**
    * Function describing how `retryDelay` changes with each retry iteration.
    * @param delay Existing delay value.
    * @returns     New delay value.
@@ -83,14 +93,17 @@ interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 
 // Local Functions
 /**
  * `fetch` with auto-retry and auto-timeout support. Follows an exponential backoff strategy by
- * default starting with a delay of 1 second. Times out after 10 seconds by default. Setting
- * environment variable `DEBUG` to a truthy value logs caught and ignored retry errors.
+ * default starting with a delay of 1 second. Times out after 10 seconds by default. Client error
+ * response codes (`400`s) bypass retries by default whereas server error response codes (`500`s) do
+ * not; use option `onBypassRetry` to customize this behavior. Setting environment variable `DEBUG`
+ * to a truthy value logs caught and ignored retry errors.
  * @param url     URL from which to fetch data.
  * @param options Options object that combines `fetch`'s 2nd parameter with custom options.
  * @returns       Data returned by `fetch`.
  */
 async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions = {}) {
   const {
+    onBypassRetry = (statusCode) => statusCode >= 400 && statusCode < 500,
     onChangeRetryDelay = (delay) => delay * 2,
     retries = 3,
     retryDelay = 1_000,
@@ -104,12 +117,13 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
       signal: AbortSignal.timeout(timeout),
       ...fetchOptions,
     });
-    if (!response.ok && hasRetriesRemaining) {
+
+    if (!response.ok && hasRetriesRemaining && !onBypassRetry(response.status)) {
       throw new Error(`Error status code ${response.status} received. Retrying...`);
     }
     return response;
   } catch (error) {
-    if (error instanceof Error && error.name === 'TimeoutError' && hasRetriesRemaining) {
+    if (error instanceof Error && hasRetriesRemaining) {
       if (process.env.DEBUG) {
         console.error(error);
         console.info('ERROR RETRY SETTINGS', { retries, retryDelay });
