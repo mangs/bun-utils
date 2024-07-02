@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.20.0",
+  "version": "2.21.0",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -57,7 +57,7 @@
     "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
   },
   "dependencies": {
-    "type-fest": "4.20.1"
+    "type-fest": "4.21.0"
   },
   "devDependencies": {
     "@babbel/eslint-config": "1.2.2",

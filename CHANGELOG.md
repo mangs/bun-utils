@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.21.0
+
+- Add option `onBypassRetry()` to `fetchWithRetry()` allowing to customize the ability to bypass retries based on response status code
+- Update dependency versions to latest
+
 ## 2.20.0
 
 - Add relative size output in percent for each bundled file for `printBuildMetadata()`
