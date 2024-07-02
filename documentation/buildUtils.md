@@ -20,11 +20,11 @@
 | `loader?` | `object` | - | - | `BuildConfig.loader` | node\_modules/bun-types/bun.d.ts:1574 |
 | `minify?` | `boolean` \| `object` | - | - | `BuildConfig.minify` | node\_modules/bun-types/bun.d.ts:1584 |
 | `naming?` | `string` \| `object` | - | - | `BuildConfig.naming` | node\_modules/bun-types/bun.d.ts:1559 |
-| `outdir` | `string` | Output directory. | `BuildConfig.outdir` | - | [src/buildUtils.mts:30](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/buildUtils.mts#L30) |
+| `outdir` | `string` | Output directory. | `BuildConfig.outdir` | - | [src/buildUtils.mts:30](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/buildUtils.mts#L30) |
 | `plugins?` | `BunPlugin`[] | - | - | `BuildConfig.plugins` | node\_modules/bun-types/bun.d.ts:1568 |
 | `publicPath?` | `string` | - | - | `BuildConfig.publicPath` | node\_modules/bun-types/bun.d.ts:1571 |
 | `root?` | `string` | - | - | `BuildConfig.root` | node\_modules/bun-types/bun.d.ts:1566 |
-| `sourcemap?` | `"none"` \| `"inline"` \| `"external"` | - | - | `BuildConfig.sourcemap` | node\_modules/bun-types/bun.d.ts:1575 |
+| `sourcemap?` | `"none"` \| `"linked"` \| `"inline"` \| `"external"` | - | - | `BuildConfig.sourcemap` | node\_modules/bun-types/bun.d.ts:1575 |
 | `splitting?` | `boolean` | - | - | `BuildConfig.splitting` | node\_modules/bun-types/bun.d.ts:1567 |
 | `target?` | `Target` | - | - | `BuildConfig.target` | node\_modules/bun-types/bun.d.ts:1557 |
 
@@ -77,7 +77,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Defined in
 
-[src/buildUtils.mts:52](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/buildUtils.mts#L52)
+[src/buildUtils.mts:52](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/buildUtils.mts#L52)
 
 ***
 
@@ -100,4 +100,4 @@ Format and print to the command line the provided build metadata.
 
 #### Defined in
 
-[src/buildUtils.mts:81](https://github.com/mangs/bun-utils/blob/73c98d4a4dbe75cd430fab09115be246e44c953f/src/buildUtils.mts#L81)
+[src/buildUtils.mts:81](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/buildUtils.mts#L81)
