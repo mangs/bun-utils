@@ -8,9 +8,9 @@
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| `localeOverride?` | `string` | Override of the locale used to format and localize the time value. | [src/timeUtils.mts:17](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L17) |
-| `unitsMinimum?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Smallest time unit that can be displayed. | [src/timeUtils.mts:21](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L21) |
-| `unitsOverride?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Override of time units to display; supersedes `unitsMinimum`. | [src/timeUtils.mts:25](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L25) |
+| `localeOverride?` | `string` | Override of the locale used to format and localize the time value. | [src/timeUtils.mts:17](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L17) |
+| `unitsMinimum?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Smallest time unit that can be displayed. | [src/timeUtils.mts:21](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L21) |
+| `unitsOverride?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Override of time units to display; supersedes `unitsMinimum`. | [src/timeUtils.mts:25](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L25) |
 
 ## Functions
 
@@ -46,7 +46,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Defined in
 
-[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L44)
+[src/timeUtils.mts:44](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L44)
 
 ***
 
@@ -72,7 +72,7 @@ Localized string showing elapsed time with units.
 
 #### Defined in
 
-[src/timeUtils.mts:59](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L59)
+[src/timeUtils.mts:59](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L59)
 
 ***
 
@@ -102,7 +102,7 @@ A tuple containing the return value of the passed-in function and the elapsed ex
 
 #### Defined in
 
-[src/timeUtils.mts:99](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L99)
+[src/timeUtils.mts:99](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L99)
 
 ***
 
@@ -147,7 +147,7 @@ const [cmsContent, cmsLoadDuration] = await measureServerTiming('cmsLoad', reque
 
 #### Defined in
 
-[src/timeUtils.mts:124](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L124)
+[src/timeUtils.mts:124](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L124)
 
 ***
 
@@ -171,4 +171,4 @@ Asynchronous sleep function using promises.
 
 #### Defined in
 
-[src/timeUtils.mts:142](https://github.com/mangs/bun-utils/blob/8b61073b6b2ff73f544780b23865cccd4009338b/src/timeUtils.mts#L142)
+[src/timeUtils.mts:142](https://github.com/mangs/bun-utils/blob/36ca463ec2c14b9ec09d9495eb93ec11d9685583/src/timeUtils.mts#L142)
