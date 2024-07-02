@@ -115,7 +115,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
       return 0;
     });
 
-  // Log each file's metadata
+  // Print each file's metadata to the console
   const totalSizeAggregate = Object.values(buildArtifactMetadata).reduce(
     (sum, { size }) => sum + size,
     0,
@@ -138,7 +138,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
   }
   console.log(); // Add spacing between file metadata and size total rows
 
-  // Compute total sizes for each category
+  // Total sizes for each category
   const countPadWidth = Object.values(buildArtifactMetadata)
     // eslint-disable-next-line unicorn/no-array-reduce -- concise way to compute a value
     .reduce((maxCount, { count }) => (count > maxCount ? count : maxCount), 0)
