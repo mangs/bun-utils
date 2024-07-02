@@ -115,6 +115,11 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
       return 0;
     });
 
+  // Log each file's metadata
+  const totalSizeAggregate = Object.values(buildArtifactMetadata).reduce(
+    (sum, { size }) => sum + size,
+    0,
+  );
   let fileCount = 0;
   const labelLength = buildArtifactsSorted.length.toString().length;
   const gutterWidth = labelLength + 3;
@@ -122,13 +127,18 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
     fileCount += 1;
     const countColumn = dim(`${fileCount.toString().padStart(labelLength, ' ')})`);
     const filenameColumn = pathRelative.padEnd(maxFilenameLength, ' ');
-    const sizeColumn = yellow(getHumanReadableFilesize(size).padEnd(maxFileSizeLength, ' '));
+    const sizeColumn = `${yellow(getHumanReadableFilesize(size).padEnd(maxFileSizeLength, ' '))}`;
+    const percentColumn = dim(
+      `(${((size / totalSizeAggregate) * 100).toFixed(1)}%)`.padEnd(7, ' '),
+    );
     const categoryColumn = dim(`[${kind.slice(0, 1).toUpperCase()}]`);
-    console.log(`${countColumn}  ${filenameColumn}  ${sizeColumn}  ${categoryColumn}`);
+    console.log(
+      `${countColumn}  ${filenameColumn}  ${sizeColumn}  ${percentColumn}  ${categoryColumn}`,
+    );
   }
   console.log(); // Add spacing between file metadata and size total rows
 
-  // Total sizes for each category
+  // Compute total sizes for each category
   const countPadWidth = Object.values(buildArtifactMetadata)
     // eslint-disable-next-line unicorn/no-array-reduce -- concise way to compute a value
     .reduce((maxCount, { count }) => (count > maxCount ? count : maxCount), 0)
@@ -152,10 +162,6 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
   }
 
   // Total size for all categories in aggregate
-  const totalSizeAggregate = Object.values(buildArtifactMetadata).reduce(
-    (sum, { size }) => sum + size,
-    0,
-  );
   const labelColumn = `${gutter}TOTAL SIZE`.padEnd(labelColumnWidth, ' ');
   const valueColumn = getHumanReadableFilesize(totalSizeAggregate);
   console.log(cyan(`${labelColumn}  ${valueColumn}\n`));

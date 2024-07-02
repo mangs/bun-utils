@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.20.0
+
+- Add relative size output in percent for each bundled file for `printBuildMetadata()`
+- Update target Bun version from `1.1.16` to `1.1.17`
+- Update dependency versions to latest
+
 ## 2.19.1
 
 - Update example code for `measureServerTiming()` to match changes made in version `2.19.0`
