@@ -6,6 +6,8 @@
 import { nanoseconds } from 'bun';
 
 // Local Variables
+const serverTimingMetricRegex =
+  /^(?<name>[^;]+)(?:;\s*desc="(?<description>[^"]+)")?(?:;\s*dur=(?<duration>\d+(?:\.\d+)?))?$/g;
 const timeUnits = ['ns', 'μs', 'ms', 's'] as const;
 
 // Local Types
@@ -23,6 +25,11 @@ interface FormatOptions {
    * Override of time units to display; supersedes `unitsMinimum`.
    */
   unitsOverride?: TimeUnits;
+}
+interface ServerTimingMetricParsed {
+  name: string;
+  description?: string;
+  duration?: string;
 }
 
 // Local Functions
@@ -135,6 +142,29 @@ async function measureServerTiming<T>(
 }
 
 /**
+ * Parse `Server-Timing` header metrics into a simple array of objects wherein each contains up to
+ * 3 fields: `name`, `description`, and `duration`.
+ * @param serverTimingHeader String containing the `Server-Timing` header value.
+ * @returns                  Array of metric objects.
+ * @example
+ * ```ts
+ * const headerValue = request.headers.get('Server-Timing'); // Contents: metricName;dur=1.23
+ * const metrics = parseServerTimingMetrics(headerValue)
+ * console.log(metrics); // Logs: [{ name: "metricName", description: undefined, duration: 1.23 }]
+ * ```
+ */
+function parseServerTimingMetrics(serverTimingHeader: string) {
+  return serverTimingHeader
+    .split(',')
+    .map(
+      (metric) =>
+        [...metric.trim().matchAll(serverTimingMetricRegex)].map(
+          (metricMatch) => metricMatch.groups as unknown as ServerTimingMetricParsed,
+        )[0]!,
+    );
+}
+
+/**
  * Asynchronous sleep function using promises.
  * @param duration Length of time to sleep.
  * @returns        `Promise` that resolves when the specified duration expires.
@@ -151,6 +181,7 @@ export {
   getElapsedTimeFormatted,
   measureElapsedTime,
   measureServerTiming,
+  parseServerTimingMetrics,
   sleep,
 };
 export type { FormatOptions };
