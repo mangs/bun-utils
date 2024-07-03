@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.22.0
+
+- Add new function `parseServerTimingMetrics()` for parsing a `Server-Timing` header into an array of metric objects
+
 ## 2.21.1
 
 - Update `fetchWithRetry()` with minor revisions
