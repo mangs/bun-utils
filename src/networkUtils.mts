@@ -119,14 +119,14 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
     });
 
     if (!onBypassRetry(response.status) && hasRetriesRemaining) {
-      throw new Error(`Error status code ${response.status} received. Retrying...`);
+      throw new Error(`Status code ${response.status} received. Retrying...`);
     }
     return response;
   } catch (error) {
     if (error instanceof Error && hasRetriesRemaining) {
       if (process.env.DEBUG) {
-        console.error(error);
-        console.info('ERROR RETRY SETTINGS', { retries, retryDelay });
+        console.debug('ERROR RETRY SETTINGS', { retries, retryDelay });
+        console.debug('ERROR', error);
       }
       await sleep(retryDelay);
       return fetchWithRetry(url, {
@@ -293,7 +293,7 @@ async function startDevelopmentServer(
   }
 
   if (process.env.DEBUG) {
-    console.info('SERVER OPTIONS', serverOptions);
+    console.debug('SERVER OPTIONS', serverOptions);
   }
 
   const developmentServer = serve(serverOptions);

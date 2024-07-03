@@ -2,7 +2,9 @@
 
 ## 2.21.1
 
-- Execute `onBypassRetry()` before checking retry count in `fetchWithRetry()`
+- Update `fetchWithRetry()` with minor revisions
+  - Execute `onBypassRetry()` before checking retry count
+  - Tweak debug log messaging
 
 ## 2.21.0
 
