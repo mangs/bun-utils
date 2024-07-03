@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.21.1
+
+- Update `fetchWithRetry()` with minor revisions
+  - Execute `onBypassRetry()` before checking retry count
+  - Tweak debug log messaging
+
 ## 2.21.0
 
 - Add option `onBypassRetry()` to `fetchWithRetry()` allowing to customize the ability to bypass retries based on response status code

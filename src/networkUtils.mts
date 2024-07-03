@@ -94,16 +94,16 @@ interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 
 /**
  * `fetch` with auto-retry and auto-timeout support. Follows an exponential backoff strategy by
  * default starting with a delay of 1 second. Times out after 10 seconds by default. Client error
- * response codes (`400`s) bypass retries by default whereas server error response codes (`500`s) do
- * not; use option `onBypassRetry` to customize this behavior. Setting environment variable `DEBUG`
- * to a truthy value logs caught and ignored retry errors.
+ * response codes (`400`s) and below bypass retries by default whereas server error response codes
+ * (`500`s) do not; use option `onBypassRetry` to customize this behavior. Setting environment
+ * variable `DEBUG` to a truthy value logs caught and ignored retry errors.
  * @param url     URL from which to fetch data.
  * @param options Options object that combines `fetch`'s 2nd parameter with custom options.
  * @returns       Data returned by `fetch`.
  */
 async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions = {}) {
   const {
-    onBypassRetry = (statusCode) => statusCode >= 400 && statusCode < 500,
+    onBypassRetry = (statusCode) => statusCode < 500,
     onChangeRetryDelay = (delay) => delay * 2,
     retries = 3,
     retryDelay = 1_000,
@@ -118,15 +118,15 @@ async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOp
       ...fetchOptions,
     });
 
-    if (!response.ok && hasRetriesRemaining && !onBypassRetry(response.status)) {
-      throw new Error(`Error status code ${response.status} received. Retrying...`);
+    if (!onBypassRetry(response.status) && hasRetriesRemaining) {
+      throw new Error(`Status code ${response.status} received. Retrying...`);
     }
     return response;
   } catch (error) {
     if (error instanceof Error && hasRetriesRemaining) {
       if (process.env.DEBUG) {
-        console.error(error);
-        console.info('ERROR RETRY SETTINGS', { retries, retryDelay });
+        console.debug('ERROR RETRY SETTINGS', { retries, retryDelay });
+        console.debug('ERROR', error);
       }
       await sleep(retryDelay);
       return fetchWithRetry(url, {
@@ -293,7 +293,7 @@ async function startDevelopmentServer(
   }
 
   if (process.env.DEBUG) {
-    console.info('SERVER OPTIONS', serverOptions);
+    console.debug('SERVER OPTIONS', serverOptions);
   }
 
   const developmentServer = serve(serverOptions);
