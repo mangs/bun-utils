@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.23.1
+
+- Upgrade `oven-sh/setup-bun` action to `v2`
+
 ## 2.23.0
 
 - Added new module `/performance` for performance-related utilities

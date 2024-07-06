@@ -13,7 +13,7 @@ jobs:
       - name: CPU Details
         run: lscpu
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: oven-sh/setup-bun@v2
         with:
           bun-version: "1.1.17"
       - uses: mangs/simple-release-notes-action@v3
