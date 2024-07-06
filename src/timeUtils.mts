@@ -38,7 +38,7 @@ interface ServerTimingMetricParsed {
  * @param name        The name of the performance metric.
  * @param startTime   The recorded start time used to compute the metric duration; computed by subtracting the time at which this function is called by the start time. [Milliseconds is the unit recommended by the W3C](https://w3c.github.io/server-timing/#duration-attribute).
  * @param description A description of the metric.
- * @returns           A tuple containing a tuple representing the header value and the duration.
+ * @returns           A tuple containing a tuple representing the header value and the execution duration.
  * @example
  * ```ts
  * import { buildServerTimingHeader } from '@mangs/bun-utils/time';
@@ -118,7 +118,7 @@ async function measureElapsedTime<T>(runner: () => T | Promise<T>) {
  * @param request           `Request` object to which the `Server-Timing` header will be appended.
  * @param runner            Function whose execution duration will be measured.
  * @param metricDescription Optional description of the `Server-Timing` metric being measured.
- * @returns                 A tuple containing the return value of the passed-in function and the duration.
+ * @returns                 A tuple containing the return value of the passed-in function and the execution duration.
  * @example
  * ```ts
  * import { measureServerTiming } from '@mangs/bun-utils/time';
