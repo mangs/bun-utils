@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.23.0
+
+- Added new module `/performance` for performance-related utilities
+  - `measureCpuUsage()` to measure the CPU usage in percent of the provided runner function
+  - `measurePerformanceMetrics()` to measure `Server-Timing` duration and CPU usage percent
+- Update dependency versions to latest
+
 ## 2.22.0
 
 - Add new function `parseServerTimingMetrics()` for parsing a `Server-Timing` header into an array of metric objects
