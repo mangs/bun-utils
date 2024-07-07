@@ -28,9 +28,15 @@ Measure the CPU usage in percent of the provided runner function.
 
 A tuple containing the return value of the passed-in function and the CPU usage in percent.
 
+#### Example
+
+```ts
+const [computationResult, cpuUsagePercent] = await measureCpuUsage(() => expensiveComputation());
+```
+
 #### Defined in
 
-[src/performanceUtils.mts:19](https://github.com/mangs/bun-utils/blob/ddf8fc5d259598ada653cd5483b2e845cd3de44b/src/performanceUtils.mts#L19)
+[src/performanceUtils.mts:23](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/performanceUtils.mts#L23)
 
 ***
 
@@ -65,4 +71,4 @@ A tuple containing the return value of the passed-in function, the execution dur
 
 #### Defined in
 
-[src/performanceUtils.mts:47](https://github.com/mangs/bun-utils/blob/ddf8fc5d259598ada653cd5483b2e845cd3de44b/src/performanceUtils.mts#L47)
+[src/performanceUtils.mts:51](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/performanceUtils.mts#L51)

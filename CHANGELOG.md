@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.24.1
+
+- Add example usage for `measureCpuUsage()`
+
 ## 2.24.0
 
 - Add additional parameter `usesOneThread` to `measureCpuUsage()` and `measurePerformanceMetrics()` to decide if 1 or all threads are used for percent computation
