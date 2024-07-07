@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.24.0
+
+- Add additional parameter `usesOneThread` to `measureCpuUsage()` and `measurePerformanceMetrics()` to decide if 1 or all threads are used for percent computation
+
 ## 2.23.1
 
 - Upgrade `oven-sh/setup-bun` action to `v2`

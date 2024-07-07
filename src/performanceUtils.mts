@@ -11,20 +11,25 @@ import { buildServerTimingHeader } from './timeUtils.mts';
 // Local Functions
 /**
  * Measure the CPU usage in percent of the provided runner function.
- * @param runner    Function whose CPU usage to measure.
- * @param startTime Optional time in milliseconds when the elapsed time starts counting.
- * @returns         A tuple containing the return value of the passed-in function and the CPU usage in percent.
+ * @param runner        Function whose CPU usage to measure.
+ * @param usesOneThread Optional boolean to decide if 1 or all threads should be used to compute the percent value.
+ * @param startTime     Optional time in milliseconds when the elapsed time starts counting.
+ * @returns             A tuple containing the return value of the passed-in function and the CPU usage in percent.
  */
-async function measureCpuUsage<T>(runner: () => T | Promise<T>, startTime = performance.now()) {
-  const startCpuUsage = process.cpuUsage();
+async function measureCpuUsage<T>(
+  runner: () => T | Promise<T>,
+  usesOneThread = false,
+  startTime = performance.now(),
+) {
+  const cpuUsageStart = process.cpuUsage();
 
   const runnerReturnValue = await runner();
 
-  const elapsedTime = performance.now() - startTime;
-  const elapsedCpuUsage = process.cpuUsage(startCpuUsage);
-  const cpuCount = availableParallelism();
+  const timeElapsed = performance.now() - startTime;
+  const cpuUsageElapsed = process.cpuUsage(cpuUsageStart);
+  const cpuThreads = usesOneThread ? 1 : availableParallelism();
   const cpuPercent =
-    (100 * ((elapsedCpuUsage.system + elapsedCpuUsage.user) / (1_000 * elapsedTime))) / cpuCount;
+    (100 * ((cpuUsageElapsed.system + cpuUsageElapsed.user) / (1_000 * timeElapsed))) / cpuThreads;
 
   return [runnerReturnValue, cpuPercent] as const;
 }
@@ -36,6 +41,7 @@ async function measureCpuUsage<T>(runner: () => T | Promise<T>, startTime = perf
  * @param request           `Request` object to which the `Server-Timing` header will be appended.
  * @param runner            Function whose execution duration and CPU usage percentage will be computed.
  * @param metricDescription Optional description of the `Server-Timing` metric being measured.
+ * @param usesOneThread     Optional boolean to decide if 1 or all threads should be used to compute the percent value.
  * @returns                 A tuple containing the return value of the passed-in function, the execution duration, and the CPU usage in percent.
  */
 async function measurePerformanceMetrics<T>(
@@ -43,9 +49,10 @@ async function measurePerformanceMetrics<T>(
   request: Request,
   runner: () => T | Promise<T>,
   metricDescription?: string,
+  usesOneThread = false,
 ) {
   const startTime = performance.now();
-  const [runnerReturnValue, cpuPercent] = await measureCpuUsage(runner, startTime);
+  const [runnerReturnValue, cpuPercent] = await measureCpuUsage(runner, usesOneThread, startTime);
   const [header, duration] = buildServerTimingHeader(metricName, startTime, metricDescription);
   request.headers.append(...header);
 
