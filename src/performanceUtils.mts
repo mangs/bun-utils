@@ -15,6 +15,10 @@ import { buildServerTimingHeader } from './timeUtils.mts';
  * @param usesOneThread Optional boolean to decide if 1 or all threads should be used to compute the percent value.
  * @param startTime     Optional time in milliseconds when the elapsed time starts counting.
  * @returns             A tuple containing the return value of the passed-in function and the CPU usage in percent.
+ * @example
+ * ```ts
+ * const [computationResult, cpuUsagePercent] = await measureCpuUsage(() => expensiveComputation());
+ * ```
  */
 async function measureCpuUsage<T>(
   runner: () => T | Promise<T>,
