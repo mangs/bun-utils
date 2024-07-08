@@ -20,8 +20,8 @@ import { buildServerTimingHeader } from './timeUtils.mts';
  * const [computationResult, cpuUsagePercent] = await measureCpuUsage(() => expensiveComputation());
  * ```
  */
-async function measureCpuUsage<T>(
-  runner: () => T | Promise<T>,
+async function measureCpuUsage<TRunner>(
+  runner: () => TRunner | Promise<TRunner>,
   usesOneThread = false,
   startTime = performance.now(),
 ) {
@@ -48,10 +48,10 @@ async function measureCpuUsage<T>(
  * @param usesOneThread     Optional boolean to decide if 1 or all threads should be used to compute the percent value.
  * @returns                 A tuple containing the return value of the passed-in function, the execution duration, and the CPU usage in percent.
  */
-async function measurePerformanceMetrics<T>(
+async function measurePerformanceMetrics<TRunner>(
   metricName: string,
   request: Request,
-  runner: () => T | Promise<T>,
+  runner: () => TRunner | Promise<TRunner>,
   metricDescription?: string,
   usesOneThread = false,
 ) {

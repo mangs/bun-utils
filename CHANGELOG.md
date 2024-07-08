@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.25.0
+
+- Change generic types for `measureServerTiming()` so the `metricName` field can optionally be limited to a type union of string literals
+
 ## 2.24.1
 
 - Add example usage for `measureCpuUsage()`

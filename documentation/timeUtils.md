@@ -8,9 +8,9 @@
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| `localeOverride?` | `string` | Override of the locale used to format and localize the time value. | [src/timeUtils.mts:19](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L19) |
-| `unitsMinimum?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Smallest time unit that can be displayed. | [src/timeUtils.mts:23](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L23) |
-| `unitsOverride?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Override of time units to display; supersedes `unitsMinimum`. | [src/timeUtils.mts:27](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L27) |
+| `localeOverride?` | `string` | Override of the locale used to format and localize the time value. | [src/timeUtils.mts:19](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L19) |
+| `unitsMinimum?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Smallest time unit that can be displayed. | [src/timeUtils.mts:23](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L23) |
+| `unitsOverride?` | `"ns"` \| `"μs"` \| `"ms"` \| `"s"` | Override of time units to display; supersedes `unitsMinimum`. | [src/timeUtils.mts:27](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L27) |
 
 ## Functions
 
@@ -46,7 +46,7 @@ request.headers.append(...buildServerTimingHeader('metric', startTime, 'It measu
 
 #### Defined in
 
-[src/timeUtils.mts:51](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L51)
+[src/timeUtils.mts:51](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L51)
 
 ***
 
@@ -72,13 +72,13 @@ Localized string showing elapsed time with units.
 
 #### Defined in
 
-[src/timeUtils.mts:66](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L66)
+[src/timeUtils.mts:66](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L66)
 
 ***
 
 ### measureElapsedTime()
 
-> **measureElapsedTime**\<`T`\>(`runner`): `Promise`\<readonly [`Awaited`\<`T`\>, `string`]\>
+> **measureElapsedTime**\<`TRunner`\>(`runner`): `Promise`\<readonly [`Awaited`\<`TRunner`\>, `string`]\>
 
 Measure the execution time of the passed-in function.
 
@@ -86,29 +86,29 @@ Measure the execution time of the passed-in function.
 
 | Type Parameter |
 | ------ |
-| `T` |
+| `TRunner` |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `runner` | () => `T` \| `Promise`\<`T`\> | Function whose execution duration will be measured. |
+| `runner` | () => `TRunner` \| `Promise`\<`TRunner`\> | Function whose execution duration will be measured. |
 
 #### Returns
 
-`Promise`\<readonly [`Awaited`\<`T`\>, `string`]\>
+`Promise`\<readonly [`Awaited`\<`TRunner`\>, `string`]\>
 
 A tuple containing the return value of the passed-in function and the elapsed execution time.
 
 #### Defined in
 
-[src/timeUtils.mts:106](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L106)
+[src/timeUtils.mts:106](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L106)
 
 ***
 
 ### measureServerTiming()
 
-> **measureServerTiming**\<`T`\>(`metricName`, `request`, `runner`, `metricDescription`?): `Promise`\<readonly [`Awaited`\<`T`\>, `number`]\>
+> **measureServerTiming**\<`TRunner`, `TMetricName`\>(`metricName`, `request`, `runner`, `metricDescription`?): `Promise`\<readonly [`Awaited`\<`TRunner`\>, `number`]\>
 
 Measure the execution time of the passed-in function, then append to the request object a
 `Server-Timing` header containing the specified metric name, the measured duration, and
@@ -118,20 +118,21 @@ optionally the metric description.
 
 | Type Parameter |
 | ------ |
-| `T` |
+| `TRunner` |
+| `TMetricName` *extends* `string` |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `metricName` | `string` | Name of the `Server-Timing` metric being measured. |
+| `metricName` | `TMetricName` | Name of the `Server-Timing` metric being measured. |
 | `request` | `Request` | `Request` object to which the `Server-Timing` header will be appended. |
-| `runner` | () => `T` \| `Promise`\<`T`\> | Function whose execution duration will be measured. |
+| `runner` | () => `TRunner` \| `Promise`\<`TRunner`\> | Function whose execution duration will be measured. |
 | `metricDescription`? | `string` | Optional description of the `Server-Timing` metric being measured. |
 
 #### Returns
 
-`Promise`\<readonly [`Awaited`\<`T`\>, `number`]\>
+`Promise`\<readonly [`Awaited`\<`TRunner`\>, `number`]\>
 
 A tuple containing the return value of the passed-in function and the execution duration.
 
@@ -147,7 +148,7 @@ const [cmsContent, cmsLoadDuration] = await measureServerTiming('cmsLoad', reque
 
 #### Defined in
 
-[src/timeUtils.mts:131](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L131)
+[src/timeUtils.mts:131](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L131)
 
 ***
 
@@ -180,7 +181,7 @@ console.log(metrics); // Logs: [{ name: "metricName", description: undefined, du
 
 #### Defined in
 
-[src/timeUtils.mts:156](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L156)
+[src/timeUtils.mts:156](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L156)
 
 ***
 
@@ -204,4 +205,4 @@ Asynchronous sleep function using promises.
 
 #### Defined in
 
-[src/timeUtils.mts:172](https://github.com/mangs/bun-utils/blob/5dc79d4186107caf1ca210b042a493b60ef31165/src/timeUtils.mts#L172)
+[src/timeUtils.mts:172](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/timeUtils.mts#L172)
