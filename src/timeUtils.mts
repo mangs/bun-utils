@@ -103,7 +103,7 @@ function getElapsedTimeFormatted(startTime: number, formatOptions?: FormatOption
  * @param runner Function whose execution duration will be measured.
  * @returns      A tuple containing the return value of the passed-in function and the elapsed execution time.
  */
-async function measureElapsedTime<T>(runner: () => T | Promise<T>) {
+async function measureElapsedTime<TRunner>(runner: () => TRunner | Promise<TRunner>) {
   const startTime = nanoseconds();
   const runnerReturnValue = await runner();
   const elapsedTime = getElapsedTimeFormatted(startTime);
@@ -128,10 +128,10 @@ async function measureElapsedTime<T>(runner: () => T | Promise<T>) {
  * );
  * ```
  */
-async function measureServerTiming<T>(
-  metricName: string,
+async function measureServerTiming<TRunner, TMetricName extends string>(
+  metricName: TMetricName,
   request: Request,
-  runner: () => T | Promise<T>,
+  runner: () => TRunner | Promise<TRunner>,
   metricDescription?: string,
 ) {
   const startTime = performance.now();
