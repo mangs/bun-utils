@@ -36,7 +36,7 @@ const [computationResult, cpuUsagePercent] = await measureCpuUsage(() => expensi
 
 #### Defined in
 
-[src/performanceUtils.mts:23](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/performanceUtils.mts#L23)
+[src/performanceUtils.mts:23](https://github.com/mangs/bun-utils/blob/5c6892b7dc74a6f3d7e20247827947fb51ec4e2e/src/performanceUtils.mts#L23)
 
 ***
 
@@ -71,4 +71,4 @@ A tuple containing the return value of the passed-in function, the execution dur
 
 #### Defined in
 
-[src/performanceUtils.mts:51](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/performanceUtils.mts#L51)
+[src/performanceUtils.mts:51](https://github.com/mangs/bun-utils/blob/5c6892b7dc74a6f3d7e20247827947fb51ec4e2e/src/performanceUtils.mts#L51)
