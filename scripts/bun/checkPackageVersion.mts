@@ -5,7 +5,8 @@
  */
 
 // External Imports
-import { env } from 'bun';
+import { env, file, semver } from 'bun';
+import { marked } from 'marked'; // eslint-disable-line import/no-extraneous-dependencies -- used only for development
 
 // Internal Imports
 import { dim, white } from '../../src/consoleUtils.mts';
@@ -29,6 +30,25 @@ interface DiffEntry {
 type PullRequestResponse = DiffEntry[];
 
 // Local Functions
+/**
+ * Find the first heading that contains a semantic version-compatible version number, then return
+ * its value.
+ * @param changelogPath Filesystem path to the target changelog.
+ * @returns             First semantic version-compatible version number occurring in a heading.
+ */
+async function getFirstChangelogVersionNumber(changelogPath?: string) {
+  if (!changelogPath) {
+    throw new TypeError('Changelog path not specified');
+  }
+  const changelogContents = await file(changelogPath).text();
+  for (const token of marked.lexer(changelogContents)) {
+    if (token.type === 'heading' && semver.satisfies(token.text as string, '*')) {
+      return token.text as string;
+    }
+  }
+  throw new Error('No changelog heading is a valid semantic version number');
+}
+
 /**
  * Get pull request details from the GitHub API.
  * @param targetPullRequest Numeric string representing the pull request whose details to fetch.
@@ -87,6 +107,11 @@ const [[versionBefore, versionAfter], elapsedTime] = await measureElapsedTime(as
       semverBefore === semverAfter)
   ) {
     throw new Error('package.json version number was not changed');
+  }
+
+  const firstChangelogVersionNumber = await getFirstChangelogVersionNumber(env.CHANGELOG_PATH);
+  if (firstChangelogVersionNumber !== semverAfter) {
+    throw new Error('Changelog does not have a section detailing the latest changes');
   }
 
   return [semverBefore, semverAfter];
