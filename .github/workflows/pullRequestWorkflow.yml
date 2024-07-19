@@ -23,6 +23,9 @@ jobs:
 
       - run: bun run diff
         env:
+          GITHUB_API_URL: ${{ env.GITHUB_API_URL }}
+          GITHUB_REF_NAME: ${{ env.GITHUB_REF_NAME }}
+          GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
           GITHUB_TOKEN: ${{ github.token }}
 
       - run: bun install --frozen-lockfile
