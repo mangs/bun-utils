@@ -8,6 +8,7 @@
 import { env } from 'bun';
 
 // Internal Imports
+import { dim, white } from '../../src/consoleUtils.mts';
 import { measureElapsedTime } from '../../src/timeUtils.mts';
 
 // Local Types
@@ -33,7 +34,7 @@ const versionBeforeRegex = /-\s*"version":\s*"(?<semverBefore>[^"]+)",/;
 const versionAfterRegex = /\+\s*"version":\s*"(?<semverAfter>[^"]+)",/;
 
 // Begin Execution
-const [, elapsedTime] = await measureElapsedTime(async () => {
+const [[versionBefore, versionAfter], elapsedTime] = await measureElapsedTime(async () => {
   const response = await fetch(
     `${env.GITHUB_API_URL}/repos/${env.GITHUB_REPOSITORY}/pulls/${pullRequestNumber}/files`,
     {
@@ -75,7 +76,9 @@ const [, elapsedTime] = await measureElapsedTime(async () => {
     throw new Error('package.json version number was not changed');
   }
 
-  console.log(`Verified package.json version number change from ${semverBefore} to ${semverAfter}`);
+  return [semverBefore, semverAfter];
 });
 
-console.log('ELAPSED', elapsedTime);
+console.log(
+  `Verified package.json version number change from ${versionBefore} to ${versionAfter} ${dim(white(`[${elapsedTime}]`))}`,
+);
