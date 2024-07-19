@@ -23,7 +23,7 @@ interface DiffEntry {
 }
 
 type PullRequestResponse = DiffEntry[];
-console.log('ENV', env);
+
 // Local Variables
 const pullRequestNumber = env.GITHUB_REF_NAME?.match(/^\d+/);
 const versionBeforeRegex = /-\s*"version":\s*"(?<semverBefore>[^"]+)",/;
@@ -32,12 +32,15 @@ const versionAfterRegex = /\+\s*"version":\s*"(?<semverAfter>[^"]+)",/;
 console.log('PR NUMBER', pullRequestNumber);
 
 // Begin Execution
-const response = await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/pulls/88/files`, {
-  headers: {
-    Accept: 'application/vnd.github+json',
-    Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+const response = await fetch(
+  `${env.GITHUB_API_URL}/repos/${env.GITHUB_REPOSITORY}/pulls/88/files`,
+  {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+    },
   },
-});
+);
 const responseText = await response.text();
 if (!response.ok) {
   throw new Error('Pull request API response error received', {
