@@ -2,7 +2,7 @@
 
 ## 2.26.0
 
-- Add script `script/bun/diff.mts` to ensure the package version changes for every pull request
+- Add script `scripts/bun/checkPackageVersion.mts` to ensure the package version changes for every pull request
 - Add `package.json` script `install:bun:expected-version` to automatically install the expected version of Bun or do nothing if it's already installed
 - Update dependency versions to latest
 
