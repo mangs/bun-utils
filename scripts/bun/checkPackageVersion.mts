@@ -28,15 +28,15 @@ interface DiffEntry {
 
 type PullRequestResponse = DiffEntry[];
 
-// Local Variables
-const pullRequestNumber = env.GITHUB_REF_NAME?.match(/^\d+/)?.[0];
-const versionBeforeRegex = /-\s*"version":\s*"(?<semverBefore>[^"]+)",/;
-const versionAfterRegex = /\+\s*"version":\s*"(?<semverAfter>[^"]+)",/;
-
-// Begin Execution
-const [[versionBefore, versionAfter], elapsedTime] = await measureElapsedTime(async () => {
+// Local Functions
+/**
+ * Get pull request details from the GitHub API.
+ * @param targetPullRequest Numeric string representing the pull request whose details to fetch.
+ * @returns                 List of a metadata object for each file changed in the target pull request.
+ */
+async function getPullRequestMetadata(targetPullRequest: string) {
   const response = await fetch(
-    `${env.GITHUB_API_URL}/repos/${env.GITHUB_REPOSITORY}/pulls/${pullRequestNumber}/files`,
+    `${env.GITHUB_API_URL}/repos/${env.GITHUB_REPOSITORY}/pulls/${targetPullRequest}/files`,
     {
       headers: {
         Accept: 'application/vnd.github+json',
@@ -55,15 +55,28 @@ const [[versionBefore, versionAfter], elapsedTime] = await measureElapsedTime(as
     });
   }
 
-  const responseJson = (await JSON.parse(responseText)) as PullRequestResponse;
-  const diffEntry = responseJson.find(
+  return (await JSON.parse(responseText)) as PullRequestResponse;
+}
+
+// Local Variables
+const pullRequestNumber = env.GITHUB_REF_NAME?.match(/^\d+/)?.[0];
+const versionBeforeRegex = /-\s*"version":\s*"(?<semverBefore>[^"]+)",/;
+const versionAfterRegex = /\+\s*"version":\s*"(?<semverAfter>[^"]+)",/;
+
+// Begin Execution
+const [[versionBefore, versionAfter], elapsedTime] = await measureElapsedTime(async () => {
+  if (!pullRequestNumber || Number.isNaN(Number.parseInt(pullRequestNumber, 10))) {
+    throw new TypeError('Pull request number not found', { cause: { pullRequestNumber } });
+  }
+  const diffEntryList = await getPullRequestMetadata(pullRequestNumber);
+  const packageJsonDiffEntry = diffEntryList.find(
     ({ filename, status }) => filename === 'package.json' && status === 'modified',
   );
-  if (!diffEntry) {
+  if (!packageJsonDiffEntry) {
     throw new Error('package.json is not in the list of changed files');
   }
 
-  const { patch } = diffEntry;
+  const { patch } = packageJsonDiffEntry;
   const { semverBefore } = patch.match(versionBeforeRegex)?.groups ?? {};
   const { semverAfter } = patch.match(versionAfterRegex)?.groups ?? {};
   if (
@@ -80,5 +93,5 @@ const [[versionBefore, versionAfter], elapsedTime] = await measureElapsedTime(as
 });
 
 console.log(
-  `Verified package.json version number change from ${versionBefore} to ${versionAfter} ${dim(white(`[${elapsedTime}]`))}`,
+  `✅ package.json version number changed from ${versionBefore} to ${versionAfter} ${dim(white(`[${elapsedTime}]`))}`,
 );
