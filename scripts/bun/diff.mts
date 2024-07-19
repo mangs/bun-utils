@@ -61,7 +61,14 @@ if (!diffEntry) {
 const { patch } = diffEntry;
 const { semverBefore } = patch.match(versionBeforeRegex)?.groups ?? {};
 const { semverAfter } = patch.match(versionAfterRegex)?.groups ?? {};
-console.log('SEMVER', semverBefore, semverAfter);
-const isVersionChanged = semverBefore !== semverAfter;
+if (
+  typeof semverBefore !== 'string' ||
+  typeof semverAfter !== 'string' ||
+  (typeof semverBefore === 'string' &&
+    typeof semverAfter === 'string' &&
+    semverBefore === semverAfter)
+) {
+  throw new Error('package.json version number was not changed');
+}
 
-process.exitCode = isVersionChanged ? 0 : 1;
+console.log(`Verified package.json version number change from ${semverBefore} to ${semverAfter}`);
