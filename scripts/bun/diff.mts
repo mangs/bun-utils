@@ -13,4 +13,5 @@ const patchContents = responseJson.find(
 ).patch;
 const isValidPatchRange = patchContents.startsWith('@@ -1,');
 const versionBefore = /^-\s*"version":\s*"([^"]+)",$/;
-patchContents.match(versionBefore);
+const match = patchContents.match(versionBefore);
+console.log('MATCH', match);
