@@ -8,9 +8,6 @@ jobs:
       - name: CPU Details
         run: lscpu
       - uses: actions/checkout@v4
-      - run: bun run diff
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
       - uses: technote-space/get-diff-action@v6
         id: git-diff
         with:
@@ -23,6 +20,11 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: "1.1.17"
+
+      - run: bun run diff
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
       - run: bun install --frozen-lockfile
       - run: bun run check:environment
       - run: bun --bun run check:formatting
