@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 /**
  * @file Ensure that every pull request changes the version number in `package.json`.
  */
@@ -21,13 +23,13 @@ interface DiffEntry {
 }
 
 type PullRequestResponse = DiffEntry[];
-
+console.log('ENV', env);
 // Local Variables
 const versionBeforeRegex = /-\s*"version":\s*"(?<semverBefore>[^"]+)",/;
 const versionAfterRegex = /\+\s*"version":\s*"(?<semverAfter>[^"]+)",/;
 
 // Begin Execution
-const response = await fetch('https://api.github.com/repos/mangs/bun-utils/pulls/88/files', {
+const response = await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/pulls/88/files`, {
   headers: {
     Accept: 'application/vnd.github+json',
     Authorization: `Bearer ${env.GITHUB_TOKEN}`,
@@ -52,13 +54,9 @@ if (!diffEntry) {
   throw new Error('package.json is not in the list of changed files');
 }
 
-const patchContents = diffEntry.patch;
-console.log('PATCH', patchContents);
-
-const { semverBefore } = patchContents.match(versionBeforeRegex)?.groups ?? {};
-const { semverAfter } = patchContents.match(versionAfterRegex)?.groups ?? {};
-console.log('MATCH BEFORE', semverBefore);
-console.log('MATCH AFTER', semverAfter);
-
+const { patch } = diffEntry;
+const { semverBefore } = patch.match(versionBeforeRegex)?.groups ?? {};
+const { semverAfter } = patch.match(versionAfterRegex)?.groups ?? {};
 const isVersionChanged = semverBefore !== semverAfter;
-console.log('IS VERSION CHANGED?', isVersionChanged);
+
+process.exitCode = isVersionChanged ? 0 : 1;
