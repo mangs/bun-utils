@@ -1,3 +1,10 @@
+/**
+ * @file Ensure that every pull request changes the version number in `package.json`.
+ */
+
+// External Imports
+import { env } from 'bun';
+
 // Local Types
 interface DiffEntry {
   additions: number;
@@ -23,7 +30,7 @@ const versionAfterRegex = /\+\s*"version":\s*"(?<semverAfter>[^"]+)",/;
 const response = await fetch('https://api.github.com/repos/mangs/bun-utils/pulls/88/files', {
   headers: {
     Accept: 'application/vnd.github+json',
-    Authorization: `Bearer ${Bun.env.GITHUB_TOKEN}`,
+    Authorization: `Bearer ${env.GITHUB_TOKEN}`,
   },
 });
 const responseText = await response.text();
