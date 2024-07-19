@@ -8,7 +8,13 @@ jobs:
       - name: CPU Details
         run: lscpu
       - uses: actions/checkout@v4
+      - run: bun run diff
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - uses: technote-space/get-diff-action@v6
+        id: git-diff
+        with:
+          FORMAT: JSON
       # - run: echo $GITHUB_BASE_REF && git rev-parse $GITHUB_BASE_REF
       # - run: echo $GITHUB_HEAD_REF && git rev-parse $GITHUB_HEAD_REF
       # - run: echo $GITHUB_REF && git rev-parse $GITHUB_REF

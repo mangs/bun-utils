@@ -38,6 +38,7 @@
     "./time": "./src/timeUtils.mts"
   },
   "scripts": {
+    "diff": "bun --print \"const response = await fetch('https://api.github.com/repos/mangs/bun-utils/pulls/88/files', { headers: { Accept: 'application/vnd.github+json', Authorization: 'Bearer '+Bun.env.GITHUB_TOKEN }} ); const responseJson = await response.json(); responseJson\"",
     "audit:node-modules": "cd node_modules && du -sh -- * | sort -h",
     "build:documentation": "typedoc --options ./config/typedoc/typedoc.json",
     "check:environment": "bun --bun run --silent check:environment:symlinks && bun run --silent check:environment:versions",
