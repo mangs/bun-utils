@@ -12,6 +12,6 @@ const patchContents = responseJson.find(
   ({ filename, status }) => filename === 'package.json' && status === 'modified',
 ).patch;
 const isValidPatchRange = patchContents.startsWith('@@ -1,');
-const versionBefore = /^-\s*"version":\s*"([^"]+)",$/;
+const versionBefore = /^-\s*"version":\s*"([^"]+)",$/g;
 const match = patchContents.match(versionBefore);
 console.log('MATCH', match);
