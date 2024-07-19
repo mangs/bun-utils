@@ -38,7 +38,6 @@
     "./time": "./src/timeUtils.mts"
   },
   "scripts": {
-    "diff": "bun scripts/bun/diff.mts",
     "audit:node-modules": "cd node_modules && du -sh -- * | sort -h",
     "build:documentation": "typedoc --options ./config/typedoc/typedoc.json",
     "check:environment": "bun --bun run --silent check:environment:symlinks && bun run --silent check:environment:versions",
@@ -46,6 +45,7 @@
     "check:environment:versions": "scripts/bun/checkEnvironmentVersions.mts",
     "check:formatting": "prettier --check --no-editorconfig .",
     "check:lint-conflicts": "eslint-config-prettier ./src/index.mts",
+    "check:package-version": "scripts/bun/checkPackageVersion.mts",
     "check:types": "tsc --noEmit",
     "delete:build-artifacts": "rm -rf dist",
     "delete:node-modules": "rm -rf node_modules",

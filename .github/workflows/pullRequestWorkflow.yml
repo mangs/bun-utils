@@ -8,26 +8,15 @@ jobs:
       - name: CPU Details
         run: lscpu
       - uses: actions/checkout@v4
-      # - uses: technote-space/get-diff-action@v6
-      #   id: git-diff
-      #   with:
-      #     FORMAT: JSON
-      # - run: echo $GITHUB_BASE_REF && git rev-parse $GITHUB_BASE_REF
-      # - run: echo $GITHUB_HEAD_REF && git rev-parse $GITHUB_HEAD_REF
-      # - run: echo $GITHUB_REF && git rev-parse $GITHUB_REF
-      # - run: echo $GITHUB_SHA
-      # - run: SOURCE_BRANCH=$(git rev-parse $GITHUB_HEAD_REF) TARGET_BRANCH=$(git rev-parse $GITHUB_BASE_REF) git diff $SOURCE_BRANCH..$TARGET_BRANCH
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: "1.1.17"
-
-      - run: bun run diff
+      - run: bun run check:package-version
         env:
           GITHUB_API_URL: ${{ env.GITHUB_API_URL }}
           GITHUB_REF_NAME: ${{ env.GITHUB_REF_NAME }}
           GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
           GITHUB_TOKEN: ${{ github.token }}
-
       - run: bun install --frozen-lockfile
       - run: bun run check:environment
       - run: bun --bun run check:formatting
