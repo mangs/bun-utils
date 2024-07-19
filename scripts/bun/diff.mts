@@ -21,3 +21,6 @@ const { semverBefore } = patchContents.match(versionBefore).groups;
 const { semverAfter } = patchContents.match(versionAfter).groups;
 console.log('MATCH BEFORE', semverBefore);
 console.log('MATCH AFTER', semverAfter);
+
+const isVersionChanged = semverBefore !== semverAfter;
+console.log('IS VERSION CHANGED?', isVersionChanged);
