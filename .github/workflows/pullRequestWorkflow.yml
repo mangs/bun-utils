@@ -8,11 +8,12 @@ jobs:
       - name: CPU Details
         run: lscpu
       - uses: actions/checkout@v4
-      - run: echo $GITHUB_BASE_REF && git rev-parse $GITHUB_BASE_REF
-      - run: echo $GITHUB_HEAD_REF && git rev-parse $GITHUB_HEAD_REF
-      - run: echo $GITHUB_REF && git rev-parse $GITHUB_REF
-      - run: echo $GITHUB_SHA
-      - run: SOURCE_BRANCH=$(git rev-parse $GITHUB_HEAD_REF) TARGET_BRANCH=$(git rev-parse $GITHUB_BASE_REF) git diff $SOURCE_BRANCH..$TARGET_BRANCH
+      - run: gh pr diff
+      # - run: echo $GITHUB_BASE_REF && git rev-parse $GITHUB_BASE_REF
+      # - run: echo $GITHUB_HEAD_REF && git rev-parse $GITHUB_HEAD_REF
+      # - run: echo $GITHUB_REF && git rev-parse $GITHUB_REF
+      # - run: echo $GITHUB_SHA
+      # - run: SOURCE_BRANCH=$(git rev-parse $GITHUB_HEAD_REF) TARGET_BRANCH=$(git rev-parse $GITHUB_BASE_REF) git diff $SOURCE_BRANCH..$TARGET_BRANCH
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: "1.1.17"
