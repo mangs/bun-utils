@@ -29,8 +29,6 @@ const pullRequestNumber = env.GITHUB_REF_NAME?.match(/^\d+/)?.[0];
 const versionBeforeRegex = /-\s*"version":\s*"(?<semverBefore>[^"]+)",/;
 const versionAfterRegex = /\+\s*"version":\s*"(?<semverAfter>[^"]+)",/;
 
-console.log('PR NUMBER', pullRequestNumber);
-
 // Begin Execution
 const response = await fetch(
   `${env.GITHUB_API_URL}/repos/${env.GITHUB_REPOSITORY}/pulls/${pullRequestNumber}/files`,
@@ -63,6 +61,7 @@ if (!diffEntry) {
 const { patch } = diffEntry;
 const { semverBefore } = patch.match(versionBeforeRegex)?.groups ?? {};
 const { semverAfter } = patch.match(versionAfterRegex)?.groups ?? {};
+console.log('SEMVER', semverBefore, semverAfter);
 const isVersionChanged = semverBefore !== semverAfter;
 
 process.exitCode = isVersionChanged ? 0 : 1;
