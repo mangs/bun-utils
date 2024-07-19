@@ -51,25 +51,26 @@
     "delete:node-modules": "rm -rf node_modules",
     "delete:package-lock": "rm -f bun.lockb",
     "format:code": "prettier --write --no-editorconfig .",
+    "install:bun:expected-version": "bun --print '(await import(Bun.env.npm_package_json)).engines.bun' | (read BUN_VERSION; if [ $BUN_VERSION == `bun --version` ]; then echo Bun version $BUN_VERSION is already installed; else echo Installing Bun version $BUN_VERSION... && curl -fsSL https://bun.sh/install | bash -s \"bun-v$BUN_VERSION\"; fi)",
     "lint:typescript": "echo Linting all TypeScript... && eslint --ext cts,ts,mts --max-warnings 0 .",
     "list:eslint:disable-directives": "rg '/(/|\\*+)[ \\t]*eslint-disable[^*]*(\\*+/)?'",
     "list:todo-comments": "rg --only-matching '(TODO|FIXME):[a-zA-Z0-9\\t .,;?]+'",
-    "postinstall": "bun scripts/git/removeGitHooks.mts && bun scripts/git/installGitHooks.mts",
+    "postinstall": "bun run --silent check:environment:versions && bun scripts/git/removeGitHooks.mts && bun scripts/git/installGitHooks.mts",
     "reinstall": "bun run --silent delete:package-lock && bun run --silent delete:node-modules && bun install",
     "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
   },
   "dependencies": {
-    "type-fest": "4.21.0"
+    "type-fest": "4.22.1"
   },
   "devDependencies": {
     "@babbel/eslint-config": "1.2.2",
     "@types/bun": "1.1.6",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-jsdoc": "48.5.2",
-    "prettier": "3.3.2",
-    "typedoc": "0.26.3",
-    "typedoc-plugin-markdown": "4.1.2",
+    "eslint-plugin-jsdoc": "48.8.1",
+    "prettier": "3.3.3",
+    "typedoc": "0.26.4",
+    "typedoc-plugin-markdown": "4.2.1",
     "typescript": "5.5.3"
   }
 }
