@@ -20,7 +20,7 @@
 | `loader?` | `object` | - | - | `BuildConfig.loader` | node\_modules/bun-types/bun.d.ts:1574 |
 | `minify?` | `boolean` \| `object` | - | - | `BuildConfig.minify` | node\_modules/bun-types/bun.d.ts:1584 |
 | `naming?` | `string` \| `object` | - | - | `BuildConfig.naming` | node\_modules/bun-types/bun.d.ts:1559 |
-| `outdir` | `string` | Output directory. | `BuildConfig.outdir` | - | [src/buildUtils.mts:30](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/buildUtils.mts#L30) |
+| `outdir` | `string` | Output directory. | `BuildConfig.outdir` | - | [src/buildUtils.mts:30](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/buildUtils.mts#L30) |
 | `plugins?` | `BunPlugin`[] | - | - | `BuildConfig.plugins` | node\_modules/bun-types/bun.d.ts:1568 |
 | `publicPath?` | `string` | - | - | `BuildConfig.publicPath` | node\_modules/bun-types/bun.d.ts:1571 |
 | `root?` | `string` | - | - | `BuildConfig.root` | node\_modules/bun-types/bun.d.ts:1566 |
@@ -77,7 +77,7 @@ process.exitCode = await buildAndShowMetadata(buildConfiguration);
 
 #### Defined in
 
-[src/buildUtils.mts:52](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/buildUtils.mts#L52)
+[src/buildUtils.mts:52](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/buildUtils.mts#L52)
 
 ***
 
@@ -100,4 +100,4 @@ Format and print to the command line the provided build metadata.
 
 #### Defined in
 
-[src/buildUtils.mts:81](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/buildUtils.mts#L81)
+[src/buildUtils.mts:81](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/buildUtils.mts#L81)

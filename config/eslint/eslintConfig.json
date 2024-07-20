@@ -24,6 +24,7 @@
       "files": [
         "scripts/bun/checkEnvironmentSymlinks.mts",
         "scripts/bun/checkEnvironmentVersions.mts",
+        "scripts/bun/checkPackageVersion.mts",
         "scripts/bun/startDevelopmentServer.mts",
         "scripts/git/installGitHooks.mts",
         "scripts/git/removeGitHooks.mts"

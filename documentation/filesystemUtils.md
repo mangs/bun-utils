@@ -8,8 +8,8 @@
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| `path?` | `string` | Path where the temporary file should be created. | [src/filesystemUtils.mts:18](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L18) |
-| `writerOptions?` | `object` | Options object defined by the first parameter accepted by `BunFile.writer()`. | [src/filesystemUtils.mts:22](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L22) |
+| `path?` | `string` | Path where the temporary file should be created. | [src/filesystemUtils.mts:18](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L18) |
+| `writerOptions?` | `object` | Options object defined by the first parameter accepted by `BunFile.writer()`. | [src/filesystemUtils.mts:22](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L22) |
 | `writerOptions.highWaterMark?` | `number` | - | node\_modules/bun-types/bun.d.ts:1200 |
 
 ## Functions
@@ -35,7 +35,7 @@ The list of inaccessible paths, if any.
 
 #### Defined in
 
-[src/filesystemUtils.mts:34](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L34)
+[src/filesystemUtils.mts:34](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L34)
 
 ***
 
@@ -60,7 +60,7 @@ A localized string representing a file size.
 
 #### Defined in
 
-[src/filesystemUtils.mts:76](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L76)
+[src/filesystemUtils.mts:76](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L76)
 
 ***
 
@@ -86,7 +86,7 @@ A list of paths.
 
 #### Defined in
 
-[src/filesystemUtils.mts:52](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L52)
+[src/filesystemUtils.mts:52](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L52)
 
 ***
 
@@ -110,7 +110,7 @@ Boolean indicating whether or not the path is accessible.
 
 #### Defined in
 
-[src/filesystemUtils.mts:97](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L97)
+[src/filesystemUtils.mts:97](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L97)
 
 ***
 
@@ -146,8 +146,8 @@ Temporary file instance object.
 
 | Name | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| `[asyncDispose]` | `Promise`\<`void`\> | Asynchronous automatic disposal function. | [src/filesystemUtils.mts:156](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L156) |
-| `append` | `Promise`\<`void`\> | Append string contents to the target temporary file. | [src/filesystemUtils.mts:146](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L146) |
+| `[asyncDispose]` | `Promise`\<`void`\> | Asynchronous automatic disposal function. | [src/filesystemUtils.mts:156](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L156) |
+| `append` | `Promise`\<`void`\> | Append string contents to the target temporary file. | [src/filesystemUtils.mts:146](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L146) |
 
 #### See
 
@@ -168,4 +168,4 @@ await file.append('holy data, batman\n');
 
 #### Defined in
 
-[src/filesystemUtils.mts:136](https://github.com/mangs/bun-utils/blob/4a61e0e79560296be56267975a9496cb8ba44398/src/filesystemUtils.mts#L136)
+[src/filesystemUtils.mts:136](https://github.com/mangs/bun-utils/blob/dfc2fad6e7e12933e8d109b2fd89e81b4c197a54/src/filesystemUtils.mts#L136)
