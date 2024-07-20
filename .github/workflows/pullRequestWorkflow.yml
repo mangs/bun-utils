@@ -11,14 +11,14 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: "1.1.17"
+      - run: bun install --frozen-lockfile
+      - run: bun run check:environment
       - run: bun run check:package-version
         env:
           GITHUB_API_URL: ${{ env.GITHUB_API_URL }}
           GITHUB_REF_NAME: ${{ env.GITHUB_REF_NAME }}
           GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
           GITHUB_TOKEN: ${{ github.token }}
-      - run: bun install --frozen-lockfile
-      - run: bun run check:environment
       - run: bun --bun run check:formatting
       - run: bun --bun run check:lint-conflicts
       - run: bun --bun run check:types
