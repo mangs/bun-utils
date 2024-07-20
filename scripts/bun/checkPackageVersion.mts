@@ -36,10 +36,7 @@ type PullRequestResponse = DiffEntry[];
  * @param changelogPath Filesystem path to the target changelog.
  * @returns             First semantic version-compatible version number occurring in a heading.
  */
-async function getFirstChangelogVersionNumber(changelogPath?: string) {
-  if (!changelogPath) {
-    throw new TypeError('Changelog path not specified');
-  }
+async function getFirstChangelogVersionNumber(changelogPath: string) {
   const changelogContents = await file(changelogPath).text();
   for (const token of marked.lexer(changelogContents)) {
     if (token.type === 'heading' && semver.satisfies(token.text as string, '*')) {
@@ -109,7 +106,9 @@ const [[versionBefore, versionAfter], elapsedTime] = await measureElapsedTime(as
     throw new Error('package.json version number was not changed');
   }
 
-  const firstChangelogVersionNumber = await getFirstChangelogVersionNumber(env.CHANGELOG_PATH);
+  const firstChangelogVersionNumber = await getFirstChangelogVersionNumber(
+    env.CHANGELOG_PATH ?? './CHANGELOG.md',
+  );
   if (firstChangelogVersionNumber !== semverAfter) {
     throw new Error('Changelog does not have a section detailing the latest changes');
   }
