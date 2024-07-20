@@ -1,11 +1,5 @@
 # Changelog
 
-## 2.26.0
-
-- Add script `scripts/bun/checkPackageVersion.mts` to ensure the package version changes for every pull request and the changelog stays in sync with it
-- Add `package.json` script `install:bun:expected-version` to automatically install the expected version of Bun or do nothing if it's already installed
-- Update dependency versions to latest
-
 ## 2.25.0
 
 - Change generic types for `measureServerTiming()` so the `metricName` field can optionally be limited to a type union of string literals
