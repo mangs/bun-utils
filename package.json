@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.26.0",
+  "version": "2.26.1",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -55,23 +55,23 @@
     "lint:typescript": "echo Linting all TypeScript... && eslint --ext cts,ts,mts --max-warnings 0 .",
     "list:eslint:disable-directives": "rg '/(/|\\*+)[ \\t]*eslint-disable[^*]*(\\*+/)?'",
     "list:todo-comments": "rg --only-matching '(TODO|FIXME):[a-zA-Z0-9\\t .,;?]+'",
-    "postinstall": "bun run --silent check:environment:versions && bun scripts/git/removeGitHooks.mts && bun scripts/git/installGitHooks.mts",
+    "postinstall": "bun scripts/git/removeGitHooks.mts && bun scripts/git/installGitHooks.mts",
     "reinstall": "bun run --silent delete:package-lock && bun run --silent delete:node-modules && bun install",
     "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
   },
   "dependencies": {
-    "type-fest": "4.22.1"
+    "type-fest": "4.23.0"
   },
   "devDependencies": {
     "@babbel/eslint-config": "1.2.2",
     "@types/bun": "1.1.6",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-jsdoc": "48.8.1",
+    "eslint-plugin-jsdoc": "48.8.3",
     "marked": "13.0.2",
     "prettier": "3.3.3",
-    "typedoc": "0.26.4",
-    "typedoc-plugin-markdown": "4.2.1",
-    "typescript": "5.5.3"
+    "typedoc": "0.26.5",
+    "typedoc-plugin-markdown": "4.2.3",
+    "typescript": "5.5.4"
   }
 }

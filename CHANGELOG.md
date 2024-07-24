@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.26.1
+
+- Remove environment version check from `postinstall` script so package consumers aren't locked to the maintenance Bun version
+- Update dependency versions to latest
+
 ## 2.26.0
 
 - Add script `scripts/bun/checkPackageVersion.mts` to ensure the package version changes for every pull request and the changelog stays in sync with it
