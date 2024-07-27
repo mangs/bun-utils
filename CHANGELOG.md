@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.27.3
+
+- Add back sidebar generation because a sidebar column is always shown
+
 ## 2.27.2
 
 - Add type `ServerTimingMetricParsed` missing from documentation
