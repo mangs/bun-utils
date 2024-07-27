@@ -133,7 +133,9 @@ async function main() {
   const missingPaths = await findMissingPaths(Object.values(filePaths));
   if (missingPaths.length > 0) {
     process.exitCode = 1;
-    printError(`The following paths don't exist:\n\t- ${missingPaths.join('\n\t- ')}`);
+    printError(
+      `The following paths don't exist:\n\t- ${missingPaths.join('\n\t- ')} ${getPerformanceLabel(startTime)}`,
+    );
     return;
   }
 
@@ -144,14 +146,13 @@ async function main() {
     printError(
       'One or more environment version mismatches occurred:\n' +
         `ACTUAL:   ${JSON.stringify(actualVersions, undefined, 2)}\n` +
-        `EXPECTED: ${JSON.stringify(expectedVersions, undefined, 2)}`,
+        `EXPECTED: ${JSON.stringify(expectedVersions, undefined, 2)} ${getPerformanceLabel(startTime)}`,
     );
     return;
   }
-  const performanceLabel = getPerformanceLabel(startTime);
 
   // Success!!!
-  printSuccess(`Environment versions valid ${performanceLabel}`);
+  printSuccess(`Environment versions valid ${getPerformanceLabel(startTime)}`);
 }
 
 // BEGIN EXECUTION

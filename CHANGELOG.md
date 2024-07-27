@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.28.0
+
+- Add a performance label to the failure cases of `scripts/bun/checkEnvironmentVersions.mts`
+
 ## 2.27.4
 
 - Remove sidebar generation because the default behavior is more robust
