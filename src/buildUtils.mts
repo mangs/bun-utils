@@ -3,7 +3,7 @@
  */
 
 // External Imports
-import { relative } from 'node:path';
+import nodePath from 'node:path';
 import { build, file, nanoseconds, stringWidth } from 'bun';
 
 // Internal Imports
@@ -89,7 +89,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
   };
   const buildArtifactsSorted = buildOutput.outputs
     .map(({ kind, path }) => {
-      const pathRelative = relative(buildOutputDirectory, path);
+      const pathRelative = nodePath.relative(buildOutputDirectory, path);
       const { size } = file(path);
       buildArtifactMetadata[kind].size += size;
       buildArtifactMetadata[kind].count += 1;

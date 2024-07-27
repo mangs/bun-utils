@@ -25,3 +25,6 @@ jobs:
           access: public
           registry: https://registry.npmjs.org/
           token: ${{ secrets.NPM_TOKEN }}
+      - uses: spenserblack/actions-wiki@v0
+        with:
+          path: documentation

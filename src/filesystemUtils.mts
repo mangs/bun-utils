@@ -5,7 +5,7 @@
 // External Imports
 import { access, constants, readdir, unlink } from 'node:fs/promises';
 import { file } from 'bun';
-import { resolve } from 'node:path';
+import nodePath from 'node:path';
 
 // Type Imports
 import type { BunFile } from 'bun';
@@ -53,14 +53,14 @@ async function getPathsRecursive(
   rootDirectory: string,
   ignore = ['node_modules'],
 ): Promise<string[]> {
-  const directoryPathAbsolute = resolve(rootDirectory);
+  const directoryPathAbsolute = nodePath.resolve(rootDirectory);
   const directoryEntries = await readdir(directoryPathAbsolute, { withFileTypes: true });
   const recursiveEntries = await Promise.all(
     directoryEntries.map((entry) => {
       if (ignore.includes(entry.name)) {
         return '';
       }
-      const pathAbsolute = resolve(directoryPathAbsolute, entry.name);
+      const pathAbsolute = nodePath.resolve(directoryPathAbsolute, entry.name);
       return entry.isDirectory() ? getPathsRecursive(pathAbsolute) : pathAbsolute;
     }),
   );
