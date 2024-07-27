@@ -1,6 +1,6 @@
 **Pull Request Checklist**
 
-- [ ] Readme and changelog updates were made reflecting this PR's changes
+- [ ] (OPTIONAL) Readme updates were made reflecting this Pull Request's changes
 
 **Changes Included**
 
