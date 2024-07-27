@@ -184,4 +184,4 @@ export {
   parseServerTimingMetrics,
   sleep,
 };
-export type { FormatOptions };
+export type { FormatOptions, ServerTimingMetricParsed };
