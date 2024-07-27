@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.27.1
+
+- Remove the sidebar from Wiki documentation so full table widths can be seen
+
 ## 2.27.0
 
 - Auto-generate documentation when merging every pull request into the `main` branch, then commit it to the `Wiki` section of the repository
