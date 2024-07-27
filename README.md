@@ -4,4 +4,6 @@ Useful utilities for your Bun projects
 
 ## Documentation
 
-Auto-generated with every pull request merge into the `main` branch. Located in the [Wiki section](https://github.com/mangs/bun-utils/wiki) of this repository.
+Located in the [Wiki section](https://github.com/mangs/bun-utils/wiki) of this repository.
+
+Auto-generated with every pull request merge into the `main` branch.
