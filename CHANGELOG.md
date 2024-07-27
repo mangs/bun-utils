@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.27.0
+
+- Auto-generate documentation when merging every pull request into the `main` branch, then commit it to the `Wiki` section of the repository
+
 ## 2.26.2
 
 - Try wiki documentation auto-publish
