@@ -16,7 +16,8 @@
   "propertiesFormat": "table",
   "readme": "none",
   "sidebar": {
-    "autoConfiguration": false
+    "autoConfiguration": true,
+    "heading": "Utils"
   },
   "sort": ["alphabetical"],
   "typeDeclarationFormat": "table"
