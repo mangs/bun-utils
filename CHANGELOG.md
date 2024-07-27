@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.27.2
+
+- Add type `ServerTimingMetricParsed` missing from documentation
+
 ## 2.27.1
 
 - Remove the sidebar from Wiki documentation so full table widths can be seen
