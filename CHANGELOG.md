@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.27.4
+
+- Remove sidebar generation because the default behavior is more robust
+
 ## 2.27.3
 
 - Add back sidebar generation because a sidebar column is always shown
