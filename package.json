@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.26.1",
+  "version": "2.26.2",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -63,7 +63,7 @@
     "type-fest": "4.23.0"
   },
   "devDependencies": {
-    "@babbel/eslint-config": "1.2.2",
+    "@babbel/eslint-config": "2.0.1",
     "@types/bun": "1.1.6",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",

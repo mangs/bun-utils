@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.2
+
+- Try wiki documentation auto-publish
+- Use new `/bun` and `/jsdoc-typescript` config profiles from major version update of `@babbel/eslint-config`
+- Update dependency versions to latest
+
 ## 2.26.1
 
 - Remove environment version check from `postinstall` script so package consumers aren't locked to the maintenance Bun version

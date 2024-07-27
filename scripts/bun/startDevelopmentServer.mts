@@ -7,7 +7,7 @@
 // External Imports
 import { argv } from 'bun';
 import { parseArgs } from 'node:util';
-import { resolve } from 'node:path';
+import nodePath from 'node:path';
 
 // Internal Imports
 import { startDevelopmentServer } from '../../src/networkUtils.mts';
@@ -52,7 +52,7 @@ async function main() {
 
   const entrypointPath = getOption<typeof values>(values, 'entrypoint-path');
   const namedExport = values['named-export'] ?? 'default';
-  const entrypoint = ((await import(resolve(entrypointPath))) as CodeModule)[namedExport];
+  const entrypoint = ((await import(nodePath.resolve(entrypointPath))) as CodeModule)[namedExport];
   if (!entrypoint) {
     throw new TypeError('Entrypoint module could not be found');
   }

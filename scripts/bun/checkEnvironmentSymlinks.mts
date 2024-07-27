@@ -7,7 +7,7 @@
 // External Imports
 import { lstat, realpath } from 'node:fs/promises';
 import { nanoseconds } from 'bun';
-import { relative } from 'node:path';
+import nodePath from 'node:path';
 
 // Internal Imports
 import { getPathsRecursive } from '../../src/filesystemUtils.mts';
@@ -52,7 +52,7 @@ async function main() {
     process.exitCode = 1;
     printError('The following symlinks point to a non-existant file:');
     for (const path of brokenSymlinkPaths) {
-      printError(`\t- ${relative('.', path)}`);
+      printError(`\t- ${nodePath.relative('.', path)}`);
     }
     printError(performanceLabel);
     return;
