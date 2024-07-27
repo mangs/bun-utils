@@ -4,4 +4,4 @@ Useful utilities for your Bun projects
 
 ## Documentation
 
-Located in the [[Wiki section|wiki]] of this repository
+Located in the [Wiki section](../wiki) of this repository
