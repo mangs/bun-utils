@@ -47,19 +47,17 @@ async function main() {
     }
   }
 
-  const performanceLabel = getPerformanceLabel(startTime);
   if (brokenSymlinkPaths.length > 0) {
     process.exitCode = 1;
     printError('The following symlinks point to a non-existant file:');
     for (const path of brokenSymlinkPaths) {
-      printError(`\t- ${nodePath.relative('.', path)}`);
+      printError(`\t- ${nodePath.relative('.', path)} ${getPerformanceLabel(startTime)}`);
     }
-    printError(performanceLabel);
     return;
   }
 
   // Success!!!
-  printSuccess(`Environment symlinks valid ${performanceLabel}`);
+  printSuccess(`Environment symlinks valid ${getPerformanceLabel(startTime)}`);
 }
 
 // BEGIN EXECUTION
