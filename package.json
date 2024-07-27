@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.26.2",
+  "version": "2.27.0",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -71,6 +71,7 @@
     "marked": "13.0.2",
     "prettier": "3.3.3",
     "typedoc": "0.26.5",
+    "typedoc-github-wiki-theme": "2.0.0",
     "typedoc-plugin-markdown": "4.2.3",
     "typescript": "5.5.4"
   }

@@ -25,6 +25,8 @@ jobs:
           access: public
           registry: https://registry.npmjs.org/
           token: ${{ secrets.NPM_TOKEN }}
+      - run: bun install --frozen-lockfile
+      - run: bun run build:documentation
       - uses: spenserblack/actions-wiki@v0
         with:
           path: documentation

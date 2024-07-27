@@ -12,9 +12,13 @@
   "out": "../../documentation",
   "outputFileStrategy": "modules",
   "parametersFormat": "table",
-  "plugin": ["typedoc-plugin-markdown"],
+  "plugin": ["typedoc-plugin-markdown", "typedoc-github-wiki-theme"],
   "propertiesFormat": "table",
   "readme": "none",
+  "sidebar": {
+    "autoConfiguration": true,
+    "heading": "Utils"
+  },
   "sort": ["alphabetical"],
   "typeDeclarationFormat": "table"
 }
