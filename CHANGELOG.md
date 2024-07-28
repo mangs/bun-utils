@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.30.1
+
+- Enable sorting when displaying any request body data in `startDevelopmentServer()`
+
 ## 2.30.0
 
 - Change request body logging option `shouldLogRequestBody` to `onLogRequestBody()` to give more configuration flexibility in `startDevelopmentServer()`

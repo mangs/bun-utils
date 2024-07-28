@@ -250,7 +250,7 @@ async function startDevelopmentServer(
         const isJsonBody = request.headers.get('content-type') === 'application/json';
         const requestBody = isJsonBody ? ((await request.json()) as unknown) : await request.text();
         if (requestBody) {
-          console.log(inspect(requestBody, { colors: true, depth: Infinity }));
+          console.log(inspect(requestBody, { colors: true, depth: Infinity, sorted: true }));
         }
       }
 
