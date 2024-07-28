@@ -91,7 +91,7 @@ interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 
   /**
    * Choose whether incoming request body contents should be logged
    */
-  shouldLogRequestBody?: boolean;
+  onLogRequestBody?: (request: Request, response: Response) => boolean;
 }
 
 // Local Functions
@@ -196,7 +196,13 @@ async function startDevelopmentServer(
   entrypointFunction: Serve['fetch'],
   serverConfiguration: ServerConfiguration = {},
 ) {
-  const { error, hostname, httpsOptions, port, shouldLogRequestBody = true } = serverConfiguration;
+  const {
+    error,
+    hostname,
+    httpsOptions,
+    onLogRequestBody = () => true,
+    port,
+  } = serverConfiguration;
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request, server: Server): Promise<Response> {
@@ -229,8 +235,8 @@ async function startDevelopmentServer(
         throw responseError;
       }
       if (
-        shouldLogRequestBody &&
         ['DELETE', 'PATCH', 'POST', 'PUT'].includes(request.method) &&
+        onLogRequestBody(request, response) &&
         !request.bodyUsed
       ) {
         // const isJsonBody = requestClone.headers.get('content-type') === 'application/json';
