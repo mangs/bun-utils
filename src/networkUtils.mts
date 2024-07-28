@@ -4,7 +4,7 @@
 
 // External Imports
 import { format } from 'node:util';
-import { file, serve, stringWidth } from 'bun';
+import { file, inspect, serve, stringWidth } from 'bun';
 
 // Internal Imports
 import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
@@ -88,6 +88,10 @@ interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 
    * Options for customizing HTTPS functionality.
    */
   httpsOptions?: HttpsOptions;
+  /**
+   * Choose whether incoming request body contents should be logged
+   */
+  shouldLogRequestBody?: boolean;
 }
 
 // Local Functions
@@ -192,10 +196,11 @@ async function startDevelopmentServer(
   entrypointFunction: Serve['fetch'],
   serverConfiguration: ServerConfiguration = {},
 ) {
-  const { error, hostname, httpsOptions, port } = serverConfiguration;
+  const { error, hostname, httpsOptions, port, shouldLogRequestBody = true } = serverConfiguration;
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request, server: Server): Promise<Response> {
+      // const requestClone = request.clone();
       const [[response, responseError], elapsedTime] = await measureElapsedTime(async () => {
         const { pathname, search } = new URL(request.url);
 
@@ -222,6 +227,25 @@ async function startDevelopmentServer(
       process.stdout.write(`  ${color(`(${response.status} in ${elapsedTime})`)}\n`);
       if (responseError) {
         throw responseError;
+      }
+      if (
+        shouldLogRequestBody &&
+        ['DELETE', 'PATCH', 'POST', 'PUT'].includes(request.method) &&
+        !request.bodyUsed
+      ) {
+        // const isJsonBody = requestClone.headers.get('content-type') === 'application/json';
+        // const requestBody = isJsonBody
+        //   ? ((await requestClone.json()) as unknown)
+        //   : await requestClone.text();
+        // if (requestBody) {
+        //   console.log(inspect(requestBody, { depth: Infinity }));
+        // }
+
+        const isJsonBody = request.headers.get('content-type') === 'application/json';
+        const requestBody = isJsonBody ? ((await request.json()) as unknown) : await request.text();
+        if (requestBody) {
+          console.log(inspect(requestBody, { colors: true, depth: Infinity }));
+        }
       }
 
       return response;

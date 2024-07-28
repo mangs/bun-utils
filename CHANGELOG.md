@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.29.0
+
+- Add request body logging to `startDevelopmentServer()` with option toggle `shouldLogRequestBody` to control it
+
 ## 2.28.0
 
 - Add a performance label to the failure cases of `scripts/bun/checkEnvironmentVersions.mts`
