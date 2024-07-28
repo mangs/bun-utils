@@ -3,6 +3,7 @@
 ## 2.30.1
 
 - Enable sorting when displaying any request body data in `startDevelopmentServer()`
+- Print request body logging data to the console with `process.stdout.write()` instead of `console.log()` for consistency
 
 ## 2.30.0
 
