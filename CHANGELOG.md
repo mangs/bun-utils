@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.30.0
+
+- Change request body logging option `shouldLogRequestBody` to `onLogRequestBody()` to give more configuration flexibility in `startDevelopmentServer()`
+
 ## 2.29.0
 
 - Add request body logging to `startDevelopmentServer()` with option toggle `shouldLogRequestBody` to control it
