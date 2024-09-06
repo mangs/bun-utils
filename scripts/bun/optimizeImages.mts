@@ -16,6 +16,7 @@ import type { AvifOptions, JpegOptions, PngOptions, WebpOptions } from 'sharp';
 // Local Variables
 const imageFormats = new Set(['avif', 'jpeg', 'jpg', 'png', 'webp']);
 const compressionOptions = {
+  // The "quality" options are the default values
   avif: { quality: 50 } satisfies AvifOptions,
   jpeg: { quality: 80 } satisfies JpegOptions,
   jpg: { quality: 80 } satisfies JpegOptions,
