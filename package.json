@@ -56,7 +56,6 @@
     "lint:typescript": "echo Linting all TypeScript... && eslint --ext cts,ts,mts --max-warnings 0 .",
     "list:eslint:disable-directives": "rg '/(/|\\*+)[ \\t]*eslint-disable[^*]*(\\*+/)?'",
     "list:todo-comments": "rg --only-matching '(TODO|FIXME):[a-zA-Z0-9\\t .,;?]+'",
-    "optimize:images": "bun scripts/bun/optimizeImages.mts",
     "postinstall": "bun scripts/git/removeGitHooks.mts && bun scripts/git/installGitHooks.mts",
     "reinstall": "bun run --silent delete:package-lock && bun run --silent delete:node-modules && bun install",
     "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
