@@ -3,7 +3,6 @@
  */
 
 // External Imports
-// eslint-disable-next-line n/no-unsupported-features/node-builtins -- ignore until lint library is fixed
 import { styleText } from 'node:util';
 
 // Internal Imports
