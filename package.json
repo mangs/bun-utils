@@ -4,9 +4,9 @@
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
-    "bun": "1.1.17"
+    "bun": "1.1.26"
   },
-  "packageManager": "bun@1.1.17",
+  "packageManager": "bun@1.1.26",
   "homepage": "https://github.com/mangs/bun-utils#readme",
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "check-environment-versions": "scripts/bun/checkEnvironmentVersions.mts",
     "devserver": "scripts/bun/startDevelopmentServer.mts",
     "install-git-hooks": "scripts/git/installGitHooks.mts",
+    "optimize-images": "scripts/bun/optimizeImages.mts",
     "remove-git-hooks": "scripts/git/removeGitHooks.mts"
   },
   "exports": {
@@ -55,24 +56,28 @@
     "lint:typescript": "echo Linting all TypeScript... && eslint --ext cts,ts,mts --max-warnings 0 .",
     "list:eslint:disable-directives": "rg '/(/|\\*+)[ \\t]*eslint-disable[^*]*(\\*+/)?'",
     "list:todo-comments": "rg --only-matching '(TODO|FIXME):[a-zA-Z0-9\\t .,;?]+'",
+    "optimize:images": "bun scripts/bun/optimizeImages.mts",
     "postinstall": "bun scripts/git/removeGitHooks.mts && bun scripts/git/installGitHooks.mts",
     "reinstall": "bun run --silent delete:package-lock && bun run --silent delete:node-modules && bun install",
     "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
   },
   "dependencies": {
-    "type-fest": "4.23.0"
+    "type-fest": "4.26.0"
   },
   "devDependencies": {
-    "@babbel/eslint-config": "2.0.1",
-    "@types/bun": "1.1.6",
+    "@babbel/eslint-config": "2.0.3",
+    "@types/bun": "1.1.8",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-jsdoc": "48.8.3",
-    "marked": "13.0.2",
+    "eslint-plugin-jsdoc": "50.2.2",
+    "marked": "14.1.1",
     "prettier": "3.3.3",
-    "typedoc": "0.26.5",
+    "typedoc": "0.26.6",
     "typedoc-github-wiki-theme": "2.0.0",
-    "typedoc-plugin-markdown": "4.2.3",
+    "typedoc-plugin-markdown": "4.2.7",
     "typescript": "5.5.4"
+  },
+  "optionalDependencies": {
+    "sharp": "0.33.5"
   }
 }

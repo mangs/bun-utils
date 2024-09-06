@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.31.0
+
+- Add new Bun CLI script `scripts/bun/optimizeImages.mts` to auto-optimize images
+  - Accessible via convenient `optimize-images` CLI command
+- Upgrade target Bun version from `1.1.17` to `1.1.26`
+- Update dependency versions to latest
+
 ## 2.30.1
 
 - Enable sorting when displaying any request body data in `startDevelopmentServer()`
