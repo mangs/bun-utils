@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.31.1
+
+- Add usage examples for the `optimize-images` CLI command
+
 ## 2.31.0
 
 - Add new Bun CLI script `scripts/bun/optimizeImages.mts` to auto-optimize images

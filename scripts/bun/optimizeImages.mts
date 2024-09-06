@@ -27,6 +27,19 @@ const compressionOptions = {
 // Local Functions
 /**
  * Script entrypoint.
+ * @example ```bash
+ * # All images in the current directory and all its subdirectories will be optimized. No image format conversion will occur.
+ * optimize-images
+ *
+ * # All images in the specified root directory and its subdirectories will be optimized. No image format conversion will occur.
+ * optimize-images --root-path assets/images/
+ *
+ * # All images in the current directory and all its subdirectories will be optimized. All images will be converted to AVIF.
+ * optimize-images --convert-to avif
+ *
+ * # All images in the specified root directory and its subdirectories will be optimized. All images will be converted to WebP.
+ * optimize-images --root-path public/ --convert-to webp
+ * ```
  */
 async function main() {
   const { values } = parseArgs({
