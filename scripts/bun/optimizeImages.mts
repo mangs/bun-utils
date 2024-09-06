@@ -55,7 +55,7 @@ async function main() {
     const imageMetadata = await sharp(fullFilePath).metadata();
     const { format } = imageMetadata;
     if (!format) {
-      throw new TypeError(`Invalid image format encountered: ${format}`);
+      throw new TypeError(`Invalid image format encountered: ${format}`, { cause: { filePath } });
     }
     const formatKeyed =
       (conversionFormat as keyof typeof compressionOptions) ??
