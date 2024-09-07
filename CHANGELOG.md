@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.32.0
+
+- Add a `getOrHead()` matcher to the router for matching `GET` or `HEAD` requests with a single configuration definition
+
 ## 2.31.2
 
 - Improve request logging in the development server by using `Request` cloning
