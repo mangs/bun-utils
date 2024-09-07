@@ -2,7 +2,7 @@
 
 ## 2.31.2
 
-- Improve request logging in the development server by using request cloning
+- Improve request logging in the development server by using `Request` cloning
 - Upgrade target Bun version from `1.1.26` to `1.1.27`
 
 ## 2.31.1
