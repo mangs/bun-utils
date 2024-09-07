@@ -206,7 +206,7 @@ async function startDevelopmentServer(
   const serverOptions: Serve = {
     development: true,
     async fetch(request: Request, server: Server): Promise<Response> {
-      // const requestClone = request.clone();
+      const requestClone = request.clone();
       const [[response, responseError], elapsedTime] = await measureElapsedTime(async () => {
         const { pathname, search } = new URL(request.url);
 
@@ -234,21 +234,11 @@ async function startDevelopmentServer(
       if (responseError) {
         throw responseError;
       }
-      if (
-        ['DELETE', 'PATCH', 'POST', 'PUT'].includes(request.method) &&
-        onLogRequestBody(request, response) &&
-        !request.bodyUsed
-      ) {
-        // const isJsonBody = requestClone.headers.get('content-type') === 'application/json';
-        // const requestBody = isJsonBody
-        //   ? ((await requestClone.json()) as unknown)
-        //   : await requestClone.text();
-        // if (requestBody) {
-        //   console.log(inspect(requestBody, { depth: Infinity }));
-        // }
-
-        const isJsonBody = request.headers.get('content-type') === 'application/json';
-        const requestBody = isJsonBody ? ((await request.json()) as unknown) : await request.text();
+      if (request.body && onLogRequestBody(request, response)) {
+        const isJsonBody = requestClone.headers.get('content-type') === 'application/json';
+        const requestBody = isJsonBody
+          ? ((await requestClone.json()) as unknown)
+          : await requestClone.text();
         if (requestBody) {
           process.stdout.write(
             `${inspect(requestBody, { colors: true, depth: Infinity, sorted: true })}\n`,

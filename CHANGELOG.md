@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.31.2
+
+- Improve request logging in the development server by using request cloning
+- Upgrade target Bun version from `1.1.26` to `1.1.27`
+
 ## 2.31.1
 
 - Add usage examples for the `optimize-images` CLI command
