@@ -189,6 +189,20 @@ class Router {
   }
 
   /**
+   * Register a route handler that matches the `GET` or `HEAD` HTTP request methods.
+   * @param path         A path-like string that will be used to match against the incoming request's path.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
+   * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   * @example
+   * ```ts
+   * router.getOrHead('/*', { pageRoute: () => import('./routes/pageRoute.mts') })
+   * ```
+   */
+  getOrHead(path: string, routeHandler: RouteHandler) {
+    return this.#handleMethod(path, routeHandler, 'GET').#handleMethod(path, routeHandler, 'HEAD');
+  }
+
+  /**
    * Register a route handler that matches the `HEAD` HTTP request method.
    * @param path         A path-like string that will be used to match against the incoming request's path.
    * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
