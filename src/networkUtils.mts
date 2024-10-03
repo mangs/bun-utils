@@ -234,7 +234,7 @@ async function startDevelopmentServer(
       if (responseError) {
         throw responseError;
       }
-      if (request.body && onLogRequestBody(request, response)) {
+      if (requestClone.body && onLogRequestBody(requestClone, response)) {
         const isJsonBody = requestClone.headers.get('content-type') === 'application/json';
         const requestBody = isJsonBody
           ? ((await requestClone.json()) as unknown)

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.32.1
+
+- Fix development server bug wherein `onLogRequestBody` would never be called
+- Update dependency versions to latest
+
 ## 2.32.0
 
 - Add a `getOrHead()` matcher to the router for matching `GET` or `HEAD` requests with a single configuration definition
