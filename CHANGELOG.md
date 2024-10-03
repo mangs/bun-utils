@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.33.0
+
+- Log the TLS certificate hostname instead of `localhost` during development server startup when the HTTPS protocol is being used
+
 ## 2.32.1
 
 - Fix development server bug wherein `onLogRequestBody` would never be called
