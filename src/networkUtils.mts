@@ -163,18 +163,21 @@ function getColorByStatusCode(statusCode: number) {
 
 /**
  * Log the development server's startup sequence to the console.
- * @param server          The return value of `Bun.serve()`.
- * @param server.url      The URL API object representing the running server instance.
- * @param server.url.href The full URL string representing the running server instance.
+ * @param serverHref    The full URL string representing the running server instance.
+ * @param tlsServerName The TLS certificate hostname to expect when connecting to the server.
  */
-function logServerStartup({ url: { href } }: Server) {
+function logServerStartup(
+  serverHref: Server['url']['href'],
+  tlsServerName: HttpsOptions['serverName'],
+) {
   globalThis.hotReloadCount ??= 0;
   const { hotReloadCount } = globalThis;
 
+  const listenUrl = tlsServerName ? `https://${tlsServerName}/` : serverHref;
   const hotCountString = hotReloadCount > 0 ? `  (hot reload count: ${hotReloadCount})` : '';
   const formatString = 'Development server listening on %s%s';
-  const heading = format(formatString, href, hotCountString);
-  const headingColor = format(formatString, href, dim(hotCountString));
+  const heading = format(formatString, listenUrl, hotCountString);
+  const headingColor = format(formatString, listenUrl, dim(hotCountString));
   const separator = dim('='.repeat(stringWidth(heading)));
   console.log(headingColor);
   console.log(separator);
@@ -319,7 +322,7 @@ async function startDevelopmentServer(
   }
 
   const developmentServer = serve(serverOptions);
-  logServerStartup(developmentServer);
+  logServerStartup(developmentServer.url.href, httpsOptions?.serverName);
   return developmentServer;
 }
 
