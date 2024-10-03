@@ -84,7 +84,7 @@ async function main() {
       style: 'percent',
     }).format(sizeAfter / sizeBefore);
     const newFilePath = fullFilePath.replace(/\.\w+$/, `.${formatKeyed}`);
-    await write(newFilePath, fileArrayBuffer);
+    await write(newFilePath, fileArrayBuffer.buffer);
 
     console.log(
       `${newFilePath}: ${getHumanReadableFilesize(sizeBefore)} to ${getHumanReadableFilesize(sizeAfter)} (${percentage}) ${getPerformanceLabel(startTime)}`,
