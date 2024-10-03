@@ -3,8 +3,8 @@
  */
 
 // External Imports
-import { format } from 'node:util';
 import { file, inspect, serve, stringWidth } from 'bun';
+import { format } from 'node:util';
 
 // Internal Imports
 import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
@@ -39,13 +39,13 @@ interface FetchRetryOptions extends FetchRequestInit {
    */
   onChangeRetryDelay?: (delay: number) => number;
   /**
-   * Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations.
-   */
-  retryDelay?: number;
-  /**
    * Maximum number of retries before an error is thrown.
    */
   retries?: number;
+  /**
+   * Delay between retries; `onChangeRetryDelay` affects how it changes between retry iterations.
+   */
+  retryDelay?: number;
   /**
    * Time until the `fetch` request times out; can alternatively be overridden by passing an `AbortSignal` value to the `options.signal` parameter member.
    */
@@ -105,7 +105,7 @@ interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 
  * @param options Options object that combines `fetch`'s 2nd parameter with custom options.
  * @returns       Data returned by `fetch`.
  */
-async function fetchWithRetry(url: string | URL | Request, options: FetchRetryOptions = {}) {
+async function fetchWithRetry(url: Request | string | URL, options: FetchRetryOptions = {}) {
   const {
     onBypassRetry = (statusCode) => statusCode < 500,
     onChangeRetryDelay = (delay) => delay * 2,

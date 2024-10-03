@@ -3,8 +3,8 @@
  */
 
 // External Imports
-import { access, constants, readdir, unlink } from 'node:fs/promises';
 import { file } from 'bun';
+import { access, constants, readdir, unlink } from 'node:fs/promises';
 import nodePath from 'node:path';
 
 // Type Imports

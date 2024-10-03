@@ -6,8 +6,8 @@
 
 // External Imports
 import { argv } from 'bun';
-import { parseArgs } from 'node:util';
 import nodePath from 'node:path';
+import { parseArgs } from 'node:util';
 
 // Internal Imports
 import { startDevelopmentServer } from '../../src/networkUtils.mts';
@@ -16,7 +16,7 @@ import { startDevelopmentServer } from '../../src/networkUtils.mts';
 import type { ServerConfiguration } from '../../src/networkUtils.mts';
 
 // Local Types
-type FetchFunction = (request: Request) => Response | Promise<Response>;
+type FetchFunction = (request: Request) => Promise<Response> | Response;
 type CodeModule = Record<string, { fetch: FetchFunction }>;
 
 // Local Functions

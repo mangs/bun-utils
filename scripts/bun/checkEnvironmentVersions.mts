@@ -5,12 +5,12 @@
  */
 
 // External Imports
-import { file, nanoseconds, semver, version as bunVersion } from 'bun';
+import { version as bunVersion, file, nanoseconds, semver } from 'bun';
 import { readdir } from 'node:fs/promises';
 
 // Internal Imports
-import { findMissingPaths } from '../../src/filesystemUtils.mts';
 import { getPerformanceLabel, printError, printSuccess } from '../../src/consoleUtils.mts';
+import { findMissingPaths } from '../../src/filesystemUtils.mts';
 
 // Type Imports
 import type { PackageJson } from 'type-fest';
@@ -24,7 +24,7 @@ const packageJson = JSON.parse(await file('./package.json').text()) as PackageJs
 
 // Local Types
 interface EnvironmentVersions {
-  [key: string]: string | Record<string, unknown>;
+  [key: string]: Record<string, unknown> | string;
   bun: {
     engineVersion: string;
     githubVersion: string;

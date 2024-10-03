@@ -1,6 +1,9 @@
 {
   "root": true,
   "extends": ["@babbel/eslint-config/jsdoc-typescript", "@babbel/eslint-config/bun"],
+  "settings": {
+    "import/core-modules": ["bun"]
+  },
   "overrides": [
     {
       "files": [

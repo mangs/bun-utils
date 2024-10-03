@@ -5,13 +5,13 @@
  */
 
 // External Imports
-import { lstat, realpath } from 'node:fs/promises';
 import { nanoseconds } from 'bun';
+import { lstat, realpath } from 'node:fs/promises';
 import nodePath from 'node:path';
 
 // Internal Imports
-import { getPathsRecursive } from '../../src/filesystemUtils.mts';
 import { getPerformanceLabel, printError, printSuccess } from '../../src/consoleUtils.mts';
+import { getPathsRecursive } from '../../src/filesystemUtils.mts';
 
 // Local Types
 interface PathError {

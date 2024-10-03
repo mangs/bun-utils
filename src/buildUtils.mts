@@ -3,8 +3,8 @@
  */
 
 // External Imports
-import nodePath from 'node:path';
 import { build, file, nanoseconds, stringWidth } from 'bun';
+import nodePath from 'node:path';
 
 // Internal Imports
 import {
