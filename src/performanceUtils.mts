@@ -21,7 +21,7 @@ import { buildServerTimingHeader } from './timeUtils.mts';
  * ```
  */
 async function measureCpuUsage<TRunner>(
-  runner: () => TRunner | Promise<TRunner>,
+  runner: () => Promise<TRunner> | TRunner,
   usesOneThread = false,
   startTime = performance.now(),
 ) {
@@ -51,7 +51,7 @@ async function measureCpuUsage<TRunner>(
 async function measurePerformanceMetrics<TRunner>(
   metricName: string,
   request: Request,
-  runner: () => TRunner | Promise<TRunner>,
+  runner: () => Promise<TRunner> | TRunner,
   metricDescription?: string,
   usesOneThread = false,
 ) {

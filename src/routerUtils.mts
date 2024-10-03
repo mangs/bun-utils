@@ -10,7 +10,7 @@ import { buildServerTimingHeader } from './timeUtils.mts';
 
 // Local Types
 type HttpRequestMethod = (typeof httpRequestMethods)[number]; // eslint-disable-line no-use-before-define -- defined nearby
-type RouteHandlerFunction = (request: Request) => Response | Promise<Response>;
+type RouteHandlerFunction = (request: Request) => Promise<Response> | Response;
 type RouteHandlerLazyLoaded = Record<string, () => Promise<Record<string, RouteHandlerFunction>>>;
 type RouteHandler = RouteHandlerFunction | RouteHandlerLazyLoaded;
 type RouteEntry = Parameters<InstanceType<typeof Router>['get']>; // eslint-disable-line no-use-before-define -- only used for types
@@ -54,6 +54,16 @@ const httpRequestMethods = [
  */
 class Router {
   /**
+   * Array of route tuples.
+   */
+  #routes: Routes;
+
+  /**
+   * Whether or not `Server-Timing` headers are appended to the `Request` object.
+   */
+  #usesServerTiming: boolean;
+
+  /**
    * Constructor that creates an empty array for route definitions.
    * @param usesServerTiming Boolean indicating if `Server-Timing` headers are appended to the request object.
    */
@@ -74,61 +84,6 @@ class Router {
     //     }
     //   },
     // });
-  }
-
-  /**
-   * Array of route tuples.
-   */
-  #routes: Routes;
-
-  /**
-   * Whether or not `Server-Timing` headers are appended to the `Request` object.
-   */
-  #usesServerTiming: boolean;
-
-  /**
-   * Handles the incoming request after all route definitions have been made.
-   * @param request The `Request` object for the incoming request.
-   * @returns       A `Response` object to build the response sent to the requester.
-   */
-  async handleRequest(request: Request) {
-    const startTime = performance.now();
-    const { method } = request;
-    const { pathname: requestPath } = new URL(request.url);
-
-    for (const [routeMethod, [routePath, routeHandler]] of this.#routes) {
-      if (routeMethod !== 'ALL' && method !== routeMethod) {
-        continue; // eslint-disable-line no-continue -- ignore HTTP methods that don't match the request
-      }
-
-      // eslint-disable-next-line unicorn/prefer-regexp-test -- false positive: this is a glob.match() not string.match()
-      if (new Glob(routePath).match(requestPath)) {
-        if (typeof routeHandler === 'function') {
-          if (this.#usesServerTiming) {
-            request.headers.append(...buildServerTimingHeader('routeSync', startTime)[0]);
-          }
-          return routeHandler(request);
-        }
-
-        const [entry] = Object.entries(routeHandler);
-        if (!entry) {
-          throw new TypeError('No lazy-loaded configuration option provided');
-        }
-
-        const [moduleKey, modulePromiseFunction] = entry;
-        const routeModule = await modulePromiseFunction(); // eslint-disable-line no-await-in-loop -- this will only ever await once
-        const targetFunction = routeModule[moduleKey];
-        if (typeof targetFunction === 'function') {
-          if (this.#usesServerTiming) {
-            request.headers.append(...buildServerTimingHeader('routeAsync', startTime)[0]);
-          }
-          return targetFunction(request);
-        }
-        throw new TypeError(`Lazy-loaded route handler target "${moduleKey}" was not a function`);
-      }
-    }
-
-    throw new Error('No routes matched!');
   }
 
   /**
@@ -200,6 +155,51 @@ class Router {
    */
   getOrHead(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'GET').#handleMethod(path, routeHandler, 'HEAD');
+  }
+
+  /**
+   * Handles the incoming request after all route definitions have been made.
+   * @param request The `Request` object for the incoming request.
+   * @returns       A `Response` object to build the response sent to the requester.
+   */
+  async handleRequest(request: Request) {
+    const startTime = performance.now();
+    const { method } = request;
+    const { pathname: requestPath } = new URL(request.url);
+
+    for (const [routeMethod, [routePath, routeHandler]] of this.#routes) {
+      if (routeMethod !== 'ALL' && method !== routeMethod) {
+        continue; // eslint-disable-line no-continue -- ignore HTTP methods that don't match the request
+      }
+
+      // eslint-disable-next-line unicorn/prefer-regexp-test -- false positive: this is a glob.match() not string.match()
+      if (new Glob(routePath).match(requestPath)) {
+        if (typeof routeHandler === 'function') {
+          if (this.#usesServerTiming) {
+            request.headers.append(...buildServerTimingHeader('routeSync', startTime)[0]);
+          }
+          return routeHandler(request);
+        }
+
+        const [entry] = Object.entries(routeHandler);
+        if (!entry) {
+          throw new TypeError('No lazy-loaded configuration option provided');
+        }
+
+        const [moduleKey, modulePromiseFunction] = entry;
+        const routeModule = await modulePromiseFunction(); // eslint-disable-line no-await-in-loop -- this will only ever await once
+        const targetFunction = routeModule[moduleKey];
+        if (typeof targetFunction === 'function') {
+          if (this.#usesServerTiming) {
+            request.headers.append(...buildServerTimingHeader('routeAsync', startTime)[0]);
+          }
+          return targetFunction(request);
+        }
+        throw new TypeError(`Lazy-loaded route handler target "${moduleKey}" was not a function`);
+      }
+    }
+
+    throw new Error('No routes matched!');
   }
 
   /**

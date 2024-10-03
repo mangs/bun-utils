@@ -2,13 +2,13 @@
 
 // External Imports
 import { argv, file, Glob, nanoseconds, write } from 'bun';
-import { parseArgs } from 'node:util';
 import nodePath from 'node:path';
+import { parseArgs } from 'node:util';
 import sharp from 'sharp'; // eslint-disable-line import/no-extraneous-dependencies -- used only for development
 
 // Internal Imports
-import { getHumanReadableFilesize } from '../../src/filesystemUtils.mts';
 import { getPerformanceLabel } from '../../src/consoleUtils.mts';
+import { getHumanReadableFilesize } from '../../src/filesystemUtils.mts';
 
 // Type Imports
 import type { AvifOptions, JpegOptions, PngOptions, WebpOptions } from 'sharp';
@@ -84,7 +84,7 @@ async function main() {
       style: 'percent',
     }).format(sizeAfter / sizeBefore);
     const newFilePath = fullFilePath.replace(/\.\w+$/, `.${formatKeyed}`);
-    await write(newFilePath, fileArrayBuffer);
+    await write(newFilePath, fileArrayBuffer.buffer);
 
     console.log(
       `${newFilePath}: ${getHumanReadableFilesize(sizeBefore)} to ${getHumanReadableFilesize(sizeAfter)} (${percentage}) ${getPerformanceLabel(startTime)}`,

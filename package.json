@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.32.0",
+  "version": "2.32.1",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -61,20 +61,19 @@
     "reinstall:use-lock-file": "bun run --silent delete:node-modules && bun install --frozen-lockfile"
   },
   "dependencies": {
-    "type-fest": "4.26.0"
+    "type-fest": "4.26.1"
   },
   "devDependencies": {
-    "@babbel/eslint-config": "2.0.3",
-    "@types/bun": "1.1.8",
-    "eslint": "8.57.0",
+    "@babbel/eslint-config": "2.1.1",
+    "@types/bun": "1.1.10",
+    "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-jsdoc": "50.2.2",
-    "marked": "14.1.1",
+    "marked": "14.1.2",
     "prettier": "3.3.3",
-    "typedoc": "0.26.6",
+    "typedoc": "0.26.7",
     "typedoc-github-wiki-theme": "2.0.0",
-    "typedoc-plugin-markdown": "4.2.7",
-    "typescript": "5.5.4"
+    "typedoc-plugin-markdown": "4.2.9",
+    "typescript": "5.6.2"
   },
   "optionalDependencies": {
     "sharp": "0.33.5"
