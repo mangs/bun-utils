@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.33.0",
+  "version": "2.33.1",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -65,15 +65,15 @@
   },
   "devDependencies": {
     "@babbel/eslint-config": "2.1.1",
-    "@types/bun": "1.1.10",
+    "@types/bun": "1.1.11",
     "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.0",
     "marked": "14.1.2",
     "prettier": "3.3.3",
-    "typedoc": "0.26.7",
+    "typedoc": "0.26.8",
     "typedoc-github-wiki-theme": "2.0.0",
     "typedoc-plugin-markdown": "4.2.9",
-    "typescript": "5.6.2"
+    "typescript": "5.6.3"
   },
   "optionalDependencies": {
     "sharp": "0.33.5"

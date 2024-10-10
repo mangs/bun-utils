@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.33.1
+
+- Add key `bytecode` to type `BuildArtifactMetadata` to handle Bun bundler support for [bytecode compilation](https://bun.sh/blog/bun-v1.1.30#compile-to-bytecode-for-2x-faster-startup-time)
+- Update dependency versions to latest
+
 ## 2.33.0
 
 - Log the TLS certificate hostname instead of `localhost` during development server startup when the HTTPS protocol is being used
