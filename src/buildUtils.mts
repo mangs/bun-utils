@@ -83,6 +83,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
   let maxFileSizeLength = 0;
   const buildArtifactMetadata: BuildArtifactMetadata = {
     asset: { count: 0, size: 0 },
+    bytecode: { count: 0, size: 0 },
     chunk: { count: 0, size: 0 },
     'entry-point': { count: 0, size: 0 },
     sourcemap: { count: 0, size: 0 },
