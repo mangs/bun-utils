@@ -2,7 +2,7 @@
 
 ## 2.33.2
 
-- Add executable `check-package-version` so package version bump validation can be done outside of this repository
+- Add NPM executable `check-package-version` so package version bump validation can be done outside of this repository
 - Update dependency versions to latest
 
 ## 2.33.1
