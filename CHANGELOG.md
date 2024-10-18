@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.33.2
+
+- Add executable `check-package-version` so package version bump validation can be done outside of this repository
+- Update dependency versions to latest
+
 ## 2.33.1
 
 - Add key `bytecode` to type `BuildArtifactMetadata` to handle Bun bundler support for [bytecode compilation](https://bun.sh/blog/bun-v1.1.30#compile-to-bytecode-for-2x-faster-startup-time)
