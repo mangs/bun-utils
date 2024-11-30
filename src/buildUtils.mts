@@ -142,7 +142,7 @@ function printBuildMetadata(buildOutput: BuildOutput, buildOutputDirectory: stri
   // Total sizes for each category
   const countPadWidth = Object.values(buildArtifactMetadata)
     // eslint-disable-next-line unicorn/no-array-reduce -- concise way to compute a value
-    .reduce((maxCount, { count }) => (count > maxCount ? count : maxCount), 0)
+    .reduce((maxCount, { count }) => Math.max(count, maxCount), 0)
     .toString().length;
   const labelColumnWidth = gutterWidth + maxFilenameLength;
   const gutter = ' '.repeat(gutterWidth);
