@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.33.3
+
+- Move `sharp` from `optionalDependencies` to `devDependencies` so it isn't forcibly installed for all consumers
+- Upgrade target Bun version from `1.1.27` to `1.1.37`
+- Upgrade GitHub Actions workflow operating system from Ubuntu 22.04 to 24.04
+- Update dependency versions to latest
+
 ## 2.33.2
 
 - Add NPM executable `check-package-version` so package version bump validation can be done outside of this repository
