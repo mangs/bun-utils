@@ -127,7 +127,7 @@ async function fetchWithRetry(url: Request | string | URL, options: FetchRetryOp
     }
     return response;
   } catch (error) {
-    if (error instanceof Error && hasRetriesRemaining) {
+    if (hasRetriesRemaining) {
       if (process.env.DEBUG) {
         console.debug('ERROR RETRY SETTINGS', { retries, retryDelay });
         console.debug('ERROR', error);
@@ -139,7 +139,12 @@ async function fetchWithRetry(url: Request | string | URL, options: FetchRetryOp
         retryDelay: onChangeRetryDelay(retryDelay),
       });
     }
-    throw error;
+
+    if (error instanceof Error) {
+      error.cause = { retries, retryDelay, timeout };
+      throw error;
+    }
+    throw new Error('Unexpected error', { cause: { error } });
   }
 }
 
