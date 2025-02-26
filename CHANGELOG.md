@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.33.5
+
+- Upgrade dependency versions to latest
+
 ## 2.33.4
 
 - Add error `cause` information when errors are thrown by `fetchWithRetry()`
