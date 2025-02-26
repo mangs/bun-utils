@@ -1,7 +1,3 @@
-/**
- * @file Router-related utlity functions.
- */
-
 // External Imports
 import { Glob } from 'bun';
 

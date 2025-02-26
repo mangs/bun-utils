@@ -1,7 +1,3 @@
-/**
- * @file Filesystem-related utilities.
- */
-
 // External Imports
 import { file } from 'bun';
 import { access, constants, readdir, unlink } from 'node:fs/promises';

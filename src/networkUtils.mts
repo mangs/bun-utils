@@ -1,7 +1,3 @@
-/**
- * @file Network-related utlity functions.
- */
-
 // External Imports
 import { file, inspect, serve, stringWidth } from 'bun';
 import { format } from 'node:util';

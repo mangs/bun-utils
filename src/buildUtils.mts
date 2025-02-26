@@ -1,7 +1,3 @@
-/**
- * @file Build- and bundler-related utilities.
- */
-
 // External Imports
 import { build, file, nanoseconds, stringWidth } from 'bun';
 import nodePath from 'node:path';
