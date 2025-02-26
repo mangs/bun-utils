@@ -1,7 +1,3 @@
-/**
- * @file Performance-related utilities.
- */
-
 // External Imports
 import { availableParallelism } from 'node:os';
 

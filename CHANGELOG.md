@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.33.6
+
+- Remove JSDoc `@file` annotations because they are unsupported by TypeDoc
+
 ## 2.33.5
 
 - Upgrade dependency versions to latest

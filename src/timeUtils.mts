@@ -1,7 +1,3 @@
-/**
- * @file Time-related utilities.
- */
-
 // External Imports
 import { nanoseconds } from 'bun';
 

@@ -1,7 +1,3 @@
-/**
- * @file Console-related utilities.
- */
-
 // External Imports
 import { styleText } from 'node:util';
 
