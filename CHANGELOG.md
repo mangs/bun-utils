@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.33.4
+
+- Add error `cause` information when errors are thrown by `fetchWithRetry()`
+
 ## 2.33.3
 
 - Move `sharp` from `optionalDependencies` to `devDependencies` so it isn't forcibly installed for all consumers
