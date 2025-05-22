@@ -62,7 +62,6 @@ async function buildAndShowMetadata(buildConfiguration: BuildConfiguration, mute
 
   if (!muteMetadata) {
     console.log();
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define -- functions get hoisted
     printBuildMetadata(buildOutput, buildConfiguration.outdir);
   }
   printSuccess(`Build success ${performanceLabel}`);

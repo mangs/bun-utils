@@ -83,21 +83,6 @@ class Router {
   }
 
   /**
-   * Register a route handler for the specified HTTP request method.
-   * @param path         A path-like string that will be used to match against the incoming request's path.
-   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
-   * @param method       A valid HTTP method.
-   * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
-   */
-  #handleMethod(path: string, routeHandler: RouteHandler, method: HttpRequestMethod) {
-    if (!httpRequestMethods.includes(method)) {
-      throw new TypeError(`"${method}" is not a valid HTTP method`);
-    }
-    this.#routes.push([method, [path, routeHandler]]);
-    return this;
-  }
-
-  /**
    * Register a route handler that matches all HTTP request methods.
    * @param path         A path-like string that will be used to match against the incoming request's path.
    * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
@@ -266,6 +251,21 @@ class Router {
    */
   put(path: string, routeHandler: RouteHandler) {
     return this.#handleMethod(path, routeHandler, 'PUT');
+  }
+
+  /**
+   * Register a route handler for the specified HTTP request method.
+   * @param path         A path-like string that will be used to match against the incoming request's path.
+   * @param routeHandler The function that will execute if this route handler is matched. Eagerly-loaded route handlers pass functions in directly; lazy-loaded ones pass in an object whose key corresponds to a module's named export or `'default'` for default export.
+   * @param method       A valid HTTP method.
+   * @returns            A reference to the instantiated instance (`this`) so route handler definitions can be chained.
+   */
+  #handleMethod(path: string, routeHandler: RouteHandler, method: HttpRequestMethod) {
+    if (!httpRequestMethods.includes(method)) {
+      throw new TypeError(`"${method}" is not a valid HTTP method`);
+    }
+    this.#routes.push([method, [path, routeHandler]]);
+    return this;
   }
 }
 

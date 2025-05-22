@@ -17,7 +17,7 @@ declare global {
 
 // Local Types
 // eslint-disable-next-line no-undef -- not sure why FetchRequestInit invisible to ESLint
-interface FetchRetryOptions extends FetchRequestInit {
+interface FetchRetryOptions extends BunFetchRequestInit {
   /**
    * Function allowing arbitrary status codes to bypass the retry process.
    * @param statusCode Response status code.
