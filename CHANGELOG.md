@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.34.0
+
+- Upgrade target Bun version from `1.1.37` to `1.2.14`
+- Upgrade dependency versions to latest
+
 ## 2.33.6
 
 - Remove JSDoc `@file` annotations because they are unsupported by TypeDoc
