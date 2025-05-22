@@ -57,7 +57,7 @@ async function main() {
     throw new Error(`Invalid image conversion format: ${conversionFormat}`);
   }
 
-  const rootPath = values['root-path']!;
+  const rootPath = values['root-path'];
   const glob = new Glob('**/*.{avif,jpeg,jpg,png,webp}');
   let fileCount = 0;
   for await (const filePath of glob.scan(rootPath)) {
@@ -68,7 +68,7 @@ async function main() {
     const imageMetadata = await sharp(fullFilePath).metadata();
     const { format } = imageMetadata;
     if (!format) {
-      throw new TypeError(`Invalid image format encountered: ${format}`, { cause: { filePath } });
+      throw new TypeError('Invalid image format encountered', { cause: { filePath, format } });
     }
     const formatKeyed =
       (conversionFormat as keyof typeof compressionOptions) ??
