@@ -26,7 +26,7 @@ type CodeModule = Record<string, { fetch: FetchFunction }>;
  * @param option       The specific value to extract from the command line object.
  * @returns            The option value parsed from the command line.
  */
-function getOption<T>(parsedValues: Record<keyof T, T[keyof T]>, option: keyof T) {
+function getOption<T>(parsedValues: T, option: keyof T) {
   const optionValue = parsedValues[option];
   if (optionValue) {
     return optionValue;
@@ -50,7 +50,7 @@ async function main() {
     },
   });
 
-  const entrypointPath = getOption<typeof values>(values, 'entrypoint-path');
+  const entrypointPath = getOption(values, 'entrypoint-path');
   const namedExport = values['named-export'] ?? 'default';
   const entrypoint = ((await import(nodePath.resolve(entrypointPath))) as CodeModule)[namedExport];
   if (!entrypoint) {
