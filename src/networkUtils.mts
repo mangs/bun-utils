@@ -7,7 +7,7 @@ import { cyan, dim, green, printError, red, yellow } from './consoleUtils.mts';
 import { measureElapsedTime, sleep } from './timeUtils.mts';
 
 // Type Imports
-import type { Serve, ServeOptions, Server } from 'bun';
+import type { Serve, Server } from 'bun';
 
 // Global Types
 declare global {
@@ -79,7 +79,7 @@ interface HttpsOptions {
   serverName?: string;
 }
 
-interface ServerConfiguration extends Pick<ServeOptions, 'error' | 'hostname' | 'port'> {
+interface ServerConfiguration extends Partial<Pick<Serve.Options<undefined>, 'error' | 'hostname' | 'port'>> {
   /**
    * Options for customizing HTTPS functionality.
    */
@@ -168,7 +168,7 @@ function getColorByStatusCode(statusCode: number) {
  * @param tlsServerName The TLS certificate hostname to expect when connecting to the server.
  */
 function logServerStartup(
-  serverHref: Server['url']['href'],
+  serverHref: Server<undefined>['url']['href'],
   tlsServerName: HttpsOptions['serverName'],
 ) {
   globalThis.hotReloadCount ??= 0;
@@ -197,7 +197,7 @@ function logServerStartup(
  * @returns                   `Promise` resolving to the return value of `Bun.serve()`.
  */
 async function startDevelopmentServer(
-  entrypointFunction: Serve['fetch'],
+  entrypointFunction: NonNullable<Serve.Options<undefined>['fetch']>,
   serverConfiguration: ServerConfiguration = {},
 ) {
   const {
@@ -207,9 +207,9 @@ async function startDevelopmentServer(
     onLogRequestBody = () => true,
     port,
   } = serverConfiguration;
-  const serverOptions: Serve = {
+  const serverOptions: Serve.Options<undefined> = {
     development: true,
-    async fetch(request: Request, server: Server): Promise<Response> {
+    async fetch(request: Request, server: Server<undefined>): Promise<Response> {
       const requestClone = request.clone();
       const [[response, responseError], elapsedTime] = await measureElapsedTime(async () => {
         const { pathname, search } = new URL(request.url);
@@ -252,7 +252,6 @@ async function startDevelopmentServer(
 
       return response;
     },
-    lowMemoryMode: httpsOptions?.lowMemoryMode ?? false,
     port: port ?? process.env.DEVELOPMENT_SERVER_PORT ?? 80,
     ...(error && { error }),
     ...(hostname && { hostname }),
@@ -263,6 +262,7 @@ async function startDevelopmentServer(
       certificateAuthorityPath,
       certificatePath,
       diffieHellmanParametersPath,
+      lowMemoryMode,
       passphrase,
       privateKeyPath,
       serverName,
@@ -315,6 +315,9 @@ async function startDevelopmentServer(
     }
     if (serverName) {
       serverOptions.tls.serverName = serverName;
+    }
+    if (lowMemoryMode !== undefined) {
+      serverOptions.tls.lowMemoryMode = lowMemoryMode;
     }
   }
 
