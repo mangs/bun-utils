@@ -79,7 +79,8 @@ interface HttpsOptions {
   serverName?: string;
 }
 
-interface ServerConfiguration extends Partial<Pick<Serve.Options<undefined>, 'error' | 'hostname' | 'port'>> {
+interface ServerConfiguration
+  extends Partial<Pick<Serve.Options<undefined>, 'error' | 'hostname' | 'port'>> {
   /**
    * Options for customizing HTTPS functionality.
    */
