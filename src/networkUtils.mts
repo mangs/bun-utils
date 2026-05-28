@@ -80,7 +80,7 @@ interface HttpsOptions {
 }
 
 interface ServerConfiguration
-  extends Partial<Pick<Serve.Options<undefined>, 'error' | 'hostname' | 'port'>> {
+  extends Pick<Serve.Options<undefined>, 'error' | 'hostname' | 'port'> {
   /**
    * Options for customizing HTTPS functionality.
    */
