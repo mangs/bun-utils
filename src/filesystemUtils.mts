@@ -140,7 +140,7 @@ function usingNewTemporaryFile(options?: TemporaryFileOptions) {
      * @param shouldForceFlush Whether or not to force a flush to disk when appending.
      */
     async append(appendContents: string, shouldForceFlush = false) {
-      writer.write(appendContents);
+      await writer.write(appendContents);
       if (shouldForceFlush) {
         await writer.flush();
       }

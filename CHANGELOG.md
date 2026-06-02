@@ -1,6 +1,10 @@
 # Changelog
 
-## 2.35.3
+## 2.35.1
+
+- Fix changelog version
+
+## 2.35.0
 
 - Upgrade target Bun version from `1.2.14` to `1.3.12`
 
