@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.35.3
+
+- Fix NPM publish attempt 2
+
 ## 2.35.2
 
 - Fix NPM publish
