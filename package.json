@@ -1,6 +1,6 @@
 {
   "name": "@mangs/bun-utils",
-  "version": "2.35.1",
+  "version": "2.35.2",
   "author": "Eric L. Goldstein",
   "description": "Useful utils for your Bun projects",
   "engines": {
@@ -10,7 +10,7 @@
   "homepage": "https://github.com/mangs/bun-utils#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mangs/bun-utils.git"
+    "url": "git+ssh://git@github.com/mangs/bun-utils.git"
   },
   "keywords": [
     "bun",
@@ -24,7 +24,7 @@
   "bin": {
     "check-environment-symlinks": "scripts/bun/checkEnvironmentSymlinks.mts",
     "check-environment-versions": "scripts/bun/checkEnvironmentVersions.mts",
-    "check-package-version": "./scripts/bun/checkPackageVersion.mts",
+    "check-package-version": "scripts/bun/checkPackageVersion.mts",
     "devserver": "scripts/bun/startDevelopmentServer.mts",
     "install-git-hooks": "scripts/git/installGitHooks.mts",
     "optimize-images": "scripts/bun/optimizeImages.mts",
