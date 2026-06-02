@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.35.2
+
+- Fix NPM publish
+
 ## 2.35.1
 
 - Fix changelog version
